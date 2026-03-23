@@ -16,8 +16,8 @@ export default function PulsingPath() {
 
     // The straight line path "M4 4H322" has a length of 425px.
     const stDashLength = 80;
-    const stGapLength = 345;
-    const stTotalLength = 425; // actual path length (dashLength + gapLength)
+    const stGapLength = 300;
+    const stTotalLength = 380; // actual path length (dashLength + gapLength)
 
     //Color theme
     const backgroundColor = "#D7DDE0";

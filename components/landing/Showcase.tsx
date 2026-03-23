@@ -4,9 +4,19 @@ import PulsingPath from '../ui/pulsingPath'
 
 export default function Showcase() {
   return (
-    <div className='w-full h-full mx-auto py-10'>
+    <div className='w-full h-full mx-auto py-10 font-sans'>
 
         <main className='h-full w-full justify-center items-center px-50'>
+
+            <div className='w-full h-full justify-center items-center flex pb-5'>
+                <h1 className='text-3xl md:text-4xl font-bold text-center w-xl
+                    bg-linear-to-b from-black via-slate-800 to-slate-700
+                    dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400
+                    leading-tight mb-6 bg-clip-text text-transparent'
+                >
+                    Decentralized. Borderless. Permissionless. Trade.
+                </h1>
+            </div>
 
            <div>
             <PulsingPath />

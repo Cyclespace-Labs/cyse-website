@@ -1,3 +1,4 @@
+import Features from "@/components/landing/Features";
 import Hero from "@/components/landing/Hero";
 import Showcase from "@/components/landing/Showcase";
 import Stats from "@/components/landing/Stats";
@@ -14,6 +15,10 @@ export default function Home() {
 
       <div>
         <Showcase />
+      </div>
+
+      <div>
+        <Features />
       </div>
       
     </main>
