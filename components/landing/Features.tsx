@@ -2,6 +2,7 @@ import React from 'react'
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card'
 import Image from 'next/image'
 import { Cpu } from 'lucide-react'
+import { Button } from '../ui/button'
 
 export default function Features() {
   return (
@@ -43,7 +44,7 @@ export default function Features() {
 
                     </Card>
 
-                    <Card className='h-full w-full bg-slate-200 border border-slate-200 ' >
+                    <Card className='h-full w-full bg-zinc-200 border border-zinc-200 ' >
                         <CardHeader className='flex items-center gap-2'>
                             <div className='bg-blue-500 p-2 rounded-lg w-fit h-fit'><Cpu className='text-white w-5 h-5' /></div>
                             <div className='gap-0 space-y-0 flex flex-col'>
@@ -59,7 +60,7 @@ export default function Features() {
                 </div>
 
                 <div className='flex flex-col gap-5 w-full h-full'>
-                    <Card className='h-full w-full bg-slate-200 border border-slate-200 ' >
+                    <Card className='h-full w-120 bg-zinc-200 border border-zinc-200 ' >
                         <CardHeader className='flex items-center gap-2 w-full'>
                             <div className='bg-blue-500 p-2 rounded-lg w-fit h-fit'><Cpu className='text-white w-5 h-5' /></div>
                             <div className='gap-0 space-y-0 flex flex-col w-full'>
@@ -67,38 +68,46 @@ export default function Features() {
                                 <h3 className='text-xs '>Trade Directly from Your Wallet.</h3>
                             </div>
                         </CardHeader>
-                        <CardContent className='text-xs'>
-                            Trade Directly from Your Wallet. Execute Trades. Retain Ownership.
+                        <CardContent className='text-xs justify-between w-full flex gap-15'>
+                            <span>Trade Directly from Your Wallet. Execute Trades. Retain Ownership.</span>
+                            <div>
+                                <Button className='text-xs bg-blue-500'>Trade Now</Button>
+                            </div>
                         </CardContent>
                     </Card>
-                    <Card className='h-fit w-full bg-linear-to-tr from-blue-500 via-blue-900 to-blue-950
+                    <Card className='h-full w-full bg-linear-to-tr from-blue-500 via-blue-900 to-blue-950
                         leading-tight'
                     >
-                        <CardHeader>
-                            <Image
-                                src="/assets/Vault.png"
-                                alt="cyclespace exchange vault"
-                                height={230}
-                                width={230}
-                                quality={100}
-                                className="object-cover relative left-56 -top-10 "
-                                priority
-                                referrerPolicy="no-referrer"
-                            />
-                        </CardHeader>
-
-                        <CardFooter className='w-full text-left px-6 space-y-2 flex flex-col'>
+                        <CardHeader className='pt-3'>
                             <h2 className='text-white text-lg font-bold'>Decentralized. Borderless. Permissionless. Trade.</h2>
                             <h3 className='text-sm text-slate-200'>Trade Directly from Your Wallet. Execute Trades. Retain Ownership.</h3>
-                        </CardFooter>
+                        </CardHeader>
+
+                        <CardContent className='w-full h-60 text-left px-6 space-y-2 flex flex-col'>
+                            <div>
+                                
+                            </div>
+                            <div>
+
+                            </div>
+                        </CardContent>
 
                     </Card>
                 </div>
                 <div className='flex flex-col gap-5 w-full h-full'>
-                    <Card className='h-40 w-full bg-slate-200 border border-slate-200'>
-
+                    <Card className='h-full w-full bg-zinc-200 border border-zinc-200 ' >
+                        <CardHeader className='flex items-center gap-2 w-full'>
+                            <div className='bg-blue-500 p-2 rounded-lg w-fit h-fit'><Cpu className='text-white w-5 h-5' /></div>
+                            <div className='gap-0 space-y-0 flex flex-col w-full'>
+                                <h2 className='text-lg font-bold'>Decentralized. Borderless. </h2>
+                                <h3 className='text-xs '>Trade Directly from Your Wallet.</h3>
+                            </div>
+                        </CardHeader>
+                        <CardContent className='text-xs justify-between w-full flex gap-15'>
+                            <span>Trade Directly from Your Wallet. Execute Trades. Retain Ownership.</span>
+                        </CardContent>
                     </Card>
-                    <Card className='h-90 w-full bg-slate-200 border border-slate-200'>
+                    <Card className='h-full w-full bg-zinc-200 border border-zinc-200'>
 
                     </Card>
                 </div>
