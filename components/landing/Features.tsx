@@ -1,8 +1,28 @@
 import React from 'react'
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card'
 import Image from 'next/image'
-import { Cpu } from 'lucide-react'
+import { Check, Cpu, Ticket } from 'lucide-react'
 import { Button } from '../ui/button'
+import LogoLoop from './LogoLoop';
+import { Badge } from '../ui/badge'
+
+const tokenLogos = [
+    { src: "/tokens/Bitcoin.svg", alt: "Bitcoin BTC", href: "https://bitcoin.org"},
+    { src: "/tokens/Tether.svg", alt: "Tether USDT", href: "https://tether.com"},
+    { src: "/tokens/Uniswap UNI.svg", alt: "Uniswap UNI", href: "https://tether.com"},
+    { src: "/tokens/Binance.svg", alt: "Binance", href: "https://bitcoin.org"},
+    { src: "/tokens/XRP.svg", alt: "Tether USDT", href: "https://tether.com"},
+    { src: "/tokens/Cardano ADA.svg", alt: "Uniswap UNI", href: "https://tether.com"},
+    { src: "/tokens/Bitcoin.svg", alt: "Bitcoin BTC", href: "https://bitcoin.org"},
+    { src: "/tokens/Tether.svg", alt: "Tether USDT", href: "https://tether.com"},
+    { src: "/tokens/Uniswap UNI.svg", alt: "Uniswap UNI", href: "https://tether.com"},
+    { src: "/tokens/Bitcoin.svg", alt: "Bitcoin BTC", href: "https://bitcoin.org"},
+    { src: "/tokens/Tether.svg", alt: "Tether USDT", href: "https://tether.com"},
+    { src: "/tokens/Uniswap UNI.svg", alt: "Uniswap UNI", href: "https://tether.com"},
+    { src: "/tokens/Bitcoin.svg", alt: "Bitcoin BTC", href: "https://bitcoin.org"},
+    { src: "/tokens/Tether.svg", alt: "Tether USDT", href: "https://tether.com"},
+    { src: "/tokens/Uniswap UNI.svg", alt: "Uniswap UNI", href: "https://tether.com"},
+]
 
 export default function Features() {
   return (
@@ -62,7 +82,6 @@ export default function Features() {
                 <div className='flex flex-col gap-5 w-full h-full'>
                     <Card className='h-full w-120 bg-zinc-200 border border-zinc-200 ' >
                         <CardHeader className='flex items-center gap-2 w-full'>
-                            <div className='bg-blue-500 p-2 rounded-lg w-fit h-fit'><Cpu className='text-white w-5 h-5' /></div>
                             <div className='gap-0 space-y-0 flex flex-col w-full'>
                                 <h2 className='text-lg font-bold'>Decentralized. Borderless. </h2>
                                 <h3 className='text-xs '>Trade Directly from Your Wallet.</h3>
@@ -75,20 +94,85 @@ export default function Features() {
                             </div>
                         </CardContent>
                     </Card>
-                    <Card className='h-full w-full bg-linear-to-tr from-blue-500 via-blue-900 to-blue-950
+                    <Card className='h-full w-full bg-zinc-200
                         leading-tight'
                     >
                         <CardHeader className='pt-3'>
-                            <h2 className='text-white text-lg font-bold'>Decentralized. Borderless. Permissionless. Trade.</h2>
-                            <h3 className='text-sm text-slate-200'>Trade Directly from Your Wallet. Execute Trades. Retain Ownership.</h3>
+                            <h2 className='text-black text-lg font-bold'>Decentralized. Borderless. Permissionless. Trade.</h2>
+                            <h3 className='text-sm text-slate-600'>Trade Directly from Your Wallet. Execute Trades. Retain Ownership.</h3>
                         </CardHeader>
 
-                        <CardContent className='w-full h-60 text-left px-6 space-y-2 flex flex-col'>
-                            <div>
-                                
+                        <CardContent className='w-full h-full mt-5 text-left overflow-clip px-6 space-y-2 flex flex-col'>
+                            <div className='gap-5 w-full flex justify-center'>
+                                <Image
+                                    src="/tokens/Bitcoin.svg" alt="cyclespace exchange vault" height={60} width={60} quality={100} className="object-cover relative" priority referrerPolicy="no-referrer"
+                                />
+                                <Image
+                                    src="/tokens/Tether.svg" alt="cyclespace exchange vault" height={60} width={60} quality={100} className="object-cover relative" priority referrerPolicy="no-referrer"
+                                />
+                                <Image
+                                    src="/tokens/Uniswap UNI.svg" alt="cyclespace exchange vault" height={60} width={60} quality={100} className="object-cover relative" priority referrerPolicy="no-referrer"
+                                />
+                                <Image
+                                    src="/tokens/Binance.svg" alt="cyclespace exchange vault" height={60} width={60} quality={100} className="object-cover relative" priority referrerPolicy="no-referrer"
+                                />
+                                <Image
+                                    src="/tokens/XRP.svg" alt="cyclespace exchange vault" height={60} width={60} quality={100} className="object-cover relative" priority referrerPolicy="no-referrer"
+                                />
+                                <Image
+                                    src="/tokens/Cardano ADA.svg" alt="cyclespace exchange vault" height={60} width={60} quality={100} className="object-cover relative" priority referrerPolicy="no-referrer"
+                                />
+                                <Image
+                                    src="/tokens/Stellar.svg" alt="cyclespace exchange vault" height={60} width={60} quality={100} className="object-cover relative" priority referrerPolicy="no-referrer"
+                                />
                             </div>
-                            <div>
 
+                            <div className='gap-5 w-full flex justify-center'>
+                                <Image
+                                    src="/tokens/Solana SOL.svg" alt="cyclespace exchange vault" height={60} width={60} quality={100} className="object-cover relative" priority referrerPolicy="no-referrer"
+                                />
+                                <Image
+                                    src="/tokens/Polkadot.svg" alt="cyclespace exchange vault" height={60} width={60} quality={100} className="object-cover relative" priority referrerPolicy="no-referrer"
+                                />
+                                <Image
+                                    src="/tokens/USD Coin.svg" alt="cyclespace exchange vault" height={60} width={60} quality={100} className="object-cover relative" priority referrerPolicy="no-referrer"
+                                />
+                                <Image
+                                    src="/tokens/Polygon.svg" alt="cyclespace exchange vault" height={60} width={60} quality={100} className="object-cover relative" priority referrerPolicy="no-referrer"
+                                />
+                                <Image
+                                    src="/tokens/Dai.svg" alt="cyclespace exchange vault" height={60} width={60} quality={100} className="object-cover relative" priority referrerPolicy="no-referrer"
+                                />
+                                <Image
+                                    src="/tokens/Shiba Inu SHIB.svg" alt="cyclespace exchange vault" height={60} width={60} quality={100} className="object-cover relative" priority referrerPolicy="no-referrer"
+                                />
+                                <Image
+                                    src="/tokens/Tron.svg" alt="cyclespace exchange vault" height={60} width={60} quality={100} className="object-cover relative" priority referrerPolicy="no-referrer"
+                                />
+                            </div>
+
+                            <div className='gap-5 w-full flex justify-center'>
+                                <Image
+                                    src="/tokens/The Graph.svg" alt="cyclespace exchange vault" height={60} width={60} quality={100} className="object-cover relative" priority referrerPolicy="no-referrer"
+                                />
+                                <Image
+                                    src="/tokens/PancakeSwap.svg" alt="cyclespace exchange vault" height={60} width={60} quality={100} className="object-cover relative" priority referrerPolicy="no-referrer"
+                                />
+                                <Image
+                                    src="/tokens/Avalanche.svg" alt="cyclespace exchange vault" height={60} width={60} quality={100} className="object-cover relative" priority referrerPolicy="no-referrer"
+                                />
+                                <Image
+                                    src="/tokens/Near Protocol.svg" alt="cyclespace exchange vault" height={60} width={60} quality={100} className="object-cover relative" priority referrerPolicy="no-referrer"
+                                />
+                                <Image
+                                    src="/tokens/Neo.svg" alt="cyclespace exchange vault" height={60} width={60} quality={100} className="object-cover relative" priority referrerPolicy="no-referrer"
+                                />
+                                <Image
+                                    src="/tokens/Eos.svg" alt="cyclespace exchange vault" height={60} width={60} quality={100} className="object-cover relative" priority referrerPolicy="no-referrer"
+                                />
+                                <Image
+                                    src="/tokens/BNB.svg" alt="cyclespace exchange vault" height={60} width={60} quality={100} className="object-cover relative" priority referrerPolicy="no-referrer"
+                                />
                             </div>
                         </CardContent>
 
@@ -108,7 +192,17 @@ export default function Features() {
                         </CardContent>
                     </Card>
                     <Card className='h-full w-full bg-zinc-200 border border-zinc-200'>
-
+                        <CardHeader className='flex items-center gap-2 w-full'>
+                            <div className='gap-0 space-y-0 flex flex-col w-full'>
+                                <h2 className='text-lg font-bold'>Decentralized. Borderless. </h2>
+                                <h3 className='text-xs hidden'>Trade Directly from Your Wallet.</h3>
+                            </div>
+                        </CardHeader>
+                        <CardContent className='gap-1 flex'>
+                            <Badge className='bg-white text-xs text-black gap-1'> <Check strokeWidth={3} className='text-blue-500'/> deposits required</Badge>
+                            <Badge className='bg-white text-xs text-black gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Trade from your wallet</Badge>
+                            <Badge className='bg-white text-xs text-black gap-1'> <Check strokeWidth={3} className='text-blue-500'/> deposits required</Badge>
+                        </CardContent>
                     </Card>
                 </div>
             </div>
