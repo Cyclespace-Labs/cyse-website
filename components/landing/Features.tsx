@@ -56,37 +56,44 @@ export default function Features() {
             <div className='flex flex-row w-full h-full justify-center gap-5'>
 
                 <div className='flex flex-col gap-5 w-300 h-full'>
-                    <Card className='h-full w-full gap-1  leading-tight'>
-                        <div className='relative w-full overflow-hidden'>
-                            <div className="absolute inset-0 z-0">
-                                <Silk
-                                speed={5}
-                                scale={1}
-                                color="#0E76FD"
-                                noiseIntensity={1.5}
-                                rotation={0}
-                                />
-                                <div className="absolute inset-0 bg-linear-to-r from-[#0E76FD] via-[#0E76FD]/50 to-transparent" />
-                                <div className="absolute inset-0 bg-linear-to-t from-[#0E76FD] via-[#0E76FD]/50 to-transparent" />
-                            </div>
-                        </div>
+                    <Card className="relative h-full w-full gap-1 overflow-hidden leading-tight">
+                    {/* Background layer */}
+                    <div className="absolute inset-0 z-0">
+                        <Silk
+                        speed={5}
+                        scale={1}
+                        color="#0E76FD"
+                        noiseIntensity={1.5}
+                        rotation={0}
+                        />
+                        <div className="absolute inset-0 bg-linear-to-l from-[#0E76FD] via-[#0E76FD]/50 to-transparent" />
+                        <div className="absolute inset-0 bg-linear-to-bl from-black via-[#0E76FD]/50 to-transparent" />
+                    </div>
+
+                    {/* Foreground content */}
+                    <div className="relative z-10 flex h-full flex-col">
                         <CardHeader>
-                            <Image
-                                src="/assets/Vault.png"
-                                alt="cyclespace exchange vault"
-                                height={230}
-                                width={230}
-                                quality={100}
-                                className="object-cover relative left-35 -top-10"
-                                priority
-                                referrerPolicy="no-referrer"
-                            />
+                        <Image
+                            src="/assets/Vault.png"
+                            alt="cyclespace exchange vault"
+                            height={230}
+                            width={230}
+                            quality={100}
+                            className="relative left-35 -top-10 object-cover drop-shadow-2xl"
+                            priority
+                            referrerPolicy="no-referrer"
+                        />
                         </CardHeader>
 
-                        <CardFooter className='w-full text-left mt-5 px-6 space-y-2 flex flex-col'>
-                            <h2 className='text-white text-lg font-bold'>Decentralized. Borderless. Permissionless. Trade.</h2>
-                            <h3 className='text-sm text-slate-200'>Trade Directly from Your Wallet. Execute Trades. Retain Ownership.</h3>
+                        <CardFooter className="mt-5 flex w-full flex-col space-y-2 px-6 text-left">
+                        <h2 className="text-lg font-bold text-white">
+                            Decentralized. Borderless. Permissionless. Trade.
+                        </h2>
+                        <h3 className="text-sm text-slate-200">
+                            Trade Directly from Your Wallet. Execute Trades. Retain Ownership.
+                        </h3>
                         </CardFooter>
+                    </div>
                     </Card>
 
                     <Card className='h-full w-full bg-zinc-200 border border-zinc-200 ' >

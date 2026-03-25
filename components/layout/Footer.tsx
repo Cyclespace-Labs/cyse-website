@@ -70,12 +70,12 @@ export default function Footer() {
           spotlightSoftness={1}
           spotlightOpacity={1}
           mouseDampening={0.15}
-          distortAmount={0}
-          shineDirection="left"
-          mixBlendMode="lighten"
+          distortAmount={10}
+          shineDirection="right"
+          mixBlendMode="darken"
         />
 
-        <div className="absolute inset-0 bg-linear-to-r from-[#0E76FD] via-[#0E76FD]/50 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-l from-black via-black/70 to-transparent" />
         <div className="absolute inset-0 bg-linear-to-t from-[#0E76FD] via-[#0E76FD]/50 to-transparent" />
       </div>
 

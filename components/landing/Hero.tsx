@@ -20,7 +20,7 @@ export default function Hero() {
         />
 
         {/* Gradient overlay to ensure text readability across all backgrounds */}
-        <div className="absolute inset-0 bg-linear-to-r from-white/80 via-white/40 to-transparent md:from-white/70 md:via-white/30" />
+        <div className="absolute inset-0 bg-linear-to-r from-white via-transparent to-transparent" />
         <div className="absolute inset-0 bg-linear-to-t from-white via-transparent to-transparent" />
       </div>
 

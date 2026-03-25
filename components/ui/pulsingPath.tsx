@@ -142,12 +142,17 @@ export default function PulsingPath() {
             {/* middle logo*/}
             <div className="relative items-center justify-center bottom-15 ">
                 <div className="absolute flex left-1/2 transform -translate-x-1/2 z-10 justify-center items-center rounded-4xl w-30 h-30">
-                    <div className="bg-blue-500 p-4 rounded-3xl">
-                        <svg width="70" height="70" viewBox="0 0 85 85" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M36 27H15.3808C15.3808 27 13.7276 30.6445 13.4061 31.9924C11.9446 38.1209 11.6489 43.3369 12.3958 49.6157C13.0846 55.407 15.3348 60 15.3348 60H34.9897C34.9897 60 31.1672 54.442 30.1678 51.413C28.6524 46.82 28.7134 43.0756 29.5708 37.9834C30.5237 32.3243 36 27 36 27Z" fill="white"/>
-                        <path d="M42.1215 10.1117C36.995 10.4365 31 13.6214 31 13.6214C31 13.6214 37.6059 14.2471 41.2056 15.8402C45.1363 17.5798 47.8011 19.3138 50.2336 22.6579C52.1614 25.3079 52.676 30 52.676 30H73C73 30 72.3827 26.8651 70.4268 23.7067C68.2025 19.3902 63.6667 15.601 59.4797 13.339C53.9577 10.3558 48.6372 9.69891 42.1215 10.1117Z" fill="white" stroke="white"/>
-                        <path d="M42.1215 75.8883C36.995 75.5635 31 72.3786 31 72.3786C31 72.3786 37.6059 71.7529 41.2056 70.1598C45.1363 68.4202 47.8011 66.6862 50.2336 63.3421C52.1614 60.6921 52.676 56 52.676 56H73C73 56 72.3827 59.1349 70.4268 62.2933C68.2025 66.6098 63.6667 70.399 59.4797 72.661C53.9577 75.6442 48.6372 76.3011 42.1215 75.8883Z" fill="white" stroke="white"/>
-                        </svg>
+                    <div className="bg-blue-500 p-5 rounded-3xl">
+                        <Image
+                            src="/logo_white.svg"
+                            alt="cyclespace exchange vault"
+                            height={500}
+                            width={500}
+                            quality={100}
+                            className="object-cover w-15 h-15"
+                            priority
+                            referrerPolicy="no-referrer"
+                        />
                     </div>
                 </div>
             </div>
