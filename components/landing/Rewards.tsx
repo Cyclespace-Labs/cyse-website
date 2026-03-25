@@ -68,7 +68,7 @@ export default function Rewards() {
               className="relative h-full w-full gap-1 overflow-hidden leading-tight"
             >
               {/* Header with icon */}
-              <CardHeader className="z-1 mt-1 flex w-full flex-row items-center justify-between gap-2 px-6 text-left">
+              <CardHeader className="z-1 flex w-full flex-row items-center justify-between gap-2 px-6 text-left">
                 <div className="flex flex-col gap-0 space-y-0">
                   <h2 className="w-fit text-lg font-bold text-white">
                     {card.headerTitle}
@@ -78,7 +78,7 @@ export default function Rewards() {
                   </h3>
                 </div>
                 <div className="h-fit w-fit rounded-lg bg-blue-950 p-2">
-                  {card.headerIcon || <ArrowUpRight className="h-5 w-5 text-blue-700" />}
+                  {card.headerIcon || <ArrowUpRight className="h-6 w-6 text-blue-700" />}
                 </div>
               </CardHeader>
 
@@ -114,7 +114,16 @@ export default function Rewards() {
               {/* Footer with icon */}
               <CardFooter className="z-1 mt-5 flex w-full flex-row items-center gap-2 px-6 text-left">
                 <div className="h-fit w-fit rounded-lg bg-blue-500 p-2">
-                  {card.footerIcon || <Cpu className="h-5 w-5 text-white" />}
+                    <Image 
+                    src="/logo_white.svg"
+                    alt="Cryptocurrency background"
+                    height={500}
+                    width={500}
+                    quality={100}
+                    className="relative z-10 h-6 w-6 rounded-xl object-cover shadow-2xl"
+                    priority
+                    referrerPolicy="no-referrer"
+                    />
                 </div>
                 <div className="flex flex-col gap-0 space-y-0">
                   <h2 className="w-fit text-xl font-semibold text-white">
