@@ -152,7 +152,7 @@ export default function Features() {
                                 {/* Basic horizontal loop */}
                                 <LogoLoop
                                     logos={firstLogoList}
-                                    speed={45}
+                                    speed={20}
                                     direction="left"
                                     logoHeight={50}
                                     gap={20}
@@ -165,7 +165,7 @@ export default function Features() {
 
                                 <LogoLoop
                                     logos={secondLogoList}
-                                    speed={50}
+                                    speed={25}
                                     direction="right"
                                     logoHeight={50}
                                     gap={20}
@@ -178,7 +178,7 @@ export default function Features() {
 
                                 <LogoLoop
                                     logos={thirdLogoList}
-                                    speed={55}
+                                    speed={30}
                                     direction="left"
                                     logoHeight={50}
                                     gap={20}
