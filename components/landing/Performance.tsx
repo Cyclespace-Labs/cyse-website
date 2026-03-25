@@ -2,7 +2,7 @@ import { Button } from '../ui/button'
 import Image from 'next/image'
 import { ChevronRight } from 'lucide-react'
 
-export default function Perfomance() {
+export default function Performance() {
   return (
     <div className='mx-auto h-full w-full py-30 font-sans'>
         <main className='justify-center py-20 px-70'>
@@ -59,7 +59,7 @@ export default function Perfomance() {
                                 referrerPolicy="no-referrer"
                             /> 
                             Avalanche
-                            <div className='w-full text-sm gap-2 justify-end flex'>
+                            <div className='w-full text-sm  gap-2 justify-end flex'>
                                 <span>
                                     Avalanche
                                 </span>

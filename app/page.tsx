@@ -1,7 +1,7 @@
 import Chains from "@/components/landing/Chains";
 import Features from "@/components/landing/Features";
 import Hero from "@/components/landing/Hero";
-import Perfomance from "@/components/landing/Perfomance";
+import Performance from "@/components/landing/Performance";
 import Rewards from "@/components/landing/Rewards";
 import Showcase from "@/components/landing/Showcase";
 import Stats from "@/components/landing/Stats";
@@ -33,7 +33,7 @@ export default function Home() {
       </div>
 
       <div>
-        <Perfomance />
+        <Performance />
       </div>
     </main>
   );
