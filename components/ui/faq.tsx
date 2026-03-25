@@ -20,12 +20,12 @@ export default function FAQ({ items }: FaqProps) {
   };
 
   return (
-    <div className="grid grid-cols-2 mx-auto px-4 sm:px-6 py-12 font-sans">
-      <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 bg-linear-to-b from-white via-slate-200 to-slate-400 dark:from-white dark:via-slate-200 dark:to-slate-400 bg-clip-text text-transparent">
+    <div className="grid grid-cols-2 w-full mx-auto px-4 sm:px-6 py-12 font-sans pt-40">
+      <h2 className="text-3xl md:text-4xl text-center font-bold mb-10 bg-linear-to-b from-white via-slate-200 to-slate-400 dark:from-white dark:via-slate-200 dark:to-slate-400 bg-clip-text text-transparent">
         Frequently asked questions
       </h2>
 
-      <div className="space-y-4">
+      <div className="space-y-4 px-50">
         {items.map((item, idx) => (
           <div
             key={idx}

@@ -6,6 +6,7 @@ import { Check, Cpu, Ticket } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Badge } from '../ui/badge'
 import LogoLoop from '../LogoLoop'
+import Silk from '../Silk'
 
 
 const firstLogoList = [
@@ -55,7 +56,20 @@ export default function Features() {
             <div className='flex flex-row w-full h-full justify-center gap-5'>
 
                 <div className='flex flex-col gap-5 w-300 h-full'>
-                    <Card className='h-full w-full gap-1 bg-linear-to-tr from-blue-500 via-blue-900 to-blue-950 leading-tight'>
+                    <Card className='h-full w-full gap-1  leading-tight'>
+                        <div className='relative w-full overflow-hidden'>
+                            <div className="absolute inset-0 z-0">
+                                <Silk
+                                speed={5}
+                                scale={1}
+                                color="#0E76FD"
+                                noiseIntensity={1.5}
+                                rotation={0}
+                                />
+                                <div className="absolute inset-0 bg-linear-to-r from-[#0E76FD] via-[#0E76FD]/50 to-transparent" />
+                                <div className="absolute inset-0 bg-linear-to-t from-[#0E76FD] via-[#0E76FD]/50 to-transparent" />
+                            </div>
+                        </div>
                         <CardHeader>
                             <Image
                                 src="/assets/Vault.png"

@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import FAQ from '../ui/faq';
-import Link from 'next/link';
-import { Tourney } from 'next/font/google';
-import Silk from '../Silk';
+import FAQ from "../ui/faq";
+import Link from "next/link";
+import { Tourney } from "next/font/google";
+import Silk from "../Silk";
+import GradientBlinds from "../GradientBlinds";
 
-const tourney = Tourney({subsets:['latin'],variable:'--font-sans'});
-
+const tourney = Tourney({ subsets: ["latin"], variable: "--font-sans" });
 
 const faqItems = [
   {
@@ -43,55 +43,118 @@ const faqItems = [
 
 export default function Footer() {
   return (
-    <div className='bg-blue-500 w-full h-full justify-center items-center mx-auto'>
-        <main className='justify-center w-full h-full'>
+    <div className="relative w-full overflow-hidden">
+      {/* Background Silk – fills the entire footer */}
+      <div className="absolute hidden inset-0 z-0">
+        <Silk
+          speed={5}
+          scale={1}
+          color="#0E76FD"
+          noiseIntensity={1.5}
+          rotation={0}
+        />
+        <div className="absolute inset-0 bg-linear-to-r from-[#0E76FD] via-[#0E76FD]/50 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-[#0E76FD] via-[#0E76FD]/50 to-transparent" />
+      </div>
 
-            <div className='absolute inset-0 z-0 '>
-              <Silk
-                speed={5}
-                scale={1}
-                color="#7B7481"
-                noiseIntensity={1.5}
-                rotation={0}
-              />
+      <div className="absolute inset-0 z-0">
+
+
+        <GradientBlinds
+          gradientColors={["#0E76FD", "#0E76FD"]}
+          angle={0}
+          noise={0.3}
+          blindCount={12}
+          blindMinWidth={50}
+          spotlightRadius={0.5}
+          spotlightSoftness={1}
+          spotlightOpacity={1}
+          mouseDampening={0.15}
+          distortAmount={0}
+          shineDirection="left"
+          mixBlendMode="lighten"
+        />
+
+        <div className="absolute inset-0 bg-linear-to-r from-[#0E76FD] via-[#0E76FD]/50 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-[#0E76FD] via-[#0E76FD]/50 to-transparent" />
+      </div>
+
+      {/* Foreground content – all interactive and visible elements */}
+      <div className="relative z-10 flex flex-col items-center justify-center">
+        <FAQ items={faqItems} />
+
+        <div className="mt-10 flex w-full justify-center px-30">
+          <div className="flex w-full flex-row justify-center">
+            <div className="flex w-full flex-col gap-5 text-center">
+              <Link href="/about" className="text-white">
+                About Us
+              </Link>
+              <Link href="/about" className="text-white">
+                About Us
+              </Link>
+              <Link href="/about" className="text-white">
+                About Us
+              </Link>
+              <Link href="/about" className="text-white">
+                About Us
+              </Link>
+              <Link href="/about" className="text-white">
+                About Us
+              </Link>
             </div>
-            <FAQ items={faqItems} />
-
-            <div className='justify-center mt-10 flex w-full px-30'>
-                <div className='flex flex-row w-full h-full justify-center'>
-                    <div className='gap-5 flex text-center flex-col w-full'>
-                        <Link href="/about" className="text-white">About Us</Link>
-                        <Link href="/about" className="text-white">About Us</Link>
-                        <Link href="/about" className="text-white">About Us</Link>
-                        <Link href="/about" className="text-white">About Us</Link>
-                        <Link href="/about" className="text-white">About Us</Link>
-                    </div>
-                    <div className='gap-5 text-center flex flex-col  w-full'>
-                        <Link href="/about" className="text-white">About Us</Link>
-                        <Link href="/about" className="text-white">About Us</Link>
-                        <Link href="/about" className="text-white">About Us</Link>
-                        <Link href="/about" className="text-white">About Us</Link>
-                        <Link href="/about" className="text-white">About Us</Link>
-                    </div>
-                    <div className='gap-5 text-center flex flex-col  w-full'>
-                        <Link href="/about" className="text-white">About Us</Link>
-                        <Link href="/about" className="text-white">About Us</Link>
-                        <Link href="/about" className="text-white">About Us</Link>
-                        <Link href="/about" className="text-white">About Us</Link>
-                    </div>
-                    <div className='gap-5 text-center flex flex-col  w-full'>
-                        <Link href="/about" className="text-white">About Us</Link>
-                        <Link href="/about" className="text-white">About Us</Link>
-                        <Link href="/about" className="text-white">About Us</Link>
-                    </div>
-                </div>
+            <div className="flex w-full flex-col gap-5 text-center">
+              <Link href="/about" className="text-white">
+                About Us
+              </Link>
+              <Link href="/about" className="text-white">
+                About Us
+              </Link>
+              <Link href="/about" className="text-white">
+                About Us
+              </Link>
+              <Link href="/about" className="text-white">
+                About Us
+              </Link>
+              <Link href="/about" className="text-white">
+                About Us
+              </Link>
             </div>
-
-            <div className='w-full h-full justify-center items-center flex'>
-                <h3 className={`${tourney.className} font-bold text-[280px] text-blue-800 opacity-30`}>CYCLESPACE</h3>
+            <div className="flex w-full flex-col gap-5 text-center">
+              <Link href="/about" className="text-white">
+                About Us
+              </Link>
+              <Link href="/about" className="text-white">
+                About Us
+              </Link>
+              <Link href="/about" className="text-white">
+                About Us
+              </Link>
+              <Link href="/about" className="text-white">
+                About Us
+              </Link>
             </div>
+            <div className="flex w-full flex-col gap-5 text-center">
+              <Link href="/about" className="text-white">
+                About Us
+              </Link>
+              <Link href="/about" className="text-white">
+                About Us
+              </Link>
+              <Link href="/about" className="text-white">
+                About Us
+              </Link>
+            </div>
+          </div>
+        </div>
 
-        </main>
+        <div className="flex w-full items-center justify-center">
+          <h3
+            className={`${tourney.className} text-[280px] font-bold text-white `}
+          >
+            CYCLESPACE
+          </h3>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
