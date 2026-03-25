@@ -80,8 +80,13 @@ export default function Performance() {
                                 referrerPolicy="no-referrer"
                             /> 
                             Arbitrum
-                            <div className='w-full justify-end flex'>
-                                <ChevronRight className='text-right text-zinc-400' />
+                            <div className='w-full text-sm  gap-2 justify-end flex'>
+                                <span>
+                                    Arbitrum
+                                </span>
+                                <span className='text-blue-500'>
+                                   $632K 
+                                </span>
                             </div>
                         </Button>
                     </div>
@@ -99,8 +104,13 @@ export default function Performance() {
                                 referrerPolicy="no-referrer"
                             /> 
                             Solana
-                            <div className='w-full justify-end flex'>
-                                <ChevronRight className='text-right text-zinc-400' />
+                            <div className='w-full text-sm  gap-2 justify-end flex'>
+                                <span>
+                                    Solana
+                                </span>
+                                <span className='text-blue-500'>
+                                   $632K 
+                                </span>
                             </div>
                         </Button>
                         <Button className=' rounded-xl text-lg text-black justify-start p-6  bg-zinc-200'>
@@ -115,8 +125,13 @@ export default function Performance() {
                                 referrerPolicy="no-referrer"
                             /> 
                             Base
-                            <div className='w-full justify-end flex'>
-                                <ChevronRight className='text-right text-zinc-400' />
+                            <div className='w-full text-sm  gap-2 justify-end flex'>
+                                <span>
+                                    Base
+                                </span>
+                                <span className='text-blue-500'>
+                                   $632K 
+                                </span>
                             </div>
                         </Button>
                         <Button className=' rounded-xl text-lg text-black justify-start p-6  bg-zinc-200'>
@@ -131,8 +146,13 @@ export default function Performance() {
                                 referrerPolicy="no-referrer"
                             /> 
                             BNB
-                            <div className='w-full justify-end flex'>
-                                <ChevronRight className='text-right text-zinc-400' />
+                            <div className='w-full text-sm  gap-2 justify-end flex'>
+                                <span>
+                                    BNB
+                                </span>
+                                <span className='text-blue-500'>
+                                   $632K 
+                                </span>
                             </div>
                         </Button>
                     </div>
