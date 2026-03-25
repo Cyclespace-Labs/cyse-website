@@ -5,6 +5,7 @@ import Performance from "@/components/landing/Performance";
 import Rewards from "@/components/landing/Rewards";
 import Showcase from "@/components/landing/Showcase";
 import Stats from "@/components/landing/Stats";
+import Footer from "@/components/layout/Footer";
 
 
 export default function Home() {
@@ -34,6 +35,10 @@ export default function Home() {
 
       <div>
         <Performance />
+      </div>
+
+      <div>
+        <Footer />
       </div>
     </main>
   );
