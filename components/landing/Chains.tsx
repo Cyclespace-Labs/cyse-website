@@ -1,11 +1,11 @@
 import React from 'react'
 import { Button } from '../ui/button'
 import Image from 'next/image'
-import { ArrowLeft, ArrowLeftIcon, ArrowRightIcon } from 'lucide-react'
+import { ArrowLeft, ArrowLeftIcon, ArrowRightIcon, ChevronRight } from 'lucide-react'
 
 export default function Chains() {
   return (
-    <div className='mx-auto h-full w-full'>
+    <div className='mx-auto h-full w-full py-30 font-sans'>
         <main className='justify-center py-20 px-70'>
             <div className='w-full h-full grid grid-cols-2'>
                 <div className='gap-5 flex flex-col'>
@@ -17,12 +17,12 @@ export default function Chains() {
                         Decentralized. Borderless. Permissionless. Trade.
                     </h1>
                     <h2 className='text-sm w-md'>Trade Directly from Your Wallet. Execute Trades. Retain Ownership.</h2>
-                    <Button className='w-fit'>Explore Markets</Button>
+                    <Button className='w-fit bg-blue-500'>Explore Markets</Button>
                 </div>
                 
                 <div className='grid grid-cols-2 w-full h-full gap-3'>
                     <div className='w-full h-full text- gap-3 space-y-2 grid grid-rows-3 '>
-                        <Button className=' rounded-xl text-xl text-black justify-start p-6  bg-zinc-200'>
+                        <Button className=' rounded-xl text-lg text-black justify-start p-6  bg-zinc-200'>
                             <Image
                                 src='/tokens/Ethereum ETH.svg' 
                                 alt=''
@@ -35,10 +35,10 @@ export default function Chains() {
                             /> 
                             Ethereum
                             <div className='w-full justify-end flex'>
-                                <ArrowRightIcon className='text-right' />
+                                <ChevronRight className='text-right text-zinc-400' />
                             </div>
                         </Button>
-                        <Button className=' rounded-xl text-xl text-black justify-start p-6  bg-zinc-200'>
+                        <Button className=' rounded-xl text-lg text-black justify-start p-6  bg-zinc-200'>
                             <Image
                                 src='/tokens/Avalanche.svg' 
                                 alt=''
@@ -51,12 +51,12 @@ export default function Chains() {
                             /> 
                             Avalanche
                             <div className='w-full justify-end flex'>
-                                <ArrowRightIcon className='text-right' />
+                               <ChevronRight className='text-right text-zinc-400' />
                             </div>
                         </Button>
-                        <Button className=' rounded-xl text-xl text-black justify-start p-6  bg-zinc-200'>
+                        <Button className=' rounded-xl text-lg text-black justify-start p-6  bg-zinc-200'>
                             <Image
-                                src='/tokens/Avalanche.svg' 
+                                src='/tokens/arbitrum-arb-logo.svg' 
                                 alt=''
                                 quality={100}
                                 width={20}
@@ -65,17 +65,17 @@ export default function Chains() {
                                 priority
                                 referrerPolicy="no-referrer"
                             /> 
-                            Ethereum
+                            Arbitrum
                             <div className='w-full justify-end flex'>
-                                <ArrowRightIcon className='text-right' />
+                                <ChevronRight className='text-right text-zinc-400' />
                             </div>
                         </Button>
                     </div>
 
                     <div className='w-full h-full text- gap-3 space-y-2 grid grid-rows-3 '>
-                        <Button className=' rounded-xl text-xl text-black justify-start p-6  bg-zinc-200'>
+                        <Button className=' rounded-xl text-lg text-black justify-start p-6  bg-zinc-200'>
                             <Image
-                                src='/tokens/Avalanche.svg' 
+                                src='/tokens/Solana sol.svg' 
                                 alt=''
                                 quality={100}
                                 width={20}
@@ -84,14 +84,14 @@ export default function Chains() {
                                 priority
                                 referrerPolicy="no-referrer"
                             /> 
-                            Ethereum
+                            Solana
                             <div className='w-full justify-end flex'>
-                                <ArrowRightIcon className='text-right' />
+                                <ChevronRight className='text-right text-zinc-400' />
                             </div>
                         </Button>
-                        <Button className=' rounded-xl text-xl text-black justify-start p-6  bg-zinc-200'>
+                        <Button className=' rounded-xl text-lg text-black justify-start p-6  bg-zinc-200'>
                             <Image
-                                src='/tokens/Avalanche.svg' 
+                                src='/tokens/base-logo-in-blue.svg' 
                                 alt=''
                                 quality={100}
                                 width={20}
@@ -100,14 +100,14 @@ export default function Chains() {
                                 priority
                                 referrerPolicy="no-referrer"
                             /> 
-                            Ethereum
+                            Base
                             <div className='w-full justify-end flex'>
-                                <ArrowRightIcon className='text-right' />
+                                <ChevronRight className='text-right text-zinc-400' />
                             </div>
                         </Button>
-                        <Button className=' rounded-xl text-xl text-black justify-start p-6  bg-zinc-200'>
+                        <Button className=' rounded-xl text-lg text-black justify-start p-6  bg-zinc-200'>
                             <Image
-                                src='/tokens/Avalanche.svg' 
+                                src='/tokens/BNB.svg' 
                                 alt=''
                                 quality={100}
                                 width={20}
@@ -116,9 +116,9 @@ export default function Chains() {
                                 priority
                                 referrerPolicy="no-referrer"
                             /> 
-                            Ethereum
+                            BNB
                             <div className='w-full justify-end flex'>
-                                <ArrowRightIcon className='text-right' />
+                                <ChevronRight className='text-right text-zinc-400' />
                             </div>
                         </Button>
                     </div>
