@@ -91,7 +91,7 @@ export default function Features() {
                 </div>
 
                 <div className='flex flex-col gap-5 w-full h-full'>
-                    <Card className='h-full w-full bg-zinc-200 border border-zinc-200 ' >
+                    <Card className='h-full w-full bg-zinc-200 border border-zinc-200 relative'>
                         <CardHeader className='flex items-center gap-2 w-full'>
                             <div className='gap-0 space-y-0 flex flex-col w-sm'>
                                 <h2 className='text-xl font-bold bg-clip-text text-transparent
@@ -101,12 +101,22 @@ export default function Features() {
                                 </h2>
                             </div>
                         </CardHeader>
-                        <CardContent className='text-xs justify-between w-full flex gap-15'>
+                        <CardContent className='text-xs justify-between w-full flex gap-15 relative z-10'>
                             <span>Trade Directly from Your Wallet. Execute Trades. Retain Ownership.</span>
                             <div>
                                 <Button className='text-xs bg-blue-500'>Trade Now</Button>
                             </div>
                         </CardContent>
+                        <Image
+                            src="/assets/coins.png"
+                            alt="cyclespace exchange vault"
+                            height={230}
+                            width={230}
+                            quality={100}
+                            className="object-contain absolute right-0 bottom-0 w-auto h-auto max-h-[230px] max-w-[230px]"
+                            priority
+                            referrerPolicy="no-referrer"
+                        />
                     </Card>
                     <Card className='h-full w-full p-0 bg-zinc-200
                         leading-tight'
