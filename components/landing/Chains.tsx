@@ -49,7 +49,7 @@ export default function Chains() {
                                 priority
                                 referrerPolicy="no-referrer"
                             /> 
-                            Ethereum
+                            Avalanche
                             <div className='w-full justify-end flex'>
                                 <ArrowRightIcon className='text-right' />
                             </div>
