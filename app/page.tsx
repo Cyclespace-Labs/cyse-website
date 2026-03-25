@@ -1,3 +1,4 @@
+import Chains from "@/components/landing/Chains";
 import Features from "@/components/landing/Features";
 import Hero from "@/components/landing/Hero";
 import Showcase from "@/components/landing/Showcase";
@@ -19,6 +20,10 @@ export default function Home() {
 
       <div>
         <Features />
+      </div>
+
+      <div>
+        <Chains />
       </div>
       
     </main>

@@ -77,7 +77,7 @@ export default function Showcase() {
                     height={600}
                     width={1200}
                     quality={100}
-                    className="object-cover relative left-1/2 transform -translate-x-1/2 -translate-y-50  z-10 rounded-xl shadow-2xl"
+                    className="object-cover relative left-1/2 transform -translate-x-1/2 -translate-y-60  z-10 rounded-xl shadow-2xl"
                     priority
                     referrerPolicy="no-referrer"
                 />
