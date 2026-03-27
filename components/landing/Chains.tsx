@@ -34,7 +34,7 @@ export default function Chains() {
                                 referrerPolicy="no-referrer"
                             /> 
                             Ethereum
-                            <div className='w-full justify-end flex'>
+                            <div className='w-full justify-end flex'> 
                                 <ChevronRight className='text-right text-zinc-400' />
                             </div>
                         </Button>
