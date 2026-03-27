@@ -39,13 +39,10 @@ export default function Home() {
         <Performance />
       </div>
 
-      <div>
+      <div className="">
         <LatestNews/>
       </div>
-
-      <div>
-        <CommunityPosts />
-      </div>
+      
       <div>
         <Footer />
       </div>

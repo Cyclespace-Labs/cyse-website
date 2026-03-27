@@ -358,7 +358,7 @@ export default function LatestNews() {
             initial={{ opacity: 0, y: 16 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="mb-3.5 inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-50 px-3.5 py-1"
+            className="mb-3.5 hidden items-center gap-2 rounded-full border border-sky-200 bg-sky-50 px-3.5 py-1"
           >
             <span className="text-[10px] font-bold uppercase tracking-[0.07em] text-sky-700">
               Latest updates
@@ -374,10 +374,14 @@ export default function LatestNews() {
               transition={{ duration: 0.55, delay: 0.07, ease: [0.22, 1, 0.36, 1] }}
               className="m-0 text-[clamp(28px,5vw,54px)] font-extrabold leading-[1.08] tracking-[-0.03em] text-slate-900"
             >
-              Weekly{" "}
-              <span className="bg-gradient-to-r from-sky-500 to-indigo-500 bg-clip-text text-transparent">
-                Headlines
-              </span>
+              <h1
+                className="w-xl text-center text-3xl font-bold leading-tight
+                  bg-linear-to-b from-black via-slate-800 to-slate-700
+                  dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400
+                  bg-clip-text text-transparent md:text-4xl"
+              >
+                Weekly headlines
+              </h1>
             </motion.h2>
 
             <motion.div

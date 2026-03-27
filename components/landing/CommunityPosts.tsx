@@ -1,3 +1,5 @@
+// Component must be re-designed to use the twitter api to fetch posts.
+
 "use client";
 
 import { useRef, useState, useEffect, useCallback } from "react";
