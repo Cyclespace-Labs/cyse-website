@@ -17,6 +17,7 @@ import { Menu, MenuItem } from "../ui/navbar-menu";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge"; // shadcn badge
 import { Separator } from "radix-ui";
+import { ThemeToggle } from '../ui/themeToggle';
 
 const tourney = Tourney({
   subsets: ["latin"],
@@ -322,9 +323,14 @@ export default function Header() {
                   </div>
 
                   {/* CTA button at the bottom */}
-                  <Button className="w-full mt-2 bg-blue-500 text-white hover:bg-blue-600 transition-colors rounded-lg">
-                    Open app
-                  </Button>
+                  <div className="flex flex-row gap-3">
+                    <div>
+                      <ThemeToggle/>
+                    </div>
+                    <Button className="w-full mt-2 bg-blue-500 text-white hover:bg-blue-600 transition-colors rounded-lg">
+                      Open app
+                    </Button>
+                  </div>
                 </div>
               </motion.div>
             )}

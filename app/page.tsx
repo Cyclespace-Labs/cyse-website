@@ -14,10 +14,11 @@ import Header from "@/components/layout/Header";
 export default function Home() {
   return (
     <main className="min-h-screen">
-        <Header />
+      
+      <Header />
       <Hero />
 
-      <div className="justify-center items-center flex">
+      <div className="justify-center flex">
         <Stats />
       </div>
 
