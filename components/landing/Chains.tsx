@@ -6,17 +6,17 @@ import { ArrowLeft, ArrowLeftIcon, ArrowRightIcon, ChevronRight } from 'lucide-r
 export default function Chains() {
   return (
     <div className='mx-auto h-full w-full py-30 font-sans'>
-        <main className='justify-center py-20 px-70'>
+        <main className='justify-center py-20 px-20 md:px-70'>
             <div className='w-full h-full grid grid-cols-2'>
                 <div className='gap-5 flex flex-col'>
-                    <h1 className='text-4xl text-left md:text-4xl font-bold w-xl
+                    <h1 className='text-2xl text-left md:text-4xl font-bold w-xl
                         bg-linear-to-b from-black via-slate-800 to-slate-700
                         dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400
                         leading-tight  bg-clip-text text-transparent'
                     >
                         Decentralized. Borderless. Permissionless. Trade.
                     </h1>
-                    <h2 className='text-sm w-md'>Trade Directly from Your Wallet. Execute Trades. Retain Ownership.</h2>
+                    <h2 className='text-xs md:text-sm w-md'>Trade Directly from Your Wallet. Execute Trades. Retain Ownership.</h2>
                     <Button className='w-fit bg-blue-500'>Explore Markets</Button>
                 </div>
                 

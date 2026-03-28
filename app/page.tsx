@@ -26,27 +26,27 @@ export default function Home() {
         <Showcase />
       </div>
 
-      <div>
+      <div className="hidden">
         <Features />
       </div>
 
-      <div>
+      <div className="hidden">
         <Chains />
       </div>
       
-      <div>
+      <div className="hidden">
         <Rewards />
       </div>
 
-      <div>
+      <div className="hidden">
         <Performance />
       </div>
 
-      <div className="">
+      <div className="hidden">
         <LatestNews/>
       </div>
 
-      <div>
+      <div className="hidden">
         <Footer />
       </div>
     </main>

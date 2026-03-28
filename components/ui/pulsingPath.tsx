@@ -166,7 +166,7 @@ export default function PulsingPath() {
                     <div className="flex relative flex-row items-center  space-x-0">
 
                         <div className="relative left-2 z-10 items-start justify-start ">
-                            <div className="w-10 h-10 md:w-20 md:h-20 lg:w-20 lg:h-20 p-1 rounded-2xl justify-center items-center flex">
+                            <div className="w-12 h-12 md:w-22 md:h-22 lg:w-22 lg:h-22 p-1 rounded-2xl justify-center items-center flex">
                                 <Image
                                     src="/tokens/Solana Sol.svg"
                                     alt="cyclespace exchange vault"
@@ -267,7 +267,7 @@ export default function PulsingPath() {
                         </svg>
 
                         <div className="relative right-3 md:right-2  z-10 items-start justify-start">
-                            <div className="w-10 h-10 md:w-20 md:h-20 lg:w-20 lg:h-20 p-1 rounded-2xl justify-center items-center flex">
+                            <div className="w-12 h-12 md:w-22 md:h-22 lg:w-22 lg:h-22 p-1 rounded-2xl justify-center items-center flex">
                                 <Image
                                     src="/tokens/Polygon.svg"
                                     alt="cyclespace exchange vault"
@@ -286,7 +286,7 @@ export default function PulsingPath() {
             </div>
 
             {/* right design*/}
-            <div className="flex justify-center items-center gap-0 md:gap-5 h-fit">
+            <div className="flex justify-center items-center gap-0 md:gap-0 h-fit">
                 <div className="relative">
 
                     <svg className="w-30 h-fit md:w-65 md:h-fit lg:w-65 lg:h-fit" width="263" height="112" viewBox="0 0 263 112" fill="none" xmlns="http://www.w3.org" style={{ transform: "scaleY(-1)" }}>

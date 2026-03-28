@@ -9,7 +9,7 @@ export default function Showcase() {
         <main className='h-full w-full justify-center items-center px-10 md:px-25 lg:px-50'>
 
             <div className='w-full h-full justify-center items-center flex pb-5'>
-                <h1 className='text-2xl md:text-4xl font-bold text-center w-xl
+                <h1 className='text-xl md:text-4xl font-bold text-center w-xl
                     bg-linear-to-b from-black via-slate-800 to-slate-700
                     dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400
                     leading-tight mb-6 bg-clip-text text-transparent'

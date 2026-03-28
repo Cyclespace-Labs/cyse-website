@@ -15,7 +15,7 @@ import { div } from 'motion/react-client';
       className="mt-1 grid grid-cols-2 md:grid-cols-4 gap-20 md:gap-40 justify-between w-full max-w-full lg:px-0 md:px-10 sm:px-10 px-10 mx-auto"
     >
       <div className="text-center">
-        <div className="lg:text-3xl md:text-2xl sm:text-2xl text-3xl font-bold text-black dark:text-white">
+        <div className="lg:text-3xl md:text-2xl text-2xl font-bold text-black dark:text-white">
           <CountUp
             from={0}
             to={50}
@@ -30,7 +30,7 @@ import { div } from 'motion/react-client';
       </div>
 
       <div className="text-center">
-        <div className="lg:text-3xl md:text-2xl sm:text-2xl text-2xl font-bold text-black dark:text-white">
+        <div className="lg:text-3xl md:text-2xl text-2xl font-bold text-black dark:text-white">
           $<CountUp
             from={0.0}
             to={2.5}
@@ -43,7 +43,7 @@ import { div } from 'motion/react-client';
         <div className="text-sm dark:text-zinc-300 text-zinc-500">Trading Volume</div>
       </div>
       <div className="text-center">
-        <div className="lg:text-3xl md:text-2xl sm:text-2xl text-2xl font-bold text-black dark:text-white">
+        <div className="lg:text-3xl md:text-2xl text-2xl font-bold text-black dark:text-white">
           $<CountUp
             from={0}
             to={75}
@@ -56,7 +56,7 @@ import { div } from 'motion/react-client';
         <div className="text-sm dark:text-zinc-300 text-zinc-500">Total TVL</div>
       </div>
       <div className="text-center">
-        <div className="lg:text-3xl md:text-2xl sm:text-2xl text-2xl font-bold text-black dark:text-white">
+        <div className="lg:text-3xl md:text-2xl text-2xl font-bold text-black dark:text-white">
           <CountUp
             from={0}
             to={3000}

@@ -44,7 +44,7 @@ export default function Features() {
     <div className='w-full h-full mx-auto justify-center flex py-20 pb-30'>
         <main className='justify-center flex flex-col w-7xl h-full'>
             <div className='w-full h-full justify-center items-center flex pb-5'>
-                <h1 className='text-3xl md:text-4xl font-bold text-center w-xl
+                <h1 className='text-xl md:text-4xl font-bold text-center w-sm md:w-xl
                     bg-linear-to-b from-black via-zinc-800 to-zinc-500
                     dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400
                     leading-tight mb-6 bg-clip-text text-transparent'
@@ -53,48 +53,48 @@ export default function Features() {
                 </h1>
             </div>
 
-            <div className='flex flex-row w-full h-full justify-center gap-5'>
+            <div className='flex flex-col md:flex-row w-full h-full justify-center gap-5 px-10 md:px-0 '>
 
-                <div className='flex flex-col gap-5 w-300 h-full'>
+                <div className='flex flex-col gap-5 w-full md:w-300 h-full justify-center'>
                     <Card className="relative h-full w-full gap-1 overflow-hidden leading-tight">
-                    {/* Background layer */}
-                    <div className="absolute inset-0 z-0">
-                        <Silk
-                        speed={5}
-                        scale={1}
-                        color="#0E76FD"
-                        noiseIntensity={1.5}
-                        rotation={0}
-                        />
-                        <div className="absolute inset-0 bg-black/60" />
-                        <div className="absolute inset-0 bg-linear-to-l from-[#0E76FD] via-[#0E76FD]/50 to-transparent" />
-                        <div className="absolute inset-0 bg-linear-to-bl from-black via-[#0E76FD]/50 to-transparent" />
-                    </div>
+                        {/* Background layer */}
+                        <div className="absolute inset-0 z-0">
+                            <Silk
+                            speed={5}
+                            scale={1}
+                            color="#0E76FD"
+                            noiseIntensity={1.5}
+                            rotation={0}
+                            />
+                            <div className="absolute inset-0 bg-black/60" />
+                            <div className="absolute inset-0 bg-linear-to-l from-[#0E76FD] via-[#0E76FD]/50 to-transparent" />
+                            <div className="absolute inset-0 bg-linear-to-bl from-black via-[#0E76FD]/50 to-transparent" />
+                        </div>
 
-                    {/* Foreground content */}
-                    <div className="relative z-10 flex h-full flex-col">
-                        <CardHeader>
-                        <Image
-                            src="/assets/Vault.png"
-                            alt="cyclespace exchange vault"
-                            height={230}
-                            width={230}
-                            quality={100}
-                            className="relative left-35 -top-10 object-cover drop-shadow-2xl"
-                            priority
-                            referrerPolicy="no-referrer"
-                        />
-                        </CardHeader>
+                        {/* Foreground content */}
+                        <div className="relative z-10 flex h-full flex-col">
+                            <CardHeader>
+                            <Image
+                                src="/assets/Vault.png"
+                                alt="cyclespace exchange vault"
+                                height={230}
+                                width={230}
+                                quality={100}
+                                className="relative left-35 -top-10 object-cover drop-shadow-2xl"
+                                priority
+                                referrerPolicy="no-referrer"
+                            />
+                            </CardHeader>
 
-                        <CardFooter className="mt-5 flex w-full flex-col space-y-2 px-6 text-left">
-                        <h2 className="text-lg font-bold text-white">
-                            Decentralized. Borderless. Permissionless. Trade.
-                        </h2>
-                        <h3 className="text-sm text-slate-200">
-                            Trade Directly from Your Wallet. Execute Trades. Retain Ownership.
-                        </h3>
-                        </CardFooter>
-                    </div>
+                            <CardFooter className="mt-5 flex w-full flex-col space-y-2 px-6 text-left">
+                            <h2 className=" text-sm md:text-lg font-bold text-white">
+                                Decentralized. Borderless. Permissionless. Trade.
+                            </h2>
+                            <h3 className=" text-xs md:text-sm text-slate-200">
+                                Trade Directly from Your Wallet. Execute Trades. Retain Ownership.
+                            </h3>
+                            </CardFooter>
+                        </div>
                     </Card>
 
                     <Card className='h-full w-full bg-zinc-200 border border-zinc-200 ' >
@@ -115,8 +115,8 @@ export default function Features() {
                 <div className='flex flex-col gap-5 w-full h-full'>
                     <Card className='h-full w-full bg-zinc-200 border border-zinc-200 relative'>
                         <CardHeader className='flex items-center gap-2 w-full'>
-                            <div className='gap-0 space-y-0 flex flex-col w-sm'>
-                                <h2 className='text-xl font-bold bg-clip-text text-transparent
+                            <div className='gap-0 space-y-0 flex flex-col w-xs md:w-sm'>
+                                <h2 className='text-sm md:text-xl font-bold bg-clip-text text-transparent
                                     bg-linear-to-b from-black via-zinc-800 to-zinc-500
                                     dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400'>
                                     Decentralized. Borderless. Permissionless. Trade.
@@ -140,16 +140,17 @@ export default function Features() {
                             referrerPolicy="no-referrer"
                         />
                     </Card>
+                    
                     <Card className='h-full w-full p-0 bg-zinc-200
                         leading-tight'
                     >
-                        <CardHeader className='p-8 w-md'>
+                        <CardHeader className='p-8 w-sm md:w-md'>
                             <h2 className='text-black text-xl font-bold'>Decentralized. Borderless. Permissionless. Trade.</h2>
                             <h3 className='text-sm text-slate-600'>Trade Directly from Your Wallet. Execute Trades. Retain Ownership.</h3>
                         </CardHeader>
 
                         <CardContent className='h-full w-fit mt-5 justify-center p-0 overflow-clip'>
-                            <div className='overflow-clip w-lg justify-center'>
+                            <div className='overflow-clip w-sm md:w-lg justify-center flex flex-col '>
                                 {/* Basic horizontal loop */}
                                 <LogoLoop
                                     logos={firstLogoList}
