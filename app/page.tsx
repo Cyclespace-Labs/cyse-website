@@ -30,23 +30,23 @@ export default function Home() {
         <Features />
       </div>
 
-      <div className="hidden">
+      <div className="">
         <Chains />
       </div>
       
-      <div className="hidden">
+      <div className="">
         <Rewards />
       </div>
 
-      <div className="hidden">
+      <div className="">
         <Performance />
       </div>
 
-      <div className="hidden">
+      <div className="">
         <LatestNews/>
       </div>
 
-      <div className="hidden">
+      <div className="">
         <Footer />
       </div>
     </main>

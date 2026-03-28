@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card'
 import Image from 'next/image'
-import { Check, Cpu, Ticket } from 'lucide-react'
+import { Check, Cpu} from 'lucide-react'
 import { Button } from '../ui/button'
 import { Badge } from '../ui/badge'
 import LogoLoop from '../LogoLoop'

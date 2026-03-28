@@ -83,73 +83,62 @@ export default function Footer() {
       <div className="relative z-10 flex flex-col items-center justify-center">
         <FAQ items={faqItems} />
 
-        <div className="mt-10 flex w-full justify-center px-30">
-          <div className="flex w-full flex-row justify-center">
-            <div className="flex w-full flex-col gap-5 text-center">
-              <Link href="/about" className="text-white">
-                About Us
-              </Link>
-              <Link href="/about" className="text-white">
-                About Us
-              </Link>
-              <Link href="/about" className="text-white">
-                About Us
-              </Link>
-              <Link href="/about" className="text-white">
-                About Us
-              </Link>
-              <Link href="/about" className="text-white">
-                About Us
-              </Link>
-            </div>
-            <div className="flex w-full flex-col gap-5 text-center">
-              <Link href="/about" className="text-white">
-                About Us
-              </Link>
-              <Link href="/about" className="text-white">
-                About Us
-              </Link>
-              <Link href="/about" className="text-white">
-                About Us
-              </Link>
-              <Link href="/about" className="text-white">
-                About Us
-              </Link>
-              <Link href="/about" className="text-white">
-                About Us
-              </Link>
-            </div>
-            <div className="flex w-full flex-col gap-5 text-center">
-              <Link href="/about" className="text-white">
-                About Us
-              </Link>
-              <Link href="/about" className="text-white">
-                About Us
-              </Link>
-              <Link href="/about" className="text-white">
-                About Us
-              </Link>
-              <Link href="/about" className="text-white">
-                About Us
-              </Link>
-            </div>
-            <div className="flex w-full flex-col gap-5 text-center">
-              <Link href="/about" className="text-white">
-                About Us
-              </Link>
-              <Link href="/about" className="text-white">
-                About Us
-              </Link>
-              <Link href="/about" className="text-white">
-                About Us
-              </Link>
-            </div>
+        <div className="mt-6 md:mt-10 flex w-full justify-center px-6 sm:px-8 md:px-16 lg:px-30">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-4 gap-y-2 sm:gap-x-6 sm:gap-y-3 md:gap-4 w-full max-w-4xl">
+            <Link href="/spot" className="text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+              Spot
+            </Link>
+            <Link href="/futures" className="text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+              Futures
+            </Link>
+            <Link href="/predictions" className="text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+              Predictions
+            </Link>
+            <Link href="/vault" className="text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+              Vault
+            </Link>
+            <Link href="/News" className="text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+              Markets
+            </Link>
+            <Link href="/swap-exchange" className="text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+              Swap
+            </Link>
+            <Link href="/trading" className="text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+              Stake
+            </Link>
+            <Link href="/Dashboard" className="text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+              Docs
+            </Link>
+            <Link href="/Edge" className="text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+              Whitepaper
+            </Link>
+            <Link href="/about" className="text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+              About Us
+            </Link>
+            <Link href="/contact" className="text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+              Contact
+            </Link>
+            <Link href="/careers" className="text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+              Careers
+            </Link>
+            <Link href="/blog" className="text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+              Blog
+            </Link>
+            <Link href="/terms" className="text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+              Terms
+            </Link>
+            <Link href="/privacy" className="text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+              Privacy
+            </Link>
+            <Link href="/support" className="text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+              Support
+            </Link>
           </div>
         </div>
 
-        <div className="flex w-full items-center justify-center">
+        <div className="flex w-full items-center justify-center px-4 py-8 sm:py-12 md:py-16">
           <h3
-            className={`${tourney.className} text-[280px] font-bold text-white `}
+            className={`${tourney.className} text-[60px] sm:text-[100px] md:text-[160px] lg:text-[220px] xl:text-[280px] font-bold text-white`}
           >
             CYCLESPACE
           </h3>
