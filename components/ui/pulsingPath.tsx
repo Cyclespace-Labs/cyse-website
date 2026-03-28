@@ -180,7 +180,7 @@ export default function PulsingPath() {
                             </div>
                         </div>
 
-                        <svg className="w-33 md:w-70"  width="318" height="8" viewBox="0 0 318 8" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform:"scaleX(-1)", overflow: "visible" }}>
+                        <svg className="w-33 md:w-80"  width="318" height="8" viewBox="0 0 318 8" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform:"scaleX(-1)", overflow: "visible" }}>
                             <defs>
                                 {/* Blue Glow Filter */}
                                 <filter 
@@ -228,7 +228,7 @@ export default function PulsingPath() {
 
                     {/* Right Horizontal Line — dash starts from left, travels right (positive offset → 0) */}
                     <div className="flex relative flex-row items-center  space-x-0">
-                        <svg className="w-33 md:w-70" width="318" height="8" viewBox="0 0 318 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg className="w-33 md:w-80" width="318" height="8" viewBox="0 0 318 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 {/* Blue Glow Filter */}
                                 <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">

@@ -6,7 +6,7 @@ export default function Showcase() {
   return (
     <div className='w-full h-full mx-auto py-10 font-sans'>
 
-        <main className='h-full w-full justify-center items-center px-10 md:px-50 lg:px-50'>
+        <main className='h-full w-full justify-center items-center px-10 md:px-25 lg:px-50'>
 
             <div className='w-full h-full justify-center items-center flex pb-5'>
                 <h1 className='text-2xl md:text-4xl font-bold text-center w-xl
