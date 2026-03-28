@@ -93,6 +93,7 @@ export default function Rewards() {
                     noiseIntensity={1.5}
                     rotation={0}
                   />
+                  <div className="absolute inset-0 bg-black/60" />
                   <div className="absolute inset-0 bg-linear-to-l from-[#0E76FD] via-[#0E76FD]/50 to-transparent" />
                   <div className="absolute inset-0 bg-linear-to-bl from-black via-[#0E76FD]/50 to-transparent" />
                 </div>
