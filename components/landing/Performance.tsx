@@ -4,7 +4,7 @@ import { ChevronRight } from 'lucide-react'
 
 export default function Performance() {
   return (
-    <div className='mx-auto h-full w-full py-30 font-sans'>
+    <div className='mx-auto h-full w-full py-20 font-sans'>
         <main className='justify-center py-20 px-70'>
             <div className='w-full h-full grid grid-rows-2'>
 

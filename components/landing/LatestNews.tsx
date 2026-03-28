@@ -215,8 +215,8 @@ export default function LatestNews() {
   const canRight = activeIndex < CARDS.length - 1;
 
   return (
-    <section ref={sectionRef} className="w-full bg-white py-16">
-      <div className="mb-10 px-6 md:px-12">
+    <section ref={sectionRef} className="w-full bg-white py-20">
+      <div className="mb-10 px-6 md:px-70 justify-center w-full">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <h2 className="text-3xl font-bold text-gray-900 md:text-4xl">Weekly headlines</h2>
 
@@ -248,7 +248,7 @@ export default function LatestNews() {
           whileDrag={{ cursor: "grabbing" }}
           onDragEnd={(_, info) => {
             const newX = Math.max(-maxDrag, Math.min(0, rawX.get() + info.offset.x));
-            const snapped = Math.round(-newX / STEP);
+            const snapped = Math.round(-newX / STEP); 
             scrollTo(Math.max(0, Math.min(snapped, CARDS.length - 1)));
           }}
           className="flex w-max cursor-grab gap-[18px] px-6 md:px-12"
