@@ -17,7 +17,8 @@ import { Menu, MenuItem } from "../ui/navbar-menu";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge"; // shadcn badge
 import { Separator } from "radix-ui";
-import { ThemeToggle } from '../ui/themeToggle';
+import { ThemeToggle } from "../themeToggle";
+
 
 const tourney = Tourney({
   subsets: ["latin"],
@@ -219,6 +220,11 @@ export default function Header() {
               <Button className="text-xs rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-200">
                 Open app
               </Button>
+              <div className="hidden w-fit h-fit md:flex">
+                <ThemeToggle/>
+              </div>
+
+
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="md:hidden p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 transition-colors"

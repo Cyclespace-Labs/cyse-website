@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Alexandria } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { ThemeProvider } from "@/context/context";
 
 const alexandria = Alexandria({subsets:['latin'],variable:'--font-sans'});
 
@@ -17,7 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={cn("h-full", "antialiased", "font-sans", alexandria.variable)}>
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col font-sans">
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

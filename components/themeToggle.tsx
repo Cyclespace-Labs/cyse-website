@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from "@/context/context";
-import { Button } from "./button";
+import { Button } from "./ui/button";
 
 
 
@@ -11,13 +11,13 @@ export function ThemeToggle() {
   return (
     <Button
       onClick={toggleTheme}
-      className="relative p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors duration-200"
+      className="relative p-2 flex justify-center items-center rounded-lg bg-slate-200 dark:bg-slate-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors duration-200"
       aria-label={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
     >
-      <div className="relative w-5 h-5">
+      <div className="relative w-5 h-5 justify-center items-center flex">
         {/* Sun Icon */}
         <svg
-          className={`absolute inset-0 w-5 h-5 transition-all duration-300 ${
+          className={`absolute inset-0.5 w-5 h-5 transition-all duration-300 ${
             theme === "light" 
               ? "rotate-0 scale-100 text-yellow-500" 
               : "rotate-90 scale-0 text-gray-400"
@@ -30,12 +30,12 @@ export function ThemeToggle() {
         
         {/* Moon Icon */}
         <svg
-          className={`absolute inset-0 w-5 h-5 transition-all duration-300 ${
+          className={`absolute inset-0.5 w-5 h-5 transition-all duration-300 ${
             theme === "dark" 
-              ? "rotate-0 scale-100 text-secondary" 
-              : "-rotate-90 scale-0 text-secondary/20"
+              ? "rotate-0 scale-100 text-[#0E76FD]" 
+              : "-rotate-90 scale-0 text-[#0E76FD]/20"
           }`}
-          fill="currentColor"
+          fill="#0E76FD"
           viewBox="0 0 24 24"
         >
           <path d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" />
