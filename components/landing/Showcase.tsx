@@ -6,7 +6,7 @@ export default function Showcase() {
   return (
     <div className='w-full h-full mx-auto py-10 font-sans'>
 
-        <main className='h-full w-full justify-center items-center px-50'>
+        <main className='h-full w-full justify-center items-center px-10 md:px-50 lg:px-50'>
 
             <div className='w-full h-full justify-center items-center flex pb-5'>
                 <h1 className='text-2xl md:text-4xl font-bold text-center w-xl
@@ -18,11 +18,11 @@ export default function Showcase() {
                 </h1>
             </div>
 
-           <div>
+           <div className='hidden md:flex lg:flex'>
             <PulsingPath />
            </div>
 
-            <div className='justify-between relative items-center flex flex-row pt-10 h-fit  -top-130'>
+            <div className='justify-between relative items-center flex flex-row pt-10 h-fit -top-130  md:-top-130 lg:-top-130'>
                 <div className='h-fit flex flex-col'>
                     <Image 
                         src="/cards/stats.png"
@@ -50,20 +50,20 @@ export default function Showcase() {
                     <Image
                         src="/cards/swap.png"
                         alt="Cryptocu rrency background"
-                        height={350}
-                        width={150}
+                        height={1000}
+                        width={1000}
                         quality={100}
-                        className="object-cover relative rounded-xl shadow-2xl "
+                        className="object-cover relative rounded-sm md:rounded-xl shadow-2xl h-25 w-15  md:h-65 md:w-38 lg:h-65 lg:w-38  "
                         priority
                         referrerPolicy="no-referrer"
                     />
                     <Image 
                         src="/cards/wallet.png"
                         alt="Cryptocurrency background"
-                        height={150}
-                        width={150}
+                        height={1000}
+                        width={1000}
                         quality={100}
-                        className="object-cover relative left-15 -top-10 z-10 rounded-xl shadow-2xl"
+                        className="object-cover relative left-8 md:left-15 lg:left-15 -top-10 z-10 rounded-sm md:rounded-xl lg:rounded-xl shadow-2xl h-15 w-20  md:h-65 md:w-38 lg:h-25 lg:w-38"
                         priority
                         referrerPolicy="no-referrer"
                     />

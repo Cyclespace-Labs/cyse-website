@@ -26,13 +26,12 @@ export default function PulsingPath() {
     return (
     <div className="p-10 h-fit">
         <div className="grid w-full  justify-center items-center gap-6 space-y-0 h-fit">
-
             {/* left design*/}
             <div className="flex justify-center items-center gap-0 space-y-0 h-fit">
 
                 <div className="relative">
 
-                    <div className="w-20 h-20 relative right-12 top-6 z-10 items-start justify-start rounded-full">
+                    <div className="w-10 h-10 md:w-10 md:h-10 lg:w-20 lg:h-20 relative right-6 top-3 md:right-12 md:top-6 lg:right-12 lg:top-6 z-10 items-start justify-start rounded-full">
                         <Image
                             src="/tokens/Bitcoin.svg"
                             alt="cyclespace exchange vault"
@@ -45,7 +44,7 @@ export default function PulsingPath() {
                         />
                     </div>
                     
-                    <svg width="263" height="112" viewBox="0 0 263 112" fill="none" xmlns="http://www.w3.org" style={{ transform: "scaleY(1)" }}>
+                    <svg className="w-30 h-fit md:w-65 md:h-fit lg:w-65 lg:h-fit" width="263" height="112" viewBox="0 0 263 112" fill="none" xmlns="http://www.w3.org" style={{ transform: "scaleY(1)" }}>
                         <defs>
                         {/* Blue Glow Filter */}
                         <filter id="glow" x="-50%" y="-50%" width="200%" height="200%" colorInterpolationFilters="sRGB">
@@ -86,7 +85,7 @@ export default function PulsingPath() {
 
                 <div className="relative">
 
-                    <div className=" w-20 h-20 relative top-6 z-10 left-55 items-end justify-end rounded-3xl">
+                    <div className="w-10 h-10 md:w-10 md:h-10 lg:w-20 lg:h-20 relative top-3 left-18 md:top-6 md:left-55 lg:top-6 z-10 lg:left-55 items-end justify-end rounded-3xl">
                         <Image
                             src="/tokens/USD Coin.svg"
                             alt="cyclespace exchange vault"
@@ -99,7 +98,7 @@ export default function PulsingPath() {
                         />
                     </div>
 
-                    <svg width="263" height="112" viewBox="0 0 263 112" fill="none" xmlns="http://www.w3.org" style={{ transform: "scaleX(-1)" }}>
+                    <svg className="w-30 h-fit md:w-65 md:h-fit lg:w-65 lg:h-fit" width="263" height="112" viewBox="0 0 263 112" fill="none" xmlns="http://www.w3.org" style={{ transform: "scaleX(-1)" }}>
                         <defs>
                         {/* Blue Glow Filter */}
                         <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
@@ -141,15 +140,15 @@ export default function PulsingPath() {
 
             {/* middle logo*/}
             <div className="relative items-center justify-center bottom-15 ">
-                <div className="absolute flex left-1/2 transform -translate-x-1/2 z-10 justify-center items-center rounded-4xl w-30 h-30">
-                    <div className="bg-blue-500 p-5 rounded-3xl">
+                <div className="absolute flex left-1/2 transform -translate-x-1/2 z-10 justify-center items-center rounded-2xl md:rounded-4xl lg:rounded-4xl w-23 h-23 md:w-30 md:h-30 lg:w-30 lg:h-30">
+                    <div className="bg-blue-500 p-2.5 md:p-5 lg:p-5 rounded-xl md:rounded-3xl lg:rounded-3xl">
                         <Image
                             src="/logo_white.svg"
                             alt="cyclespace exchange vault"
                             height={500}
                             width={500}
                             quality={100}
-                            className="object-cover w-15 h-15"
+                            className="object-cover w-8 h-8 md:w-15 md:h-15 lg:w-15 lg:h-15"
                             priority
                             referrerPolicy="no-referrer"
                         />
@@ -181,7 +180,7 @@ export default function PulsingPath() {
                             </div>
                         </div>
 
-                        <svg width="318" height="8" viewBox="0 0 318 8" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform:"scaleX(-1)", overflow: "visible" }}>
+                        <svg  width="318" height="8" viewBox="0 0 318 8" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform:"scaleX(-1)", overflow: "visible" }}>
                             <defs>
                                 {/* Blue Glow Filter */}
                                 <filter 
@@ -290,7 +289,7 @@ export default function PulsingPath() {
             <div className="flex justify-center items-center gap-5 h-fit">
                 <div className="relative">
 
-                    <svg width="263" height="112" viewBox="0 0 263 112" fill="none" xmlns="http://www.w3.org" style={{ transform: "scaleY(-1)" }}>
+                    <svg className="w-30 h-fit md:w-65 md:h-fit lg:w-65 lg:h-fit" width="263" height="112" viewBox="0 0 263 112" fill="none" xmlns="http://www.w3.org" style={{ transform: "scaleY(-1)" }}>
                         <defs>
                         {/* Blue Glow Filter */}
                         <filter id="glow" x="-20%" y="-20%" width="140%" height="140%" className="">
@@ -344,7 +343,7 @@ export default function PulsingPath() {
                 </div>s
 
                 <div className="relative">
-                    <svg width="263" height="112" viewBox="0 0 263 112" fill="none" xmlns="http://www.w3.org" style={{ transform: "scaleX(-1) scaleY(-1)" }}>
+                    <svg className="w-30 h-fit md:w-65 md:h-fit lg:w-65 lg:h-fit" width="263" height="112" viewBox="0 0 263 112" fill="none" xmlns="http://www.w3.org" style={{ transform: "scaleX(-1) scaleY(-1)" }}>
                         <defs>
                         {/* Blue Glow Filter */}
                         <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
