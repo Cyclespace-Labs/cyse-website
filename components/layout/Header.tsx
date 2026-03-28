@@ -6,6 +6,7 @@ import { X, MenuIcon, Tag, ArrowUpDownIcon, Bot, Newspaper, ClipboardCheck, Luci
 import { motion, AnimatePresence } from 'framer-motion'
 import {Tourney } from 'next/font/google'
 import { Menu, MenuItem, ProductItem } from '../ui/navbar-menu'
+import { Button } from '../ui/button'
 
 
 const tourney = Tourney({
@@ -15,8 +16,8 @@ const tourney = Tourney({
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
-  const [primaryColor, setPrimaryColor] = useState('#0e76fd');
-  const [secondaryColor, setSecondaryColor] = useState('#0e76fdD');
+  const [primaryColor, setPrimaryColor] = useState('#0E76FD');
+  const [secondaryColor, setSecondaryColor] = useState('#0E76FD');
   const [active, setActive] = useState<string | null>(null);
 
     useEffect(() => {
@@ -51,13 +52,13 @@ export default function Header() {
     }, []);
 
   return (
-    <header className="sticky top-10 z-50 bg-transparent mx-auto inset-x-0 dark:bg-transparent rounded-4xl">
+    <header className="sticky z-50 bg-transparent w-full inset-x-0 inset-y-7 dark:bg-transparent font-sans rounded-4xl">
       <div className="max-w-fit mx-auto px-4 sm:px-6 lg:px-8">
         <Menu setActive={setActive}>
         <div className="flex items-center justify-between gap-30 h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center justify-center space-x-2">
-            <div className="p-0  rounded-lg">
+            <div className="p-0  rounded-lg transition-all duration-100">
         
               <svg width="30" height="30" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" className="dark:hidden">
                 <path d="M105 76H38.8466C38.8466 76 33.5426 87.8169 32.5112 92.1876C27.8222 112.059 26.8737 128.971 29.2698 149.33C31.4799 168.107 38.6993 183 38.6993 183H101.759C101.759 183 89.4948 164.979 86.2884 155.157C81.4264 140.265 81.6222 128.124 84.3731 111.613C87.4302 93.2635 105 76 105 76Z" fill={primaryColor}/>
@@ -78,7 +79,7 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center text-sm space-x-4 w-full">
-            <MenuItem setActive={setActive} active={active} item="Services">
+            <MenuItem setActive={setActive} active={active} item="Spot">
               <div className='gap-4 flex flex-col'>
                 <Link href="/swap-exchange" className="text-sm flex flex-row gap-2 items-center dark:text-zinc-200 text-zinc-700 hover:text-primary dark:hover:text-secondary transition-colors">
                   <ArrowUpDownIcon className='h-4 w-4  text-primary dark:text-secondary'/>
@@ -102,7 +103,7 @@ export default function Header() {
                 </Link>
               </div>
             </MenuItem>
-            <MenuItem setActive={setActive} active={active} item="Product">
+            <MenuItem setActive={setActive} active={active} item="Futures">
               <div className="  text-sm grid grid-cols-2 gap-10 p-4">
               <ProductItem
                 title="Trading Dashboard"
@@ -130,7 +131,13 @@ export default function Header() {
               />
               </div>
             </MenuItem>
-            <MenuItem setActive={setActive} active={active} item="Pricing">
+            <MenuItem setActive={setActive} active={active} item="Predictions">
+              <Link href="/pricing" className="flex flex-row gap-2 items-center dark:text-zinc-200 text-zinc-700 hover:text-primary dark:hover:text-secondary transition-colors">
+                <Tag className='h-4 w-4  text-primary dark:text-zsecondary'/>
+                <span className="text-sm">Pricing</span>
+              </Link>
+            </MenuItem>
+            <MenuItem setActive={setActive} active={active} item="Vault">
               <Link href="/pricing" className="flex flex-row gap-2 items-center dark:text-zinc-200 text-zinc-700 hover:text-primary dark:hover:text-secondary transition-colors">
                 <Tag className='h-4 w-4  text-primary dark:text-zsecondary'/>
                 <span className="text-sm">Pricing</span>
@@ -139,6 +146,9 @@ export default function Header() {
           </div>
 
           {/* CTA Button */}
+          <div>
+            <Button className='text-xs rounded-lg bg-blue-500 text-white'>Open app</Button>
+          </div>
 
           {/* Mobile menu button */}
           <button

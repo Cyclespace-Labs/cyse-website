@@ -8,14 +8,16 @@ import Rewards from "@/components/landing/Rewards";
 import Showcase from "@/components/landing/Showcase";
 import Stats from "@/components/landing/Stats";
 import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
 
 
 export default function Home() {
   return (
     <main className="min-h-screen">
+        <Header />
       <Hero />
 
-      <div className="justify-center   items-center flex">
+      <div className="justify-center items-center flex">
         <Stats />
       </div>
 
@@ -42,7 +44,7 @@ export default function Home() {
       <div className="">
         <LatestNews/>
       </div>
-      
+
       <div>
         <Footer />
       </div>

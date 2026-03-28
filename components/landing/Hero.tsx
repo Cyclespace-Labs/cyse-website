@@ -6,7 +6,7 @@ import { Button } from '../ui/button';
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-screen overflow-hidden flex font-sans items-center">
+    <section className="relative w-full -top-17 min-h-screen overflow-hidden flex font-sans items-center">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
