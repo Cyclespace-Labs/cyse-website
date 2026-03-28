@@ -79,7 +79,7 @@ export default function Stats() {
     
     <div className='w-fit h-full'>
       {/* Success Stats */}
-        <div className='h-fit py-30 w-full flex justify-center items-center '>
+        <div className='h-fit py-20 md:py-30  w-full flex justify-center items-center '>
           <SuccessStats />
         </div>
     </div>

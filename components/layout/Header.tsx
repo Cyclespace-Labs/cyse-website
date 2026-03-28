@@ -230,6 +230,7 @@ export default function Header() {
               </button>
             </div>
           </div>
+        </Menu>
 
           {/* Mobile Navigation Menu */}
           <AnimatePresence>
@@ -238,38 +239,96 @@ export default function Header() {
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
-                className="md:hidden border-t mt-2 mx-1 bg-white dark:bg-black py-4"
+                className="md:hidden absolute border-t mt-2 px-2 mx-5 w-full justify-self-center bg-transparent"
               >
-                <div className="space-y-4 p-2">
-                  <Link
-                    href="/Dashboard"
-                    className="block text-zinc-200 hover:text-white transition-colors font-medium"
-                  >
-                    Dashboard
-                  </Link>
-                  <Link
-                    href="/news"
-                    className="block text-zinc-200 hover:text-white transition-colors"
-                  >
-                    News Dashboard
-                  </Link>
-                  <Link
-                    href="/Edge"
-                    className="block text-gray-300 hover:text-white transition-colors"
-                  >
-                    AI Trading Signals
-                  </Link>
-                  <Link
-                    href="/pricing"
-                    className="block text-gray-300 hover:text-white transition-colors"
-                  >
-                    Pricing
-                  </Link>
+                <div className="flex flex-col p-4 w-full space-y-4 bg-white dark:bg-black rounded-2xl shadow-lg overflow-hidden ">
+                  {/* Main links */}
+                  <div className="space-y-3 flex flex-col w-full">
+                    <Link
+                      href="/spot"
+                      className="block text-base w-full font-medium dark:text-zinc-200 text-zinc-800 hover:text-primary dark:hover:text-secondary transition-colors"
+                    >
+                      Spot
+                    </Link>
+                    <Link
+                      href="/futures"
+                      className="block text-base font-medium dark:text-zinc-200 text-zinc-800 hover:text-primary dark:hover:text-secondary transition-colors inline-flex items-center gap-1.5"
+                    >
+                      Futures
+                      <Badge
+                        variant="outline"
+                        className="text-[10px] px-1.5 py-0 h-4 rounded-full bg-primary/10 text-primary dark:bg-secondary/20 dark:text-secondary border-none"
+                      >
+                        soon
+                      </Badge>
+                    </Link>
+                    <Link
+                      href="/predictions"
+                      className="block text-base font-medium dark:text-zinc-200 text-zinc-800 hover:text-primary dark:hover:text-secondary transition-colors inline-flex items-center gap-1.5"
+                    >
+                      Predictions
+                      <Badge
+                        variant="outline"
+                        className="text-[10px] px-1.5 py-0 h-4 rounded-full bg-primary/10 text-primary dark:bg-secondary/20 dark:text-secondary border-none"
+                      >
+                        soon
+                      </Badge>
+                    </Link>
+                    <Link
+                      href="/vault"
+                      className="block text-base font-medium dark:text-zinc-200 text-zinc-800 hover:text-primary dark:hover:text-secondary transition-colors"
+                    >
+                      Vault
+                    </Link>
+                  </div>
+
+                  {/* More links (same as desktop dropdown) */}
+                  <div className="space-y-3 w-full">
+                    <Link
+                      href="/News"
+                      className="flex items-center gap-2 text-sm dark:text-zinc-300 text-zinc-700 hover:text-primary dark:hover:text-secondary transition-colors"
+                    >
+                      <LucideNewspaper className="h-4 w-4 text-primary dark:text-secondary" />
+                      Markets
+                    </Link>
+                    <Link
+                      href="/swap-exchange"
+                      className="flex items-center gap-2 text-sm dark:text-zinc-300 text-zinc-700 hover:text-primary dark:hover:text-secondary transition-colors"
+                    >
+                      <ArrowUpDownIcon className="h-4 w-4 text-primary dark:text-secondary" />
+                      Swap
+                    </Link>
+                    <Link
+                      href="/trading"
+                      className="flex items-center gap-2 text-sm dark:text-zinc-300 text-zinc-700 hover:text-primary dark:hover:text-secondary transition-colors"
+                    >
+                      <Bot className="h-4 w-4 text-primary dark:text-secondary" />
+                      Stake
+                    </Link>
+                    <Link
+                      href="/Dashboard"
+                      className="flex items-center gap-2 text-sm dark:text-zinc-300 text-zinc-700 hover:text-primary dark:hover:text-secondary transition-colors"
+                    >
+                      <Newspaper className="h-4 w-4 text-primary dark:text-secondary" />
+                      Docs
+                    </Link>
+                    <Link
+                      href="/Edge"
+                      className="flex items-center gap-2 text-sm dark:text-zinc-300 text-zinc-700 hover:text-primary dark:hover:text-secondary transition-colors"
+                    >
+                      <ClipboardCheck className="h-4 w-4 text-primary dark:text-secondary" />
+                      Whitepaper
+                    </Link>
+                  </div>
+
+                  {/* CTA button at the bottom */}
+                  <Button className="w-full mt-2 bg-blue-500 text-white hover:bg-blue-600 transition-colors rounded-lg">
+                    Open app
+                  </Button>
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
-        </Menu>
       </div>
     </header>
   );
