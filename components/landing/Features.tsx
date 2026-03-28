@@ -97,7 +97,7 @@ export default function Features() {
                         </div>
                     </Card>
 
-                    <Card className='h-full w-full bg-zinc-200 border border-zinc-200 ' >
+                    <Card className='h-full w-full bg-zinc-200 dark:bg-slate-900 dark:border-slate-800 border border-zinc-200 ' >
                         <CardHeader className='flex items-center gap-2'>
                             <div className='bg-blue-500 p-2 rounded-lg w-fit h-fit'><Cpu className='text-white w-5 h-5' /></div>
                             <div className='gap-0 space-y-0 flex flex-col'>
@@ -113,7 +113,7 @@ export default function Features() {
                 </div>
 
                 <div className='flex flex-col gap-5 w-full h-full'>
-                    <Card className='h-full w-full bg-zinc-200 border border-zinc-200 relative'>
+                    <Card className='h-full w-full bg-zinc-200 dark:bg-slate-900 dark:border-slate-800 border border-zinc-200 relative'>
                         <CardHeader className='flex items-center gap-2 w-full'>
                             <div className='gap-0 space-y-0 flex flex-col w-xs md:w-sm'>
                                 <h2 className='text-sm md:text-xl font-bold bg-clip-text text-transparent
@@ -142,11 +142,11 @@ export default function Features() {
                     </Card>
                     
                     <Card className='h-full w-full p-0 bg-zinc-200
-                        leading-tight'
+                        leading-tight dark:bg-slate-900 dark:border-slate-800 border'
                     >
                         <CardHeader className='p-8 w-sm md:w-md'>
-                            <h2 className='text-black text-xl font-bold'>Decentralized. Borderless. Permissionless. Trade.</h2>
-                            <h3 className='text-sm text-slate-600'>Trade Directly from Your Wallet. Execute Trades. Retain Ownership.</h3>
+                            <h2 className='text-black dark:text-white text-xl font-bold'>Decentralized. Borderless. Permissionless. Trade.</h2>
+                            <h3 className='text-sm text-slate-600 dark:text-slate-200'>Trade Directly from Your Wallet. Execute Trades. Retain Ownership.</h3>
                         </CardHeader>
 
                         <CardContent className='h-full w-fit mt-5 justify-center p-0 overflow-clip'>
@@ -197,7 +197,7 @@ export default function Features() {
                     </Card>
                 </div>
                 <div className='flex flex-col gap-5 w-full h-full'>
-                    <Card className='h-full w-full bg-zinc-200 border border-zinc-200 ' >
+                    <Card className='h-full w-full bg-zinc-200 dark:bg-slate-900 dark:border-slate-800 border border-zinc-200 ' >
                         <CardHeader className='flex items-center gap-2 w-full'>
                             <div className='bg-blue-500 p-2 rounded-lg w-fit h-fit'><Cpu className='text-white w-5 h-5' /></div>
                             <div className='gap-0 space-y-0 flex flex-col w-full'>
@@ -209,14 +209,14 @@ export default function Features() {
                             <span>Trade Directly from Your Wallet. Execute Trades. Retain Ownership.</span>
                         </CardContent>
                     </Card>
-                    <Card className='h-full w-full bg-zinc-200 border border-zinc-200 justify-center'>
+                    <Card className='h-full w-full bg-zinc-200 dark:bg-slate-900 dark:border-slate-800 border border-zinc-200 justify-center'>
                         <CardHeader className='flex items-center gap-2 w-full'>
                             <h2 className='text-lg font-bold'>Decentralized. Borderless. </h2>
                         </CardHeader>
                         <CardContent className='space-x-2 space-y-2  w-full'>
-                            <Badge className='bg-white text-xs text-black gap-1'> <Check strokeWidth={3} className='text-blue-500'/> deposits required</Badge>
-                            <Badge className='bg-white text-xs text-black gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Trade from your wallet</Badge>
-                            <Badge className='bg-white text-xs text-black gap-1'> <Check strokeWidth={3} className='text-blue-500'/> No loss of fund ownership</Badge>
+                            <Badge className='bg-white dark:bg-slate-700 text-xs text-black dark:text-slate-200 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> deposits required</Badge>
+                            <Badge className='bg-white dark:bg-slate-700 text-xs text-black dark:text-slate-200 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Trade from your wallet</Badge>
+                            <Badge className='bg-white dark:bg-slate-700 text-xs text-black dark:text-slate-200 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> No loss of fund ownership</Badge>
                         </CardContent>
                         <CardFooter className='justify-center overflow-clip relative'>
                             <Image
@@ -230,7 +230,8 @@ export default function Features() {
                                 referrerPolicy="no-referrer"
                             />
                             {/* Linear gradient overlay */}
-                            <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-zinc-200" />
+                            <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-zinc-200
+                            dark:bg-linear-to-b dark:from-transparent dark:via-transparent dark:to-slate-900" />
                         </CardFooter>
                     </Card>
                 </div>

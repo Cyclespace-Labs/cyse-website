@@ -13,7 +13,7 @@ import Header from "@/components/layout/Header";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-white dark:bg-black">
       
       <Header />
       <Hero />
@@ -26,7 +26,7 @@ export default function Home() {
         <Showcase />
       </div>
 
-      <div className="hidden">
+      <div className="">
         <Features />
       </div>
 

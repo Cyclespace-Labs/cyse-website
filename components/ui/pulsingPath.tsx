@@ -59,10 +59,12 @@ export default function PulsingPath() {
                             stroke={backgroundColor} // Light grey background
                             strokeWidth="8" 
                             strokeLinecap="round"
+                            className="dark:stroke-slate-900 stroke-[#D7DDE0]"
                         />
                         
                         {/* Animated Blue Pulse */}
                         <motion.path
+                            className="dark:stroke-[#0E76FD] stroke-[#0E76FD]"
                             d={pathData}
                             stroke={dashColor} // Vibrant Blue
                             strokeWidth="8"
@@ -79,6 +81,7 @@ export default function PulsingPath() {
                                 ease: "linear",
                                 repeatType: "loop",
                         }}
+                        
                         />
                     </svg>
                 </div>
@@ -113,10 +116,12 @@ export default function PulsingPath() {
                             stroke={backgroundColor} // Light grey background
                             strokeWidth="8" 
                             strokeLinecap="round"
+                            className="dark:stroke-slate-900 stroke-[#D7DDE0]"
                         />
                         
                         {/* Animated Blue Pulse */}
                         <motion.path
+                            className="dark:stroke-[#0E76FD] stroke-[#0E76FD]"
                             d={pathData}
                             stroke={dashColor} // Vibrant Blue
                             strokeWidth="8"
@@ -199,10 +204,12 @@ export default function PulsingPath() {
                                 stroke={backgroundColor}
                                 strokeWidth="8" 
                                 strokeLinecap="round"
+                                className="dark:stroke-slate-900 stroke-[#D7DDE0]"
                             />
                             
                             {/* Animated Blue Pulse */}
                             <motion.path
+                                className="dark:stroke-[#0E76FD] stroke-[#0E76FD]"
                                 d={straightLinePath}
                                 stroke={dashColor}
                                 strokeWidth="8"
@@ -243,26 +250,28 @@ export default function PulsingPath() {
                             stroke={backgroundColor}
                             strokeWidth="8" 
                             strokeLinecap="round"
+                            className="dark:stroke-slate-900 stroke-[#D7DDE0]"
                             />
                             
                             {/* Animated Blue Pulse */}
                             <motion.path
-                            d={straightLinePath}
-                            stroke={dashColor}
-                            strokeWidth="8"
-                            strokeLinecap="round"
-                            filter="url(#glow)"
-                            style={{
-                                strokeDasharray: `${stDashLength} ${stGapLength}`,
-                            }}
-                            initial={{ strokeDashoffset: stTotalLength }}
-                            animate={{ strokeDashoffset: 0 }}
-                            transition={{
-                                duration: 3,
-                                repeat: Infinity,
-                                ease: "linear",
-                                repeatType: "loop",
-                            }}
+                                className="dark:stroke-[#0E76FD] stroke-[#0E76FD]"
+                                d={straightLinePath}
+                                stroke={dashColor}
+                                strokeWidth="8"
+                                strokeLinecap="round"
+                                filter="url(#glow)"
+                                style={{
+                                    strokeDasharray: `${stDashLength} ${stGapLength}`,
+                                }}
+                                initial={{ strokeDashoffset: stTotalLength }}
+                                animate={{ strokeDashoffset: 0 }}
+                                transition={{
+                                    duration: 3,
+                                    repeat: Infinity,
+                                    ease: "linear",
+                                    repeatType: "loop",
+                                }}
                             />
                         </svg>
 
@@ -304,10 +313,12 @@ export default function PulsingPath() {
                             stroke={backgroundColor} // Light grey background
                             strokeWidth="8" 
                             strokeLinecap="round"
+                            className="dark:stroke-slate-900 stroke-[#D7DDE0]"
                         />
                         
                         {/* Animated Blue Pulse */}
                         <motion.path
+                            className="dark:stroke-[#0E76FD] stroke-[#0E76FD]"
                             d={pathData}
                             stroke={dashColor} // Vibrant Blue
                             strokeWidth="8"
@@ -358,11 +369,13 @@ export default function PulsingPath() {
                         stroke={backgroundColor} // Light grey background
                         strokeWidth="8" 
                         strokeLinecap="round"
+                        className="dark:stroke-slate-900 stroke-[#D7DDE0]"
                         />
                         
                         {/* Animated Blue Pulse */}
                         <motion.path
-                        d={pathData}
+                            className="dark:stroke-[#0E76FD] stroke-[#0E76FD]"
+                            d={pathData}
                             stroke={dashColor} // Vibrant Blue
                             strokeWidth="8"
                             strokeLinecap="round"
@@ -413,10 +426,12 @@ export default function PulsingPath() {
                             stroke={backgroundColor}
                             strokeWidth="8" 
                             strokeLinecap="round"
+                            className="dark:stroke-slate-900 stroke-[#D7DDE0]"
                         />
                         
                         {/* Animated Blue Pulse */}
                         <motion.path
+                            className="dark:stroke-[#0E76FD] stroke-[#0E76FD]"
                             d={verticalLinePath}
                             stroke={dashColor}
                             strokeWidth="8"
@@ -455,10 +470,12 @@ export default function PulsingPath() {
                             stroke={backgroundColor}
                             strokeWidth="8" 
                             strokeLinecap="round"
+                            className="dark:stroke-slate-900 stroke-[#D7DDE0]"
                         />
                         
                         {/* Animated Blue Pulse */}
                         <motion.path
+                            className="dark:stroke-[#0E76FD] stroke-[#0E76FD]"
                             d={verticalLinePath}
                             stroke={dashColor}
                             strokeWidth="8"
@@ -497,10 +514,12 @@ export default function PulsingPath() {
                             stroke={backgroundColor}
                             strokeWidth="8" 
                             strokeLinecap="round"
+                            className="dark:stroke-slate-900 stroke-[#D7DDE0]"
                         />
                         
                         {/* Animated Blue Pulse */}
                         <motion.path
+                            className="dark:stroke-[#0E76FD] stroke-[#0E76FD]"
                             d={verticalLinePath}
                             stroke={dashColor}
                             strokeWidth="8"

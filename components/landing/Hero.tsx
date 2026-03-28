@@ -14,7 +14,16 @@ export default function Hero() {
           alt="Cryptocurrency background"
           fill
           quality={100}
-          className="object-cover object-center hidden md:flex" // Centered on all devices for consistent framing
+          className="object-cover object-center dark:hidden hidden md:flex dark:md:hidden" // Centered on all devices for consistent framing
+          priority
+          referrerPolicy="no-referrer"
+        />
+        <Image
+          src="/render-black.png"
+          alt="Cryptocurrency background"
+          fill
+          quality={100}
+          className="object-cover object-center dark:flex hidden dark:md:flex " // Centered on all devices for consistent framing
           priority
           referrerPolicy="no-referrer"
         />
@@ -23,14 +32,16 @@ export default function Hero() {
           alt="Cryptocurrency background"
           fill
           quality={100}
-          className="object-cover object-center flex sm:flex md:hidden h-50" // Centered on all devices for consistent framing
+          className="object-cover object-center dark:hidden flex md:hidden dark:md:hidden h-50" // Centered on all devices for consistent framing
           priority
           referrerPolicy="no-referrer"
         />
 
         {/* Gradient overlay to ensure text readability across all backgrounds */}
-        <div className="absolute inset-0 bg-linear-to-r from-white via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-linear-to-t from-white via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-r from-white via-transparent to-transparent
+        dark:bg-linear-to-r dark:from-black dark:via-transparent dark:to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-white via-transparent to-transparent
+        dark:bg-linear-to-t dark:from-black dark:via-transparent dark:to-transparent" />
       </div>
 
       <div className="container mx-auto px-8 h-fit sm:px-10 md:px-12 relative z-10 pt-0 md:pt-30">

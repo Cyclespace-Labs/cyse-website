@@ -44,7 +44,7 @@ const AnimatedNavLink = ({
         {soon && (
           <Badge
             variant="outline"
-            className="text-[10px] px-1.5 py-0 h-4 relative bottom-1 rounded-full bg-blue-500/30 text-blue-500 dark:bg-secondary/20 dark:text-secondary border-none"
+            className="text-[10px] px-1.5 py-0 h-4 relative bottom-1 rounded-full bg-blue-500/30 text-blue-500 dark:bg-blue-500/30 dark:text-blue-500 border-none"
           >
             soon
           </Badge>
