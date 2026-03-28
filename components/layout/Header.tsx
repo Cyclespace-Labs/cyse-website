@@ -5,7 +5,6 @@ import Link from "next/link";
 import {
   X,
   MenuIcon,
-  Tag,
   ArrowUpDownIcon,
   Bot,
   Newspaper,
@@ -14,13 +13,81 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Tourney } from "next/font/google";
-import { Menu, MenuItem, ProductItem } from "../ui/navbar-menu";
+import { Menu, MenuItem } from "../ui/navbar-menu";
 import { Button } from "../ui/button";
+import { Badge } from "../ui/badge"; // shadcn badge
+import { Separator } from "radix-ui";
 
 const tourney = Tourney({
   subsets: ["latin"],
   weight: ["400", "700"],
 });
+
+// Reusable animated link with underline
+const AnimatedNavLink = ({
+  href,
+  children,
+  soon = false,
+  className = "",
+}: {
+  href: string;
+  children: React.ReactNode;
+  soon?: boolean;
+  className?: string;
+}) => {
+  return (
+    <Link href={href} className={`relative group text-sm ${className}`}>
+      <span className="inline-flex items-center gap-1.5">
+        {children}
+        {soon && (
+          <Badge
+            variant="outline"
+            className="text-[10px] px-1.5 py-0 h-4 relative bottom-1 rounded-full bg-blue-500/30 text-blue-500 dark:bg-secondary/20 dark:text-secondary border-none"
+          >
+            soon
+          </Badge>
+        )}
+      </span>
+      <motion.span
+        className="absolute -bottom-1 left-0 h-[2px] bg-primary dark:bg-secondary rounded-full"
+        initial={{ width: "0%" }}
+        whileHover={{ width: "100%" }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+      />
+    </Link>
+  );
+};
+
+// Animated dropdown item (color + scale)
+const DropdownItem = ({
+  href,
+  icon,
+  children,
+}: {
+  href: string;
+  icon: React.ReactNode;
+  children: React.ReactNode;
+}) => {
+  return (
+    <Link
+      href={href}
+      className="text-xs flex flex-row gap-2 items-center dark:text-zinc-200 text-zinc-700 hover:text-primary dark:hover:text-secondary transition-colors duration-200 group"
+    >
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+      >
+        {icon}
+      </motion.div>
+      <motion.span
+        whileHover={{ x: 3 }}
+        transition={{ duration: 0.2 }}
+      >
+        {children}
+      </motion.span>
+    </Link>
+  );
+};
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -60,11 +127,10 @@ export default function Header() {
     <header className="sticky z-50 bg-transparent w-full inset-x-0 inset-y-7 dark:bg-transparent font-sans rounded-4xl">
       <div className="max-w-fit mx-auto px-4 sm:px-6 lg:px-8">
         <Menu setActive={setActive}>
-          {/* Responsive grid layout */}
           <div className="grid grid-cols-2 md:grid-cols-3 items-center h-16 w-full gap-4">
             {/* Logo */}
             <Link href="/" className="flex items-center justify-start space-x-2">
-              <div className="p-0 rounded-lg transition-all duration-100">
+              <div className="p-0 rounded-lg transition-all duration-100 font-sans">
                 <svg
                   width="30"
                   height="30"
@@ -119,98 +185,37 @@ export default function Header() {
               </span>
             </Link>
 
-            {/* Desktop Navigation – centered in its column */}
+            {/* Desktop Navigation */}
             <div className="hidden md:flex justify-center gap-6">
-              <MenuItem setActive={setActive} active={active} item="Spot">
-                <div className="gap-4 flex flex-col">
-                  <Link
-                    href="/swap-exchange"
-                    className="text-sm flex flex-row gap-2 items-center dark:text-zinc-200 text-zinc-700 hover:text-primary dark:hover:text-secondary transition-colors"
-                  >
-                    <ArrowUpDownIcon className="h-4 w-4 text-primary dark:text-secondary" />
-                    <span className="text-sm">Spot Trading</span>
-                  </Link>
-                  <Link
-                    href="/trading"
-                    className="text-sm flex flex-row gap-2 items-center dark:text-zinc-200 text-zinc-700 hover:text-primary dark:hover:text-secondary transition-colors"
-                  >
-                    <Bot className="h-4 w-4 text-primary dark:text-secondary" />
-                    <span className="text-sm">Automated Trading Agents</span>
-                  </Link>
-                  <Link
-                    href="/Dashboard"
-                    className="text-sm flex flex-row gap-2 items-center dark:text-zinc-200 text-zinc-700 hover:text-primary dark:hover:text-secondary transition-colors"
-                  >
-                    <Newspaper className="h-4 w-4 text-primary dark:text-secondary" />
-                    <span className="text-sm">Research Terminal</span>
-                  </Link>
-                  <Link
-                    href="/Edge"
-                    className="text-sm flex flex-row gap-2 items-center dark:text-zinc-200 text-zinc-700 hover:text-primary dark:hover:text-secondary transition-colors"
-                  >
-                    <ClipboardCheck className="h-4 w-4 text-primary dark:text-secondary" />
-                    <span className="text-sm">Smart AI signals</span>
-                  </Link>
-                  <Link
-                    href="/News"
-                    className="text-sm flex flex-row gap-2 items-center dark:text-zinc-200 text-zinc-700 hover:text-primary dark:hover:text-secondary transition-colors"
-                  >
-                    <LucideNewspaper className="h-4 w-4 text-primary dark:text-secondary" />
-                    <span className="text-sm">News Platform</span>
-                  </Link>
+              <AnimatedNavLink href="/spot">Spot</AnimatedNavLink>
+              <AnimatedNavLink href="/futures" soon>Futures</AnimatedNavLink>
+              <AnimatedNavLink href="/predictions" soon>Predictions</AnimatedNavLink>
+              <AnimatedNavLink href="/vault">Vault</AnimatedNavLink>
+
+              <MenuItem setActive={setActive} active={active} item="More">
+                <div className="gap-4 flex flex-col p-2">
+                  <DropdownItem href="/News" icon={<LucideNewspaper className="h-4 w-4 text-primary dark:text-secondary" />}>
+                    Markets
+                  </DropdownItem>
+                  <DropdownItem href="/swap-exchange" icon={<ArrowUpDownIcon className="h-4 w-4 text-primary dark:text-secondary" />}>
+                    Swap
+                  </DropdownItem>
+                  <DropdownItem href="/trading" icon={<Bot className="h-4 w-4 text-primary dark:text-secondary" />}>
+                    Stake
+                  </DropdownItem>
+                  <DropdownItem href="/Dashboard" icon={<Newspaper className="h-4 w-4 text-primary dark:text-secondary" />}>
+                    Docs
+                  </DropdownItem>
+                  <DropdownItem href="/Edge" icon={<ClipboardCheck className="h-4 w-4 text-primary dark:text-secondary" />}>
+                    Whitepaper
+                  </DropdownItem>
                 </div>
-              </MenuItem>
-              <MenuItem setActive={setActive} active={active} item="Futures">
-                <div className="text-sm grid grid-cols-2 gap-10 p-4">
-                  <ProductItem
-                    title="Trading Dashboard"
-                    href="/Dashboard"
-                    src="/assets/light_dashboard.png"
-                    description="Trade and Swap over 1000+ tokens on Ethereum."
-                  />
-                  <ProductItem
-                    title="AI Analysis Agent"
-                    href="/Edge"
-                    src="/assets/light_dashboard.png"
-                    description="Smart AI Analysis Agent for market context and signals"
-                  />
-                  <ProductItem
-                    title="Smart AI Signals"
-                    href="/Edge"
-                    src="/assets/light_dashboard.png"
-                    description="Smart AI Signals with high accuracy"
-                  />
-                  <ProductItem
-                    title="Market Sentiment"
-                    href="/News"
-                    src="/assets/light_dashboard.png"
-                    description="Daily market news and analysis"
-                  />
-                </div>
-              </MenuItem>
-              <MenuItem setActive={setActive} active={active} item="Predictions">
-                <Link
-                  href="/pricing"
-                  className="flex flex-row gap-2 items-center dark:text-zinc-200 text-zinc-700 hover:text-primary dark:hover:text-secondary transition-colors"
-                >
-                  <Tag className="h-4 w-4 text-primary dark:text-zsecondary" />
-                  <span className="text-sm">Pricing</span>
-                </Link>
-              </MenuItem>
-              <MenuItem setActive={setActive} active={active} item="Vault">
-                <Link
-                  href="/pricing"
-                  className="flex flex-row gap-2 items-center dark:text-zinc-200 text-zinc-700 hover:text-primary dark:hover:text-secondary transition-colors"
-                >
-                  <Tag className="h-4 w-4 text-primary dark:text-zsecondary" />
-                  <span className="text-sm">Pricing</span>
-                </Link>
               </MenuItem>
             </div>
 
             {/* Right side: CTA button + mobile menu button */}
             <div className="flex items-center justify-end gap-4">
-              <Button className="text-xs rounded-lg bg-blue-500 text-white">
+              <Button className="text-xs rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-200">
                 Open app
               </Button>
               <button
@@ -226,7 +231,7 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Mobile Navigation Menu (AnimatePresence) */}
+          {/* Mobile Navigation Menu */}
           <AnimatePresence>
             {isOpen && (
               <motion.div

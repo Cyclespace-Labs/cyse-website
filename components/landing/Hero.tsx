@@ -24,7 +24,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-linear-to-t from-white via-transparent to-transparent" />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10 pt-5 md:pt-30">
         <div className="max-w-xl md:max-w-2xl lg:max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
