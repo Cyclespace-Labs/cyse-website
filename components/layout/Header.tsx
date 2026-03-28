@@ -127,11 +127,11 @@ export default function Header() {
 
   return (
     <header className="sticky z-50 bg-transparent w-full inset-x-0 inset-y-7 dark:bg-transparent font-sans rounded-4xl">
-      <div className="max-w-fit mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-fit mx-auto px-4 sm:px-4 md:px-8">
         <Menu setActive={setActive}>
           <div className="grid grid-cols-2 md:grid-cols-3 items-center h-16 w-full gap-4">
             {/* Logo */}
-            <Link href="/" className="flex items-center justify-start space-x-2">
+            <Link href="/" className="flex items-center justify-start space-x-1 md:space-x-2">
               <div className="p-0 rounded-lg transition-all duration-100 font-sans">
                 <svg
                   width="30"
@@ -139,7 +139,7 @@ export default function Header() {
                   viewBox="0 0 256 256"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="dark:hidden"
+                  className="dark:hidden h-5 w-5 md:h-7 md:w-7"
                 >
                   <path
                     d="M105 76H38.8466C38.8466 76 33.5426 87.8169 32.5112 92.1876C27.8222 112.059 26.8737 128.971 29.2698 149.33C31.4799 168.107 38.6993 183 38.6993 183H101.759C101.759 183 89.4948 164.979 86.2884 155.157C81.4264 140.265 81.6222 128.124 84.3731 111.613C87.4302 93.2635 105 76 105 76Z"
@@ -181,7 +181,7 @@ export default function Header() {
                 </svg>
               </div>
               <span
-                className={`${tourney.className} antialiased text-lg sm:text-xl md:text-2xl font-semibold bg-black dark:bg-white text-transparent bg-clip-text`}
+                className={`${tourney.className} antialiased text-md sm:text-md md:text-2xl font-semibold bg-black dark:bg-white text-transparent bg-clip-text`}
               >
                 CYCLESPACE
               </span>
@@ -217,7 +217,7 @@ export default function Header() {
 
             {/* Right side: CTA button + mobile menu button */}
             <div className="flex items-center justify-end gap-4">
-              <Button className="text-xs rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-200">
+              <Button className="hidden md:flex lg:flex text-xs rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-200">
                 Open app
               </Button>
               <div className="hidden w-fit h-fit md:flex">

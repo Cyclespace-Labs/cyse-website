@@ -23,7 +23,7 @@ export default function Hero() {
           alt="Cryptocurrency background"
           fill
           quality={100}
-          className="object-cover object-center flex sm:flex md:hidden" // Centered on all devices for consistent framing
+          className="object-cover object-center flex sm:flex md:hidden h-50" // Centered on all devices for consistent framing
           priority
           referrerPolicy="no-referrer"
         />
@@ -33,7 +33,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-linear-to-t from-white via-transparent to-transparent" />
       </div>
 
-      <div className="container mx-auto px-8 h-fit sm:px-10 md:px-12 relative z-10 pt-5 md:pt-30">
+      <div className="container mx-auto px-8 h-fit sm:px-10 md:px-12 relative z-10 pt-0 md:pt-30">
         <div className="max-w-xl md:max-w-2xl lg:max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -59,7 +59,7 @@ export default function Hero() {
               Trade Directly from Your Wallet. Execute Trades. Retain Ownership.
             </p>
 
-            <div className="flex flex-row justify-between px-5 md:px-0 md:justify-start md:flex-row gap-3 sm:gap-4">
+            <div className="flex flex-row justify-between md:px-0 md:justify-start md:flex-row gap-3 sm:gap-4">
               <Button
                 className="px-5 sm:px-6 py-3 sm:py-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700
                 transition-all flex items-center justify-center gap-2 shadow-lg shadow-indigo-200 border-none group"

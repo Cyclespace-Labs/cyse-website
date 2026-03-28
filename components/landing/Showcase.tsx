@@ -18,11 +18,11 @@ export default function Showcase() {
                 </h1>
             </div>
 
-           <div className='hidden md:flex lg:flex'>
+           <div className=''>
             <PulsingPath />
            </div>
 
-            <div className='justify-between relative items-center flex flex-row pt-10 h-fit -top-130  md:-top-130 lg:-top-130'>
+            <div className='justify-between hidden md:flex lg:flex relative items-center  flex-row pt-10 h-fit -top-130  md:-top-130 lg:-top-130'>
                 <div className='h-fit flex flex-col'>
                     <Image 
                         src="/cards/stats.png"
@@ -77,7 +77,7 @@ export default function Showcase() {
                     height={600}
                     width={1200}
                     quality={100}
-                    className="object-cover relative left-1/2 transform -translate-x-1/2 -translate-y-60  z-10 rounded-xl shadow-2xl"
+                    className="object-cover relative left-1/2 transform -translate-x-1/2 -translate-y-1 md:-translate-y-60  z-10 rounded-xl shadow-2xl"
                     priority
                     referrerPolicy="no-referrer"
                 />
