@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@react-three/fiber": "^9.5.0",
+    "@studio-freight/react-lenis": "^0.0.47",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "gsap": "^3.14.2",
     "lucide-react": "^0.577.0",
     "motion": "^12.38.0",
     "next": "16.2.0",

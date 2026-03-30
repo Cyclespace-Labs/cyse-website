@@ -3,6 +3,7 @@ import { Alexandria } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/context/context";
+import LenisProvider from "@/components/LenisProvider";
 
 const alexandria = Alexandria({subsets:['latin'],variable:'--font-sans'});
 
@@ -17,10 +18,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("h-full", "antialiased", "font-sans", alexandria.variable)}>
+    <html lang="en" data-scroll-behavior="smooth" className={cn("h-full", "antialiased", "font-sans", alexandria.variable)}>
       <body className="min-h-full flex flex-col font-sans">
         <ThemeProvider>
-          {children}
+          <LenisProvider>
+            {children}
+          </LenisProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -1,5 +1,6 @@
 import Chains from "@/components/landing/Chains";
 import CommunityPosts from "@/components/landing/CommunityPosts";
+import Description from "@/components/landing/description";
 import Features from "@/components/landing/Features";
 import Hero from "@/components/landing/Hero";
 import LatestNews from "@/components/landing/LatestNews";
@@ -13,7 +14,7 @@ import Header from "@/components/layout/Header";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white dark:bg-black">
+    <main className="min-h-screen bg-white dark:bg-black scroll-smooth">
       
       <Header />
       <Hero />
@@ -22,33 +23,26 @@ export default function Home() {
         <Stats />
       </div>
 
-      <div>
-        <Showcase />
-      </div>
+      <Showcase />
 
-      <div className="">
-        <Features />
-      </div>
+      <Description text="Experience lightning-fast trades with zero custody risk and complete control over your assets." />
 
-      <div className="">
-        <Chains />
-      </div>
+      <Features />
+
+      <Chains />
+  
+      <Rewards />
+
+      <Description text="Join thousands of traders who trust our platform for secure, transparent, and efficient decentralized trading." />
+
+      <Performance />
+
+      <LatestNews/>
+
+      <Footer />
+
       
-      <div className="">
-        <Rewards />
-      </div>
-
-      <div className="">
-        <Performance />
-      </div>
-
-      <div className="">
-        <LatestNews/>
-      </div>
-
-      <div className="">
-        <Footer />
-      </div>
     </main>
   );
 }
+
