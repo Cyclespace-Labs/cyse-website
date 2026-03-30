@@ -105,7 +105,7 @@ export default function Rewards() {
                     height={2000}
                     width={2000}
                     quality={100}
-                    className="relative left-6 sm:left-10 md:left-13 top-12 sm:top-20 md:top-30 z-4 h-32 w-32 sm:h-40 sm:w-40 md:h-50 md:w-50 object-cover drop-shadow-2xl"
+                    className="relative left-40 sm:left-40 md:left-48 top-25 sm:top-25 md:top-33 z-1 h-38 w-38 sm:h-38 sm:w-38 md:h-50 md:w-50 object-cover drop-shadow-2xl"
                     priority
                     referrerPolicy="no-referrer"
                   />

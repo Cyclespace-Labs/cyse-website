@@ -23,25 +23,41 @@ export default function Home() {
         <Stats />
       </div>
 
-      <Showcase />
+      <div>
+        <Showcase />
+      </div>
 
-      <Description text="Experience lightning-fast trades with zero custody risk and complete control over your assets." />
+      <div>
+        <Description text="Experience lightning-fast trades with zero custody risk and complete control over your assets." />
+      </div>
 
-      <Features />
+      <div className="">
+        <Features />
+      </div>
 
-      <Chains />
-  
-      <Rewards />
-
-      <Description text="Join thousands of traders who trust our platform for secure, transparent, and efficient decentralized trading." />
-
-      <Performance />
-
-      <LatestNews/>
-
-      <Footer />
-
+      <div className="">
+        <Chains />
+      </div>
       
+      <div className="">
+        <Rewards />
+      </div>
+
+      <div>
+        <Description text="Join thousands of traders who trust our platform for secure, transparent, and efficient decentralized trading." />
+      </div>
+
+      <div className="">
+        <Performance />
+      </div>
+
+      <div className="">
+        <LatestNews/>
+      </div>
+
+      <div className="">
+        <Footer />
+      </div>
     </main>
   );
 }

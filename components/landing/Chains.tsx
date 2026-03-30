@@ -13,7 +13,7 @@ interface ChainButtonProps {
 }
 
 const ChainButton = ({ token }: ChainButtonProps) => (
-  <Button className='rounded-xl text-sm sm:text-base md:text-lg text-black justify-start p-3 sm:p-4 md:p-6 bg-zinc-200'>
+  <Button className='rounded-xl text-sm sm:text-base md:text-lg text-black dark:text-white justify-start p-3 sm:p-4 md:p-6 bg-zinc-200 dark:bg-slate-900'>
     <Image
       src={token.icon}
       alt={token.name}
@@ -54,7 +54,7 @@ export default function Chains() {
                         Decentralized. Borderless. Permissionless. Trade.
                     </h1>
                     <h2 className='text-xs sm:text-sm md:text-base max-w-md'>Trade Directly from Your Wallet. Execute Trades. Retain Ownership.</h2>
-                    <Button className='w-fit bg-blue-500 text-xs sm:text-sm'>Explore Markets</Button>
+                    <Button className='w-fit bg-blue-500 text-white dark:text-white text-xs sm:text-sm'>Explore Markets</Button>
                 </div>
                 
                 <div className='grid grid-cols-2 w-full h-full gap-2 sm:gap-3'>

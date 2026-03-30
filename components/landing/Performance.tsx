@@ -12,7 +12,7 @@ interface PerformanceButtonProps {
 }
 
 const PerformanceButton = ({ token }: PerformanceButtonProps) => (
-  <Button className='rounded-xl text-sm sm:text-base md:text-lg text-black justify-start p-3 sm:p-4 md:p-6 bg-zinc-200'>
+  <Button className='rounded-xl text-sm sm:text-base md:text-lg text-black dark:text-white justify-start p-3 sm:p-4 md:p-6 bg-zinc-200 dark:bg-slate-900'>
     <Image
       src={token.icon}
       alt={token.name}

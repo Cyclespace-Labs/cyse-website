@@ -60,7 +60,7 @@ export default function FAQ({ items }: FaqProps) {
                     />
                     </div>
                 </div>
-                <span className="text-base sm:text-lg md:text-xl font-medium text-slate-100 dark:text-slate-900">
+                <span className="text-base sm:text-lg md:text-xl font-medium text-slate-100 dark:text-slate-100">
                     {item.question}
                 </span>
             </button>
@@ -74,7 +74,7 @@ export default function FAQ({ items }: FaqProps) {
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                   className="overflow-hidden"
                 >
-                  <div className="p-3 sm:p-4 md:p-5 pt-0 text-slate-200 dark:text-slate-700 border-t border-slate-200 dark:border-slate-700">
+                  <div className="p-3 sm:p-4 md:p-5 pt-0 text-slate-200 dark:text-slate-200 border-t border-slate-200 dark:border-slate-700">
                     <p className="text-sm sm:text-base leading-relaxed">{item.answer}</p>
                   </div>
                 </motion.div>

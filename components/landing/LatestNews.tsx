@@ -83,14 +83,14 @@ const STEP = CARD_W + CARD_GAP;
 
 function TagPill({ label }: { label: string }) {
   return (
-    <span className="inline-block shrink-0 rounded-full bg-gray-200 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-gray-700">
+    <span className="inline-block shrink-0 rounded-full bg-gray-200 dark:bg-slate-700 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-gray-700 dark:text-gray-300">
       {label}
     </span>
   );
 }
 
 function Avatar() {
-  return <div className="h-10 w-10 shrink-0 rounded-xl bg-zinc-200" />;
+  return <div className="h-10 w-10 shrink-0 rounded-xl bg-zinc-200 dark:bg-slate-700" />;
 }
 
 function TweetCardItem({ card, index, inView }: { card: TweetCard; index: number; inView: boolean }) {
@@ -99,23 +99,23 @@ function TweetCardItem({ card, index, inView }: { card: TweetCard; index: number
       initial={{ opacity: 0, y: 44, scale: 0.94 }}
       animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
       transition={{ duration: 0.55, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
-      className="flex w-[316px] shrink-0 flex-col gap-3 rounded-2xl border border-zinc-200 bg-zinc-100 p-5 pb-4"
+      className="flex w-[316px] shrink-0 flex-col gap-3 rounded-2xl border border-zinc-200 dark:border-slate-700 bg-zinc-100 dark:bg-slate-900 p-5 pb-4"
     >
       <div className="flex items-center gap-3">
         <Avatar />
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-bold text-gray-900">{card.username}</p>
-          <p className="text-xs text-gray-500">@{card.handle}</p>
+          <p className="truncate text-sm font-bold text-gray-900 dark:text-white">{card.username}</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">@{card.handle}</p>
         </div>
         {card.tag && <TagPill label={card.tag} />}
       </div>
 
-      <div className="h-px bg-gray-300" />
+      <div className="h-px bg-gray-300 dark:bg-slate-700" />
 
-      <p className="flex-1 text-xs leading-relaxed text-gray-700">{card.content}</p>
+      <p className="flex-1 text-xs leading-relaxed text-gray-700 dark:text-gray-300">{card.content}</p>
 
       {card.imageUrl && (
-        <div className="h-[145px] overflow-hidden rounded-lg bg-gray-300">
+        <div className="h-[145px] overflow-hidden rounded-lg bg-gray-300 dark:bg-slate-700">
           <img src={card.imageUrl} alt="" className="h-full w-full object-cover" loading="lazy" />
         </div>
       )}
@@ -148,7 +148,7 @@ function ScrollBtn({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-700 transition hover:bg-gray-100 ${
+      className={`flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-gray-700 dark:text-gray-300 transition hover:bg-gray-100 dark:hover:bg-slate-700 ${
         disabled ? "cursor-not-allowed opacity-50" : ""
       }`}
     >
@@ -215,10 +215,10 @@ export default function LatestNews() {
   const canRight = activeIndex < CARDS.length - 1;
 
   return (
-    <section ref={sectionRef} className="w-full bg-white py-20">
+    <section ref={sectionRef} className="w-full bg-white dark:bg-black py-20">
       <div className="mb-10 px-6 md:px-70 justify-center w-full">
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <h2 className="text-3xl font-bold text-gray-900 md:text-4xl">Weekly headlines</h2>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">Weekly headlines</h2>
 
           <div className="flex shrink-0 items-center gap-3">
             <div className="flex gap-2">
@@ -231,11 +231,11 @@ export default function LatestNews() {
 
       <div className="relative overflow-hidden">
         <div
-          className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-12 bg-gradient-to-r from-white to-transparent"
+          className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-12 bg-linear-to-r from-white to-transparent dark:bg-linear-to-r dark:from-black dark:to-transparent"
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-12 bg-gradient-to-l from-white to-transparent"
+          className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-12 bg-linear-to-l from-white to-transparent dark:bg-linear-to-l dark:from-black dark:to-transparent"
           aria-hidden
         />
 
