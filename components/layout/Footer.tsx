@@ -43,7 +43,7 @@ const faqItems = [
 
 export default function Footer() {
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className="relative w-full overflow-hidden h-screen ">
       {/* Background Silk – fills the entire footer */}
       <div className="absolute hidden inset-0 z-0">
         <Silk
@@ -103,7 +103,7 @@ export default function Footer() {
         <FAQ items={faqItems} />
 
         <div className="mt-6 md:mt-10 flex w-full justify-center px-6 sm:px-8 md:px-16 lg:px-30">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-4 gap-y-2 sm:gap-x-6 sm:gap-y-3 md:gap-4 w-full max-w-4xl">
+          <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 gap-x-4 gap-y-2 sm:gap-x-6 sm:gap-y-3 md:gap-4 w-full max-w-4xl">
             <Link href="/spot" className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
               Spot
             </Link>
