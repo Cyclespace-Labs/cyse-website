@@ -43,7 +43,7 @@ const faqItems = [
 
 export default function Footer() {
   return (
-    <div className="relative w-full overflow-hidden h-screen ">
+    <div className="relative w-full overflow-hidden ">
       {/* Background Silk – fills the entire footer */}
       <div className="absolute hidden inset-0 z-0">
         <Silk
@@ -77,7 +77,7 @@ export default function Footer() {
         */}
 
 
-        <div style={{ width: '100%', height: '1400px', position: 'relative' }}>
+        <div style={{ width: '100%', height: '1450px', position: 'relative' }}>
           <GradientBlinds
             gradientColors={["#0E76FD", "#0E76FD"]}
             angle={0}

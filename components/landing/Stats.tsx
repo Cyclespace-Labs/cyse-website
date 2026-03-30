@@ -23,7 +23,6 @@ import { div } from 'motion/react-client';
             direction="up"
             duration={1}
             className="count-up-text"
-            startCounting={false}
           />K+
         </div>
         <div className="text-sm dark:text-zinc-300 text-zinc-500">Active Tokens</div>
@@ -38,7 +37,6 @@ import { div } from 'motion/react-client';
             direction="up"
             duration={1}
             className="count-up-text"
-            startCounting={false}
           />B+</div>
         <div className="text-sm dark:text-zinc-300 text-zinc-500">Trading Volume</div>
       </div>
@@ -51,7 +49,6 @@ import { div } from 'motion/react-client';
             direction="up"
             duration={1}
             className="count-up-text"
-            startCounting={false}
           />M</div>
         <div className="text-sm dark:text-zinc-300 text-zinc-500">Total TVL</div>
       </div>
@@ -64,7 +61,6 @@ import { div } from 'motion/react-client';
             direction="up"
             duration={1}
             className="count-up-text"
-            startCounting={false}
           />+</div>
         <div className="text-sm dark:text-zinc-300 text-zinc-500">Active Traders</div>
       </div>
