@@ -3,6 +3,7 @@
 import { motion } from 'motion/react';
 import Image from 'next/image';
 import { Button } from '../ui/button';
+import ScrambledText from '../ui/scrambled-text';
 
 export default function Hero() {
   return (
@@ -61,9 +62,17 @@ export default function Hero() {
               dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400
               leading-tight mb-4 sm:mb-6 bg-clip-text text-transparent"
             >
-              Unstoppable Markets.
-              <br />
-              Total Transparency.
+              <ScrambledText
+                className="scrambled-text-demo w-full py-0 my-0 pl-0 ml-0 text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-bold "
+                radius={100}
+                duration={1.2}
+                speed={0.5}
+                scrambleChars=".:"
+              >
+                Unstoppable Markets.
+                <br />
+                Total Transparency.
+              </ScrambledText>
             </h1>
 
             <p className="text-base sm:text-lg md:text-lg lg:text-xl text-slate-700 dark:text-slate-300 mb-6 sm:mb-10 leading-relaxed max-w-lg">
