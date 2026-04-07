@@ -80,7 +80,7 @@ export default function Features() {
                                 height={230}
                                 width={230}
                                 quality={100}
-                                className="relative left-35 -top-10 object-cover drop-shadow-2xl"
+                                className="relative left-35 -top-10 object-cover drop-shadow-2xl w-auto h-auto"
                                 priority
                                 referrerPolicy="no-referrer"
                             />
@@ -225,7 +225,7 @@ export default function Features() {
                                 height={250}
                                 width={250}
                                 quality={100}
-                                className="object-cover relative"
+                                className="object-cover relative w-auto h-auto"
                                 priority
                                 referrerPolicy="no-referrer"
                             />
