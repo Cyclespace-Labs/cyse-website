@@ -32,18 +32,18 @@ export default function Showcase() {
                         height={150}
                         width={150}
                         quality={100}
-                        className="object-cover relative left-15 z-10 rounded-xl shadow-2xl"
+                        className="object-cover relative left-15 z-10 rounded-xl shadow-2xl w-auto h-auto"
                         priority
                         referrerPolicy="no-referrer"
                     />
 
                     <Image
                         src="/cards/orders.png"
-                        alt="Cryptocu rrency background"
+                        alt="Cryptocurrency background"
                         height={350}
                         width={150}
                         quality={100}
-                        className="object-cover relative -top-20 rounded-xl shadow-2xl"
+                        className="object-cover relative -top-20 rounded-xl shadow-2xl w-auto h-auto"
                         priority
                         referrerPolicy="no-referrer"
                     />
@@ -79,7 +79,7 @@ export default function Showcase() {
                     height={600}
                     width={1200}
                     quality={100}
-                    className="object-cover relative left-1/2 transform -translate-x-1/2 -translate-y-1 md:-translate-y-60  z-10 rounded-xl shadow-2xl"
+                    className="object-cover relative left-1/2 transform -translate-x-1/2 -translate-y-1 md:-translate-y-60  z-10 rounded-xl shadow-2xl w-auto h-auto"
                     priority
                     referrerPolicy="no-referrer"
                 />
