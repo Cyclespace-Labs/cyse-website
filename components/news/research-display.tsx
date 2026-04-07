@@ -1,27 +1,23 @@
 import { simpleResearchCard } from '@/lib/interface';
-import { client, urlFor } from "@/lib/sanity";
+import { urlFor } from "@/sanity/lib/client";
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
 
 
-
 export const revalidate = 30; // revalidate at most 30 seconds
 
-async function getData() {
-  const query = `
-  *[_type == 'research'] | order(_createdAt desc) [0...6] {
-    title,
-      smallDescription,
-      "currentSlug": slug.current,
-      titleImage,
-      "categoryName": category->name,
-      category
-  }`;
+async function getData(): Promise<simpleResearchCard[]> {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  const res = await fetch(`${baseUrl}/api/research`, {
+    next: { revalidate: 30 }
+  });
 
-  const data = await client.fetch(query);
+  if (!res.ok) {
+    throw new Error('Failed to fetch research data');
+  }
 
-  return data;
+  return res.json();
 }
 
 

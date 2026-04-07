@@ -8,16 +8,18 @@ import { BackButton } from '@/components/ui/backButton';
 
 import ResearchDisplay from "@/components/news/research-display";
 import RelatedNews from "@/components/news/related-news";
+import VideoDisplay from "@/components/news/video-display";
+import ResearchHub from "@/components/news/research-hub";
+import Newsletters from "@/components/news/newsletters";
+import PriceWidget from "@/components/news/price-widget";
+import TokenTicker from "@/components/TokenTicker";
 import { formatDate } from "@/lib/date-utils";
 
-import * as ScrollArea from '@radix-ui/react-scroll-area';
-
-
-import { notFound } from 'next/navigation';
 import { KeyPoints } from "@/components/news/KeyPoints";
 import { portableTextComponents } from "@/components/news/PortableTextComponents";
 import SEOHead from "@/components/news/SEOHead";
 import Header from "@/components/layout/Header";
+import { notFound } from 'next/navigation';
 
 // Fix: GenerateMetadata needs to handle Promise params
 export async function generateMetadata({
@@ -35,7 +37,7 @@ export async function generateMetadata({
     };
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://cyclespace.exchange/News';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://cyclespace.exchange/news';
   const articleUrl = `${baseUrl}/news/article/${slug}`;
   
   const titleImageUrl = article.titleImage 
@@ -182,45 +184,48 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         publishedAt={article.publishedAt}
       />
       
-      <div className="bg-white dark:bg-black h-full">
-        {/* Ticker */}
-        <div className="w-full h-fit flex justify-center items-center py-1 px-1 md:py-1">
-          <div className="border border-px dark:border-zinc-700 border-zinc-200 w-full">
-            <Header />
-          </div>
+      <div className="bg-white dark:bg-black min-h-screen">
+        {/* Token Ticker */}
+        <div className="w-full flex justify-center items-center py-2 px-2 sm:px-4 lg:px-6">
+          <TokenTicker speed={40} />
         </div>
 
-        <div className="flex-col-reverse flex md:flex-row lg:flex-row justify-center sm:mt-1 gap-2 w-full">
-          {/* Left-Section */}
-          <div className="h-full w-[500px] hidden lg:block border border-zinc-300 dark:border-zinc-700">
-            <RelatedNews />
+        <div className="flex flex-col lg:flex-row justify-center mt-1 lg:mt-0 pb-1 gap-2 w-full px-2 sm:px-4 lg:px-6">
+          {/* Left-Section - Stacked Widgets */}
+          <div className="w-full lg:w-72 xl:w-80 flex flex-col gap-2 min-h-[300px] lg:min-h-0 order-2 lg:order-1">
+            <div className="border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
+              <PriceWidget/>
+            </div>
+            <div className="border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden flex-1">
+              <RelatedNews/>
+            </div>
           </div>
 
-          {/* Middle-Section */}
-          <div className="w-full h-full flex flex-col justify-center items-center mb-5 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-700">
-            <ScrollArea.Root className="h-[calc(100vh-171px)] w-full rounded-none" type="auto">
-              <ScrollArea.Viewport className="w-full h-full">
-                <div className="w-full px-4 sm:px-8 mt-6">
+          {/* Middle-Section - Article Content */}
+          <div className="w-full lg:flex-1 flex-col lg:px-2 flex-1 order-1 lg:order-2">
+            <div className="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
+              <div className="w-full h-full overflow-y-auto">
+                <div className="w-full px-4 sm:px-8 mt-4">
                   <BackButton />
                 </div>
-                <div className="w-full flex flex-col lg:px-10 md:px-10 sm:px-20">
+                <div className="w-full flex flex-col lg:px-10 md:px-10 sm:px-6 pb-8">
                   <div className="w-full">
-                    <div className="mt-8 px-8 flex justify-between items-center">
-                      <h1 className="flex gap-1 font-semibold text-2xl">
+                    <div className="mt-6 px-4 sm:px-8 flex justify-between items-center">
+                      <h1 className="flex gap-1 font-semibold text-lg">
                         <span className="font-bold text-primary dark:text-secondary">Todays</span>
                         <span>Headlines</span>
                       </h1>
-                      <Badge className="bg-primary/10 dark:bg-secondary/20 text-primary dark:text-secondary border border-primary dark:border-secondary">
+                      <Badge className="bg-primary/10 dark:bg-secondary/20 text-primary dark:text-secondary border border-primary dark:border-secondary text-xs">
                         {data.categoryName}
                       </Badge>
                     </div>
-                    <h1 className="mt-5 px-8 text-3xl font-semibold sm:text-4xl">
+                    <h1 className="mt-4 px-4 sm:px-8 text-xl sm:text-2xl font-semibold">
                       {article.title}
                     </h1>
                     
                     {/* Title Image - Conditional */}
                     {data.titleImage && (
-                      <div className="w-full px-4 sm:px-0 mt-8 flex justify-center">
+                      <div className="w-full px-4 sm:px-8 mt-6 flex justify-center">
                         <Image
                           src={urlFor(data.titleImage).url()}
                           width={1000}
@@ -228,13 +233,13 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                           alt={article.seo?.openGraph?.title || article.title}
                           quality={100}
                           priority
-                          className="rounded-lg border"
+                          className="rounded-lg border w-full max-w-4xl"
                         />
                       </div>
                     )}
                   </div>
 
-                  <div className="mt-5 max-w-6xl px-3 sm:px-20 flex justify-between items-center">
+                  <div className="mt-4 max-w-6xl px-4 sm:px-8 flex justify-between items-center">
                     <div className="flex items-center gap-3">
                       {data.author?.avatar && (
                         <div className="w-8 h-8 rounded-full overflow-hidden">
@@ -266,17 +271,17 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                   </div>
 
                   {data.keyPoints && data.keyPoints.length > 0 && (
-                    <div className="px-5 w-full mt-12">
+                    <div className="px-4 sm:px-8 w-full mt-8">
                       <KeyPoints 
                         points={data.keyPoints} 
                         title="Key Takeaways"
-                        className="max-w-6xl mx-auto text-lg text-black dark:text-white"
+                        className="max-w-6xl mx-auto text-sm text-black dark:text-white"
                       />
                     </div>
                   )}
 
                   {data.content && (
-                    <article className="sm:mt-16 mt-8 mb-12 px-5 sm:px-5 max-w-6xl mx-auto text-lg">
+                    <article className="sm:mt-8 mt-6 mb-8 px-4 sm:px-8 max-w-6xl mx-auto text-sm">
                       <div className="prose-content">
                         <PortableText 
                           value={data.content} 
@@ -288,7 +293,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
                   {/* Head Image - Conditional */}
                   {data.headImage && (
-                    <div className="w-full px-4 sm:px-0 mt-8 flex justify-center">
+                    <div className="w-full px-4 sm:px-8 mt-6 flex justify-center">
                       <Image
                         src={urlFor(data.headImage).url()}
                         width={1000}
@@ -296,20 +301,20 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                         quality={100}
                         alt="Head Image"
                         priority
-                        className="rounded-lg border"
+                        className="rounded-lg border w-full max-w-4xl"
                       />
                     </div>
                   )}
 
                   {data.research && (
-                    <article className="mt-16 mb-12 px-6 sm:px-20 max-w-6xl mx-auto">
-                      <div className="mb-8 pb-4 border-b border-zinc-200 dark:border-zinc-800">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
+                    <article className="mt-8 mb-8 px-4 sm:px-8 max-w-6xl mx-auto">
+                      <div className="mb-4 pb-4 border-b border-zinc-200 dark:border-zinc-800">
+                        <h2 className="text-lg sm:text-xl font-bold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
                           <span className="text-primary dark:text-secondary">📊</span>
                           Deep Dive Analysis
                         </h2>
                       </div>
-                      <div className="prose-content text-lg">
+                      <div className="prose-content text-sm">
                         <PortableText 
                           value={data.research} 
                           components={portableTextComponents}
@@ -320,27 +325,27 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
                   {/* Content Image - Conditional */}
                   {data.contentImage && (
-                    <div className="w-full px-4 sm:px-0 mt-8 flex justify-center">
+                    <div className="w-full px-4 sm:px-8 mt-6 flex justify-center">
                       <Image
                         src={urlFor(data.contentImage).url()}
                         width={1000}
                         height={400}
                         alt="Content Image"
                         priority
-                        className="rounded-lg border"
+                        className="rounded-lg border w-full max-w-4xl"
                       />
                     </div>
                   )}
 
                   {data.conclusion && (
-                    <article className="mt-16 mb-12 px-6 sm:px-20 max-w-6xl mx-auto">
-                      <div className="mb-8 pb-4 border-b border-zinc-200 dark:border-zinc-800">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
+                    <article className="mt-8 mb-12 px-4 sm:px-8 max-w-6xl mx-auto">
+                      <div className="mb-4 pb-4 border-b border-zinc-200 dark:border-zinc-800">
+                        <h2 className="text-lg sm:text-xl font-bold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
                           <span className="text-primary dark:text-secondary">📊</span>
                           Conclusion
                         </h2>
                       </div>
-                      <div className="prose-content text-lg">
+                      <div className="prose-content text-sm">
                         <PortableText 
                           value={data.conclusion} 
                           components={portableTextComponents}
@@ -349,24 +354,27 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                     </article>
                   )}
                 </div>
-              </ScrollArea.Viewport>
-              <ScrollArea.Scrollbar 
-                className="w-1.5 p-0.5 bg-zinc-100 hidden dark:bg-zinc-900 transition-colors duration-150 ease-out hover:bg-zinc-200 dark:hover:bg-zinc-800" 
-                orientation="vertical"
-              >
-                <ScrollArea.Thumb className="flex-1 bg-zinc-300 hidden dark:bg-zinc-600 rounded-full relative" />
-              </ScrollArea.Scrollbar>
-              <ScrollArea.Corner />
-            </ScrollArea.Root>
+              </div>
+            </div>
           </div>
 
-          {/* Right-Section */}
-          <div className="bg-white lg:block md:block hidden dark:bg-zinc-950 h-full w-[500px] border border-zinc-200 dark:border-zinc-700">
-            <div className="hidden">
-              <ResearchDisplay />
+          {/* Right-Section - Stacked Widgets */}
+          <div className="w-full lg:w-72 xl:w-80 flex flex-col gap-2 min-h-[300px] lg:min-h-0 order-3 lg:order-3">
+            <div className="border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
+              <VideoDisplay/>
             </div>
-            <div>
-
+            <div className="border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
+              <ResearchHub/>
+            </div>
+            <div className="border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
+              <Newsletters/>
+            </div>
+            <div className='hidden lg:block border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden'>
+              <ResearchDisplay/>
+            </div>
+            {/* Mobile: Show RelatedNews */}
+            <div className="lg:hidden border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
+              <RelatedNews/>
             </div>
           </div>
         </div>

@@ -1,42 +1,53 @@
-
 import { simpleNewsCard } from '@/lib/interface';
-import { client, urlFor } from "@/sanity/lib/client";
-import Image from 'next/image';
+import { urlFor } from "@/sanity/lib/client";
 import Link from 'next/link';
-import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Tag, Globe } from 'lucide-react';
+import { ArrowUpRight, ArrowDownRight, Minus, Clock } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { formatDate } from '@/lib/date-utils';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 
+// Helper to get sentiment icon and color
+function getSentimentProps(impacts?: { color: string; name: string }[]) {
+  if (!impacts || impacts.length === 0) {
+    return { icon: Minus, colorClass: 'text-zinc-500', bgClass: 'bg-zinc-100 dark:bg-zinc-800', label: 'Neutral' };
+  }
+  
+  const impact = impacts[0];
+  switch (impact.color) {
+    case 'green':
+      return { icon: ArrowUpRight, colorClass: 'text-green-600', bgClass: 'bg-green-100 dark:bg-green-900/30', label: 'Positive' };
+    case 'red':
+      return { icon: ArrowDownRight, colorClass: 'text-red-600', bgClass: 'bg-red-100 dark:bg-red-900/30', label: 'Negative' };
+    default:
+      return { icon: Minus, colorClass: 'text-zinc-500', bgClass: 'bg-zinc-100 dark:bg-zinc-800', label: 'Neutral' };
+  }
+}
 
-export const revalidate = 30; // revalidate at most 30 seconds
+function getRelativeTime(date: string): string {
+  const now = new Date();
+  const published = new Date(date);
+  const diff = now.getTime() - published.getTime();
+  const minutes = Math.floor(diff / 60000);
+  const hours = Math.floor(diff / 3600000);
+  
+  if (minutes < 1) return 'Just now';
+  if (minutes < 60) return `${minutes}m ago`;
+  if (hours < 24) return `${hours}h ago`;
+  return formatDate(date, { month: 'short', day: 'numeric' });
+}
 
-async function getData() {
-  const query = `
-  *[_type == 'news' && category->name == "Trending"] | order(_createdAt desc) {
-    title,
-      smallDescription,
-      "currentSlug": slug.current,
-      titleImage,
-      "categoryName": category->name,
-      category,
-      publishedAt,
-      tags[]->{
-        name,
-        color
-      },
-      impacts[]->{
-        name,
-        color
-      }
+async function getData(): Promise<simpleNewsCard[]> {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  const res = await fetch(`${baseUrl}/api/news/trending`, {
+    next: { revalidate: 30 }
+  });
 
-  }`;
+  if (!res.ok) {
+    throw new Error('Failed to fetch trending news');
+  }
 
-  const data = await client.fetch(query);
-
-  return data;
+  return res.json();
 }
 
 
@@ -45,109 +56,62 @@ export default async function TrendingNews() {
   console.log(data);
 
   return (
-    <div className='flex flex-col h-full w-full bg-white dark:bg-zinc-950 '>
-        <header className='flex flex-row gap-1 items-center justify-between px-2 mt-0 pt-0'>
-          <h1 className='font-semibold text-lg p-4 flex flex-row gap-2'> 
-            <span>Trending News</span>
+    <div className='flex flex-col h-full w-full bg-white dark:bg-zinc-950'>
+        <header className='flex flex-row gap-1 items-center justify-between px-3 py-3 border-b border-zinc-200 dark:border-zinc-800'>
+          <h1 className='font-semibold text-sm flex flex-row gap-2 items-center'> 
+            <Clock className="w-4 h-4 text-zinc-500" />
+            <span>Latest Crypto News</span>
           </h1>
+          <Link href="/news" className='text-xs text-zinc-500 hover:text-primary dark:hover:text-secondary transition-colors'>
+            View all →
+          </Link>
         </header>
-        <ScrollArea.Root className="h-[calc(100vh-225px)] w-full rounded-none" type="auto">
+        <ScrollArea.Root className="h-full min-h-[400px] lg:min-h-0 w-full rounded-none" type="auto">
           <ScrollArea.Viewport className="w-full h-full">
-          <div className='p-3 flex flex-col gap-2 mt-0 pt-0'>
-          {data.map((post, idx) => (
-            <Card key={idx} className='p-3 shadow-none dark:bg-zinc-950 bg-white gap-2  border-none'>
-              <div className='relative'>
-                <div className='absolute top-2 left-2 z-10'>
-                  <Badge className='text-white dark:text-white font-medium bg-primary dark:bg-secondary border-none backdrop-blur-sm'>
-                    {post.categoryName}
-                  </Badge>
-                </div>
-                <div>
-                  <Image
-                    src={urlFor(post.titleImage).url()}
-                    alt={post.title}
-                    width={500}
-                    height={280}
-                    className="rounded-lg h-[200px] object-cover"
-                  />   
-                </div>
-              </div>
-              {/* Impact and Date display */}
-              <div className="flex justify-between items-center w-full mt-2">
-                <span className="text-xs text-zinc-500 dark:text-zinc-400">
-                  {formatDate(post.publishedAt, {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric'
-                  })}
-                </span>
-                {/* Impact display */}
-                <div className="flex flex-row items-center gap-1 h-fit ">
-                  <h3 className="text-xs font-medium">Impact:</h3>
-                  {post.impacts && post.impacts.length > 0 && (
-                    <div className="flex flex-wrap gap-1">
-                      {post.impacts.map((impact, impactIdx) => (
-                        <Badge 
-                          key={impactIdx}
-                          className={cn(
-                            "text-xs",
-                            impact.color === 'blue' && "bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-950 dark:text-blue-100 dark:border-blue-950",
-                            impact.color === 'green' && "bg-green-100 text-green-800 border-green-200 dark:bg-green-950 dark:text-green-100 dark:border-green-950",
-                            impact.color === 'red' && "bg-red-100 text-red-800 border-red-200 dark:bg-red-950 dark:text-red-100 dark:border-red-950",
-                            impact.color === 'yellow' && "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-950 dark:text-yellow-100 dark:border-yellow-950",
-                            impact.color === 'purple' && "bg-purple-100 text-purple-800 border-purple-200 dark:bg-purple-950 dark:text-purple-100 dark:border-purple-950",
-                          )}
-                        >
-                          <Globe width={8} height={8} strokeWidth={3} className="w-8 h-8"/>
-                          {impact.name}
-                        </Badge>
-                      ))}
+          <div className='flex flex-col'>
+          {data.slice(0, 8).map((post, idx) => {
+            const sentiment = getSentimentProps(post.impacts);
+            const Icon = sentiment.icon;
+            
+            return (
+              <Link 
+                key={idx} 
+                href={`/article/${post.currentSlug}`}
+                className='group px-3 py-3 border-b border-zinc-100 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors'
+              >
+                <div className='flex items-start gap-2'>
+                  {/* Sentiment indicator */}
+                  <div className={cn(
+                    "flex-shrink-0 w-6 h-6 rounded flex items-center justify-center",
+                    sentiment.bgClass
+                  )}>
+                    <Icon className={cn("w-3.5 h-3.5", sentiment.colorClass)} />
+                  </div>
+                  
+                  <div className='flex-1 min-w-0'>
+                    {/* Meta row */}
+                    <div className='flex items-center gap-2 text-[10px] text-zinc-500 dark:text-zinc-400 mb-1'>
+                      <span>{getRelativeTime(post.publishedAt)}</span>
+                      <span>•</span>
+                      <Badge variant="secondary" className='text-[10px] px-1 py-0 h-4 font-normal'>
+                        {post.categoryName}
+                      </Badge>
                     </div>
-                  )}
+                    
+                    {/* Title */}
+                    <h3 className="text-xs font-medium text-zinc-900 dark:text-zinc-100 leading-snug group-hover:text-primary dark:group-hover:text-secondary transition-colors line-clamp-2">
+                      {post.title}
+                    </h3>
+                    
+                    {/* Description - hidden on very small screens */}
+                    <p className="mt-1 text-[10px] text-zinc-500 dark:text-zinc-400 line-clamp-1 hidden sm:block">
+                      {post.smallDescription}
+                    </p>
+                  </div>
                 </div>
-              </div>
-               <Link href={`/article/${post.currentSlug}`} className="group">
-                  <h3 className="text-md tracking-tight text-start mt-1 text-black dark:text-white font-semibold line-clamp-2 hover:underline group-hover:text-primary dark:group-hover:text-secondary transition-colors">
-                    {post.title}
-                  </h3>
-                </Link>
-              
-              {/* Description with breadcrumbs */}
-              <p className="mt-1 text-sm text-gray-600 dark:text-gray-300 line-clamp-2 leading-relaxed">
-                {post.smallDescription}
-              </p>
-              <div className=" items-center gap-1 mt-2 text-xs hidden text-zinc-500">
-                <span className="hover:text-blue-500 cursor-pointer">Home</span>
-                <span>•</span>
-                <span className="hover:text-blue-500 cursor-pointer">News</span>
-                <span>•</span>
-                <span className="text-orange-500 dark:text-orange-400 font-medium">{post.categoryName}</span>
-              </div>
-              
-              {/* Tags display */}
-              {post.tags && post.tags.length > 0 && (
-                <div className="flex flex-wrap gap-1 mt-3">
-                  {post.tags.map((tag, tagIdx) => (
-                    <Badge 
-                      key={tagIdx}
-                      className={cn(
-                        "text-xs",
-                        tag.color === 'blue' && "bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-950 dark:text-blue-100 dark:border-blue-950",
-                        tag.color === 'green' && "bg-green-100 text-green-800 border-green-200 dark:bg-green-950 dark:text-green-100 dark:border-green-950",
-                        tag.color === 'red' && "bg-red-100 text-red-800 border-red-200 dark:bg-red-950 dark:text-red-100 dark:border-red-950",
-                        tag.color === 'yellow' && "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-950 dark:text-yellow-100 dark:border-yellow-950",
-                        tag.color === 'purple' && "bg-purple-100 text-purple-800 border-purple-200 dark:bg-purple-950 dark:text-purple-100 dark:border-purple-950",
-                      )}
-                    >
-                      <Tag width={8} height={8} strokeWidth={3} className="mr-1"/>
-                      {tag.name}
-                    </Badge>
-                  ))}
-                </div>
-              )}
-
-            </Card>
-          ))}
+              </Link>
+            );
+          })}
           </div>
         </ScrollArea.Viewport>
         <ScrollArea.Scrollbar 

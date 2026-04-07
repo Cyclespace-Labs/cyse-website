@@ -103,12 +103,12 @@ export default function NewsSection({ data }: NewsSectionProps) {
   return (
     <div className="bg-white w-full dark:bg-black h-full ">
       <ScrollArea.Root className="h-full w-full ">
-        <ScrollArea.Viewport className="h-[calc(100vh-163px)] w-full border border-px border-zinc-200 dark:border-zinc-700 pb-15 sm:pb-15 md:pb-15 lg:pb-0 ">
+        <ScrollArea.Viewport className="min-h-[calc(100vh-200px)] w-full border border-zinc-200 dark:border-zinc-700 pb-4">
           <div className="flex flex-col justify-between w-full items-start px-5 pt-4 gap-4">
             
             <div className="justify-between items-start gap-5 space-y-2 lg:space-y-0 flex flex-col lg:flex-row w-full">
-              <h1 className="text-lg py-1 sm:py-1 flex flex-row justify-between text-start text-zinc-500 font-semibold tracking-wide">
-                <span className="flex flex-row gap-2 text-3xl sm:text-3xl text-black dark:text-white font-bold">
+              <h1 className="text-lg py-1 flex flex-row justify-between text-start text-zinc-500 font-semibold tracking-wide">
+                <span className="flex flex-row gap-2 text-lg text-black dark:text-white font-bold">
                   <p className="text-primary dark:text-secondary">Latest</p>Headlines
                 </span>
               </h1>
@@ -119,7 +119,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
               />
             </div>
 
-            <div className="w-[350px] lg:w-full mb-5 md:w-full">
+            <div className="w-full max-w-sm mb-5">
               <NewsFilter 
                 categories={categories} 
                 onFilterChange={handleFilterChange} 
@@ -192,7 +192,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
   </div>
       ) : (
         <>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 justify-center py-2 px-5 w-fit">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 justify-center py-2 px-3 sm:px-5 w-full">
           {currentArticles.map((post, idx) => (
             <Card key={idx} className="w-full p-3 m-0 justify-start items-start flex flex-col shadow border-none shadow-zinc-200 dark:shadow-zinc-900 h-full gap-2 bg-white dark:bg-zinc-900 ">
               <div className="w-full h-full relative">
@@ -211,9 +211,9 @@ export default function NewsSection({ data }: NewsSectionProps) {
               </div>
               <CardContent className="mt-2 mb-2 justify-between w-full">
                 <Link href={`/article/${post.currentSlug}`} className="hover:text-primary dark:hover:text-secondary hover:underline ">
-                  <h3 className="text-lg tracking-tight font-semibold w-fit">{post.title}</h3>
+                  <h3 className="text-sm tracking-tight font-semibold w-fit">{post.title}</h3>
                 </Link>
-                <p className="text-sm mt-1 text-gray-600 dark:text-gray-300 w-fit">
+                <p className="text-xs mt-1 text-gray-600 dark:text-gray-300 w-fit">
                   {post.smallDescription}
                 </p>
 

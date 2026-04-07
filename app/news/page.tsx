@@ -2,42 +2,28 @@ import Header from "@/components/layout/Header";
 import NewsSection from "@/components/news/news-section";
 import RelatedNews from "@/components/news/related-news";
 import ResearchDisplay from "@/components/news/research-display";
+import VideoDisplay from "@/components/news/video-display";
+import ResearchHub from "@/components/news/research-hub";
+import Newsletters from "@/components/news/newsletters";
+import PressReleases from "@/components/news/press-releases";
+import PriceWidget from "@/components/news/price-widget";
+import TokenTicker from "@/components/TokenTicker";
 import { simpleNewsCard } from "@/lib/interface";
-import { client } from "@/sanity/lib/client";
 import React from "react";
-
-
 
 export const revalidate = 30; // revalidate at most 30 seconds
 
-async function getData() {
-  const query = `
-  *[_type == 'news'] | order(publishedAt desc) {
-    title,
-      smallDescription,
-      "currentSlug": slug.current,
-      titleImage,
-      publishedAt,
-      "categoryName": category->name,
-      category,
-      "tags": tags[]->{
-        name,
-        color
-      },
-      "impacts": impacts[]->{
-        name,
-        color
-      },
-      "author": author->{
-        name,
-        avatar,
-        role
-      },
-      
-  }`;
+async function getData(): Promise<simpleNewsCard[]> {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  const res = await fetch(`${baseUrl}/api/news`, {
+    next: { revalidate: 30 }
+  });
 
-  const data = await client.fetch(query);
-  return data;
+  if (!res.ok) {
+    throw new Error('Failed to fetch news data');
+  }
+
+  return res.json();
 }
 
 export default async function News() {
@@ -46,33 +32,58 @@ export default async function News() {
   console.log(data);
 
   return (
-      <div className="w-full h-fit dark:bg-black bg-zinc-100 flex flex-col">
+      <div className="w-full min-h-screen dark:bg-black bg-zinc-100 flex flex-col">
       {/* Ticker */}
-      <div className="w-full h-fit flex justify-center items-center py-1 px-1 md:py-1 ">
-        <div className="border border-px dark:border-zinc-700 border-zinc-200 w-full">
-          <Header />
+      <div className="w-full flex justify-center items-center py-2 px-2 sm:px-4 lg:px-6">
+        <div className="w-full">
+          <TokenTicker speed={40} />
         </div>
       </div>
 
-      <div className="flex-col-reverse flex md:flex-row lg:flex-row justify-center mt-1 lg:mt-0 pb-1 gap-0 w-full px-1">
+      <div className="flex flex-col lg:flex-row justify-center mt-1 lg:mt-0 pb-1 gap-2 w-full px-2 sm:px-4 lg:px-6 flex-1">
 
-        {/*Left-Section*/}
-        <div className="lg:w-[500px] w-full lg:block md:hidden sm:hidden hidden flex-col h-full border border-px dark:border-zinc-700 border-zinc-200">
-          <RelatedNews/>
+        {/*Left-Section - Stacked Widgets */}
+        <div className="w-full lg:w-72 xl:w-80 flex flex-col gap-2 min-h-[300px] lg:min-h-0 order-2 lg:order-1">
+          {/* Price Widget */}
+          <div className="border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
+            <PriceWidget/>
+          </div>
+          {/* Latest News List */}
+          <div className="border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden flex-1">
+            <RelatedNews/>
+          </div>
+          {/* Press Releases */}
+          <div className="border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
+            <PressReleases/>
+          </div>
         </div>
 
-        {/*middle-Section*/}
-        <div className="w-full h-full flex flex-col lg:px-1 md:px-1 sm:px-1 px- gap-1 ">
+        {/*middle-Section - Main News (Full Width) */}
+        <div className="w-full lg:flex-1 flex-col lg:px-2 flex-1 order-1 lg:order-2">
           <NewsSection data={data} />
         </div>
 
-        {/*Right-Section*/}
-        <div className="lg:w-[500px] lg:block md:hidden sm:hidden hidden  w-full gap-3 flex-col h-full border border-px dark:border-zinc-700 border-zinc-200 ">
-          <div className='hidden'>
+        {/*Right-Section - Stacked Widgets */}
+        <div className="w-full lg:w-72 xl:w-80 flex flex-col gap-2 min-h-[300px] lg:min-h-0 order-3 lg:order-3">
+          {/* Featured Video */}
+          <div className="border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
+            <VideoDisplay/>
+          </div>
+          {/* Research Hub */}
+          <div className="border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
+            <ResearchHub/>
+          </div>
+          {/* Newsletters */}
+          <div className="border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
+            <Newsletters/>
+          </div>
+          {/* Original Research Display - Collapsed */}
+          <div className='hidden lg:block border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden'>
             <ResearchDisplay/>
           </div>
-          <div className="lg:block md:hidden hidden">
-
+          {/* Mobile: Show RelatedNews */}
+          <div className="lg:hidden border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
+            <RelatedNews/>
           </div>
         </div>
 
