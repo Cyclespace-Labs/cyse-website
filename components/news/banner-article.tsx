@@ -1,0 +1,129 @@
+// app/components/News/banner-article.tsx
+import { simpleNewsCard } from '@/lib/interface';
+import { urlFor } from "@/sanity/lib/client";
+import Image from "next/image";
+import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
+import { cn } from '@/lib/utils';
+import { Globe, Newspaper, NewspaperIcon, Tag } from 'lucide-react';
+import { formatDate, isRecent } from "@/lib/date-utils";
+
+
+export default function BannerArticle({ post }: { post: simpleNewsCard }) {
+  return (
+    <div className="w-full p-4 bg-primary/10 border-none dark:bg-secondary/20 shadow-xs shadow-primary/20 dark:shadow-secondary/20 rounded-lg mb-4 hover:scale-101 transition-transform">
+      <div className="flex flex-col md:flex-row gap-6">
+        <div className="md:w-1/2 relative">
+          <div className='absolute top-3 left-3 z-10'>
+            <Badge className="bg-primary dark:bg-secondary text-white dark:text-white">
+              {post.categoryName}
+            </Badge>
+          </div>
+          <Image
+            src={urlFor(post.titleImage).url()}
+            alt={post.title}
+            width={800}
+            height={400}
+            className="rounded-lg w-full h-64 object-cover shadow-lg"
+          />
+        </div>
+        <div className="md:w-1/2 flex flex-col justify-center">
+          <Badge className="w-fit mb-2 bg-primary dark:bg-secondary text-white dark:text-white ">
+            Featured Story
+          </Badge>
+          <Link href={`/article/${post.currentSlug}`} className="hover:text-primary dark:hover:text-secondary hover:underline transition-colors">
+            <h2 className="text-2xl font-bold mb-2">{post.title}</h2>
+          </Link>
+          <p className="text-gray-600 dark:text-zinc-300 mb-4">{post.smallDescription}</p>
+          <div className='gap-2 flex flex-col'>
+
+            <div className='flex flex-row justify-between w-full h-fit items-center'>
+              <div className="flex items-center gap-2">
+                {post.author?.avatar && (
+                  <div className="w-6 h-6 rounded-full overflow-hidden">
+                    <Image
+                      src={urlFor(post.author.avatar).url()}
+                      width={24}
+                      height={24}
+                      alt={post.author.name || 'Author'}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
+                <span className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                  {post.author?.name || 'Anonymous'}
+                </span>
+              </div>
+
+              <div className="flex items-center justify-between gap-4">
+                {isRecent(post.publishedAt) && (
+                  <span className="ml-1 animate-pulse">🆕</span>
+                )}
+                <span className="text-sm text-zinc-500 dark:text-zinc-400">
+                    {formatDate(post.publishedAt, {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                    })}
+                </span>
+              </div>
+
+              <div className='flex flex-row gap-1 items-center'>
+                {/* Impact display */}
+                <h3 className='font-medium text-sm'>Impact:</h3>
+                {post.impacts && post.impacts.length > 0 && (
+                    <div className="flex gap-2 ">
+                    {post.impacts.map((impact, idx) => (
+                        <Badge 
+                        key={idx}
+                        className={cn(
+                            "text-sm",
+                            impact.color === 'blue' && "bg-blue-100 text-blue-950 border-blue-300 dark:bg-blue-950 dark:text-blue-100 dark:border-blue-950",
+                            impact.color === 'green' && "bg-green-100 text-green-950 border-green-300 dark:bg-green-950 dark:text-green-100 dark:border-green-950",
+                            impact.color === 'red' && "bg-red-100 text-red-950 border-red-300 dark:bg-red-950 dark:text-red-100 dark:border-red-950",
+                            impact.color === 'yellow' && "bg-yellow-100 text-yellow-950 border-yellow-300 dark:bg-yellow-950 dark:text-yellow-100 dark:border-yellow-950",
+                            impact.color === 'purple' && "bg-purple-100 text-purple-950 border-purple-300 dark:bg-purple-950 dark:text-purple-100 dark:border-purple-950"
+                        )}
+                        >
+                            <Globe width={10} height={10} strokeWidth={3} className="w-10 h-10"/>
+                            {impact.name}
+                        </Badge>
+                    ))}
+                    </div>
+                )}
+              </div>
+
+            </div>
+
+            <div className='justify-between w-full items-center '>
+                {/* Tags display */}
+                {post.tags && post.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                    {post.tags.map((tag, idx) => (
+                        <Badge 
+                        key={idx}
+                        className={cn(
+                            "text-sm",
+                            tag.color === 'blue' && "bg-blue-100 text-blue-950 border-blue-200 dark:bg-blue-950 dark:text-blue-100 dark:border-blue-950",
+                            tag.color === 'green' && "bg-green-100 text-green-950 border-green-200 dark:bg-green-950 dark:text-green-100 dark:border-green-950",
+                            tag.color === 'red' && "bg-red-100 text-red-950 border-red-200 dark:bg-red-950 dark:text-red-100 dark:border-red-950",
+                            tag.color === 'yellow' && "bg-yellow-50 text-yellow-950 border-yellow-200 dark:bg-yellow-950 dark:text-yellow-100 dark:border-yellow-950",
+                            tag.color === 'purple' && "bg-purple-100 text-purple-950 border-purple-200 dark:bg-purple-950 dark:text-purple-100 dark:border-purple-950"
+                        )}
+                        >
+                            <Tag width={10} height={10} strokeWidth={3} className="w-10 h-10"/>
+                            {tag.name}
+                        </Badge>
+                    ))}
+                    </div>
+                )}
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -196,8 +196,8 @@ export default function Header() {
 
               <MenuItem setActive={setActive} active={active} item="More">
                 <div className="gap-4 flex flex-col p-2">
-                  <DropdownItem href="/News" icon={<LucideNewspaper className="h-4 w-4 text-primary dark:text-secondary" />}>
-                    Markets
+                  <DropdownItem href="/news" icon={<LucideNewspaper className="h-4 w-4 text-primary dark:text-secondary" />}>
+                    News
                   </DropdownItem>
                   <DropdownItem href="/swap-exchange" icon={<ArrowUpDownIcon className="h-4 w-4 text-primary dark:text-secondary" />}>
                     Swap
