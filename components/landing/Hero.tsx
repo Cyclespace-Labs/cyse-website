@@ -14,6 +14,7 @@ export default function Hero() {
           src="/render.png"
           alt="Cryptocurrency background"
           fill
+          sizes="100vw"
           quality={100}
           className="object-cover object-center dark:hidden hidden md:flex dark:md:hidden" // Centered on all devices for consistent framing
           priority
@@ -23,6 +24,7 @@ export default function Hero() {
           src="/render-black.png"
           alt="Cryptocurrency background"
           fill
+          sizes="100vw"
           quality={100}
           className="object-cover object-center dark:flex hidden dark:md:flex " // Centered on all devices for consistent framing
           priority
@@ -32,6 +34,7 @@ export default function Hero() {
           src="/render-mobile.png"
           alt="Cryptocurrency background"
           fill
+          sizes="100vw"
           quality={100}
           className="object-cover object-center dark:hidden flex md:hidden dark:md:hidden h-50" // Centered on all devices for consistent framing
           priority
