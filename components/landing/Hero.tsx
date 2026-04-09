@@ -92,14 +92,14 @@ export default function Hero() {
 
             <div className="flex flex-row justify-between md:px-0 md:justify-start md:flex-row gap-3 sm:gap-4">
               <Button
-                className="px-5 sm:px-6 py-3 sm:py-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700
+                className="px-4 sm:px-4 py-3 sm:py-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700
                 transition-all flex items-center justify-center gap-2 shadow-lg shadow-indigo-200 border-none group"
               >
                 Trade on Cyclespace
               </Button>
 
               <Button
-                className="px-5 sm:px-6 py-3 sm:py-4 bg-black text-white border-none rounded-lg
+                className="px-4 sm:px-4 py-3 sm:py-4 bg-black text-white border-none rounded-lg
                 font-medium hover:bg-slate-800 dark:hover:bg-slate-700 transition-all flex items-center justify-center gap-2"
               >
                 Build on CYSE

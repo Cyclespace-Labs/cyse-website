@@ -125,17 +125,42 @@
     @apply bg-background text-foreground;
   }
   html {
-    @apply font-sans scroll-smooth;
+    @apply font-sans;
   }
 }
 
-/* Enhanced smooth scrolling */
+/* scroll-padding for anchor links */
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 2rem;
 }
 
-/* Smooth scrolling for all elements */
-* {
-  scroll-behavior: smooth;
+/*
+ * LENIS SMOOTH SCROLL - CRITICAL NOTES:
+ * 1. Lenis handles ALL smooth scrolling - DO NOT add native scroll-behavior: smooth
+ * 2. DO NOT use Tailwind scroll-smooth classes anywhere (html, body, or components)
+ * 3. DO NOT add data-scroll-behavior="smooth" to <html>
+ * Violating these will break scrolling in Chrome, Firefox, Safari (but oddly works in Brave)
+ * See: https://github.com/studio-freight/lenis#required-css
+ */
+
+/* Lenis required styles - prevents native scroll conflicts */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
 }

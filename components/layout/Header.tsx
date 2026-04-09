@@ -10,6 +10,8 @@ import {
   Newspaper,
   ClipboardCheck,
   LucideNewspaper,
+  Link2Off,
+  ExternalLinkIcon,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Tourney } from "next/font/google";
@@ -44,7 +46,7 @@ const AnimatedNavLink = ({
         {soon && (
           <Badge
             variant="outline"
-            className="text-[10px] px-1.5 py-0 h-4 relative bottom-1 rounded-full bg-blue-500/30 text-blue-500 dark:bg-blue-500/30 dark:text-blue-500 border-none"
+            className="text-[10px] px-1.5 py-0 h-4 relative bottom-2 right-1 rounded-full bg-blue-500/30 text-blue-500 dark:bg-blue-500/30 dark:text-blue-500 border-none"
           >
             soon
           </Badge>
@@ -218,7 +220,8 @@ export default function Header() {
             {/* Right side: CTA button + mobile menu button */}
             <div className="flex items-center justify-end gap-4">
               <Button className="hidden md:flex lg:flex text-xs rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-200">
-                Open app
+                Launch app
+                <ExternalLinkIcon className="h-3 w-3 text-white" />
               </Button>
               <div className="hidden w-fit h-fit md:flex">
                 <ThemeToggle/>
@@ -334,7 +337,8 @@ export default function Header() {
                       <ThemeToggle/>
                     </div>
                     <Button className="w-full mt-2 bg-blue-500 text-white hover:bg-blue-600 transition-colors rounded-lg">
-                      Open app
+                      Launch app
+                      <ExternalLinkIcon className="h-3 w-3 text-white" />
                     </Button>
                   </div>
                 </div>

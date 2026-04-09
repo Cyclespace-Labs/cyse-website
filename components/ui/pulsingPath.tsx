@@ -6,18 +6,23 @@ import Image from "next/image";
 export default function PulsingPath() {
 
     const pathData = "M4.00069 4.00073C5.60069 6.80073 43.7043 65.3007 57.7043 82.3007C57.7043 82.3007 70.2043 96.3007 83.2043 102.801C92.2043 107.301 109.704 107.301 109.704 107.301H258.704";
-    const straightLinePath = "M4 4H322"; // Straight horizontal line for highlights  
-    const verticalLinePath = "M4 4V607"
+    const straightLinePath = "M4 4H322"; // Straight horizontal line: 322 - 4 = 318px
+    const verticalLinePath = "M4 4V607" // Vertical line: 607 - 4 = 603px
 
     // dashLength + gapLength must equal the total path length for a seamless loop.
     const dashLength = 80;
     const gapLength = 345;
-    const totalLength = 425; // actual path length (dashLength + gapLength)
+    const totalLength = 425; // actual curved path length (dashLength + gapLength)
 
-    // The straight line path "M4 4H322" has a length of 425px.
+    // Straight line: M4 4H322 = 318px total
     const stDashLength = 80;
-    const stGapLength = 300;
-    const stTotalLength = 380; // actual path length (dashLength + gapLength)
+    const stGapLength = 238; // 318 - 80 = 238
+    const stTotalLength = 318; // actual straight path length
+
+    // Vertical line: M4 4V607 = 603px total
+    const vtDashLength = 80;
+    const vtGapLength = 523; // 603 - 80 = 523
+    const vtTotalLength = 603; // actual vertical path length
 
     //Color theme
     const backgroundColor = "#D7DDE0";
@@ -44,10 +49,10 @@ export default function PulsingPath() {
                         />
                     </div>
                     
-                    <svg className="w-30 h-fit md:w-65 md:h-fit lg:w-65 lg:h-fit" width="263" height="112" viewBox="0 0 263 112" fill="none" xmlns="http://www.w3.org" style={{ transform: "scaleY(1)" }}>
+                    <svg className="w-32 h-fit md:w-64 md:h-fit lg:w-64 lg:h-fit" width="263" height="112" viewBox="0 0 263 112" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: "scaleY(1)" }}>
                         <defs>
                         {/* Blue Glow Filter */}
-                        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%" colorInterpolationFilters="sRGB">
+                        <filter id="glow1" x="-50%" y="-50%" width="200%" height="200%" colorInterpolationFilters="sRGB">
                             <feGaussianBlur stdDeviation="4" result="blur" />
                             <feComposite in="SourceGraphic" in2="blur" operator="over" />
                         </filter>
@@ -69,7 +74,7 @@ export default function PulsingPath() {
                             stroke={dashColor} // Vibrant Blue
                             strokeWidth="8"
                             strokeLinecap="round"
-                            filter="url(#glow)" // Applying the glow filter
+                            filter="url(#glow1)"
                             style={{
                                 strokeDasharray: `${dashLength} ${gapLength}`,
                         }}
@@ -101,11 +106,11 @@ export default function PulsingPath() {
                         />
                     </div>
 
-                    <svg className="w-30 h-fit md:w-65 md:h-fit lg:w-65 lg:h-fit" width="263" height="112" viewBox="0 0 263 112" fill="none" xmlns="http://www.w3.org" style={{ transform: "scaleX(-1)" }}>
+                    <svg className="w-32 h-fit md:w-64 md:h-fit lg:w-64 lg:h-fit" width="263" height="112" viewBox="0 0 263 112" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: "scaleX(-1)" }}>
                         <defs>
                         {/* Blue Glow Filter */}
-                        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                            <feGaussianBlur stdDeviation="4" result="blur" />   
+                        <filter id="glow2" x="-20%" y="-20%" width="140%" height="140%" colorInterpolationFilters="sRGB">
+                            <feGaussianBlur stdDeviation="4" result="blur" />
                             <feComposite in="SourceGraphic" in2="blur" operator="over" />
                         </filter>
                         </defs>
@@ -126,7 +131,7 @@ export default function PulsingPath() {
                             stroke={dashColor} // Vibrant Blue
                             strokeWidth="8"
                             strokeLinecap="round"
-                            filter="url(#glow)" // Applying the glow filter
+                            filter="url(#glow2)"
                             style={{
                                 strokeDasharray: `${dashLength} ${gapLength}`,
                         }}
@@ -185,11 +190,11 @@ export default function PulsingPath() {
                             </div>
                         </div>
 
-                        <svg className="w-33 md:w-80"  width="318" height="8" viewBox="0 0 318 8" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform:"scaleX(-1)", overflow: "visible" }}>
+                        <svg className="w-32 md:w-80"  width="318" height="8" viewBox="0 0 318 8" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform:"scaleX(-1)", overflow: "visible" }}>
                             <defs>
                                 {/* Blue Glow Filter */}
                                 <filter 
-                                    id="glow" 
+                                    id="glow3" 
                                     x="-100%" y="-100%" width="300%" height="300%"
                                     colorInterpolationFilters="sRGB"    
                                 >
@@ -214,7 +219,7 @@ export default function PulsingPath() {
                                 stroke={dashColor}
                                 strokeWidth="8"
                                 strokeLinecap="round"
-                                filter="url(#glow)"
+                                filter="url(#glow3)"
                                 style={{
                                     strokeDasharray: `${stDashLength} ${stGapLength}`,
                                 }}
@@ -235,10 +240,10 @@ export default function PulsingPath() {
 
                     {/* Right Horizontal Line — dash starts from left, travels right (positive offset → 0) */}
                     <div className="flex relative flex-row items-center  space-x-0">
-                        <svg className="w-33 md:w-80" width="318" height="8" viewBox="0 0 318 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg className="w-32 md:w-80" width="318" height="8" viewBox="0 0 318 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 {/* Blue Glow Filter */}
-                                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                                <filter id="glow4" x="-20%" y="-20%" width="140%" height="140%" colorInterpolationFilters="sRGB">
                                     <feGaussianBlur stdDeviation="4" result="blur" />
                                     <feComposite in="SourceGraphic" in2="blur" operator="over" />
                                 </filter>
@@ -260,7 +265,7 @@ export default function PulsingPath() {
                                 stroke={dashColor}
                                 strokeWidth="8"
                                 strokeLinecap="round"
-                                filter="url(#glow)"
+                                filter="url(#glow4)"
                                 style={{
                                     strokeDasharray: `${stDashLength} ${stGapLength}`,
                                 }}
@@ -298,10 +303,10 @@ export default function PulsingPath() {
             <div className="flex justify-center items-center gap-0 md:gap-0 h-fit">
                 <div className="relative">
 
-                    <svg className="w-30 h-fit md:w-65 md:h-fit lg:w-65 lg:h-fit" width="263" height="112" viewBox="0 0 263 112" fill="none" xmlns="http://www.w3.org" style={{ transform: "scaleY(-1)" }}>
+                    <svg className="w-32 h-fit md:w-64 md:h-fit lg:w-64 lg:h-fit" width="263" height="112" viewBox="0 0 263 112" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: "scaleY(-1)" }}>
                         <defs>
                         {/* Blue Glow Filter */}
-                        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%" className="">
+                        <filter id="glow5" x="-20%" y="-20%" width="140%" height="140%" colorInterpolationFilters="sRGB">
                             <feGaussianBlur stdDeviation="4" result="blur" />
                             <feComposite in="SourceGraphic" in2="blur" operator="over" />
                         </filter>
@@ -323,7 +328,7 @@ export default function PulsingPath() {
                             stroke={dashColor} // Vibrant Blue
                             strokeWidth="8"
                             strokeLinecap="round"
-                            filter="url(#glow)" // Applying the glow filter
+                            filter="url(#glow5)"
                             style={{
                                 strokeDasharray: `${dashLength} ${gapLength}`,
                         }}
@@ -351,13 +356,13 @@ export default function PulsingPath() {
                         />
                     </div>
 
-                </div>s
+                </div>
 
                 <div className="relative">
-                    <svg className="w-30 h-fit md:w-65 md:h-fit lg:w-65 lg:h-fit" width="263" height="112" viewBox="0 0 263 112" fill="none" xmlns="http://www.w3.org" style={{ transform: "scaleX(-1) scaleY(-1)" }}>
+                    <svg className="w-32 h-fit md:w-64 md:h-fit lg:w-64 lg:h-fit" width="263" height="112" viewBox="0 0 263 112" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: "scaleX(-1) scaleY(-1)" }}>
                         <defs>
                         {/* Blue Glow Filter */}
-                        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                        <filter id="glow6" x="-20%" y="-20%" width="140%" height="140%" colorInterpolationFilters="sRGB">
                             <feGaussianBlur stdDeviation="4" result="blur" />
                             <feComposite in="SourceGraphic" in2="blur" operator="over" />
                         </filter>
@@ -379,7 +384,7 @@ export default function PulsingPath() {
                             stroke={dashColor} // Vibrant Blue
                             strokeWidth="8"
                             strokeLinecap="round"
-                            filter="url(#glow)" // Applying the glow filter
+                            filter="url(#glow6)"
                             style={{
                                 strokeDasharray: `${dashLength} ${gapLength}`,
                         }}
@@ -390,7 +395,7 @@ export default function PulsingPath() {
                                 repeat: Infinity,
                                 ease: "linear",
                                 repeatType: "loop",
-                        }}
+                            }}
                         />
                     </svg>
 
@@ -414,21 +419,21 @@ export default function PulsingPath() {
                     <svg className="h-80 md:h-160"  width="8" height="611" viewBox="0 0 8 611" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform:""  }}>
                         <defs>
                             {/* Blue Glow Filter */}
-                            <filter id="glow" x="20%" y="20%" width="140%" height="140%">
+                            <filter id="glow7" x="20%" y="20%" width="140%" height="140%" colorInterpolationFilters="sRGB">
                                 <feGaussianBlur stdDeviation="4" result="blur" />
                                 <feComposite in="SourceGraphic" in2="blur" operator="over" />
                             </filter>
                         </defs>
 
                         {/* Static Background Path */}
-                        <path 
-                            d={verticalLinePath} 
+                        <path
+                            d={verticalLinePath}
                             stroke={backgroundColor}
-                            strokeWidth="8" 
+                            strokeWidth="8"
                             strokeLinecap="round"
                             className="dark:stroke-slate-900 stroke-[#D7DDE0]"
                         />
-                        
+
                         {/* Animated Blue Pulse */}
                         <motion.path
                             className="dark:stroke-[#0E76FD] stroke-[#0E76FD]"
@@ -436,11 +441,11 @@ export default function PulsingPath() {
                             stroke={dashColor}
                             strokeWidth="8"
                             strokeLinecap="round"
-                            filter="url(#glow)"
+                            filter="url(#glow7)"
                             style={{
-                                strokeDasharray: `${stDashLength} ${stGapLength}`,
+                                strokeDasharray: `${vtDashLength} ${vtGapLength}`,
                             }}
-                            initial={{ strokeDashoffset: stTotalLength }}
+                            initial={{ strokeDashoffset: vtTotalLength }}
                             animate={{ strokeDashoffset: 0 }}
                             transition={{
                                 duration: 3,
@@ -458,21 +463,21 @@ export default function PulsingPath() {
                     <svg className="h-80 md:h-160" width="8" height="611" viewBox="0 0 8 611" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform:""  }}>
                         <defs>
                             {/* Blue Glow Filter */}
-                            <filter id="glow" x="20%" y="20%" width="140%" height="140%">
+                            <filter id="glow8" x="20%" y="20%" width="140%" height="140%" colorInterpolationFilters="sRGB">
                                 <feGaussianBlur stdDeviation="4" result="blur" />
                                 <feComposite in="SourceGraphic" in2="blur" operator="over" />
                             </filter>
                         </defs>
 
                         {/* Static Background Path */}
-                        <path 
-                            d={verticalLinePath} 
+                        <path
+                            d={verticalLinePath}
                             stroke={backgroundColor}
-                            strokeWidth="8" 
+                            strokeWidth="8"
                             strokeLinecap="round"
                             className="dark:stroke-slate-900 stroke-[#D7DDE0]"
                         />
-                        
+
                         {/* Animated Blue Pulse */}
                         <motion.path
                             className="dark:stroke-[#0E76FD] stroke-[#0E76FD]"
@@ -480,11 +485,11 @@ export default function PulsingPath() {
                             stroke={dashColor}
                             strokeWidth="8"
                             strokeLinecap="round"
-                            filter="url(#glow)"
+                            filter="url(#glow8)"
                             style={{
-                                strokeDasharray: `${stDashLength} ${stGapLength}`,
+                                strokeDasharray: `${vtDashLength} ${vtGapLength}`,
                             }}
-                            initial={{ strokeDashoffset: stTotalLength }}
+                            initial={{ strokeDashoffset: vtTotalLength }}
                             animate={{ strokeDashoffset: 0 }}
                             transition={{
                                 duration: 3,
@@ -502,21 +507,21 @@ export default function PulsingPath() {
                     <svg className="h-80 md:h-160" width="8" height="611" viewBox="0 0 8 611" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform:""  }}>
                         <defs>
                             {/* Blue Glow Filter */}
-                            <filter id="glow" x="20%" y="20%" width="140%" height="140%">
+                            <filter id="glow9" x="20%" y="20%" width="140%" height="140%" colorInterpolationFilters="sRGB">
                                 <feGaussianBlur stdDeviation="4" result="blur" />
                                 <feComposite in="SourceGraphic" in2="blur" operator="over" />
                             </filter>
                         </defs>
 
                         {/* Static Background Path */}
-                        <path 
-                            d={verticalLinePath} 
+                        <path
+                            d={verticalLinePath}
                             stroke={backgroundColor}
-                            strokeWidth="8" 
+                            strokeWidth="8"
                             strokeLinecap="round"
                             className="dark:stroke-slate-900 stroke-[#D7DDE0]"
                         />
-                        
+
                         {/* Animated Blue Pulse */}
                         <motion.path
                             className="dark:stroke-[#0E76FD] stroke-[#0E76FD]"
@@ -524,11 +529,11 @@ export default function PulsingPath() {
                             stroke={dashColor}
                             strokeWidth="8"
                             strokeLinecap="round"
-                            filter="url(#glow)"
+                            filter="url(#glow9)"
                             style={{
-                                strokeDasharray: `${stDashLength} ${stGapLength}`,
+                                strokeDasharray: `${vtDashLength} ${vtGapLength}`,
                             }}
-                            initial={{ strokeDashoffset: stTotalLength }}
+                            initial={{ strokeDashoffset: vtTotalLength }}
                             animate={{ strokeDashoffset: 0 }}
                             transition={{
                                 duration: 3,

@@ -1,22 +1,23 @@
 // components/LenisProvider.tsx
-"use client"; // Required for client-side functionality
+"use client";
 
-import { ReactLenis, useLenis } from '@studio-freight/react-lenis';
+// IMPORTANT: Lenis handles all smooth scrolling. DO NOT add native CSS
+// scroll-behavior: smooth or Tailwind scroll-smooth classes anywhere in
+// the app - they conflict with Lenis and break scrolling in some browsers.
+// See: https://github.com/studio-freight/lenis#required-css
+
+import { ReactLenis } from '@studio-freight/react-lenis';
 import React from 'react';
 
-function LenisProvider({ children }: { children: React.ReactNode | any }) {
-  // Optional: you can use the useLenis hook for more control if needed
-  useLenis(({ scroll }) => {
-    // console.log('Current scroll position:', scroll);
-  });
-
+function LenisProvider({ children }: { children: React.ReactNode }) {
   return (
     <ReactLenis
-      root // Applies smooth scroll to the root of the page
+      root
       options={{
-        lerp: 0.1, // Controls the smoothness (0.1 is quite smooth, smaller is slower/smoother)
-        duration: 1.5, // Duration of the scroll animation
-        smoothWheel: true, // Enables smooth scrolling for mouse wheel
+        lerp: 0.1,
+        duration: 1.5,
+        smoothWheel: true,
+        touchMultiplier: 2,
       }}
     >
       {children}

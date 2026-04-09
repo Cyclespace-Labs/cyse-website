@@ -17,14 +17,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // NOTE: DO NOT add scroll-smooth classes or data-scroll-behavior="smooth" here.
+  // Lenis handles all smooth scrolling - native CSS smooth scroll breaks it.
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={cn("h-full", "antialiased", "font-sans", alexandria.variable)}>
+    <html lang="en" className={cn("antialiased", "font-sans", alexandria.variable)}>
       <body className="min-h-full flex flex-col font-sans">
-        <ThemeProvider>
-          <LenisProvider>
+        <LenisProvider>
+          <ThemeProvider>
             {children}
-          </LenisProvider>
-        </ThemeProvider>
+          </ThemeProvider>
+        </LenisProvider>
       </body>
     </html>
   );
