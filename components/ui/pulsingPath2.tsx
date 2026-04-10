@@ -1,5 +1,7 @@
 "use client";
 
+//this is just GSAP animation example code
+
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";

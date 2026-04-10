@@ -21,10 +21,10 @@ export default function Showcase() {
                 </h1>
             </div>
 
-           <div className='hidden'>
+           <div className=''>
             <PulsingPath />
            </div>
-           
+
             <div className='justify-between hidden md:flex lg:flex relative items-center  flex-row pt-10 h-fit -top-130  md:-top-130 lg:-top-130'>
                 <div className='h-fit flex flex-col'>
                     <Image 
