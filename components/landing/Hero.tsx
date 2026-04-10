@@ -12,7 +12,7 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/render.png"
+          src="/new_hero.png"
           alt="Cryptocurrency background"
           fill
           sizes="100vw"
@@ -22,7 +22,7 @@ export default function Hero() {
           referrerPolicy="no-referrer"
         />
         <Image
-          src="/render-black.png"
+          src="/new_hero_dark.png"
           alt="Cryptocurrency background"
           fill
           sizes="100vw"
