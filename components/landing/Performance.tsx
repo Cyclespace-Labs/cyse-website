@@ -53,9 +53,9 @@ export default function Performance() {
                             dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400
                             leading-tight  bg-clip-text text-transparent'
                         >
-                            Decentralized. Borderless. Permissionless. Trade.
+                            Fast Trades. Deep Liquidity. Zero Lag.
                         </h1>
-                        <h2 className='text-xs sm:text-sm md:text-base max-w-md mt-2'>Trade Directly from Your Wallet. Execute Trades. Retain Ownership.</h2>
+                        <h2 className='text-xs sm:text-sm md:text-base max-w-md mt-2'>Execute trades in milliseconds with aggregated liquidity across all major chains.</h2>
                     </div>
                     <div className='w-full justify-start lg:justify-end flex'>
                         <Button className='w-fit bg-blue-500 text-xs sm:text-sm'>Explore Markets</Button>

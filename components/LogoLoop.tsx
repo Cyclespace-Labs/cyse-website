@@ -53,16 +53,25 @@ const useResizeObserver = (
   dependencies: React.DependencyList
 ) => {
   useEffect(() => {
+    let debounceTimer: ReturnType<typeof setTimeout> | null = null;
+    const debouncedCallback = () => {
+      if (debounceTimer) clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(callback, 100);
+    };
+
     if (!window.ResizeObserver) {
-      const handleResize = () => callback();
+      const handleResize = () => debouncedCallback();
       window.addEventListener('resize', handleResize);
       callback();
-      return () => window.removeEventListener('resize', handleResize);
+      return () => {
+        window.removeEventListener('resize', handleResize);
+        if (debounceTimer) clearTimeout(debounceTimer);
+      };
     }
 
     const observers = elements.map(ref => {
       if (!ref.current) return null;
-      const observer = new ResizeObserver(callback);
+      const observer = new ResizeObserver(debouncedCallback);
       observer.observe(ref.current);
       return observer;
     });
@@ -71,7 +80,9 @@ const useResizeObserver = (
 
     return () => {
       observers.forEach(observer => observer?.disconnect());
+      if (debounceTimer) clearTimeout(debounceTimer);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencies);
 };
 
@@ -118,8 +129,7 @@ const useImageLoader = (
 const useAnimationLoop = (
   trackRef: React.RefObject<HTMLDivElement | null>,
   targetVelocity: number,
-  seqWidth: number,
-  seqHeight: number,
+  seqSize: number,
   isHovered: boolean,
   hoverSpeed: number | undefined,
   isVertical: boolean
@@ -128,6 +138,12 @@ const useAnimationLoop = (
   const lastTimestampRef = useRef<number | null>(null);
   const offsetRef = useRef(0);
   const velocityRef = useRef(0);
+  const targetRef = useRef(targetVelocity);
+
+  // Keep target velocity in ref to avoid effect re-runs
+  useEffect(() => {
+    targetRef.current = isHovered && hoverSpeed !== undefined ? hoverSpeed : targetVelocity;
+  }, [targetVelocity, isHovered, hoverSpeed]);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -137,8 +153,6 @@ const useAnimationLoop = (
       typeof window !== 'undefined' &&
       window.matchMedia &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    const seqSize = isVertical ? seqHeight : seqWidth;
 
     if (seqSize > 0) {
       offsetRef.current = ((offsetRef.current % seqSize) + seqSize) % seqSize;
@@ -155,7 +169,15 @@ const useAnimationLoop = (
       };
     }
 
+    let frameSkip = 0;
     const animate = (timestamp: number) => {
+      // Skip every other frame for 30fps instead of 60fps (better performance)
+      frameSkip = (frameSkip + 1) % 2;
+      if (frameSkip === 1) {
+        rafRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
       if (lastTimestampRef.current === null) {
         lastTimestampRef.current = timestamp;
       }
@@ -163,7 +185,7 @@ const useAnimationLoop = (
       const deltaTime = Math.max(0, timestamp - lastTimestampRef.current) / 1000;
       lastTimestampRef.current = timestamp;
 
-      const target = isHovered && hoverSpeed !== undefined ? hoverSpeed : targetVelocity;
+      const target = targetRef.current;
 
       const easingFactor = 1 - Math.exp(-deltaTime / ANIMATION_CONFIG.SMOOTH_TAU);
       velocityRef.current += (target - velocityRef.current) * easingFactor;
@@ -191,7 +213,7 @@ const useAnimationLoop = (
       }
       lastTimestampRef.current = null;
     };
-  }, [targetVelocity, seqWidth, seqHeight, isHovered, hoverSpeed, isVertical]);
+  }, [seqSize, isVertical]); // Only re-run when seqSize or direction changes
 };
 
 export const LogoLoop = React.memo<LogoLoopProps>(
@@ -267,11 +289,18 @@ export const LogoLoop = React.memo<LogoLoopProps>(
       }
     }, [isVertical]);
 
-    useResizeObserver(updateDimensions, [containerRef, seqRef], [logos, gap, logoHeight, isVertical]);
+    // Memoize the combined seqSize to prevent unnecessary effect re-runs
+    const seqSize = useMemo(() => isVertical ? seqHeight : seqWidth, [isVertical, seqHeight, seqWidth]);
+
+    // Stable logos reference to prevent ResizeObserver re-runs
+    const logosRef = useRef(logos);
+    useEffect(() => { logosRef.current = logos; }, [logos]);
+
+    useResizeObserver(updateDimensions, [containerRef, seqRef], [gap, logoHeight, isVertical]);
 
     useImageLoader(seqRef, updateDimensions, [logos, gap, logoHeight, isVertical]);
 
-    useAnimationLoop(trackRef, targetVelocity, seqWidth, seqHeight, isHovered, effectiveHoverSpeed, isVertical);
+    useAnimationLoop(trackRef, targetVelocity, seqSize, isHovered, effectiveHoverSpeed, isVertical);
 
     const cssVariables = useMemo(
       () =>
@@ -311,7 +340,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
           return (
             <li
               className={cx(
-                'flex-none text-[length:var(--logoloop-logoHeight)] leading-[1]',
+                'flex-none text-[length:var(--logoloop-logoHeight)] leading-[1] ',
                 isVertical ? 'mb-[var(--logoloop-gap)]' : 'mr-[var(--logoloop-gap)]',
                 scaleOnHover && 'overflow-visible group/item'
               )}

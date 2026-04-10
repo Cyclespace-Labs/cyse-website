@@ -57,7 +57,7 @@ export default function Rewards() {
               dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400
               bg-clip-text text-transparent"
           >
-            Decentralized. Borderless. Permissionless. Trade.
+            Trade. Earn. Repeat. Grow Your Stack.
           </h1>
         </div>
 

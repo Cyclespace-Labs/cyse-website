@@ -10,34 +10,34 @@ const tourney = Tourney({ subsets: ["latin"], variable: "--font-sans" });
 
 const faqItems = [
   {
-    question: "What is the purpose of this website?",
+    question: "What are perpetuals and how do I trade them?",
     answer:
-      "This website is a place to help you find the best products and services in the world.",
+      "Perpetuals are futures contracts without expiration dates. Trade BTC, ETH, and SOL with up to 50x leverage directly from your wallet. No funding fees, no custody risks.",
   },
   {
-    question: "How do I contact support?",
+    question: "How does the vault work and how do I earn?",
     answer:
-      "You can reach our support team by emailing support@example.com or using the live chat feature in the bottom right corner.",
+      "Deposit assets into the vault to earn a share of trading fees. Vault stakers receive 70% of protocol revenue with auto-compounding yields. Withdraw anytime with no lockups.",
   },
   {
-    question: "How do I find the best products?",
+    question: "What are prediction markets?",
     answer:
-      "Browse our curated collections, read reviews, and use the filter tools to narrow down your search.",
+      "Bet on the outcome of real-world events, crypto prices, and sports markets. Stake your positions and earn rewards for accurate predictions.",
   },
   {
-    question: "Can I return a product?",
+    question: "Is my money safe on CYCLESPACE?",
     answer:
-      "Yes, we offer a 30-day return policy for most items. Please check the product page for details.",
+      "Your assets stay in your wallet at all times. We're non-custodial with audited smart contracts. No deposits means no risk of exchange hacks or freezes.",
   },
   {
-    question: "Do you offer international shipping?",
+    question: "How do I get help if something goes wrong?",
     answer:
-      "We ship to over 100 countries. Shipping costs and delivery times vary by destination.",
+      "Reach our 24/7 support team via live chat or email at support@cyclespace.io. Average response time under 5 minutes for urgent issues.",
   },
   {
-    question: "How can I track my order?",
+    question: "What chains and wallets are supported?",
     answer:
-      "Once your order ships, you'll receive a tracking link via email. You can also track it in your account dashboard.",
+      "We support Ethereum, Solana, Base, Arbitrum, and 50+ chains. Connect with MetaMask, Phantom, Rainbow, or any WalletConnect-compatible wallet.",
   },
 ];
 
@@ -77,7 +77,7 @@ export default function Footer() {
         */}
 
 
-        <div style={{ width: '100%', height: '1450px', position: 'relative' }}>
+        <div style={{ width: '100%', height: '1580px', position: 'relative' }}>
           <GradientBlinds
             gradientColors={["#0E76FD", "#0E76FD"]}
             angle={0}

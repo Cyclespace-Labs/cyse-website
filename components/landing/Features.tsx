@@ -49,7 +49,7 @@ export default function Features() {
                     dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400
                     leading-tight mb-6 bg-clip-text text-transparent'
                 >
-                    Decentralized. Borderless. Permissionless. Trade.
+                    Trade Perpetuals. Stake. Earn Vault Yield.
                 </h1>
             </div>
 
@@ -87,27 +87,26 @@ export default function Features() {
                             </CardHeader>
 
                             <CardFooter className="mt-5 flex w-full flex-col space-y-2 px-6 text-left">
-                            <h2 className=" text-sm md:text-lg font-bold text-white">
-                                Decentralized. Borderless. Permissionless. Trade.
-                            </h2>
-                            <h3 className=" text-xs md:text-sm text-slate-200">
-                                Trade Directly from Your Wallet. Execute Trades. Retain Ownership.
-                            </h3>
+                                <h2 className="text-sm md:text-lg text-left w-full font-bold text-white">
+                                    Stake. Earn. Grow Your Stack.
+                                </h2>
+                                <h3 className=" text-xs md:text-sm text-slate-200">
+                                    Deposit assets into the vault and earn yield from trading fees.
+                                </h3>
                             </CardFooter>
                         </div>
                     </Card>
 
-                    <Card className='h-full w-full bg-zinc-200 dark:bg-slate-900 dark:border-slate-800 border border-zinc-200 ' >
+                    <Card className='h-full w-full bg-zinc-200 dark:bg-slate-900 dark:border-slate-800 border border-zinc-200 gap-5 ' >
                         <CardHeader className='flex items-center gap-2'>
                             <div className='bg-blue-500 p-2 rounded-lg w-fit h-fit'><Cpu className='text-white w-5 h-5' /></div>
                             <div className='gap-0 space-y-0 flex flex-col'>
-                                <h2 className='text-lg font-bold w-fit h-fit'>Decentralized. Borderless. </h2>
-                                <h3 className='text-xs w-fit h-fit'>Trade Directly from Your Wallet.</h3>
+                                <h2 className='text-lg font-bold w-fit h-fit'>Perps With No Expiry</h2>
+                                <h3 className='text-xs w-fit h-fit'>Leverage up to 50x on BTC, ETH, SOL</h3>
                             </div>
                         </CardHeader>
                         <CardContent className='text-xs'>
-                            Trade Directly from Your Wallet. Execute Trades. Retain Ownership.
-                            Trade Directly from Your Wallet. Execute Trades. Retain Ownership.
+                            Trade perpetual futures with deep liquidity. No funding fees. No expiration dates. Pure leverage.
                         </CardContent>
                     </Card>
                 </div>
@@ -119,14 +118,14 @@ export default function Features() {
                                 <h2 className='text-sm md:text-xl font-bold bg-clip-text text-transparent
                                     bg-linear-to-b from-black via-zinc-800 to-zinc-500
                                     dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400'>
-                                    Decentralized. Borderless. Permissionless. Trade.
+                                    Vault Yield. Real Returns.
                                 </h2>
                             </div>
                         </CardHeader>
                         <CardContent className='text-xs justify-between w-full flex gap-15 relative z-10'>
-                            <span>Trade Directly from Your Wallet. Execute Trades. Retain Ownership.</span>
+                            <span>Stake your assets and earn a share of all trading fees. Passive income while you sleep.</span>
                             <div>
-                                <Button className='text-xs bg-blue-500'>Trade Now</Button>
+                                <Button className='text-xs bg-blue-500 text-white'>Buy Now</Button>
                             </div>
                         </CardContent>
                         <Image
@@ -145,11 +144,11 @@ export default function Features() {
                         leading-tight dark:bg-slate-900 dark:border-slate-800 border'
                     >
                         <CardHeader className='p-8 w-sm md:w-md'>
-                            <h2 className='text-black dark:text-white text-xl font-bold'>Decentralized. Borderless. Permissionless. Trade.</h2>
-                            <h3 className='text-sm text-slate-600 dark:text-slate-200'>Trade Directly from Your Wallet. Execute Trades. Retain Ownership.</h3>
+                            <h2 className='text-black dark:text-white text-xl font-bold'>Perpetuals. No Limits.</h2>
+                            <h3 className='text-sm text-slate-600 dark:text-slate-200'>Trade BTC, ETH, SOL perpetuals with up to 50x leverage and zero funding fees.</h3>
                         </CardHeader>
 
-                        <CardContent className='h-full w-fit mt-5 justify-center p-0 overflow-clip'>
+                        <CardContent className='h-full w-fit my-6 justify-center p-0 overflow-clip'>
                             <div className='overflow-clip w-sm md:w-lg justify-center flex flex-col '>
                                 {/* Basic horizontal loop */}
                                 <LogoLoop
@@ -197,26 +196,26 @@ export default function Features() {
                     </Card>
                 </div>
                 <div className='flex flex-col gap-5 w-full h-full'>
-                    <Card className='h-full w-full bg-zinc-200 dark:bg-slate-900 dark:border-slate-800 border border-zinc-200 ' >
+                    <Card className='h-fit w-full bg-zinc-200 dark:bg-slate-900 gap-3 dark:border-slate-800 border border-zinc-200' >
                         <CardHeader className='flex items-center gap-2 w-full'>
                             <div className='bg-blue-500 p-2 rounded-lg w-fit h-fit'><Cpu className='text-white w-5 h-5' /></div>
                             <div className='gap-0 space-y-0 flex flex-col w-full'>
-                                <h2 className='text-lg font-bold'>Decentralized. Borderless. </h2>
-                                <h3 className='text-xs '>Trade Directly from Your Wallet.</h3>
+                                <h2 className='text-lg font-bold'>Earn From Fees</h2>
+                                <h3 className='text-xs '>Vault stakers earn 70% of protocol revenue</h3>
                             </div>
                         </CardHeader>
                         <CardContent className='text-xs justify-between w-full flex gap-15'>
-                            <span>Trade Directly from Your Wallet. Execute Trades. Retain Ownership.</span>
+                            <span>Deposit to the vault once, earn trading fees forever. Auto-compounding yields.</span>
                         </CardContent>
                     </Card>
                     <Card className='h-full w-full bg-zinc-200 dark:bg-slate-900 dark:border-slate-800 border border-zinc-200 justify-center'>
                         <CardHeader className='flex items-center gap-2 w-full'>
-                            <h2 className='text-lg font-bold'>Decentralized. Borderless. </h2>
+                            <h2 className='text-lg font-bold'>Leverage Without Limits.</h2>
                         </CardHeader>
                         <CardContent className='space-x-2 space-y-2  w-full'>
-                            <Badge className='bg-white dark:bg-slate-700 text-xs text-black dark:text-slate-200 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> deposits required</Badge>
-                            <Badge className='bg-white dark:bg-slate-700 text-xs text-black dark:text-slate-200 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Trade from your wallet</Badge>
-                            <Badge className='bg-white dark:bg-slate-700 text-xs text-black dark:text-slate-200 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> No loss of fund ownership</Badge>
+                            <Badge className='bg-white dark:bg-slate-700 text-xs text-black dark:text-slate-200 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Up to 50x leverage</Badge>
+                            <Badge className='bg-white dark:bg-slate-700 text-xs text-black dark:text-slate-200 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Zero funding fees</Badge>
+                            <Badge className='bg-white dark:bg-slate-700 text-xs text-black dark:text-slate-200 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Earn from the vault</Badge>
                         </CardContent>
                         <CardFooter className='justify-center overflow-clip relative'>
                             <Image

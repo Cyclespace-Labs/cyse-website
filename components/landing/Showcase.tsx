@@ -9,7 +9,7 @@ export default function Showcase() {
   return (
     <div className='w-full h-full mx-auto py-10 font-sans'>
 
-        <main className='h-full w-full justify-center items-center px-10 md:px-25 lg:px-50'>
+        <main className='h-full w-full justify-center items-center px-10 md:px-25 lg:px-40'>
 
             <div className='w-full h-full justify-center items-center flex pb-5'>
                 <h1 className='text-xl md:text-4xl font-bold text-center w-xl
@@ -25,7 +25,7 @@ export default function Showcase() {
             <PulsingPath />
            </div>
 
-            <div className='justify-between hidden md:flex lg:flex relative items-center  flex-row pt-10 h-fit -top-130  md:-top-130 lg:-top-130'>
+            <div className='justify-between hidden md:hidden lg:flex relative items-center w-full flex-row pt-10 h-fit -top-130  md:-top-130 lg:-top-130'>
                 <div className='h-fit flex flex-col'>
                     <Image 
                         src="/cards/stats.png"

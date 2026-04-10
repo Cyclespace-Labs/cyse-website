@@ -3,79 +3,46 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import { motion, useMotionValue, useSpring, useInView } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { client, urlFor } from "@/sanity/lib/client";
+import { formatDate } from "@/lib/date-utils";
 
-interface TweetCard {
-  id: number;
-  username: string;
-  handle: string;
-  content: string;
-  imageUrl?: string;
-  tag?: string;
-  stats: { hearts: number; retweets: number; comments: number };
+interface NewsItem {
+  _id: string;
+  title: string;
+  smallDescription: string;
+  currentSlug: string;
+  titleImage?: { asset: { _ref: string } } | null;
+  publishedAt: string;
+  categoryName?: string;
+  author?: {
+    name: string;
+    avatar?: { asset: { _ref: string } } | null;
+    role?: string;
+  } | null;
 }
 
-const CARDS: TweetCard[] = [
-  {
-    id: 1,
-    username: "Cyclespace Exchange",
-    handle: "cyclespace_dex",
-    tag: "Partnership",
-    content:
-      "@GMX_IO enters into a Data Partnership with Token Terminal. GMX is a leading permissionless perpetual exchange built on @Arbitrum and @Avax. The protocol serves as a foundational liquidity baselayer for multichain DeFi.",
-    imageUrl: "https://placehold.co/600x300/e0f2fe/0369a1?text=GMX+×+Token+Terminal",
-    stats: { hearts: 248, retweets: 91, comments: 34 },
-  },
-  {
-    id: 2,
-    username: "Cyclespace Exchange",
-    handle: "cyclespace_dex",
-    tag: "Protocol",
-    content:
-      "Arbitrum's ecosystem continues to grow rapidly with new integrations across DeFi infrastructure. Liquidity routing improvements signal a new era of capital efficiency for on-chain traders.",
-    imageUrl: "https://placehold.co/600x300/dbeafe/3b82f6?text=Arbitrum+Ecosystem",
-    stats: { hearts: 512, retweets: 178, comments: 62 },
-  },
-  {
-    id: 3,
-    username: "Cyclespace Exchange",
-    handle: "cyclespace_dex",
-    tag: "Analytics",
-    content:
-      "Token Terminal releases its Q2 DeFi report showing record-breaking metrics across perpetual DEXes. Volume, fees, and active traders all hit all-time highs in the same quarter.",
-    imageUrl: "https://placehold.co/600x300/dcfce7/15803d?text=Q2+DeFi+Report",
-    stats: { hearts: 391, retweets: 143, comments: 47 },
-  },
-  {
-    id: 4,
-    username: "Cyclespace Exchange",
-    handle: "cyclespace_dex",
-    tag: "Markets",
-    content:
-      "Multichain liquidity fragmentation is being solved through novel routing layers. The next generation of DEX aggregators is already live and processing billions in monthly volume.",
-    imageUrl: "https://placehold.co/600x300/fef3c7/b45309?text=Liquidity+Markets",
-    stats: { hearts: 187, retweets: 64, comments: 28 },
-  },
-  {
-    id: 5,
-    username: "Cyclespace Exchange",
-    handle: "cyclespace_dex",
-    tag: "Research",
-    content:
-      "On-chain stakeholder reporting reaches maturity as institutional players demand verifiable, real-time data feeds. Transparency becomes the new competitive moat for protocols.",
-    imageUrl: "https://placehold.co/600x300/fce7f3/be185d?text=On-chain+Research",
-    stats: { hearts: 329, retweets: 112, comments: 55 },
-  },
-  {
-    id: 6,
-    username: "Cyclespace Exchange",
-    handle: "cyclespace_dex",
-    tag: "Infrastructure",
-    content:
-      "A new cross-chain bridge architecture cuts latency by 60% while improving security guarantees. The Avax-Arbitrum corridor is now the fastest settlement path in DeFi.",
-    imageUrl: "https://placehold.co/600x300/ede9fe/6d28d9?text=Bridge+Infrastructure",
-    stats: { hearts: 445, retweets: 201, comments: 73 },
-  },
-];
+const MAX_ITEMS = 6;
+
+async function fetchLatestNews(): Promise<NewsItem[]> {
+  const query = `
+    *[_type == 'news'] | order(publishedAt desc) [0...${MAX_ITEMS}] {
+      _id,
+      title,
+      smallDescription,
+      "currentSlug": slug.current,
+      titleImage,
+      publishedAt,
+      "categoryName": category->name,
+      "author": author->{
+        name,
+        avatar,
+        role
+      }
+    }
+  `;
+  const data = await client.fetch(query);
+  return data;
+}
 
 const CARD_W = 316;
 const CARD_GAP = 18;
@@ -93,44 +60,43 @@ function Avatar() {
   return <div className="h-10 w-10 shrink-0 rounded-xl bg-zinc-200 dark:bg-slate-700" />;
 }
 
-function TweetCardItem({ card, index, inView }: { card: TweetCard; index: number; inView: boolean }) {
+function NewsCardItem({ card, index, inView }: { card: NewsItem; index: number; inView: boolean }) {
+  const imageUrl = card.titleImage ? urlFor(card.titleImage).url() : null;
+  const avatarUrl = card.author?.avatar ? urlFor(card.author.avatar).url() : null;
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 44, scale: 0.94 }}
       animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
       transition={{ duration: 0.55, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
-      className="flex w-[316px] shrink-0 flex-col gap-3 rounded-2xl border border-zinc-200 dark:border-slate-700 bg-zinc-100 dark:bg-slate-900 p-5 pb-4"
+      className="flex w-[316px] shrink-0 flex-col gap-3 rounded-2xl border border-zinc-200 dark:border-slate-700 bg-zinc-100 dark:bg-slate-900 p-5 pb-4 cursor-pointer hover:border-zinc-300 dark:hover:border-slate-600 transition-colors"
     >
       <div className="flex items-center gap-3">
-        <Avatar />
+        {avatarUrl ? (
+          <img src={avatarUrl} alt={card.author?.name || ''} className="h-10 w-10 shrink-0 rounded-xl object-cover" />
+        ) : (
+          <Avatar />
+        )}
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-bold text-gray-900 dark:text-white">{card.username}</p>
-          <p className="text-xs text-gray-500 dark:text-gray-400">@{card.handle}</p>
+          <p className="truncate text-sm font-bold text-gray-900 dark:text-white">{card.author?.name || 'Anonymous'}</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            {formatDate(card.publishedAt, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+          </p>
         </div>
-        {card.tag && <TagPill label={card.tag} />}
+        {card.categoryName && <TagPill label={card.categoryName} />}
       </div>
 
       <div className="h-px bg-gray-300 dark:bg-slate-700" />
 
-      <p className="flex-1 text-xs leading-relaxed text-gray-700 dark:text-gray-300">{card.content}</p>
+      <h3 className="text-sm font-semibold text-gray-900 dark:text-white line-clamp-2">{card.title}</h3>
 
-      {card.imageUrl && (
+      <p className="flex-1 text-xs leading-relaxed text-gray-700 dark:text-gray-300 line-clamp-3">{card.smallDescription}</p>
+
+      {imageUrl && (
         <div className="h-[145px] overflow-hidden rounded-lg bg-gray-300 dark:bg-slate-700">
-          <img src={card.imageUrl} alt="" className="h-full w-full object-cover" loading="lazy" />
+          <img src={imageUrl} alt={card.title} className="h-full w-full object-cover" loading="lazy" />
         </div>
       )}
-
-      <div className="flex gap-4 pt-0.5">
-        {[
-          { icon: "♥", val: card.stats.hearts },
-          { icon: "↻", val: card.stats.retweets },
-          { icon: "✦", val: card.stats.comments },
-        ].map(({ icon, val }) => (
-          <span key={icon} className="flex items-center gap-1 text-xs text-gray-500">
-            {icon} {val}
-          </span>
-        ))}
-      </div>
     </motion.article>
   );
 }
@@ -179,16 +145,35 @@ export default function LatestNews() {
   const trackRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
 
+  const [news, setNews] = useState<NewsItem[]>([]);
+  const [loading, setLoading] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const [maxDrag, setMaxDrag] = useState(0);
 
   const rawX = useMotionValue(0);
   const animX = useSpring(rawX, { stiffness: 300, damping: 34, mass: 0.9 });
 
+  // Fetch news on mount
+  useEffect(() => {
+    let mounted = true;
+    fetchLatestNews()
+      .then(data => {
+        if (mounted) {
+          setNews(data);
+          setLoading(false);
+        }
+      })
+      .catch(err => {
+        console.error("Failed to fetch latest news:", err);
+        if (mounted) setLoading(false);
+      });
+    return () => { mounted = false; };
+  }, []);
+
   const calcMax = useCallback(() => {
     const cw = trackRef.current?.parentElement?.clientWidth ?? 1200;
-    return Math.max(0, CARDS.length * STEP - cw + 80);
-  }, []);
+    return Math.max(0, news.length * STEP - cw + 80);
+  }, [news.length]);
 
   useEffect(() => {
     const update = () => setMaxDrag(calcMax());
@@ -200,19 +185,19 @@ export default function LatestNews() {
   useEffect(() => {
     return animX.on("change", (v) => {
       const idx = Math.round(-v / STEP);
-      setActiveIndex(Math.max(0, Math.min(idx, CARDS.length - 1)));
+      setActiveIndex(Math.max(0, Math.min(idx, news.length - 1)));
     });
-  }, [animX]);
+  }, [animX, news.length]);
 
   const scrollTo = (index: number) => {
-    const clamped = Math.max(0, Math.min(index, CARDS.length - 1));
+    const clamped = Math.max(0, Math.min(index, news.length - 1));
     const offset = Math.min(clamped * STEP, maxDrag);
     rawX.set(-offset);
     setActiveIndex(clamped);
   };
 
   const canLeft = activeIndex > 0;
-  const canRight = activeIndex < CARDS.length - 1;
+  const canRight = activeIndex < news.length - 1;
 
   return (
     <section ref={sectionRef} className="w-full bg-white dark:bg-black py-20">
@@ -239,28 +224,48 @@ export default function LatestNews() {
           aria-hidden
         />
 
-        <motion.div
-          ref={trackRef}
-          drag="x"
-          dragConstraints={{ right: 0, left: -maxDrag }}
-          dragTransition={{ bounceStiffness: 360, bounceDamping: 38 }}
-          dragElastic={0.07}
-          whileDrag={{ cursor: "grabbing" }}
-          onDragEnd={(_, info) => {
-            const newX = Math.max(-maxDrag, Math.min(0, rawX.get() + info.offset.x));
-            const snapped = Math.round(-newX / STEP); 
-            scrollTo(Math.max(0, Math.min(snapped, CARDS.length - 1)));
-          }}
-          className="flex w-max cursor-grab gap-[18px] px-6 md:px-12"
-          style={{ x: animX }}
-        >
-          {CARDS.map((card, i) => (
-            <TweetCardItem key={card.id} card={card} index={i} inView={isInView} />
-          ))}
-        </motion.div>
+        {loading ? (
+          <div className="flex w-max gap-[18px] px-6 md:px-12">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <div key={i} className="flex w-[316px] shrink-0 flex-col gap-3 rounded-2xl border border-zinc-200 dark:border-slate-700 bg-zinc-100 dark:bg-slate-900 p-5 pb-4 animate-pulse">
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 shrink-0 rounded-xl bg-zinc-300 dark:bg-slate-700" />
+                  <div className="flex-1 space-y-2">
+                    <div className="h-3 w-24 bg-zinc-300 dark:bg-slate-700 rounded" />
+                    <div className="h-2 w-16 bg-zinc-300 dark:bg-slate-700 rounded" />
+                  </div>
+                </div>
+                <div className="h-px bg-zinc-300 dark:bg-slate-700" />
+                <div className="h-4 w-full bg-zinc-300 dark:bg-slate-700 rounded" />
+                <div className="h-4 w-3/4 bg-zinc-300 dark:bg-slate-700 rounded" />
+                <div className="h-[145px] bg-zinc-300 dark:bg-slate-700 rounded-lg" />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <motion.div
+            ref={trackRef}
+            drag="x"
+            dragConstraints={{ right: 0, left: -maxDrag }}
+            dragTransition={{ bounceStiffness: 360, bounceDamping: 38 }}
+            dragElastic={0.07}
+            whileDrag={{ cursor: "grabbing" }}
+            onDragEnd={(_, info) => {
+              const newX = Math.max(-maxDrag, Math.min(0, rawX.get() + info.offset.x));
+              const snapped = Math.round(-newX / STEP); 
+              scrollTo(Math.max(0, Math.min(snapped, news.length - 1)));
+            }}
+            className="flex w-max cursor-grab gap-[18px] px-6 md:px-12"
+            style={{ x: animX }}
+          >
+            {news.map((card, i) => (
+              <NewsCardItem key={card._id} card={card} index={i} inView={isInView} />
+            ))}
+          </motion.div>
+        )}
 
-        <div className=" w-full h-full justify-center flex mt-6">
-          <Dots total={CARDS.length} active={activeIndex} onDot={scrollTo} />
+        <div className="w-full h-full justify-center flex mt-6">
+          <Dots total={news.length} active={activeIndex} onDot={scrollTo} />
         </div>
 
       </div>

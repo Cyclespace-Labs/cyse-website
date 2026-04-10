@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import Image from 'next/image';
 import { Button } from '../ui/button';
 import ScrambledText from '../ui/scrambled-text';
+import ShinyText from '../ShinyText';
 
 export default function Hero() {
   return (
@@ -60,10 +61,10 @@ export default function Hero() {
             </span>
 
             <div
-              className=" mb-4 sm:mb-6 hidden md:block"
+              className=" mb-4 sm:mb-6 hidden md:block text-black dark:text-white"
             >
               <ScrambledText
-                className="scrambled-text-demo w-full py-0 my-0 pl-0 ml-0 text-6xl sm:text-6xl md:text-6xl lg:text-6xl font-bold "
+                className="scrambled-text-demo text-black dark:text-white  w-full py-0 my-0 pl-0 ml-0 text-6xl sm:text-6xl md:text-6xl lg:text-6xl font-bold "
                 radius={100}
                 duration={1.2}
                 speed={0.5}
