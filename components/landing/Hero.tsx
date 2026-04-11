@@ -1,33 +1,84 @@
 'use client';
 
+import { useRef, useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import Image from 'next/image';
 import { Button } from '../ui/button';
 import ScrambledText from '../ui/scrambled-text';
-import ShinyText from '../ShinyText';
 
 export default function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoFailed, setVideoFailed] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const playVideo = async () => {
+      try {
+        await video.play();
+      } catch (err) {
+        console.warn('Autoplay failed, trying muted:', err);
+        video.muted = true;
+        try {
+          await video.play();
+        } catch {
+          console.error('Video playback failed entirely');
+          setVideoFailed(true);
+        }
+      }
+    };
+
+    video.addEventListener('canplaythrough', playVideo, { once: true });
+    video.addEventListener('error', () => setVideoFailed(true), { once: true });
+
+    return () => {
+      video.removeEventListener('canplaythrough', playVideo);
+    };
+  }, []);
+
   return (
     <section className="relative w-full -top-17 min-h-screen overflow-hidden flex font-sans items-center">
       {/* Background Image */}
+
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/new_hero.png"
-          alt="Cryptocurrency background"
-          fill
-          sizes="100vw"
-          quality={100}
-          className="object-cover object-center dark:hidden hidden md:flex dark:md:hidden" // Centered on all devices for consistent framing
-          priority
-          referrerPolicy="no-referrer"
-        />
+        {videoFailed ? (
+          <Image
+            src="/new_hero.png"
+            alt="Background"
+            fill
+            sizes="100vw"
+            quality={100}
+            className="object-cover object-center z-10"
+            priority
+            referrerPolicy="no-referrer"
+          />
+        ) : (
+          <video
+            ref={videoRef}
+            className="w-full h-full object-cover object-center z-10"
+            controls={false}
+            autoPlay
+            loop
+            muted
+            playsInline
+            disablePictureInPicture
+            disableRemotePlayback
+            preload="auto"
+            poster="/new_hero.png"
+          >
+            <source src="/render.mp4" type="video/mp4" />
+            <source src="/video.webm" type="video/webm" />
+          </video>
+        )}
+
         <Image
           src="/new_hero_dark.png"
           alt="Cryptocurrency background"
           fill
           sizes="100vw"
           quality={100}
-          className="object-cover object-center dark:flex hidden dark:md:flex " // Centered on all devices for consistent framing
+          className="object-cover object-center z-10 dark:flex hidden dark:md:flex"
           priority
           referrerPolicy="no-referrer"
         />
@@ -37,16 +88,17 @@ export default function Hero() {
           fill
           sizes="100vw"
           quality={100}
-          className="object-cover object-center dark:hidden flex md:hidden dark:md:hidden h-50" // Centered on all devices for consistent framing
+          className="object-cover object-center z-10 dark:hidden flex md:hidden dark:md:hidden h-50"
           priority
           referrerPolicy="no-referrer"
         />
-
+        
         {/* Gradient overlay to ensure text readability across all backgrounds */}
         <div className="absolute inset-0 bg-linear-to-r from-white via-transparent to-transparent
         dark:bg-linear-to-r dark:from-black dark:via-transparent dark:to-transparent" />
         <div className="absolute inset-0 bg-linear-to-t from-white via-transparent to-transparent
         dark:bg-linear-to-t dark:from-black dark:via-transparent dark:to-transparent" />
+
       </div>
 
       <div className="container mx-auto px-8 h-fit sm:px-10 md:px-12 relative z-10 pt-0 md:pt-30">

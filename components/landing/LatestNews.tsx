@@ -113,7 +113,7 @@ function ScrollBtn({
   return (
     <button
       onClick={onClick}
-      disabled={disabled}
+      disabled={true}
       className={`flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-gray-700 dark:text-gray-300 transition hover:bg-gray-100 dark:hover:bg-slate-700 ${
         disabled ? "cursor-not-allowed opacity-50" : ""
       }`}
