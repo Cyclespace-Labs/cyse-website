@@ -54,7 +54,7 @@ const chainTokens: ChainToken[] = [
 
 export default function Chains() {
   return (
-    <div className='mx-auto h-full w-full py-10 sm:py-16 md:py-20 lg:py-60 font-sans'>
+    <div className='mx-auto h-full w-full py-30 sm:py-30 md:py-30 lg:py-60 font-sans'>
         <main className='justify-center px-4 sm:px-8 md:px-20 lg:px-[clamp(10rem,15vw,17.5rem)]'>
             <div className='w-full h-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12'>
               <div className='gap-3 sm:gap-4 md:gap-5 flex flex-col'>

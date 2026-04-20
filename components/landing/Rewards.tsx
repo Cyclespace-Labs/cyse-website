@@ -52,12 +52,12 @@ export default function Rewards() {
       <main className="px-4 sm:px-8 md:px-16 lg:px-[clamp(15rem,15vw,20rem)]">
         <div className="flex h-full w-full items-center justify-center">
           <h1
-            className="max-w-xl text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight
+            className="max-w-4xl text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight
               bg-linear-to-b from-black via-slate-800 to-slate-700
               dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400
               bg-clip-text text-transparent"
           >
-            Trade. Earn. Repeat. Grow Your Stack.
+            Maximize Your Returns: Multi-Layered Rewards & Trading Incentives
           </h1>
         </div>
 
@@ -125,7 +125,7 @@ export default function Rewards() {
                     height={2000}
                     width={2000}
                     quality={100}
-                    className="relative left-40 sm:left-40 md:left-40 top-25 sm:top-25 md:top-30 z-1 h-38 w-38 sm:h-38 sm:w-38 md:h-50 md:w-50 object-cover drop-shadow-2xl"
+                    className="relative left-40 sm:left-40 md:left-40 top-25 sm:top-25 md:top-30 z-1 h-38 w-38 sm:h-38 sm:w-38 md:h-50 md:w-50 object-cover drop-shadow-2xl drop-shadow-black"
                     priority
                     referrerPolicy="no-referrer"
                   />

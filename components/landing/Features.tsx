@@ -44,16 +44,16 @@ export default function Features() {
     <div className='w-full h-full mx-auto justify-center flex py-20 pb-30'>
         <main className='justify-center flex flex-col w-7xl h-full'>
             <div className='w-full h-full justify-center items-center flex pb-5'>
-                <h1 className='text-xl md:text-4xl font-bold text-center w-sm md:w-xl
+                <h1 className='text-xl md:text-4xl font-bold text-center w-xs md:w-4xl
                     bg-linear-to-b from-black via-zinc-800 to-zinc-500
                     dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400
                     leading-tight mb-6 bg-clip-text text-transparent'
                 >
-                    Trade Perpetuals. Stake. Earn Vault Yield.
+                    Power Your Trading Journey: Advanced Perpetuals, Smart Staking & Vault Rewards
                 </h1>
             </div>
 
-            <div className='flex flex-col md:flex-row w-full h-full justify-center gap-5 px-10 md:px-0 '>
+            <div className='flex flex-col md:flex-row w-full h-full justify-center gap-5 px-20 md:px-0 '>
 
                 <div className='flex flex-col gap-5 w-full md:w-300 h-full justify-center'>
                     <Card className="relative h-full w-full gap-1 overflow-hidden leading-tight">

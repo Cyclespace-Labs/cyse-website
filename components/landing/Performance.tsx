@@ -62,7 +62,7 @@ export default function Performance() {
                     </div>
                 </div>
                 
-                <div className='grid grid-cols-2 w-full h-full gap-2 sm:gap-3 mt-6 sm:mt-8'>
+                <div className='grid grid-cols-1 md:grid-cols-2  w-full h-full gap-2 sm:gap-3 mt-6 sm:mt-8'>
                     <div className='w-full h-full gap-2 sm:gap-3 space-y-2 grid grid-rows-3'>
                         {performanceTokens.slice(0, 3).map((token) => (
                             <PerformanceButton key={token.name} token={token} />

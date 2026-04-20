@@ -40,25 +40,33 @@ const AnimatedNavLink = ({
   className?: string;
 }) => {
   return (
-    <Link href={href} className={`relative group text-sm ${className}`}>
-      <span className="inline-flex items-center gap-1.5">
-        {children}
-        {soon && (
-          <Badge
-            variant="outline"
-            className="text-[10px] px-1.5 py-0 h-4 relative bottom-2 right-1 rounded-full bg-blue-500/30 text-blue-500 dark:bg-blue-500/30 dark:text-blue-500 border-none"
-          >
-            soon
-          </Badge>
-        )}
-      </span>
+    <motion.div
+      className="relative group text-sm"
+      initial={false}
+      whileHover="hover"
+    >
+      <Link href={href} className={`${className}`}>
+        <span className="inline-flex items-center hover:text-primary gap-1.5">
+          {children}
+          {soon && (
+            <Badge
+              variant="outline"
+              className="text-[10px] px-1.5 py-0 h-4 relative bottom-2 right-1 rounded-full bg-blue-500/30 text-blue-500 dark:bg-blue-500/30 dark:text-blue-500 border-none"
+            >
+              soon
+            </Badge>
+          )}
+        </span>
+      </Link>
       <motion.span
         className="absolute -bottom-1 left-0 h-[2px] bg-primary dark:bg-secondary rounded-full"
-        initial={{ width: "0%" }}
-        whileHover={{ width: "100%" }}
+        variants={{
+          hover: { width: "100%" },
+          rest: { width: "0%" }
+        }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       />
-    </Link>
+    </motion.div>
   );
 };
 
@@ -99,9 +107,9 @@ export default function Header() {
 
   return (
     <header className="sticky z-50 bg-transparent w-full inset-x-0 inset-y-7 dark:bg-transparent font-sans rounded-4xl">
-      <div className="max-w-fit mx-auto px-4 sm:px-4 md:px-8">
+      <div className="w-full mx-auto px-3 sm:px-3 md:px-3 lg:max-w-fit lg:mx-auto lg:px-8">
         <Menu setActive={setActive}>
-          <div className="grid grid-cols-2 md:grid-cols-3 items-center h-16 w-full gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 items-center h-16 w-full gap-4">
             {/* Logo */}
             <Link href="/" className="flex items-center justify-start space-x-1 md:space-x-2">
               <div className="p-0 rounded-lg transition-all duration-100 font-sans">
@@ -110,7 +118,7 @@ export default function Header() {
                   height="30"
                   viewBox="0 0 256 256"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="dark:hidden h-5 w-5 md:h-7 md:w-7 fill-primary stroke-primary"
+                  className="dark:hidden h-5 w-5 md:h-7 md:w-7 fill-blue-500 stroke-blue-500"
                 >
                   <path
                     d="M105 76H38.8466C38.8466 76 33.5426 87.8169 32.5112 92.1876C27.8222 112.059 26.8737 128.971 29.2698 149.33C31.4799 168.107 38.6993 183 38.6993 183H101.759C101.759 183 89.4948 164.979 86.2884 155.157C81.4264 140.265 81.6222 128.124 84.3731 111.613C87.4302 93.2635 105 76 105 76Z"
@@ -127,7 +135,7 @@ export default function Header() {
                   height="30"
                   viewBox="0 0 256 256"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="hidden dark:block fill-secondary stroke-secondary"
+                  className="hidden dark:block fill-blue-500 stroke-blue-500"
                 >
                   <path
                     d="M105 76H38.8466C38.8466 76 33.5426 87.8169 32.5112 92.1876C27.8222 112.059 26.8737 128.971 29.2698 149.33C31.4799 168.107 38.6993 183 38.6993 183H101.759C101.759 183 89.4948 164.979 86.2884 155.157C81.4264 140.265 81.6222 128.124 84.3731 111.613C87.4302 93.2635 105 76 105 76Z"
@@ -148,7 +156,8 @@ export default function Header() {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex justify-center gap-6">
+            <div className="hidden md:hidden lg:flex justify-center gap-6">
+              
               <AnimatedNavLink href="/spot">Spot</AnimatedNavLink>
               <AnimatedNavLink href="/futures" soon>Futures</AnimatedNavLink>
               <AnimatedNavLink href="/predictions" soon>Predictions</AnimatedNavLink>
@@ -156,19 +165,19 @@ export default function Header() {
 
               <MenuItem setActive={setActive} active={active} item="More">
                 <div className="gap-4 flex flex-col p-2">
-                  <DropdownItem href="/news" icon={<LucideNewspaper className="h-4 w-4 text-primary dark:text-secondary" />}>
+                  <DropdownItem href="/news" icon={<LucideNewspaper className="h-4 w-4 text-primary dark:text-primary" />}>
                     News
                   </DropdownItem>
-                  <DropdownItem href="/swap-exchange" icon={<ArrowUpDownIcon className="h-4 w-4 text-primary dark:text-secondary" />}>
+                  <DropdownItem href="/swap-exchange" icon={<ArrowUpDownIcon className="h-4 w-4 text-primary dark:text-primary" />}>
                     Swap
                   </DropdownItem>
-                  <DropdownItem href="/trading" icon={<Bot className="h-4 w-4 text-primary dark:text-secondary" />}>
+                  <DropdownItem href="/trading" icon={<Bot className="h-4 w-4 text-primary dark:text-primary" />}>
                     Stake
                   </DropdownItem>
-                  <DropdownItem href="/Dashboard" icon={<Newspaper className="h-4 w-4 text-primary dark:text-secondary" />}>
+                  <DropdownItem href="/Dashboard" icon={<Newspaper className="h-4 w-4 text-primary dark:text-primary" />}>
                     Docs
                   </DropdownItem>
-                  <DropdownItem href="/Edge" icon={<ClipboardCheck className="h-4 w-4 text-primary dark:text-secondary" />}>
+                  <DropdownItem href="/Edge" icon={<ClipboardCheck className="h-4 w-4 text-primary dark:text-primary" />}>
                     Whitepaper
                   </DropdownItem>
                 </div>
@@ -176,19 +185,19 @@ export default function Header() {
             </div>
 
             {/* Right side: CTA button + mobile menu button */}
-            <div className="flex items-center justify-end gap-4">
-              <Button className="hidden md:flex lg:flex text-xs rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-200">
+            <div className="flex items-center justify-end gap-4 md:justify-end lg:justify-end">
+              <Button className="hidden md:hidden lg:flex text-xs rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-200">
                 Launch app
                 <ExternalLinkIcon className="h-3 w-3 text-white" />
               </Button>
-              <div className="hidden w-fit h-fit md:flex">
+              <div className="hidden w-fit h-fit md:hidden lg:flex">
                 <ThemeToggle/>
               </div>
 
 
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 transition-colors"
+                className="md:flex lg:hidden p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 transition-colors"
               >
                 {isOpen ? (
                   <X className="h-6 w-6" />
@@ -207,9 +216,9 @@ export default function Header() {
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
-                className="md:hidden absolute border-t mt-2 px-2 mx-5 w-full justify-self-center bg-transparent"
+                className="md:flex lg:hidden absolute border-t mt-2 px-3 left-0 right-0 bg-transparent border-none"
               >
-                <div className="flex flex-col p-4 w-full space-y-4 bg-white dark:bg-black rounded-2xl shadow-lg overflow-hidden ">
+                <div className="flex flex-col p-8 w-full space-y-4 bg-white dark:bg-slate-950 rounded-2xl shadow-lg overflow-hidden drop-shadow-2xl">
                   {/* Main links */}
                   <div className="space-y-3 flex flex-col w-full">
                     <Link
@@ -225,26 +234,26 @@ export default function Header() {
                       Futures
                       <Badge
                         variant="outline"
-                        className="text-[10px] px-1.5 py-0 h-4 rounded-full bg-primary/10 text-primary dark:bg-secondary/20 dark:text-secondary border-none"
+                        className="text-[10px] px-1.5 py-0 h-4 rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary border-none"
                       >
                         soon
                       </Badge>
                     </Link>
                     <Link
                       href="/predictions"
-                      className="block text-base font-medium dark:text-zinc-200 text-zinc-800 hover:text-primary dark:hover:text-secondary transition-colors inline-flex items-center gap-1.5"
+                      className="block text-base font-medium dark:text-zinc-200 text-zinc-800 hover:text-primary dark:hover:text-primary transition-colors inline-flex items-center gap-1.5"
                     >
                       Predictions
                       <Badge
                         variant="outline"
-                        className="text-[10px] px-1.5 py-0 h-4 rounded-full bg-primary/10 text-primary dark:bg-secondary/20 dark:text-secondary border-none"
+                        className="text-[10px] px-1.5 py-0 h-4 rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary border-none"
                       >
                         soon
                       </Badge>
                     </Link>
                     <Link
                       href="/vault"
-                      className="block text-base font-medium dark:text-zinc-200 text-zinc-800 hover:text-primary dark:hover:text-secondary transition-colors"
+                      className="block text-base font-medium dark:text-zinc-200 text-zinc-800 hover:text-primary dark:hover:text-primary transition-colors"
                     >
                       Vault
                     </Link>
@@ -254,47 +263,47 @@ export default function Header() {
                   <div className="space-y-3 w-full">
                     <Link
                       href="/News"
-                      className="flex items-center gap-2 text-sm dark:text-zinc-300 text-zinc-700 hover:text-primary dark:hover:text-secondary transition-colors"
+                      className="flex items-center gap-2 text-sm dark:text-zinc-300 text-zinc-700 hover:text-primary dark:hover:text-primary transition-colors"
                     >
-                      <LucideNewspaper className="h-4 w-4 text-primary dark:text-secondary" />
+                      <LucideNewspaper className="h-4 w-4 text-primary dark:text-primary" />
                       Markets
                     </Link>
                     <Link
                       href="/swap-exchange"
-                      className="flex items-center gap-2 text-sm dark:text-zinc-300 text-zinc-700 hover:text-primary dark:hover:text-secondary transition-colors"
+                      className="flex items-center gap-2 text-sm dark:text-zinc-300 text-zinc-700 hover:text-primary dark:hover:text-primary transition-colors"
                     >
-                      <ArrowUpDownIcon className="h-4 w-4 text-primary dark:text-secondary" />
+                      <ArrowUpDownIcon className="h-4 w-4 text-primary dark:text-primary" />
                       Swap
                     </Link>
                     <Link
                       href="/trading"
-                      className="flex items-center gap-2 text-sm dark:text-zinc-300 text-zinc-700 hover:text-primary dark:hover:text-secondary transition-colors"
+                      className="flex items-center gap-2 text-sm dark:text-zinc-300 text-zinc-700 hover:text-primary dark:hover:text-primary transition-colors"
                     >
-                      <Bot className="h-4 w-4 text-primary dark:text-secondary" />
+                      <Bot className="h-4 w-4 text-primary dark:text-primary" />
                       Stake
                     </Link>
                     <Link
                       href="/Dashboard"
-                      className="flex items-center gap-2 text-sm dark:text-zinc-300 text-zinc-700 hover:text-primary dark:hover:text-secondary transition-colors"
+                      className="flex items-center gap-2 text-sm dark:text-zinc-300 text-zinc-700 hover:text-primary dark:hover:text-primary transition-colors"
                     >
-                      <Newspaper className="h-4 w-4 text-primary dark:text-secondary" />
+                      <Newspaper className="h-4 w-4 text-primary dark:text-primary" />
                       Docs
                     </Link>
                     <Link
                       href="/Edge"
-                      className="flex items-center gap-2 text-sm dark:text-zinc-300 text-zinc-700 hover:text-primary dark:hover:text-secondary transition-colors"
+                      className="flex items-center gap-2 text-sm dark:text-zinc-300 text-zinc-700 hover:text-primary dark:hover:text-primary transition-colors"
                     >
-                      <ClipboardCheck className="h-4 w-4 text-primary dark:text-secondary" />
+                      <ClipboardCheck className="h-4 w-4 text-primary dark:text-primary" />
                       Whitepaper
                     </Link>
                   </div>
 
                   {/* CTA button at the bottom */}
-                  <div className="flex flex-row gap-3">
+                  <div className="flex flex-row items-center gap-3">
                     <div>
                       <ThemeToggle/>
                     </div>
-                    <Button className="w-full mt-2 bg-blue-500 text-white hover:bg-blue-600 transition-colors rounded-lg">
+                    <Button className="w-fit bg-primary text-white hover:bg-primary/80 transition-colors rounded-lg">
                       Launch app
                       <ExternalLinkIcon className="h-3 w-3 text-white" />
                     </Button>
