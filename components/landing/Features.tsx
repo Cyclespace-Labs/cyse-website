@@ -53,7 +53,7 @@ export default function Features() {
                 </h1>
             </div>
 
-            <div className='flex flex-col md:flex-row w-full h-full justify-center gap-5 px-20 md:px-0 '>
+            <div className='flex flex-col md:flex-row w-full h-full justify-center gap-5 px-20 sm:px-10 md:px-0 '>
 
                 <div className='flex flex-col gap-5 w-full md:w-300 h-full justify-center'>
                     <Card className="relative h-full w-full gap-1 overflow-hidden leading-tight hover:scale-105 transition-transform duration-300">

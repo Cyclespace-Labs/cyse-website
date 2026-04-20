@@ -58,7 +58,7 @@ export default function Performance() {
                         <h2 className='text-xs sm:text-sm md:text-base max-w-md mt-2'>Execute trades in milliseconds with aggregated liquidity across all major chains.</h2>
                     </div>
                     <div className='w-full justify-start lg:justify-end flex'>
-                        <Button className='w-fit bg-blue-500 text-xs sm:text-sm'>Explore Markets</Button>
+                        <Button className='w-fit bg-primary text-white text-xs sm:text-sm'>Explore Markets</Button>
                     </div>
                 </div>
                 

@@ -219,7 +219,7 @@ export default function Header() {
                 exit={{ opacity: 0, height: 0 }}
                 className="md:flex lg:hidden absolute border-t mt-2 px-3 left-0 right-0 bg-transparent border-none"
               >
-                <div className="flex flex-col p-8 w-full space-y-4 bg-white dark:bg-slate-950 rounded-2xl shadow-lg overflow-hidden drop-shadow-2xl">
+                <div className="flex flex-col p-8 w-full space-y-4 bg-white dark:bg-slate-900 rounded-2xl shadow-lg overflow-hidden drop-shadow-2xl">
                   {/* Main links */}
                   <div className="space-y-3 flex flex-col w-full">
                     <Link
