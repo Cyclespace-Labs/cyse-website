@@ -311,21 +311,12 @@ export default function CommunityPosts() {
 
   return (
     <>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap');
-        *, *::before, *::after { box-sizing: border-box; }
-        @keyframes pulseglow {
-          0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(59,130,246,0.4)}
-          50%{opacity:.7;box-shadow:0 0 0 6px rgba(59,130,246,0)}
-        }
-      `}</style>
-
       <motion.section
         ref={sectionRef}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="relative w-full overflow-hidden bg-black font-sans"
+        className="relative w-full overflow-hidden bg-black font-sans bg-transparent"
         style={{ paddingTop: "clamp(40px,7vw,88px)", paddingBottom: "clamp(48px,8vw,100px)" }}
       >
         {/* Ambient background glows */}

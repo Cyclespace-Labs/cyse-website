@@ -113,6 +113,10 @@ export default function Home() {
         <LatestNews/>
       </div>
 
+      <div className="hidden bg-linear-to-b from-primary via-primary to-black">
+        <CommunityPosts/>
+      </div>
+
       <div className="">
         <Footer />
       </div>

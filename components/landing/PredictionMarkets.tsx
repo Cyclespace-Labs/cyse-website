@@ -238,9 +238,6 @@ const PredictionCardComponent = React.memo(({ card }: { card: PredictionCard }) 
       <CardContent className="p-4 h-full flex flex-col justify-between">
         {/* Title and Category */}
         <div>
-          <h3 className="text-sm font-bold text-zinc-900 dark:text-white leading-tight line-clamp-2 mb-2">
-            {card.title}
-          </h3>
           <div className="flex items-center gap-2 flex-wrap">
             <span className={`inline-block text-[10px] font-semibold uppercase tracking-wide ${getCategoryColor()}`}>
               {card.category}
@@ -255,6 +252,9 @@ const PredictionCardComponent = React.memo(({ card }: { card: PredictionCard }) 
               <span className="text-[10px] font-semibold text-amber-600 dark:text-amber-400">NEW</span>
             )}
           </div>
+          <h3 className="text-sm font-bold text-zinc-900 dark:text-white leading-tight line-clamp-2 mb-2">
+            {card.title}
+          </h3>
         </div>
 
         {/* Options */}

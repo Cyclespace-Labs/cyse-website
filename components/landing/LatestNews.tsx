@@ -200,10 +200,10 @@ export default function LatestNews() {
   const canRight = activeIndex < news.length - 1;
 
   return (
-    <section ref={sectionRef} className="w-full bg-white dark:bg-black py-20">
+    <section ref={sectionRef} className="w-full py-20">
       <div className="mb-10 px-6 md:px-70 justify-center w-full">
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">Weekly headlines</h2>
+          <h2 className="text-3xl font-bold text- dark:text-white md:text-4xl">Weekly headlines</h2>
 
           <div className="flex shrink-0 items-center gap-3">
             <div className="flex gap-2">
@@ -216,11 +216,11 @@ export default function LatestNews() {
 
       <div className="relative overflow-hidden">
         <div
-          className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-12 bg-linear-to-r from-white to-transparent dark:bg-linear-to-r dark:from-black dark:to-transparent"
+          className="pointer-events-none hidden absolute left-0 top-0 bottom-0 z-10 w-12 bg-linear-to-r from-white to-transparent dark:bg-linear-to-r dark:from-black dark:to-transparent"
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-12 bg-linear-to-l from-white to-transparent dark:bg-linear-to-l dark:from-black dark:to-transparent"
+          className="pointer-events-none hidden absolute right-0 top-0 bottom-0 z-10 w-12 bg-linear-to-l from-white to-transparent dark:bg-linear-to-l dark:from-black dark:to-transparent"
           aria-hidden
         />
 
