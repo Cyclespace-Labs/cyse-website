@@ -15,13 +15,14 @@ interface ChainButtonProps {
 }
 
 const ChainButton = ({ token }: ChainButtonProps) => (
-  <Button className='rounded-xl text-sm sm:text-base md:text-lg text-black dark:text-white justify-start p-3 sm:p-4 md:p-6 bg-zinc-200 dark:bg-slate-900'>
+  <Button className='group rounded-xl text-sm sm:text-base md:text-lg text-black dark:text-white justify-start p-3 sm:p-4 md:p-6 
+    bg-zinc-200 dark:bg-slate-900 hover:bg-primary dark:hover:bg-primary hover:text-white'>
     <Image
       src={token.icon}
       alt={token.name}
       quality={100}
-      width={16}
-      height={16}
+      width={22}
+      height={22}
       className="object-cover rounded-full shadow-2xl"
       priority
       referrerPolicy="no-referrer"
@@ -31,14 +32,15 @@ const ChainButton = ({ token }: ChainButtonProps) => (
       {token.soon && (
         <Badge
           variant="outline"
-          className="text-[10px] px-1.5 py-0 h-4 rounded-full bg-blue-500/30 text-blue-500 dark:bg-blue-500/30 dark:text-blue-500 border-none"
+          className="text-[10px] px-1.5 py-0 h-4 rounded-full bg-primary/30 text-primary dark:bg-primary/30 dark:text-primary border-none
+            group-hover:bg-white/40 dark:group-hover:bg-white/40 group-hover:text-white dark:group-hover:text-white transition-colors duration-200"
         >
           soon
         </Badge>
       )}
     </span>
     <div className='w-full justify-end flex'>
-      <ChevronRight className='text-right text-zinc-400' />
+      <ChevronRight className='text-right text-zinc-400 group-hover:text-white' />
     </div>
   </Button>
 );
@@ -66,7 +68,10 @@ export default function Chains() {
                       Access Multiple Chains. swap tokens with Ease.
                   </h1>
                   <h2 className='text-xs sm:text-sm md:text-base max-w-md'>Trade Directly from Your Wallet. Execute Trades. Retain Ownership.</h2>
-                  <Button className='w-fit bg-blue-500 text-white dark:text-white text-xs sm:text-sm'>Explore Markets</Button>
+                  <Button className='w-fit bg-primary hover:bg-primary/70  text-white dark:text-white text-xs sm:text-sm
+                   hover:scale-110 transition-transform duration-300'>
+                    Explore Markets
+                  </Button>
               </div>
                 
               <div className='grid grid-cols-2 w-full h-full gap-2 sm:gap-3'>

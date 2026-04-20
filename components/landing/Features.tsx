@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card'
 import Image from 'next/image'
-import { Check, Cpu} from 'lucide-react'
+import { CandlestickChartIcon, Check, CoinsIcon, Cpu} from 'lucide-react'
 import { Button } from '../ui/button'
 import { Badge } from '../ui/badge'
 import LogoLoop from '../LogoLoop'
@@ -60,11 +60,11 @@ export default function Features() {
                         {/* Background layer */}
                         <div className="absolute inset-0 z-0">
                             <Silk
-                            speed={5}
-                            scale={1}
-                            color="#0E76FD"
-                            noiseIntensity={1.5}
-                            rotation={0}
+                                speed={5}
+                                scale={1}
+                                color="#0E76FD"
+                                noiseIntensity={1.5}
+                                rotation={0}
                             />
                             <div className="absolute inset-0 bg-black/60" />
                             <div className="absolute inset-0 bg-linear-to-l from-[#0E76FD] via-[#0E76FD]/50 to-transparent" />
@@ -74,16 +74,16 @@ export default function Features() {
                         {/* Foreground content */}
                         <div className="relative z-10 flex h-full flex-col">
                             <CardHeader>
-                            <Image
-                                src="/assets/Vault.png"
-                                alt="cyclespace exchange vault"
-                                height={230}
-                                width={230}
-                                quality={100}
-                                className="relative left-35 -top-10 object-cover drop-shadow-2xl w-auto h-auto"
-                                priority
-                                referrerPolicy="no-referrer"
-                            />
+                                <Image
+                                    src="/assets/Vault.png"
+                                    alt="cyclespace exchange vault"
+                                    height={230}
+                                    width={230}
+                                    quality={100}
+                                    className="relative left-35 -top-10 object-cover drop-shadow-2xl drop-shadow-black w-auto h-auto hover:scale-110 transition-transform duration-300"
+                                    priority
+                                    referrerPolicy="no-referrer"
+                                />
                             </CardHeader>
 
                             <CardFooter className="mt-5 flex w-full flex-col space-y-2 px-6 text-left">
@@ -99,7 +99,7 @@ export default function Features() {
 
                     <Card className='h-full w-full bg-zinc-200 dark:bg-slate-900 dark:border-slate-800 border border-zinc-200 gap-5 ' >
                         <CardHeader className='flex items-center gap-2'>
-                            <div className='bg-blue-500 p-2 rounded-lg w-fit h-fit'><Cpu className='text-white w-5 h-5' /></div>
+                            <div className='bg-primary p-2 rounded-lg w-fit h-fit'><CandlestickChartIcon className='text-white w-5 h-5' /></div>
                             <div className='gap-0 space-y-0 flex flex-col'>
                                 <h2 className='text-lg font-bold w-fit h-fit'>Perps With No Expiry</h2>
                                 <h3 className='text-xs w-fit h-fit'>Leverage up to 50x on BTC, ETH, SOL</h3>
@@ -125,7 +125,7 @@ export default function Features() {
                         <CardContent className='text-xs justify-between w-full flex gap-15 relative z-10'>
                             <span>Stake your assets and earn a share of all trading fees. Passive income while you sleep.</span>
                             <div>
-                                <Button className='text-xs bg-blue-500 text-white'>Buy Now</Button>
+                                <Button className='text-xs bg-primary hover:bg-black text-white'>Buy Now</Button>
                             </div>
                         </CardContent>
                         <Image
@@ -198,7 +198,7 @@ export default function Features() {
                 <div className='flex flex-col gap-5 w-full h-full'>
                     <Card className='h-fit w-full bg-zinc-200 dark:bg-slate-900 gap-3 dark:border-slate-800 border border-zinc-200' >
                         <CardHeader className='flex items-center gap-2 w-full'>
-                            <div className='bg-blue-500 p-2 rounded-lg w-fit h-fit'><Cpu className='text-white w-5 h-5' /></div>
+                            <div className='bg-primary p-2 rounded-lg w-fit h-fit'><CoinsIcon className='text-white w-5 h-5' /></div>
                             <div className='gap-0 space-y-0 flex flex-col w-full'>
                                 <h2 className='text-lg font-bold'>Earn From Fees</h2>
                                 <h3 className='text-xs '>Vault stakers earn 70% of protocol revenue</h3>

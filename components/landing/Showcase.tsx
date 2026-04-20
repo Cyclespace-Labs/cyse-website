@@ -33,7 +33,7 @@ export default function Showcase() {
                         height={150}
                         width={150}
                         quality={100}
-                        className="object-cover relative left-15 z-10 rounded-xl shadow-2xl w-auto h-auto"
+                        className="object-cover relative left-15 z-10 rounded-xl shadow-2xl w-auto h-auto hover:scale-110 transition-transform duration-300"
                         priority
                         referrerPolicy="no-referrer"
                     />
@@ -44,7 +44,7 @@ export default function Showcase() {
                         height={350}
                         width={150}
                         quality={100}
-                        className="object-cover relative -top-20 rounded-xl shadow-2xl w-auto h-auto"
+                        className="object-cover relative -top-20 rounded-xl shadow-2xl w-auto h-auto hover:scale-110 transition-transform duration-300"
                         priority
                         referrerPolicy="no-referrer"
                     />
@@ -56,7 +56,7 @@ export default function Showcase() {
                         height={1000}
                         width={1000}
                         quality={100}
-                        className="object-cover relative rounded-sm md:rounded-xl shadow-2xl w-auto h-auto"
+                        className="object-cover relative rounded-sm md:rounded-xl shadow-2xl w-auto h-auto hover:scale-110 transition-transform duration-300"
                         priority
                         referrerPolicy="no-referrer"
                     />
@@ -66,7 +66,7 @@ export default function Showcase() {
                         height={1000}
                         width={1000}
                         quality={100}
-                        className="object-cover relative left-8 md:left-15 lg:left-15 -top-10 z-10 rounded-sm md:rounded-xl lg:rounded-xl shadow-2xl w-auto h-auto"
+                        className="object-cover relative left-8 md:left-15 lg:left-15 -top-10 z-10 rounded-sm md:rounded-xl lg:rounded-xl shadow-2xl w-auto h-auto hover:scale-110 transition-transform duration-300"
                         priority
                         referrerPolicy="no-referrer"
                     />
@@ -80,7 +80,7 @@ export default function Showcase() {
                     height={600}
                     width={1200}
                     quality={100}
-                    className="object-cover relative left-1/2 transform -translate-x-1/2 -translate-y-1 md:-translate-y-60  z-10 rounded-xl shadow-2xl w-auto h-auto"
+                    className="object-cover relative left-1/2 transform -translate-x-1/2 -translate-y-1 md:-translate-y-60  z-10 rounded-xl shadow-2xl w-auto h-auto hover:scale-110 transition-transform duration-300"
                     priority
                     referrerPolicy="no-referrer"
                 />

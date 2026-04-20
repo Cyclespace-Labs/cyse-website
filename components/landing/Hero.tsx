@@ -108,7 +108,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-block py-1 px-3 rounded-full bg-indigo-100 text-blue-600 text-xs font-bold tracking-wider uppercase mb-4 sm:mb-6">
+            <span className="inline-block py-1 px-3 rounded-full bg-primary/20 text-primary text-xs font-bold tracking-wider uppercase mb-4 sm:mb-6">
               Next-Gen Asset Management
             </span>
 
@@ -145,15 +145,17 @@ export default function Hero() {
 
             <div className="flex flex-row justify-between md:px-0 md:justify-start md:flex-row gap-3 sm:gap-4">
               <Button
-                className="px-4 sm:px-4 py-3 sm:py-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700
-                transition-all flex items-center justify-center gap-2 shadow-lg shadow-indigo-200 border-none group"
+                className="px-4 sm:px-4 py-3 sm:py-4 bg-primary text-white rounded-lg font-medium hover:bg-primary/80
+                transition-all flex items-center justify-center gap-2 shadow-lg shadow-slate-400 dark:shadow-slate-00 
+                border-none group hover:scale-105"
               >
                 Trade on Cyclespace
               </Button>
 
               <Button
-                className="px-4 sm:px-4 py-3 sm:py-4 bg-black text-white border-none rounded-lg
-                font-medium hover:bg-slate-800 dark:hover:bg-slate-700 transition-all flex items-center justify-center gap-2"
+                className="px-4 sm:px-4 py-3 sm:py-4 bg-black dark:bg-slate-900 text-white border-none rounded-lg
+                font-medium hover:bg-slate-800 dark:hover:bg-slate-700 transition-all flex items-center justify-center gap-2
+                shadow-lg shadow-slate-400 dark:shadow-slate-950 hover:scale-105"
               >
                 Build on CYSE
               </Button>

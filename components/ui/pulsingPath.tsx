@@ -43,7 +43,7 @@ export default function PulsingPath() {
                             height={230}
                             width={230}
                             quality={100}
-                            className="object-cover rounded-full relative"
+                            className="object-cover rounded-full relative hover:scale-110 transition-transform duration-300"
                             priority
                             referrerPolicy="no-referrer"
                         />
@@ -100,7 +100,7 @@ export default function PulsingPath() {
                             height={230}
                             width={230}
                             quality={100}
-                            className="object-cover rounded-full relative"
+                            className="object-cover rounded-full relative hover:scale-110 transition-transform duration-300"
                             priority
                             referrerPolicy="no-referrer"
                         />
@@ -151,14 +151,14 @@ export default function PulsingPath() {
             {/* middle logo*/}
             <div className="relative items-center justify-center bottom-12 md:bottom-15 ">
                 <div className="absolute flex left-1/2 transform -translate-x-1/2 z-10 justify-center items-center rounded-2xl md:rounded-4xl lg:rounded-4xl w-23 h-23 md:w-30 md:h-30 lg:w-30 lg:h-30">
-                    <div className="bg-blue-500 p-2.5  md:p-5 lg:p-5 rounded-xl md:rounded-3xl lg:rounded-3xl">
+                    <div className="bg-blue-500 p-2.5  md:p-5 lg:p-5 rounded-xl md:rounded-3xl lg:rounded-3xl hover:scale-110 transition-transform duration-300">
                         <Image
                             src="/logo_white.svg"
                             alt="cyclespace exchange vault"
                             height={500}
                             width={500}
                             quality={100}
-                            className="object-cover w-8 h-8 md:w-15 md:h-15 lg:w-15 lg:h-15"
+                            className="object-cover w-8 h-8 md:w-15 md:h-15 lg:w-15 lg:h-15 "
                             priority
                             referrerPolicy="no-referrer"
                         />
@@ -183,7 +183,7 @@ export default function PulsingPath() {
                                     height={230}
                                     width={230}
                                     quality={100}
-                                    className="object-cover rounded-full relative"
+                                    className="object-cover rounded-full relative hover:scale-110 transition-transform duration-300"
                                     priority
                                     referrerPolicy="no-referrer"
                                 />
@@ -288,7 +288,7 @@ export default function PulsingPath() {
                                     height={230}
                                     width={230}
                                     quality={100}
-                                    className="object-cover rounded-full relative"
+                                    className="object-cover rounded-full relative hover:scale-110 transition-transform duration-300"
                                     priority
                                     referrerPolicy="no-referrer"
                                 />
@@ -350,7 +350,7 @@ export default function PulsingPath() {
                             height={230}
                             width={230}
                             quality={100}
-                            className="object-cover rounded-full relative"
+                            className="object-cover rounded-full relative hover:scale-110 transition-transform duration-300"
                             priority
                             referrerPolicy="no-referrer"
                         />
@@ -406,7 +406,7 @@ export default function PulsingPath() {
                             height={230}
                             width={230}
                             quality={100}
-                            className="object-cover rounded-full relative"
+                            className="object-cover rounded-full relative hover:scale-110 transition-transform duration-300"
                             priority
                             referrerPolicy="no-referrer"
                         />
