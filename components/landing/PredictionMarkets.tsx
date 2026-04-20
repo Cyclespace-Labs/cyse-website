@@ -224,83 +224,64 @@ const PredictionCardComponent = React.memo(({ card }: { card: PredictionCard }) 
     }
   };
 
+  const getCategoryBg = () => {
+    switch (card.category) {
+      case 'Sports': return 'bg-emerald-50 dark:bg-emerald-950';
+      case 'Crypto': return 'bg-orange-50 dark:bg-orange-950';
+      case 'Politics': return 'bg-blue-50 dark:bg-blue-950';
+      default: return 'bg-zinc-50 dark:bg-slate-800';
+    }
+  };
+
   return (
-    <Card className="w-[260px] h-[200px] py-2 bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-      <CardContent className="p-3 h-full flex flex-col">
-        {/* Header */}
-        <div className="flex items-start justify-between mb-2">
-          <div className="flex-1">
-            <div className="flex items-center gap-1.5 mb-1">
-              <span className={`text-[10px] font-semibold uppercase tracking-wide ${getCategoryColor()}`}>
-                {card.category}
+    <Card className={`w-[300px] md:w-[260px] h-[200px] py-2 bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow`}>
+      <CardContent className="p-4 h-full flex flex-col justify-between">
+        {/* Title and Category */}
+        <div>
+          <h3 className="text-sm font-bold text-zinc-900 dark:text-white leading-tight line-clamp-2 mb-2">
+            {card.title}
+          </h3>
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className={`inline-block text-[10px] font-semibold uppercase tracking-wide ${getCategoryColor()}`}>
+              {card.category}
+            </span>
+            {card.isLive && (
+              <span className="flex items-center gap-0.5 text-[10px] text-red-500 font-medium">
+                <span className="w-1 h-1 bg-red-500 rounded-full animate-pulse" />
+                LIVE
               </span>
-              {card.isLive && (
-                <span className="flex items-center gap-1 text-[9px] text-red-500 font-medium">
-                  <span className="w-1 h-1 bg-red-500 rounded-full animate-pulse" />
-                  LIVE
-                </span>
-              )}
-            </div>
-            <h3 className="text-xs font-semibold text-zinc-900 dark:text-white leading-tight line-clamp-2">
-              {card.title}
-            </h3>
+            )}
+            {card.isNew && (
+              <span className="text-[10px] font-semibold text-amber-600 dark:text-amber-400">NEW</span>
+            )}
           </div>
-          {card.image && (
-            <Image
-              src={card.image}
-              alt="token"
-              width={20}
-              height={20}
-              className="rounded-full ml-2 flex-shrink-0"
-            />
-          )}
         </div>
 
         {/* Options */}
-        <div className="flex-1 space-y-1.5">
+        <div className="space-y-2.5">
           {card.options.map((option, idx) => (
-            <div key={idx} className="flex items-center gap-2">
-              <span className="text-[10px] font-medium text-zinc-600 dark:text-slate-400 w-16 truncate">
-                {option.name}
-              </span>
-              
-              {/* Progress Bar */}
-              <div className="flex-1 h-4 bg-zinc-100 dark:bg-slate-800 rounded-full overflow-hidden relative">
-                <div
-                  className={`h-full rounded-full ${idx === 0 ? 'bg-emerald-500' : 'bg-rose-500'}`}
-                  style={{ width: `${option.probability}%` }}
-                />
-                <span className={`absolute inset-0 flex items-center justify-center text-[9px] font-bold ${idx === 0 ? 'text-white' : 'text-white'} drop-shadow`}>
-                  {option.probability}%
-                </span>
+            <div key={idx} className="flex items-center justify-between gap-3">
+              <div className="flex-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-[12px] font-semibold text-zinc-900 dark:text-white">
+                    {option.name}
+                  </span>
+                  <span className="text-[12px] font-bold text-zinc-900 dark:text-white">
+                    {option.probability}%
+                  </span>
+                </div>
               </div>
-
-              {/* Yes/No Buttons */}
-              <div className="flex gap-0.5 flex-shrink-0">
-                <Button
-                  size="sm"
-                  className={`h-4 px-1.5 text-[8px] font-semibold border-none rounded ${
-                    idx === 0 ? 'bg-emerald-500 text-white' : 'bg-zinc-200 text-zinc-600 dark:bg-slate-700 dark:text-slate-300'
-                  }`}
-                >
-                  Yes
-                </Button>
-                <Button
-                  size="sm"
-                  className={`h-4 px-1.5 text-[8px] font-semibold border-none rounded ${
-                    idx === 0 ? 'bg-zinc-200 text-zinc-600 dark:bg-slate-700 dark:text-slate-300' : 'bg-rose-500 text-white'
-                  }`}
-                >
-                  No
-                </Button>
+              <div className="flex gap-1 flex-shrink-0">
+                <span className="text-[9px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30 px-2 py-1 rounded">Yes</span>
+                <span className="text-[9px] font-semibold text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/30 px-2 py-1 rounded">No</span>
               </div>
             </div>
           ))}
         </div>
 
         {/* Footer */}
-        <div className="mt-auto pt border-t border-zinc-100 dark:border-slate-800 flex items-center justify-between text-[9px] text-zinc-400 dark:text-slate-500">
-          <div className="flex items-center gap-2">
+        <div className="mt-auto pt-2 border-t border-zinc-100 dark:border-slate-800 flex items-center justify-between text-[8px] text-zinc-500 dark:text-slate-400">
+          <div className="flex items-center gap-1.5">
             {card.endDate && <span>{card.endDate}</span>}
             {card.volume && <span>{card.volume}</span>}
           </div>
@@ -365,7 +346,7 @@ const PredictionMarkets = React.memo(() => {
 
   return (
     <div className="w-full py-16 md:py-24 font-sans justify-center">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 ">
         {/* Header */}
         {header}
 
@@ -378,9 +359,9 @@ const PredictionMarkets = React.memo(() => {
           <div className="absolute bottom-0 left-0 right-0 h-24 bg-linear-to-t from-white via-white/80 to-transparent z-10 pointer-events-none
               dark:from-black dark:via-black/80 dark:to-transparent" />
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-fit h-[500px] md:h-[600px] items-center overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 w-fit h-[500px] md:h-[600px] items-center overflow-hidden">
             {/* Column 1 - scrolls down */}
-            <div className="h-full">
+            <div className="h-full w-full ">
               <LogoLoop
                 logos={column1Items}
                 direction="down"

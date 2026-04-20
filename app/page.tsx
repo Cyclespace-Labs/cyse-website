@@ -15,7 +15,7 @@ import Header from "@/components/layout/Header";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white dark:bg-black">
+    <main className="min-h-screen bg-white dark:bg-black h-full">
       
       <Header />
       <Hero />
