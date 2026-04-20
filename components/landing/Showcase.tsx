@@ -56,7 +56,7 @@ export default function Showcase() {
                         height={1000}
                         width={1000}
                         quality={100}
-                        className="object-cover relative rounded-sm md:rounded-xl shadow-2xl h-25 w-15  md:h-65 md:w-38 lg:h-65 lg:w-38  "
+                        className="object-cover relative rounded-sm md:rounded-xl shadow-2xl w-auto h-auto"
                         priority
                         referrerPolicy="no-referrer"
                     />
@@ -66,7 +66,7 @@ export default function Showcase() {
                         height={1000}
                         width={1000}
                         quality={100}
-                        className="object-cover relative left-8 md:left-15 lg:left-15 -top-10 z-10 rounded-sm md:rounded-xl lg:rounded-xl shadow-2xl h-15 w-20  md:h-65 md:w-38 lg:h-25 lg:w-38"
+                        className="object-cover relative left-8 md:left-15 lg:left-15 -top-10 z-10 rounded-sm md:rounded-xl lg:rounded-xl shadow-2xl w-auto h-auto"
                         priority
                         referrerPolicy="no-referrer"
                     />

@@ -42,8 +42,8 @@ const performanceTokens: PerformanceToken[] = [
 
 export default function Performance() {
   return (
-    <div className='mx-auto h-full w-full py-8 sm:py-12 md:py-16 lg:py-20 font-sans'>
-        <main className='justify-center py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-8 md:px-16 lg:px-20 xl:px-70'>
+    <div className='mx-auto h-full w-full py-8 sm:py-12 md:py-16 lg:py-40 font-sans'>
+        <main className='justify-center py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-8 md:px-16 lg:px-[clamp(15rem,15vw,20rem)]'>
             <div className='w-full h-full grid grid-rows-1 gap-8 lg:gap-12'>
 
                 <div className='w-full gap-3 sm:gap-4 md:gap-5 flex flex-col lg:flex-row'>

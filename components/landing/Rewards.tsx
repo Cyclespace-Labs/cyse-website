@@ -49,7 +49,7 @@ const cardsData: CardData[] = [
 export default function Rewards() {
   return (
     <div className="mx-auto h-full w-full py-8 sm:py-10 md:py-12 lg:py-16">
-      <main className="px-4 sm:px-8 md:px-16 lg:px-20 xl:px-70">
+      <main className="px-4 sm:px-8 md:px-16 lg:px-[clamp(15rem,15vw,20rem)]">
         <div className="flex h-full w-full items-center justify-center">
           <h1
             className="max-w-xl text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight
@@ -105,7 +105,27 @@ export default function Rewards() {
                     height={2000}
                     width={2000}
                     quality={100}
-                    className="relative left-40 sm:left-40 md:left-48 top-25 sm:top-25 md:top-33 z-1 h-38 w-38 sm:h-38 sm:w-38 md:h-50 md:w-50 object-cover drop-shadow-2xl"
+                    className="absolute left-30 sm:left-30 md:left-52 md:top-32 top-25 sm:top-25  z-3 h-38 w-38 sm:h-38 sm:w-38 md:h-40 md:w-40 object-cover drop-shadow-2xl drop-shadow-black"
+                    priority
+                    referrerPolicy="no-referrer"
+                  />
+                  <Image
+                    src={card.imageSrc}
+                    alt={card.headerTitle}
+                    height={2000}
+                    width={2000}
+                    quality={100}
+                    className="absolute left-30 sm:left-30 md:left-60 md:top-40 top-25 sm:top-25  z-2 h-38 w-38 sm:h-38 sm:w-38 md:h-45 md:w-45 object-cover drop-shadow-2xl drop-shadow-black"
+                    priority
+                    referrerPolicy="no-referrer"
+                  />
+                  <Image
+                    src={card.imageSrc}
+                    alt={card.headerTitle}
+                    height={2000}
+                    width={2000}
+                    quality={100}
+                    className="relative left-40 sm:left-40 md:left-40 top-25 sm:top-25 md:top-30 z-1 h-38 w-38 sm:h-38 sm:w-38 md:h-50 md:w-50 object-cover drop-shadow-2xl"
                     priority
                     referrerPolicy="no-referrer"
                   />

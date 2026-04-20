@@ -33,6 +33,12 @@ export default async function News() {
 
   return (
       <div className="w-full min-h-screen dark:bg-black bg-zinc-100 flex flex-col">
+
+      {/* Ticker */}
+      <div>
+        
+      </div>
+
       {/* Ticker */}
       <div className="w-full flex justify-center items-center py-2 px-2 sm:px-4 lg:px-6">
         <div className="w-full">
