@@ -12,13 +12,13 @@ interface PerformanceButtonProps {
 }
 
 const PerformanceButton = ({ token }: PerformanceButtonProps) => (
-  <Button className='rounded-xl text-sm sm:text-base md:text-lg text-black dark:text-white justify-start p-3 sm:p-4 md:p-6 bg-zinc-200 dark:bg-slate-900'>
+  <Button className='rounded-lg md:rounded-xl text-sm sm:text-base md:text-lg text-black dark:text-white justify-start p-3 py-5 md:p-6 bg-zinc-200 dark:bg-slate-900'>
     <Image
       src={token.icon}
       alt={token.name}
       quality={100}
-      width={16}
-      height={16}
+      width={25}
+      height={25}
       className="object-cover rounded-full shadow-2xl"
       priority
       referrerPolicy="no-referrer"

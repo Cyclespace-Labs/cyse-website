@@ -65,7 +65,7 @@ export default function Rewards() {
           {cardsData.map((card) => (
             <Card
               key={card.id}
-              className="relative h-full w-full gap-1 overflow-hidden leading-tight"
+              className="relative h-full w-full gap-1 overflow-hidden leading-tight hover:scale-105 transition-transform duration-300"
             >
               {/* Header with icon */}
               <CardHeader className="z-1 flex w-full flex-row items-center justify-between gap-2 px-4 sm:px-5 md:px-6 text-left">
@@ -77,7 +77,7 @@ export default function Rewards() {
                     {card.headerSubtitle}
                   </h3>
                 </div>
-                <div className="h-fit w-fit rounded-lg bg-blue-950 p-1.5 sm:p-2">
+                <div className="h-fit w-fit rounded-lg bg-blue-950 p-1.5 sm:p-2 hover:scale-120 transition-transform duration-300">
                   {card.headerIcon || <ArrowUpRight className="h-5 w-5 sm:h-6 sm:w-6 text-blue-700" />}
                 </div>
               </CardHeader>
@@ -87,10 +87,10 @@ export default function Rewards() {
                 {/* Background layer */}
                 <div className="absolute inset-0 z-0">
                   <Silk
-                    speed={5}
+                    speed={15}
                     scale={1}
                     color="#0E76FD"
-                    noiseIntensity={1.5}
+                    noiseIntensity={2}
                     rotation={0}
                   />
                   <div className="absolute inset-0 bg-black/60" />
@@ -105,7 +105,8 @@ export default function Rewards() {
                     height={2000}
                     width={2000}
                     quality={100}
-                    className="absolute left-30 sm:left-30 md:left-52 md:top-32 top-25 sm:top-25  z-3 h-38 w-38 sm:h-38 sm:w-38 md:h-40 md:w-40 object-cover drop-shadow-2xl drop-shadow-black"
+                    className="relative left-50 top-7 md:left-60 md:top-7 z-3 h-25 w-25  md:h-40 md:w-40 
+                      object-cover drop-shadow-2xl drop-shadow-black hover:scale-90 transition-transform duration-300"
                     priority
                     referrerPolicy="no-referrer"
                   />
@@ -115,7 +116,8 @@ export default function Rewards() {
                     height={2000}
                     width={2000}
                     quality={100}
-                    className="absolute left-30 sm:left-30 md:left-60 md:top-40 top-25 sm:top-25  z-2 h-38 w-38 sm:h-38 sm:w-38 md:h-45 md:w-45 object-cover drop-shadow-2xl drop-shadow-black"
+                    className="relative left-35 top-15 md:left-35 md:top-18 z-2 h-30 w-30  md:h-45 md:w-45 
+                      object-cover drop-shadow-2xl drop-shadow-black hover:scale-90 transition-transform duration-300"
                     priority
                     referrerPolicy="no-referrer"
                   />
@@ -125,7 +127,8 @@ export default function Rewards() {
                     height={2000}
                     width={2000}
                     quality={100}
-                    className="relative left-40 sm:left-40 md:left-40 top-25 sm:top-25 md:top-30 z-1 h-38 w-38 sm:h-38 sm:w-38 md:h-50 md:w-50 object-cover drop-shadow-2xl drop-shadow-black"
+                    className="relative left-15 top-25 md:left-5 md:top-30 z-1 h-35 w-35 md:h-50 md:w-50 
+                      object-cover drop-shadow-2xl drop-shadow-black hover"
                     priority
                     referrerPolicy="no-referrer"
                   />

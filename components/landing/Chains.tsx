@@ -15,14 +15,14 @@ interface ChainButtonProps {
 }
 
 const ChainButton = ({ token }: ChainButtonProps) => (
-  <Button className='group rounded-xl text-sm sm:text-base md:text-lg text-black dark:text-white justify-start p-3 sm:p-4 md:p-6 
+  <Button className='group rounded-lg md:rounded-xl text-sm sm:text-base md:text-lg text-black dark:text-white justify-start p-3 py-5 md:p-6 
     bg-zinc-200 dark:bg-slate-900 hover:bg-primary dark:hover:bg-primary hover:text-white'>
     <Image
       src={token.icon}
       alt={token.name}
       quality={100}
-      width={22}
-      height={22}
+      width={25}
+      height={25}
       className="object-cover rounded-full shadow-2xl"
       priority
       referrerPolicy="no-referrer"
@@ -70,7 +70,7 @@ export default function Chains() {
                   <h2 className='text-xs sm:text-sm md:text-base max-w-md'>Trade Directly from Your Wallet. Execute Trades. Retain Ownership.</h2>
                   <Button className='w-fit bg-primary hover:bg-primary/70  text-white dark:text-white text-xs sm:text-sm
                    hover:scale-110 transition-transform duration-300'>
-                    Explore Markets
+                    Explore Chains
                   </Button>
               </div>
                 
