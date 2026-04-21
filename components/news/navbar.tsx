@@ -64,7 +64,7 @@ export default function Navbar() {
                     </Link>
                 </div>
 
-                <div className="flex gap-5 items-center text-sm">
+                <div className="flex gap-10 items-center text-sm">
                     <span>News</span>
                     <span>Research</span>
                     <span>Analysis</span>

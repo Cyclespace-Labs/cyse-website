@@ -73,7 +73,7 @@ export default async function News() {
         {/*Right-Section - Stacked Widgets */}
         <div className="w-full lg:w-72 xl:w-80 flex flex-col gap-2 min-h-[300px] lg:min-h-0 order-3 lg:order-3">
           {/* Featured Video */}
-          <div className="border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
+          <div className="hidden border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
             <VideoDisplay/>
           </div>
           {/* Research Hub */}
