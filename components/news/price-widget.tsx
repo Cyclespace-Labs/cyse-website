@@ -2,36 +2,45 @@
 
 import { TrendingUp, TrendingDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 interface PriceItem {
   symbol: string;
   name: string;
-  price: string;
+  price: number;
   change: number;
+  logo: string;
 }
 
 const topMovers: PriceItem[] = [
-  { symbol: 'BTC', name: 'Bitcoin', price: '$69,420.50', change: 2.34 },
-  { symbol: 'ETH', name: 'Ethereum', price: '$3,890.25', change: 1.85 },
-  { symbol: 'SOL', name: 'Solana', price: '$145.80', change: 5.67 },
-  { symbol: 'AVAX', name: 'Avalanche', price: '$42.15', change: -1.23 },
-  { symbol: 'LINK', name: 'Chainlink', price: '$18.90', change: 3.45 },
+  { symbol: 'BTC', name: 'Bitcoin', price: 69420.50, change: 2.34, logo: '/tokens/Bitcoin.svg' },
+  { symbol: 'ETH', name: 'Ethereum', price: 3890.25, change: 1.85, logo: '/tokens/Ethereum ETH.svg' },
+  { symbol: 'SOL', name: 'Solana', price: 145.80, change: 5.67, logo: '/tokens/Solana SOL.svg' },
+  { symbol: 'AVAX', name: 'Avalanche', price: 42.15, change: -1.23, logo: '/tokens/Avalanche.svg' },
+  { symbol: 'BNB', name: 'BNB', price: 567.89, change: 3.45, logo: '/tokens/Binance.svg' },
 ];
+
+function formatPrice(price: number): string {
+  if (price < 0.01) return price.toFixed(6);
+  if (price < 1) return price.toFixed(4);
+  if (price < 1000) return price.toFixed(2);
+  return price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
 
 export default function PriceWidget() {
   return (
     <div className='flex flex-col h-full w-full bg-white dark:bg-zinc-950'>
       {/* Header */}
-      <header className='flex flex-row gap-1 items-center justify-between px-3 py-3 border-b border-zinc-200 dark:border-zinc-800'>
-        <h1 className='font-semibold text-sm flex flex-row gap-2 items-center'> 
-          <span className="text-xs">📈</span>
+      <header className='flex flex-row gap-2 items-center justify-between px-4 py-4 border-b border-zinc-200 dark:border-zinc-800'>
+        <h1 className='font-bold text-base flex flex-row gap-2 items-center text-zinc-900 dark:text-zinc-100'> 
+          <TrendingUp className="w-5 h-5 text-primary" />
           <span>Top Movers</span>
         </h1>
-        <span className='text-[10px] text-zinc-500'>24h</span>
+        <span className='text-[11px] font-medium text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800 px-2.5 py-1 rounded-full'>24h</span>
       </header>
 
-      {/* Price Grid */}
-      <div className="grid grid-cols-1 gap-px bg-zinc-100 dark:bg-zinc-800">
+      {/* Price List */}
+      <div className="divide-y divide-zinc-100 dark:divide-zinc-800">
         {topMovers.map((item) => {
           const isPositive = item.change >= 0;
           const Icon = isPositive ? TrendingUp : TrendingDown;
@@ -39,32 +48,38 @@ export default function PriceWidget() {
           return (
             <div
               key={item.symbol}
-              className='flex items-center justify-between px-3 py-2.5 bg-white dark:bg-zinc-950 hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors cursor-pointer'
+              className='flex items-center justify-between px-4 py-3.5 hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors duration-200 cursor-pointer group'
             >
-              <div className='flex items-center gap-2'>
-                <div className="w-6 h-6 rounded-full bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-[10px] font-bold">
-                  {item.symbol[0]}
+              <div className='flex items-center gap-3 flex-1'>
+                <div className="w-8 h-8 rounded-full bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center flex-shrink-0 group-hover:bg-zinc-200 dark:group-hover:bg-zinc-700 transition-colors">
+                  <Image
+                    src={item.logo}
+                    alt={item.name}
+                    width={20}
+                    height={20}
+                    className="w-5 h-5 object-contain"
+                  />
                 </div>
-                <div>
-                  <p className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
+                <div className="min-w-0">
+                  <p className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
                     {item.symbol}
                   </p>
-                  <p className="text-[9px] text-zinc-500 dark:text-zinc-400">
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400">
                     {item.name}
                   </p>
                 </div>
               </div>
               
-              <div className='text-right'>
-                <p className="text-xs font-medium text-zinc-900 dark:text-zinc-100">
-                  {item.price}
+              <div className='text-right flex-shrink-0 ml-4'>
+                <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 tabular-nums">
+                  ${formatPrice(item.price)}
                 </p>
                 <p className={cn(
-                  "text-[9px] flex items-center justify-end gap-0.5",
+                  "text-xs font-semibold flex items-center justify-end gap-1 mt-0.5",
                   isPositive ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"
                 )}>
-                  <Icon className="w-2.5 h-2.5" />
-                  {isPositive ? '+' : ''}{item.change}%
+                  <Icon className="w-3.5 h-3.5" />
+                  {isPositive ? '+' : ''}{item.change.toFixed(2)}%
                 </p>
               </div>
             </div>

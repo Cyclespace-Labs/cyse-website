@@ -1,5 +1,4 @@
 import { simpleNewsCard } from '@/lib/interface';
-import { urlFor } from "@/sanity/lib/client";
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { ArrowUpRight, ArrowDownRight, Minus, Clock } from 'lucide-react';
@@ -51,25 +50,27 @@ async function getData(): Promise<simpleNewsCard[]> {
 }
 
 
-export default async function TrendingNews() {
+export default async function LatestNews() {
   const data: simpleNewsCard[] = await getData()
   console.log(data);
 
   return (
-    <div className='flex flex-col h-full w-full bg-white dark:bg-zinc-950'>
+    <div className='flex flex-col h-fit w-full bg-white dark:bg-zinc-950 font-sans'>
         <header className='flex flex-row gap-1 items-center justify-between px-3 py-3 border-b border-zinc-200 dark:border-zinc-800'>
-          <h1 className='font-semibold text-sm flex flex-row gap-2 items-center'> 
-            <Clock className="w-4 h-4 text-zinc-500" />
+          <h1 className='font-semibold text-sm flex flex-row gap-2 items-center'>
+            <div className='p-2 rounded-md bg-black'>
+              <Clock strokeWidth={2.5} className="w-4 h-4 text-white" />
+            </div> 
             <span>Latest Crypto News</span>
           </h1>
           <Link href="/news" className='text-xs text-zinc-500 hover:text-primary dark:hover:text-secondary transition-colors'>
             View all →
           </Link>
         </header>
-        <ScrollArea.Root className="h-full min-h-[400px] lg:min-h-0 w-full rounded-none" type="auto">
-          <ScrollArea.Viewport className="w-full h-full">
+        <ScrollArea.Root className="w-full rounded-none" type="auto">
+          <ScrollArea.Viewport className="w-full max-h-[800px]">
           <div className='flex flex-col'>
-          {data.slice(0, 8).map((post, idx) => {
+          {data.slice(0, 20).map((post, idx) => {
             const sentiment = getSentimentProps(post.impacts);
             const Icon = sentiment.icon;
             
@@ -103,8 +104,8 @@ export default async function TrendingNews() {
                       {post.title}
                     </h3>
                     
-                    {/* Description - hidden on very small screens */}
-                    <p className="mt-1 text-[10px] text-zinc-500 dark:text-zinc-400 line-clamp-1 hidden sm:block">
+                    {/* Description - same length as title */}
+                    <p className="mt-1 text-[10px] text-zinc-500 dark:text-zinc-400 line-clamp-2">
                       {post.smallDescription}
                     </p>
                   </div>
@@ -115,10 +116,10 @@ export default async function TrendingNews() {
           </div>
         </ScrollArea.Viewport>
         <ScrollArea.Scrollbar 
-          className="w-1.5 p-0.5 bg-zinc-100 hidden dark:bg-zinc-900 transition-colors duration-150 ease-out hover:bg-zinc-200 dark:hover:bg-zinc-800" 
+          className="w-2 p-0.5 bg-zinc-100 dark:bg-zinc-900 transition-colors duration-150 ease-out hover:bg-zinc-200 dark:hover:bg-zinc-800" 
           orientation="vertical"
         >
-          <ScrollArea.Thumb className="flex-1 bg-zinc-300 hidden dark:bg-zinc-600 rounded-full relative" />
+          <ScrollArea.Thumb className="flex-1 bg-zinc-400 dark:bg-zinc-600 rounded-full relative" />
         </ScrollArea.Scrollbar>
         <ScrollArea.Corner />
       </ScrollArea.Root>

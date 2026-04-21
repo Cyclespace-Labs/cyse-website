@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { BackButton } from '@/components/ui/backButton';
 
 import ResearchDisplay from "@/components/news/research-display";
-import RelatedNews from "@/components/news/related-news";
+import RelatedNews from "@/components/news/latest-news";
 import VideoDisplay from "@/components/news/video-display";
 import ResearchHub from "@/components/news/research-hub";
 import Newsletters from "@/components/news/newsletters";
@@ -20,6 +20,7 @@ import { portableTextComponents } from "@/components/news/PortableTextComponents
 import SEOHead from "@/components/news/SEOHead";
 import Header from "@/components/layout/Header";
 import { notFound } from 'next/navigation';
+import Navbar from "@/components/news/navbar";
 
 // Fix: GenerateMetadata needs to handle Promise params
 export async function generateMetadata({
@@ -183,6 +184,11 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         description={article.smallDescription}
         publishedAt={article.publishedAt}
       />
+
+      {/* nav */}
+      <div>
+        <Navbar />
+      </div>
       
       <div className="bg-white dark:bg-black min-h-screen">
         {/* Token Ticker */}

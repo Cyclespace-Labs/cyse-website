@@ -17,8 +17,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Tourney } from "next/font/google";
 import { Menu, MenuItem } from "../ui/navbar-menu";
 import { Button } from "../ui/button";
-import { Badge } from "../ui/badge"; // shadcn badge
-import { Separator } from "radix-ui";
+import { Badge } from "../ui/badge"; 
 import { ThemeToggle } from "../themeToggle";
 
 

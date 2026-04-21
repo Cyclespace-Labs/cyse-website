@@ -34,17 +34,13 @@ const TOKEN_CONFIGS = [
   { symbol: 'TRX', name: 'Tron', logo: '/tokens/Tron.svg' },
   { symbol: 'AVAX', name: 'Avalanche', logo: '/tokens/Avalanche.svg' },
   { symbol: 'UNI', name: 'Uniswap', logo: '/tokens/Uniswap UNI.svg' },
-  { symbol: 'LINK', name: 'Chainlink', logo: '/tokens/Chainlink LINK.svg' },
-  { symbol: 'ATOM', name: 'Cosmos', logo: '/tokens/Cosmos ATOM.svg' },
-  { symbol: 'LTC', name: 'Litecoin', logo: '/tokens/Litecoin LTC.svg' },
 ];
 
 const basePrices: Record<string, number> = {
   BTC: 67234.56, ETH: 3456.78, USDT: 1.00, BNB: 567.89,
   XRP: 0.6234, ADA: 0.4567, SOL: 145.67, DOT: 7.89,
   USDC: 1.00, MATIC: 0.89, DAI: 1.00, SHIB: 0.00002345,
-  TRX: 0.1234, AVAX: 34.56, UNI: 8.90, LINK: 15.67,
-  ATOM: 8.23, LTC: 78.90,
+  TRX: 0.1234, AVAX: 34.56, UNI: 8.90,
 };
 
 function formatPrice(price: number): string {

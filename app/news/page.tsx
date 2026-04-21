@@ -1,6 +1,6 @@
 import Header from "@/components/layout/Header";
 import NewsSection from "@/components/news/news-section";
-import RelatedNews from "@/components/news/related-news";
+import RelatedNews from "@/components/news/latest-news";
 import ResearchDisplay from "@/components/news/research-display";
 import VideoDisplay from "@/components/news/video-display";
 import ResearchHub from "@/components/news/research-hub";
@@ -9,7 +9,8 @@ import PressReleases from "@/components/news/press-releases";
 import PriceWidget from "@/components/news/price-widget";
 import TokenTicker from "@/components/TokenTicker";
 import { simpleNewsCard } from "@/lib/interface";
-import React from "react";
+import Navbar from "@/components/news/navbar";
+import LatestNews from "@/components/news/latest-news";
 
 export const revalidate = 30; // revalidate at most 30 seconds
 
@@ -32,31 +33,31 @@ export default async function News() {
   console.log(data);
 
   return (
-      <div className="w-full min-h-screen dark:bg-black bg-zinc-100 flex flex-col">
+      <div className="w-full min-h-screen dark:bg-black bg-zinc-100 flex gap-1 flex-col">
 
-      {/* Ticker */}
-      <div>
-        
+      {/* nav */}
+      <div className="w-full">
+        <Navbar />
       </div>
 
       {/* Ticker */}
-      <div className="w-full flex justify-center items-center py-2 px-2 sm:px-4 lg:px-6">
+      <div className="w-full flex justify-center items-center pt-1">
         <div className="w-full">
           <TokenTicker speed={40} />
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row justify-center mt-1 lg:mt-0 pb-1 gap-2 w-full px-2 sm:px-4 lg:px-6 flex-1">
+      <div className="flex flex-col lg:flex-row justify-center mt-1 lg:mt-0 pb-1 gap-1 w-full px-2 sm:px-4 lg:px-3 flex-1">
 
         {/*Left-Section - Stacked Widgets */}
         <div className="w-full lg:w-72 xl:w-80 flex flex-col gap-2 min-h-[300px] lg:min-h-0 order-2 lg:order-1">
           {/* Price Widget */}
-          <div className="border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
+          <div className="hidden border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
             <PriceWidget/>
           </div>
           {/* Latest News List */}
-          <div className="border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden flex-1">
-            <RelatedNews/>
+          <div className="border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
+            <LatestNews/>
           </div>
           {/* Press Releases */}
           <div className="border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">

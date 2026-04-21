@@ -22,7 +22,6 @@ import {
   PaginationPrevious,
   PaginationNext,
 } from "@/components/ui/pagination"; 
-import * as ScrollArea from '@radix-ui/react-scroll-area';
 
 
 interface NewsSectionProps {
@@ -101,10 +100,9 @@ export default function NewsSection({ data }: NewsSectionProps) {
   const skipLatestArticle = !selectedCategory && !searchQuery;
 
   return (
-    <div className="bg-white w-full dark:bg-black h-full ">
-      <ScrollArea.Root className="h-full w-full ">
-        <ScrollArea.Viewport className="min-h-[calc(100vh-200px)] w-full border border-zinc-200 dark:border-zinc-700 pb-4">
-          <div className="flex flex-col justify-between w-full items-start px-5 pt-4 gap-4">
+    <div className="bg-white w-full dark:bg-black h-full rounded-lg border border-zinc-200 dark:border-zinc-700">
+      <div className="w-full pb-4">
+        <div className="flex flex-col justify-between w-full items-start px-5 pt-4 gap-4">
             
             <div className="justify-between items-start gap-5 space-y-2 lg:space-y-0 flex flex-col lg:flex-row w-full">
               <h1 className="text-lg py-1 flex flex-row justify-between text-start text-zinc-500 font-semibold tracking-wide">
@@ -119,7 +117,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
               />
             </div>
 
-            <div className="w-full max-w-sm mb-5">
+            <div className="w-full max-w-full mb-5">
               <NewsFilter 
                 categories={categories} 
                 onFilterChange={handleFilterChange} 
@@ -340,16 +338,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
         </>
       )}
       </div>
-      </ScrollArea.Viewport>
-        <ScrollArea.Scrollbar 
-          className="w-1.5 p-0.5 bg-zinc-100 hidden dark:bg-zinc-900 transition-colors duration-150 ease-out hover:bg-zinc-200 dark:hover:bg-zinc-800" 
-          orientation="vertical"
-        >
-          <ScrollArea.Thumb className="flex-1 bg-zinc-300 hidden dark:bg-zinc-600 rounded-full relative" />
-        </ScrollArea.Scrollbar>
-        <ScrollArea.Corner />
-      </ScrollArea.Root>
-      
+      </div>
     </div>
   );
 }
