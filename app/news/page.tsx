@@ -11,6 +11,7 @@ import TokenTicker from "@/components/TokenTicker";
 import { simpleNewsCard } from "@/lib/interface";
 import Navbar from "@/components/news/navbar";
 import LatestNews from "@/components/news/latest-news";
+import BitcoinAdBanner from "@/components/news/bitcoin-ad-banner";
 
 export const revalidate = 30; // revalidate at most 30 seconds
 
@@ -36,8 +37,12 @@ export default async function News() {
       <div className="w-full min-h-screen dark:bg-black bg-zinc-100 flex gap-1 flex-col">
 
       {/* nav */}
-      <div className="w-full">
+      <div className="w-full sticky top-0 z-50">
         <Navbar />
+      </div>
+
+      <div className="w-full px-2 sm:px-4 lg:px-3">
+        <BitcoinAdBanner />
       </div>
       
       <div className="flex flex-col lg:flex-row justify-center mt-1 lg:mt-1 pb-1 gap-1 w-full px-2 sm:px-4 lg:px-3 flex-1">
