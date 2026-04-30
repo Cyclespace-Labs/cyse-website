@@ -96,7 +96,7 @@ const TokenCard = memo(function TokenCard({ token }: { token: TokenData }) {
 
   return (
     <div 
-      className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 min-w-fit shadow-sm"
+      className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white dark:bg-zinc-950 border over border-zinc-200 dark:border-zinc-800 min-w-fit shadow-sm"
       style={{ transform: 'translateZ(0)', willChange: 'transform' }}
     >
       <img
@@ -162,7 +162,7 @@ export function TokenTicker({ className, speed = 40 }: TokenTickerProps) {
   return (
     <div 
       className={cn(
-        "w-full overflow-hidden bg-zinc-50 dark:bg-zinc-950 ",
+        "w-full overflow-hidden  ",
         className
       )}
       style={{ contain: 'layout style paint' }}

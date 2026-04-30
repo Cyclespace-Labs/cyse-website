@@ -40,7 +40,7 @@ const AnimatedNavLink = ({
 }) => {
   return (
     <motion.div
-      className="relative group text-sm"
+      className="relative group text-sm tracking-tight font-semibold"
       initial={false}
       whileHover="hover"
     >

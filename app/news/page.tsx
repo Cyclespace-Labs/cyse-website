@@ -41,7 +41,7 @@ export default async function News() {
       </div>
 
       {/* Ticker */}
-      <div className="w-full flex justify-center items-center pt-1">
+      <div className="w-full flex justify-center items-center">
         <div className="w-full">
           <TokenTicker speed={40} />
         </div>
@@ -52,15 +52,15 @@ export default async function News() {
         {/*Left-Section - Stacked Widgets */}
         <div className="w-full lg:w-72 xl:w-80 flex flex-col gap-2 min-h-[300px] lg:min-h-0 order-2 lg:order-1">
           {/* Price Widget */}
-          <div className="hidden border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
+          <div className="hidden border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
             <PriceWidget/>
           </div>
           {/* Latest News List */}
-          <div className="border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
+          <div className="border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
             <LatestNews/>
           </div>
           {/* Press Releases */}
-          <div className="border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
+          <div className="border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
             <PressReleases/>
           </div>
         </div>

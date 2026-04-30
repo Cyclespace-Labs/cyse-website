@@ -5,11 +5,8 @@ export const revalidate = 30;
 
 export async function GET() {
   try {
-    const fourteenDaysAgo = new Date();
-    fourteenDaysAgo.setDate(fourteenDaysAgo.getDate() - 14);
-
     const query = `
-      *[_type == 'news' && publishedAt >= $date] | order(publishedAt desc) {
+      *[_type == 'news'] | order(publishedAt desc) {
         title,
         smallDescription,
         "currentSlug": slug.current,
@@ -24,7 +21,7 @@ export async function GET() {
       }
     `;
 
-    const data = await client.fetch(query, { date: fourteenDaysAgo.toISOString() });
+    const data = await client.fetch(query);
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
     console.error("Error fetching recent news:", error);

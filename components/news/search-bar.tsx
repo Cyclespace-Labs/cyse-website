@@ -28,8 +28,8 @@ export default function SearchBar({
   }, [query, onSearch]);
 
   return (
-    <div className={`relative w-full ${className ?? "max-w-md"}`}>
-      <SearchIcon className="absolute left-3 top-3 h-4 w-4 text-gray-500" />
+    <div className={`group relative w-full ${className ?? "max-w-md"}`}>
+      <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
       <Input
         type="search"
         placeholder={placeholder}
@@ -37,6 +37,8 @@ export default function SearchBar({
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
+      <span className="absolute right-3 top-1/2 -translate-y-1/2 bg-slate-200 dark:bg-zinc-700 group-hover:bg-slate-300 dark:group-hover:bg-zinc-600 text-slate-400
+      px-3 py-1 rounded-md text-[9px] font-medium">/</span>
     </div>
   );
 }

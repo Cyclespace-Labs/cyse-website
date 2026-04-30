@@ -11,7 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import BannerArticle from "./banner-article";
 import { cn } from "@/lib/utils";
 import { formatDate, isRecent } from "@/lib/date-utils";
-import { Filter, Globe, Newspaper, Search, Tag } from "lucide-react";
+import { ArrowBigRightIcon, ArrowLeft, ArrowRight, ArrowRightFromLine, Filter, Globe, Newspaper, Search, Tag } from "lucide-react";
 import SearchBar from "./search-bar";
 import NewsFilter from "./news-filter";
 import {
@@ -100,21 +100,19 @@ export default function NewsSection({ data }: NewsSectionProps) {
   const skipLatestArticle = !selectedCategory && !searchQuery;
 
   return (
-    <div className="bg-white w-full dark:bg-black h-full rounded-lg border border-zinc-200 dark:border-zinc-700">
+    <div className="bg-white w-full dark:bg-zinc-950 h-full rounded-lg border border-zinc-200 dark:border-zinc-800">
       <div className="w-full pb-4">
         <div className="flex flex-col justify-between w-full items-start px-5 pt-4 gap-4">
             
-            <div className="justify-between items-start gap-5 space-y-2 lg:space-y-0 flex flex-col lg:flex-row w-full">
+            <div className="justify-between items-center gap-5 space-y-2 lg:space-y-0 flex flex-col lg:flex-row w-full">
               <h1 className="text-lg py-1 flex flex-row justify-between text-start text-zinc-500 font-semibold tracking-wide">
                 <span className="flex flex-row gap-2 text-lg text-black dark:text-white font-bold">
-                  <p className="text-primary dark:text-secondary">Latest</p>Headlines
+                  <p className="text-primary dark:text-primary">Latest</p>Headlines
                 </span>
               </h1>
-
-              <SearchBar 
-                onSearch={setSearchQuery} 
-                placeholder="Search by title, category, or tags..." 
-              />
+              <Link href="/news" className='text-sm items-center font-semibold tracking-tight flex gap-2 text-zinc-900 hover:text-primary dark:hover:text-secondary transition-colors'>
+                View all <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
 
             <div className="w-full max-w-full mb-5">

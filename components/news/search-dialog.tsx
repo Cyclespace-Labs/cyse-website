@@ -63,10 +63,11 @@ export default function SearchDialog() {
       {/* Search Bar Button Trigger */}
       <button
         onClick={() => setIsOpen(true)}
-        className="flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100/70 dark:bg-zinc-800 text-sm text-gray-500 hover:bg-blue-200/70 dark:hover:bg-zinc-700 transition-colors w-full max-w-xs"
+        className="group flex items-center gap-2 px-4 py-2 h-8 rounded-full bg-slate-100 dark:bg-zinc-900 text-sm text-gray-500 hover:bg-slate-200 dark:hover:bg-zinc-700 transition-colors w-full max-w-xs"
       >
-        <Search className="h-4 w-4 shrink-0" />
-        <span className="flex-1 text-left truncate">Search news...</span>
+        <Search className="h-4 w-4 shrink-0 font-medium" />
+        <span className="flex-1 text-left truncate text-medium">Search</span>
+        <span className="bg-slate-200 dark:bg-zinc-800 group-hover:bg-slate-300 dark:group-hover:bg-zinc-600 text-slate-400 items-center justify-center px-3 py-2.5 flex h-full rounded-md text-[9px] font-medium">/</span>
       </button>
 
       <AnimatePresence>
@@ -114,14 +115,14 @@ export default function SearchDialog() {
                   <div className="text-center py-8 text-gray-500 text-sm">
                     {searchQuery.trim()
                       ? "No results found"
-                      : "No recent news in the past 14 days"}
+                      : "No articles available"}
                   </div>
                 ) : (
                   <div className="space-y-1">
                     <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-2 px-1">
                       {searchQuery.trim()
                         ? `Results (${filteredNews.length})`
-                        : "Recent News (14 days)"}
+                        : "Recent News"}
                     </p>
                     {filteredNews.map((post) => (
                       <Link
