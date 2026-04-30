@@ -162,7 +162,7 @@ export function TokenTicker({ className, speed = 40 }: TokenTickerProps) {
   return (
     <div 
       className={cn(
-        "w-full overflow-hidden bg-zinc-50 dark:bg-zinc-950 border-y border-zinc-200 dark:border-zinc-800",
+        "w-full overflow-hidden bg-zinc-50 dark:bg-zinc-950 ",
         className
       )}
       style={{ contain: 'layout style paint' }}

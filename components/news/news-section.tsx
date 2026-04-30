@@ -190,6 +190,9 @@ export default function NewsSection({ data }: NewsSectionProps) {
   </div>
       ) : (
         <>
+         
+        {/* Article Cards */}
+
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 justify-center py-2 px-3 sm:px-5 w-full">
           {currentArticles.map((post, idx) => (
             <Card key={idx} className="w-full p-3 m-0 justify-start items-start flex flex-col shadow border-none shadow-zinc-200 dark:shadow-zinc-900 h-full gap-2 bg-white dark:bg-zinc-900 ">
@@ -209,9 +212,9 @@ export default function NewsSection({ data }: NewsSectionProps) {
               </div>
               <CardContent className="mt-2 mb-2 justify-between w-full">
                 <Link href={`/article/${post.currentSlug}`} className="hover:text-primary dark:hover:text-secondary hover:underline ">
-                  <h3 className="text-sm tracking-tight font-semibold w-fit">{post.title}</h3>
+                  <h3 className="text-sm tracking-tight font-semibold line-clamp-2">{post.title}</h3>
                 </Link>
-                <p className="text-xs mt-1 text-gray-600 dark:text-gray-300 w-fit">
+                <p className="text-xs mt-1 text-gray-600 dark:text-gray-300 line-clamp-3">
                   {post.smallDescription}
                 </p>
 

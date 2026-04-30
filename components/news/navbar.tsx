@@ -3,6 +3,7 @@ import { Tourney } from "next/font/google";
 import { Button } from "../ui/button";
 import { ExternalLinkIcon } from "lucide-react";
 import { ThemeToggle } from "../themeToggle";
+import SearchDialog from "./search-dialog";
 
 
 const tourney = Tourney({
@@ -73,7 +74,10 @@ export default function Navbar() {
                 </div>
 
                 <div className="flex gap-2 items-center">
-                    <Button className="hidden md:hidden lg:flex text-xs rounded-lg bg-primary text-white hover:bg-black hover:text-white 
+                    <div className="hidden md:flex w-48 lg:w-56">
+                        <SearchDialog />
+                    </div>
+                    <Button className="hidden md:hidden lg:flex text-xs rounded-lg bg-primary text-white hover:bg-black hover:text-white
                         dark:hover:bg-slate-800 dark:hover:text-white transition-colors duration-200">
                         Launch app
                         <ExternalLinkIcon className="h-3 w-3 text-white" />

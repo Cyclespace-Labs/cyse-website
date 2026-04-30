@@ -8,11 +8,13 @@ import { SearchIcon } from "lucide-react";
 interface SearchBarProps {
   onSearch: (query: string) => void;
   placeholder?: string;
+  className?: string;
 }
 
-export default function SearchBar({ 
-  onSearch, 
-  placeholder = "Search news..." 
+export default function SearchBar({
+  onSearch,
+  placeholder = "Search news...",
+  className,
 }: SearchBarProps) {
   const [query, setQuery] = useState('');
 
@@ -26,7 +28,7 @@ export default function SearchBar({
   }, [query, onSearch]);
 
   return (
-    <div className="relative w-full max-w-md">
+    <div className={`relative w-full ${className ?? "max-w-md"}`}>
       <SearchIcon className="absolute left-3 top-3 h-4 w-4 text-gray-500" />
       <Input
         type="search"
