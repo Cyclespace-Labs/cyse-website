@@ -41,13 +41,13 @@ export default async function News() {
       </div>
 
       {/* Ticker */}
-      <div className="w-full flex justify-center items-center py-1">
+      <div className="w-full hidden flex justify-center items-center py-1">
         <div className="w-full">
           <TokenTicker speed={40} />
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row justify-center mt-1 lg:mt-0 pb-1 gap-1 w-full px-2 sm:px-4 lg:px-3 flex-1">
+      <div className="flex flex-col lg:flex-row justify-center mt-1 lg:mt-1 pb-1 gap-1 w-full px-2 sm:px-4 lg:px-3 flex-1">
 
         {/*Left-Section - Stacked Widgets */}
         <div className="w-full lg:w-72 xl:w-80 flex flex-col gap-2 min-h-[300px] lg:min-h-0 order-2 lg:order-1">

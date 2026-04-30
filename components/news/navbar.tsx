@@ -54,10 +54,10 @@ export default function Navbar() {
                             </Link>
                             <div className="absolute left-0 top-full pt-1 hidden group-hover:block z-50">
                                 <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg shadow-lg py-1 min-w-[160px]">
-                                    <Link href="/news?category=Markets" className="block px-4 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">Markets</Link>
-                                    <Link href="/news?category=Finance" className="block px-4 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">Finance</Link>
-                                    <Link href="/news?category=Tech" className="block px-4 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">Tech</Link>
-                                    <Link href="/news?category=Policy" className="block px-4 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">Policy</Link>
+                                    <Link href="/news/markets" className="block px-4 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">Markets</Link>
+                                    <Link href="/news/finance" className="block px-4 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">Finance</Link>
+                                    <Link href="/news/tech" className="block px-4 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">Tech</Link>
+                                    <Link href="/news/policy" className="block px-4 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">Policy</Link>
                                 </div>
                             </div>
                         </div>
