@@ -23,7 +23,7 @@ import {
   PaginationPrevious,
   PaginationNext,
 } from "@/components/ui/pagination"; 
-import TokenTicker from "../TokenTicker";
+import TokenDisplay from "./token-display";
 
 
 interface NewsSectionProps {
@@ -105,11 +105,11 @@ export default function NewsSection({ data }: NewsSectionProps) {
     <div className="bg-white w-full dark:bg-zinc-950 h-full rounded-lg border border-zinc-200 dark:border-zinc-800">
       <div className="w-full pb-4">
           <div className="flex flex-col justify-between w-full items-start px-5 pt-4 gap-4">
-        <div className="w-full flex justify-center items-center ">
-          <div className="w-6xl">
-            <TokenTicker speed={40} />
-          </div>
-        </div>
+            
+            <div className="w-full flex justify-center items-center ">
+              <TokenDisplay />
+            </div>
+
             <div className="justify-between items-center gap-5 space-y-2 lg:space-y-0 flex flex-col lg:flex-row w-full">
               <h1 className="text-lg py-1 flex flex-row justify-between text-start text-zinc-500 font-semibold tracking-wide">
                 <span className="flex flex-row gap-2 text-lg text-black dark:text-white font-bold">

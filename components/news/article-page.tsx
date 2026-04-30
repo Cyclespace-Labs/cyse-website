@@ -10,7 +10,7 @@ import VideoDisplay from "./video-display";
 import ResearchHub from "./research-hub";
 import Newsletters from "./newsletters";
 import PriceWidget from "./price-widget";
-import TokenTicker from "@/components/TokenTicker";
+import TokenDisplay from "./token-display";
 import { formatDate } from "@/lib/date-utils";
 import { KeyPoints } from "./KeyPoints";
 import { portableTextComponents } from "./PortableTextComponents";
@@ -60,7 +60,7 @@ export default function ArticlePage({ article }: ArticlePageProps) {
 
       <div className="bg-white dark:bg-black min-h-screen">
         <div className="w-full flex justify-center items-center py-2 px-2 sm:px-4 lg:px-6">
-          <TokenTicker speed={40} />
+          <TokenDisplay />
         </div>
 
         <div className="flex flex-col lg:flex-row justify-center mt-1 lg:mt-0 pb-1 gap-2 w-full px-2 sm:px-4 lg:px-6">
