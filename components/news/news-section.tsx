@@ -102,7 +102,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
   const skipLatestArticle = !selectedCategory && !searchQuery;
 
   return (
-    <div className="bg-white w-full dark:bg-zinc-950 h-full rounded-lg border border-zinc-200 dark:border-zinc-800">
+    <div className="bg-white w-full dark:bg-zinc-950 h-full rounded-lg border border-zinc-200 dark:border-zinc-800 p-2">
       <div className="w-full pb-4">
           <div className="flex flex-col justify-between w-full items-start px-5 pt-4 gap-4">
             
