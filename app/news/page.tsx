@@ -7,6 +7,7 @@ import ResearchHub from "@/components/news/research-hub";
 import Newsletters from "@/components/news/newsletters";
 import PressReleases from "@/components/news/press-releases";
 import PriceWidget from "@/components/news/price-widget";
+import TokenTicker from "@/components/TokenTicker";
 import { simpleNewsCard } from "@/lib/interface";
 import Navbar from "@/components/news/navbar";
 import LatestNews from "@/components/news/latest-news";

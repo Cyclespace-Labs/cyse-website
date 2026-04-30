@@ -23,7 +23,7 @@ import {
   PaginationPrevious,
   PaginationNext,
 } from "@/components/ui/pagination"; 
-import TokenDisplay from "./token-display";
+import TokenDisplay from "./tokenDisplay";
 
 
 interface NewsSectionProps {

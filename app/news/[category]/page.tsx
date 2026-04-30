@@ -1,7 +1,7 @@
 import { client, urlFor } from "@/sanity/lib/client";
 import { simpleNewsCard } from "@/lib/interface";
 import Navbar from "@/components/news/navbar";
-import TokenDisplay from "@/components/news/token-display";
+import TokenTicker from "@/components/TokenTicker";
 import LatestNews from "@/components/news/latest-news";
 import ResearchHub from "@/components/news/research-hub";
 import Newsletters from "@/components/news/newsletters";
@@ -108,8 +108,8 @@ export default async function CategoryPage({
   return (
     <div className="w-full min-h-screen dark:bg-black bg-zinc-100 flex flex-col">
       <Navbar />
-      <div className="w-full flex justify-center items-center py-1 px-2 sm:px-4 lg:px-3">
-        <TokenDisplay />
+      <div className="w-full flex justify-center items-center py-1">
+        <TokenTicker speed={40} />
       </div>
 
       <div className="flex flex-col lg:flex-row justify-center mt-1 lg:mt-0 pb-1 gap-1 w-full px-2 sm:px-4 lg:px-3 flex-1">
