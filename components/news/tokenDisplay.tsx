@@ -31,8 +31,7 @@ function formatPrice(price: number): string {
 
 export default function TokenDisplay() {
   const [prices, setPrices] = useState<TokenPrice[]>([]);
-  const [displayPrices, setDisplayPrices] = useState<TokenPrice[]>([]);
-  const [priceChanges, setPriceChanges] = useState<Record<string, number>>({});
+  const [baselinePrices, setBaselinePrices] = useState<Record<string, number>>({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -41,8 +40,17 @@ export default function TokenDisplay() {
         const response = await fetch("/api/token-prices");
         const data = await response.json();
         if (data.prices) {
+          // Set baseline prices on first load
+          setBaselinePrices((prev) => {
+            const newBaseline: Record<string, number> = { ...prev };
+            data.prices.forEach((price: TokenPrice) => {
+              if (!newBaseline[price.symbol]) {
+                newBaseline[price.symbol] = price.price;
+              }
+            });
+            return newBaseline;
+          });
           setPrices(data.prices);
-          setDisplayPrices(data.prices);
         }
       } catch (error) {
         console.error("Failed to fetch prices:", error);
@@ -52,48 +60,22 @@ export default function TokenDisplay() {
     }
 
     fetchPrices();
-    const interval = setInterval(fetchPrices, 5000); // Refresh every 5 seconds
+    const interval = setInterval(fetchPrices, 1000); // Refresh every 1 second
 
     return () => clearInterval(interval);
   }, []);
 
-  // Simulate live fluctuations between API updates
-  useEffect(() => {
-    if (prices.length === 0) return;
-
-    const fluctuationInterval = setInterval(() => {
-      setDisplayPrices((prev) =>
-        prev.map((tokenPrice) => {
-          const basePrice = prices.find((p) => p.symbol === tokenPrice.symbol)?.price || tokenPrice.price;
-          // Add small random fluctuation (-0.05% to +0.05%)
-          const fluctuation = basePrice * (Math.random() * 0.001 - 0.0005);
-          const newPrice = basePrice + fluctuation;
-          
-          // Calculate percentage change from previous display price
-          const prevPrice = prev.find((p) => p.symbol === tokenPrice.symbol)?.price || basePrice;
-          const percentChange = ((newPrice - prevPrice) / prevPrice) * 100;
-          
-          setPriceChanges((prevChanges) => ({
-            ...prevChanges,
-            [tokenPrice.symbol]: percentChange,
-          }));
-          
-          return {
-            ...tokenPrice,
-            price: newPrice,
-          };
-        })
-      );
-    }, 500); // Update every 500ms for live effect
-
-    return () => clearInterval(fluctuationInterval);
-  }, [prices]);
-
   return (
     <div className="w-full grid grid-cols-5 items-center justify-between gap-6 px-2 py-2 pb-3 border-b border-zinc-200 dark:border-zinc-800">
       {TOKEN_CONFIGS.map((token) => {
-        const tokenPrice = displayPrices.find((p) => p.symbol === token.symbol);
-        const percentChange = priceChanges[token.symbol] || 0;
+        const tokenPrice = prices.find((p: TokenPrice) => p.symbol === token.symbol);
+        const baselinePrice = baselinePrices[token.symbol];
+        
+        // Calculate percentage change from baseline price
+        let percentChange = 0;
+        if (baselinePrice && tokenPrice) {
+          percentChange = ((tokenPrice.price - baselinePrice) / baselinePrice) * 100;
+        }
         const isPositive = percentChange >= 0;
 
         return (
@@ -115,12 +97,12 @@ export default function TokenDisplay() {
                 <span className="text-[10px] text-zinc-400">Loading...</span>
               ) : tokenPrice ? (
                 <div className="flex items-center gap-1 min-w-[70px]">
-                  <span className="text-xs text-zinc-600 dark:text-zinc-400 font-sans font-semibold">
+                  <span className="text-xs text-zinc-600 dark:text-zinc-400 font-sans font-semibold transition-all duration-300 ease-out">
                     {formatPrice(tokenPrice.price)}
                   </span>
-                  {percentChange !== 0 && (
+                  {Math.abs(percentChange) > 0.001 && (
                     <span
-                      className={`text-xs font-mono ${
+                      className={`text-xs font-mono transition-all duration-300 ease-out ${
                         isPositive
                           ? "text-green-600 dark:text-green-400"
                           : "text-red-600 dark:text-red-400"

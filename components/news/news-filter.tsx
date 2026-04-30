@@ -15,8 +15,17 @@ export default function NewsFilter({
   onFilterChange: (category: string | null) => void;
   selectedCategory: string | null;
 }) {
+  // Default categories to show
+  const defaultCategories = ['Markets', 'Tech', 'Finance', 'Policy', 'Web3', 'Bitcoin'];
+  
   // Filter out the "Trending" category from the main news section
   const filteredCategories = categories.filter(category => category !== "Trending");
+  
+  // Ensure default categories are included and prioritized
+  const prioritizedCategories = [
+    ...defaultCategories.filter(cat => filteredCategories.includes(cat)),
+    ...filteredCategories.filter(cat => !defaultCategories.includes(cat))
+  ];
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [showLeftScroll, setShowLeftScroll] = useState(false);
   const [showRightScroll, setShowRightScroll] = useState(true);
@@ -60,15 +69,18 @@ export default function NewsFilter({
       <div className="flex lg:hidden w-full flex-col gap-3">
         {/* Filter label and clear button row */}
         <div className="flex items-center justify-between">
-          <p className="text-sm font-medium text-muted-foreground">Filter by:</p>
+          <div className="flex items-center gap-2">
+            <Filter className="w-4 h-4 text-zinc-600 dark:text-zinc-400" />
+            <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Filter</p>
+          </div>
           {selectedCategory && (
             <Button 
               variant="ghost"
               size="sm"
-              className="h-7 px-3 text-xs text-black dark:text-white border border-border/50 rounded-full hover:bg-primary dark:hover:bg-secondary"
+              className="h-7 px-3 text-xs font-medium text-zinc-600 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-700 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all"
               onClick={() => onFilterChange(null)}
             >
-              Clear filter
+              Clear
             </Button>
           )}
         </div>
@@ -80,7 +92,7 @@ export default function NewsFilter({
             <Button
               onClick={() => scroll('left')}
               size="icon"
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full shadow-lg bg-zinc-900 dark:bg-zinc-100 hover:bg-primary dark:hover:bg-secondary text-white dark:text-white transition-all"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full shadow-lg bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-700 text-zinc-900 dark:text-zinc-100 transition-all"
               aria-label="Scroll left"
             >
               <ChevronLeft className="h-4 w-4" />
@@ -90,19 +102,19 @@ export default function NewsFilter({
           {/* Categories container */}
           <div
             ref={scrollContainerRef}
-            className="flex gap-2 overflow-x-auto scrollbar-hide py-1"
+            className="flex gap-2 overflow-x-auto scrollbar-hide py-2"
             style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}
           >
-            <div className="flex gap-2 px-8">
+            <div className="flex gap-2 px-10">
               {/* All Categories button */}
               <Button
                 variant={!selectedCategory ? 'default' : 'outline'}
                 size="sm"
                 className={cn(
-                  'whitespace-nowrap rounded-full text-sm h-8 px-4 transition-all',
+                  'whitespace-nowrap rounded-full text-sm font-medium h-9 px-4 transition-all',
                   !selectedCategory 
-                    ? 'bg-primary dark:bg-secondary text-white dark:text-white shadow-md' 
-                    : 'hover:bg-primary/10 dark:hover:bg-secondary/10'
+                    ? 'bg-primary dark:bg-primary text-white shadow-md shadow-primary/20' 
+                    : 'bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600'
                 )}
                 onClick={() => onFilterChange(null)}
               >
@@ -110,16 +122,16 @@ export default function NewsFilter({
               </Button>
 
               {/* Category buttons */}
-              {filteredCategories.map((category) => (
+              {prioritizedCategories.map((category) => (
                 <Button
                   key={category}
                   variant={selectedCategory === category ? 'default' : 'outline'}
                   size="sm"
                   className={cn(
-                    'whitespace-nowrap rounded-full text-sm h-8 px-4 transition-all',
+                    'whitespace-nowrap rounded-full text-sm font-medium h-9 px-4 transition-all',
                     selectedCategory === category 
-                      ? 'bg-primary dark:bg-secondary text-white dark:text-white shadow-md' 
-                      : 'hover:bg-primary/10 dark:hover:bg-secondary/10'
+                      ? 'bg-primary dark:bg-primary text-white shadow-md shadow-primary/20' 
+                      : 'bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600'
                   )}
                   onClick={() => onFilterChange(category)}
                 >
@@ -134,7 +146,7 @@ export default function NewsFilter({
             <Button
               onClick={() => scroll('right')}
               size="icon"
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full shadow-lg bg-zinc-900 dark:bg-zinc-100 hover:bg-primary dark:hover:bg-secondary text-white dark:text-white transition-all"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full shadow-lg bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-700 text-zinc-900 dark:text-zinc-100 transition-all"
               aria-label="Scroll right"
             >
               <ChevronRight className="h-4 w-4" />
@@ -144,8 +156,11 @@ export default function NewsFilter({
       </div>
 
       {/* Desktop Layout - Horizontal */}
-      <div className="hidden lg:flex overflow-clip items-center gap-4">
-        <p className="text-sm font-medium text-muted-foreground whitespace-nowrap">Filter by:</p>
+      <div className="hidden lg:flex overflow-clip items-center gap-4 py-2">
+        <div className="flex items-center gap-2">
+          <Filter className="w-4 h-4 text-zinc-600 dark:text-zinc-400" />
+          <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 whitespace-nowrap">Filter</p>
+        </div>
         
         <div className="flex-1 relative">
           {/* Left scroll button */}
@@ -154,11 +169,11 @@ export default function NewsFilter({
             <Button
               onClick={() => scroll('left')}
                 size="icon"
-                className="absolute -left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full shadow-lg bg-zinc-900 dark:bg-zinc-100 hover:bg-primary dark:hover:bg-secondary text-white dark:text-white transition-all"
+                className="absolute -left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full shadow-lg bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-700 text-zinc-900 dark:text-zinc-100 transition-all"
                 aria-label="Scroll left"
               >
-                <ChevronLeft className="h-4 w-4" />
-              </Button>
+              <ChevronLeft className="h-4 w-4" />
+            </Button>
             )}
           </div>
 
@@ -174,10 +189,10 @@ export default function NewsFilter({
                 variant={!selectedCategory ? 'default' : 'outline'}
                 size="sm"
                 className={cn(
-                  'whitespace-nowrap rounded-full text-sm h-9 px-5 transition-all',
+                  'whitespace-nowrap rounded-full text-sm font-medium h-9 px-5 transition-all',
                   !selectedCategory 
-                    ? 'bg-primary dark:bg-secondary text-white dark:text-white shadow-md' 
-                    : 'hover:bg-primary/10 dark:hover:bg-secondary/10'
+                    ? 'bg-primary dark:bg-primary text-white shadow-md shadow-primary/20' 
+                    : 'bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600'
                 )}
                 onClick={() => onFilterChange(null)}
               >
@@ -185,17 +200,17 @@ export default function NewsFilter({
               </Button>
 
               {/* Category buttons */}
-              {filteredCategories.length > 0 ? (
-                filteredCategories.map((category) => (
+              {prioritizedCategories.length > 0 ? (
+                prioritizedCategories.map((category) => (
                   <Button
                     key={category}
                     variant={selectedCategory === category ? 'default' : 'outline'}
                     size="sm"
                     className={cn(
-                      'whitespace-nowrap rounded-full text-sm h-8 px-4 transition-all',
+                      'whitespace-nowrap rounded-full text-sm font-medium h-9 px-4 transition-all',
                       selectedCategory === category 
-                        ? 'bg-primary dark:bg-secondary text-white dark:text-white shadow-md' 
-                        : 'hover:bg-primary/10 dark:hover:bg-secondary/10'
+                        ? 'bg-primary dark:bg-primary text-white shadow-md shadow-primary/20' 
+                        : 'bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600'
                     )}
                     onClick={() => onFilterChange(category)}
                   >
@@ -217,12 +232,12 @@ export default function NewsFilter({
             <Button
               onClick={() => scroll('right')}
               size="icon"
-              className="absolute -right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full shadow-lg bg-zinc-900 dark:bg-zinc-100 hover:bg-primary dark:hover:bg-secondary text-white dark:text-black transition-all"
+              className="absolute -right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full shadow-lg bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-700 text-zinc-900 dark:text-zinc-100 transition-all"
               aria-label="Scroll right"
             >
               <ChevronRight className="h-4 w-4" />
             </Button>
-          )}
+            )}
           </div>
         </div>
 
@@ -232,10 +247,10 @@ export default function NewsFilter({
             <Button 
               variant="outline"
               size="sm"
-              className="h-9 px-4 rounded-full border-border/50 hover:bg-accent whitespace-nowrap transition-all"
+              className="h-9 px-4 rounded-full border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 whitespace-nowrap transition-all"
               onClick={() => onFilterChange(null)}
             >
-              Clear filter
+              Clear
             </Button>
           )}
         </div>

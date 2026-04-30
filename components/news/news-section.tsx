@@ -41,11 +41,20 @@ export default function NewsSection({ data }: NewsSectionProps) {
     setCurrentPage(1);
   }, [selectedCategory, searchQuery]);
   
+  // Default categories to always show
+  const defaultCategories = ['Markets', 'Tech', 'Finance', 'Policy', 'Web3', 'Bitcoin'];
+
   // Memoize categories to prevent unnecessary recalculations
   const categories = useMemo(() => {
-    return Array.from(
+    const dataCategories = Array.from(
       new Set(data.map(post => post.categoryName))
     ).filter(Boolean) as string[];
+    
+    // Always include default categories first, then add any additional categories from data
+    return [
+      ...defaultCategories,
+      ...dataCategories.filter(cat => !defaultCategories.includes(cat))
+    ];
   }, [data]);
 
   // Memoize filtered data for performance
@@ -104,7 +113,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
   return (
     <div className="bg-white w-full dark:bg-zinc-950 h-full rounded-lg border border-zinc-200 dark:border-zinc-800 p-2">
       <div className="w-full pb-4">
-          <div className="flex flex-col justify-between w-full items-start px-5 pt-4 gap-4">
+          <div className="flex flex-col justify-between w-full items-start px-5 pt-2 gap-4">
             
             <div className="w-full flex justify-center items-center ">
               <TokenDisplay />
@@ -121,7 +130,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
               </Link>
             </div>
 
-            <div className="w-full hidden max-w-full mb-5">
+            <div className="w-full mb-1">
               <NewsFilter 
                 categories={categories} 
                 onFilterChange={handleFilterChange} 
@@ -134,7 +143,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
       <div>
       {/* Banner for latest article - only show when no category and no search */}
       {showBanner && (
-        <div className="px-5 mt-3">
+        <div className="px-5">
           <BannerArticle post={latestArticle} />
         </div>
       )}
