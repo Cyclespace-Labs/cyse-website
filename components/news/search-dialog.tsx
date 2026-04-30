@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { urlFor } from "@/sanity/lib/client";
 import { simpleNewsCard } from "@/lib/interface";
+import { getArticleUrl } from "@/lib/article-url";
 
 function formatRelativeTime(dateString: string): string {
   if (!dateString) return "";
@@ -127,7 +128,7 @@ export default function SearchDialog() {
                     {filteredNews.map((post) => (
                       <Link
                         key={post.currentSlug}
-                        href={`/article/${post.currentSlug}`}
+                        href={getArticleUrl(post)}
                         onClick={() => setIsOpen(false)}
                         className="flex items-start gap-3 p-3 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors group"
                       >

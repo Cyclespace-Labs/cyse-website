@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Tourney } from "next/font/google";
 import { Button } from "../ui/button";
-import { ExternalLinkIcon } from "lucide-react";
+import { ExternalLinkIcon, ChevronDown } from "lucide-react";
 import { ThemeToggle } from "../themeToggle";
 import SearchDialog from "./search-dialog";
 
@@ -47,7 +47,20 @@ export default function Navbar() {
                         </span>
                     </Link>
                     <div className="flex gap-5 items-center text-sm font-semibold tracking-tight ">
-                        <Link href="/news" className="hover:bg-zinc-200 dark:hover:bg-zinc-800 px-3 py-2 rounded-sm">News</Link>
+                        <div className="relative group">
+                            <Link href="/news" className="flex items-center gap-1 hover:bg-zinc-200 dark:hover:bg-zinc-800 px-3 py-2 rounded-sm">
+                                News
+                                <ChevronDown className="h-3 w-3 opacity-60 transition-transform group-hover:rotate-180" />
+                            </Link>
+                            <div className="absolute left-0 top-full pt-1 hidden group-hover:block z-50">
+                                <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg shadow-lg py-1 min-w-[160px]">
+                                    <Link href="/news?category=Markets" className="block px-4 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">Markets</Link>
+                                    <Link href="/news?category=Finance" className="block px-4 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">Finance</Link>
+                                    <Link href="/news?category=Tech" className="block px-4 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">Tech</Link>
+                                    <Link href="/news?category=Policy" className="block px-4 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">Policy</Link>
+                                </div>
+                            </div>
+                        </div>
                         <Link href="/research" className="hover:bg-zinc-200 dark:hover:bg-zinc-800 px-3 py-2 rounded-sm">Research</Link>
                         <Link href="/analysis" className="hover:bg-zinc-200 dark:hover:bg-zinc-800 px-3 py-2 rounded-sm">Analysis</Link>
                         <Link href="/events" className="hover:bg-zinc-200 dark:hover:bg-zinc-800 px-3 py-2 rounded-sm">Events</Link>

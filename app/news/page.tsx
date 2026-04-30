@@ -41,7 +41,7 @@ export default async function News() {
       </div>
 
       {/* Ticker */}
-      <div className="w-full flex justify-center items-center">
+      <div className="w-full flex justify-center items-center py-1">
         <div className="w-full">
           <TokenTicker speed={40} />
         </div>

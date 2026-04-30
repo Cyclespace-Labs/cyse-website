@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import BannerArticle from "./banner-article";
 import { cn } from "@/lib/utils";
 import { formatDate, isRecent } from "@/lib/date-utils";
+import { getArticleUrl } from "@/lib/article-url";
 import { ArrowBigRightIcon, ArrowLeft, ArrowRight, ArrowRightFromLine, Filter, Globe, Newspaper, Search, Tag } from "lucide-react";
 import SearchBar from "./search-bar";
 import NewsFilter from "./news-filter";
@@ -209,7 +210,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
                 </div>
               </div>
               <CardContent className="mt-2 mb-2 justify-between w-full">
-                <Link href={`/article/${post.currentSlug}`} className="hover:text-primary dark:hover:text-secondary hover:underline ">
+                <Link href={getArticleUrl(post)} className="hover:text-primary dark:hover:text-secondary hover:underline ">
                   <h3 className="text-sm tracking-tight font-semibold line-clamp-2">{post.title}</h3>
                 </Link>
                 <p className="text-xs mt-1 text-gray-600 dark:text-gray-300 line-clamp-3">

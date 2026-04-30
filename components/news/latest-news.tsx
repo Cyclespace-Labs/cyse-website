@@ -3,7 +3,8 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { ArrowUpRight, ArrowDownRight, Minus, Clock } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { formatDate } from '@/lib/date-utils';
+import { formatDate } from "@/lib/date-utils";
+import { getArticleUrl } from "@/lib/article-url";
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 
 // Helper to get sentiment icon and color
@@ -77,7 +78,7 @@ export default async function LatestNews() {
             return (
               <Link 
                 key={idx} 
-                href={`/article/${post.currentSlug}`}
+                href={getArticleUrl(post)}
                 className='group px-3 py-3 border-b border-zinc-100 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors'
               >
                 <div className='flex items-start gap-2'>

@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from '@/lib/utils';
 import { Globe, Newspaper, NewspaperIcon, Tag } from 'lucide-react';
 import { formatDate, isRecent } from "@/lib/date-utils";
+import { getArticleUrl } from "@/lib/article-url";
 
 
 export default function BannerArticle({ post }: { post: simpleNewsCard }) {
@@ -31,7 +32,7 @@ export default function BannerArticle({ post }: { post: simpleNewsCard }) {
           <Badge className="w-fit mb-2 bg-primary dark:bg-secondary text-white dark:text-white ">
             Featured Story
           </Badge>
-          <Link href={`/article/${post.currentSlug}`} className="hover:text-primary dark:hover:text-secondary hover:underline transition-colors">
+          <Link href={getArticleUrl(post)} className="hover:text-primary dark:hover:text-secondary hover:underline transition-colors">
             <h2 className="text-2xl font-bold mb-2">{post.title}</h2>
           </Link>
           <p className="text-gray-600 dark:text-zinc-300 mb-4">{post.smallDescription}</p>
