@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Tourney } from "next/font/google";
 import { Button } from "../ui/button";
 import { ExternalLinkIcon, ChevronDown } from "lucide-react";
@@ -13,6 +16,14 @@ const tourney = Tourney({
 });
 
 export default function Navbar() {
+  const pathname = usePathname();
+
+  // Helper function to check if a path is active
+  const isActive = (path: string) => {
+    if (path === "/") return pathname === "/";
+    return pathname.startsWith(path);
+  };
+
   // Sample data for dropdowns - in production, this would come from an API
   const newsCards = [
     { title: "Bitcoin Surges Past $70,000", description: "BTC reaches new all-time high amid institutional demand", href: "/news/bitcoin-surges", category: "Markets", image: "" },
@@ -90,7 +101,11 @@ export default function Navbar() {
           </Link>
           <div className="flex gap-5 items-center text-sm font-semibold tracking-tight ">
             <div className="relative group">
-              <Link href="/news" className="flex items-center gap-1 hover:bg-zinc-200 dark:hover:bg-zinc-800 px-3 py-2 rounded-sm">
+              <Link href="/news" className={`flex items-center gap-1 px-3 py-2 rounded-sm border-b-2 transition-colors ${
+                isActive("/news") 
+                  ? "border-primary text-primary dark:text-primary bg-zinc-100 dark:bg-zinc-800" 
+                  : "border-transparent hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
+              }`}>
                 News
                 <ChevronDown className="h-3 w-3 opacity-60 transition-transform group-hover:rotate-180" />
               </Link>
@@ -117,7 +132,11 @@ export default function Navbar() {
               />
             </div>
             <div className="relative group">
-              <Link href="/research" className="flex items-center gap-1 hover:bg-zinc-200 dark:hover:bg-zinc-800 px-3 py-2 rounded-sm">
+              <Link href="/research" className={`flex items-center gap-1 px-3 py-2 rounded-sm border-b-2 transition-colors ${
+                isActive("/research") 
+                  ? "border-primary text-primary dark:text-primary bg-zinc-100 dark:bg-zinc-800" 
+                  : "border-transparent hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
+              }`}>
                 Research
                 <ChevronDown className="h-3 w-3 opacity-60 transition-transform group-hover:rotate-180" />
               </Link>
@@ -144,7 +163,11 @@ export default function Navbar() {
               />
             </div>
             <div className="relative group">
-              <Link href="/analysis" className="flex items-center gap-1 hover:bg-zinc-200 dark:hover:bg-zinc-800 px-3 py-2 rounded-sm">
+              <Link href="/analysis" className={`flex items-center gap-1 px-3 py-2 rounded-sm border-b-2 transition-colors ${
+                isActive("/analysis") 
+                  ? "border-primary text-primary dark:text-primary bg-zinc-100 dark:bg-zinc-800" 
+                  : "border-transparent hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
+              }`}>
                 Analysis
                 <ChevronDown className="h-3 w-3 opacity-60 transition-transform group-hover:rotate-180" />
               </Link>
@@ -171,7 +194,11 @@ export default function Navbar() {
               />
             </div>
             <div className="relative group">
-              <Link href="/events" className="flex items-center gap-1 hover:bg-zinc-200 dark:hover:bg-zinc-800 px-3 py-2 rounded-sm">
+              <Link href="/events" className={`flex items-center gap-1 px-3 py-2 rounded-sm border-b-2 transition-colors ${
+                isActive("/events") 
+                  ? "border-primary text-primary dark:text-primary bg-zinc-100 dark:bg-zinc-800" 
+                  : "border-transparent hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
+              }`}>
                 Events
                 <ChevronDown className="h-3 w-3 opacity-60 transition-transform group-hover:rotate-180" />
               </Link>
@@ -198,7 +225,11 @@ export default function Navbar() {
               />
             </div>
             <div className="relative group">
-              <Link href="/learn" className="flex items-center gap-1 hover:bg-zinc-200 dark:hover:bg-zinc-800 px-3 py-2 rounded-sm">
+              <Link href="/learn" className={`flex items-center gap-1 px-3 py-2 rounded-sm border-b-2 transition-colors ${
+                isActive("/learn") 
+                  ? "border-primary text-primary dark:text-primary bg-zinc-100 dark:bg-zinc-800" 
+                  : "border-transparent hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
+              }`}>
                 Learn
                 <ChevronDown className="h-3 w-3 opacity-60 transition-transform group-hover:rotate-180" />
               </Link>

@@ -110,7 +110,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
               <TokenDisplay />
             </div>
 
-            <div className="justify-between items-center gap-5 space-y-2 lg:space-y-0 flex flex-col lg:flex-row w-full">
+            <div className="justify-between hidden items-center gap-5 space-y-2 lg:space-y-0 flex flex-col lg:flex-row w-full">
               <h1 className="text-lg py-1 flex flex-row justify-between text-start text-zinc-500 font-semibold tracking-wide">
                 <span className="flex flex-row gap-2 text-lg text-black dark:text-white font-bold">
                   <p className="text-primary dark:text-primary">Latest</p>Headlines
@@ -121,7 +121,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
               </Link>
             </div>
 
-            <div className="w-full max-w-full mb-5">
+            <div className="w-full hidden max-w-full mb-5">
               <NewsFilter 
                 categories={categories} 
                 onFilterChange={handleFilterChange} 
@@ -134,7 +134,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
       <div>
       {/* Banner for latest article - only show when no category and no search */}
       {showBanner && (
-        <div className="px-5">
+        <div className="px-5 mt-3">
           <BannerArticle post={latestArticle} />
         </div>
       )}
