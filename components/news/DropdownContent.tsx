@@ -10,11 +10,13 @@ interface DropdownCard {
 
 interface DropdownContentProps {
   cards: DropdownCard[];
+  loading?: boolean;
+  comingSoon?: boolean;
   sectionLinks?: Array<{ label: string; href: string }>;
   featuredSections?: Array<{ title: string; href: string; card?: DropdownCard }>;
 }
 
-export default function DropdownContent({ cards, sectionLinks, featuredSections }: DropdownContentProps) {
+export default function DropdownContent({ cards, loading = false, comingSoon = false, sectionLinks, featuredSections }: DropdownContentProps) {
   return (
     <div className="fixed left-0 top-[56px] opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 -translate-y-2 transition-all duration-300 ease-out z-50 w-screen">
       <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-lg overflow-hidden">
@@ -37,34 +39,58 @@ export default function DropdownContent({ cards, sectionLinks, featuredSections 
 
           {/* Middle column - 3 cards */}
           <div className="col-span-6 grid grid-cols-3 gap-4">
-            {cards.slice(0, 3).map((card, index) => (
-              <Link
-                key={index}
-                href={card.href}
-                className="block bg-zinc-50 dark:bg-zinc-800 rounded-lg p-4 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors"
-              >
-                {card.image && (
-                  <div className="w-full h-24 mb-3 rounded-md overflow-hidden">
-                    <img
-                      src={card.image}
-                      alt={card.title}
-                      className="w-full h-full object-cover"
-                    />
+            {comingSoon ? (
+              // Coming soon state
+              <div className="col-span-3 flex items-center justify-center py-12">
+                <div className="text-center">
+                  <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-2">Coming Soon</p>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400">This section is under development</p>
+                </div>
+              </div>
+            ) : loading ? (
+              // Skeleton loading state
+              Array.from({ length: 3 }).map((_, index) => (
+                <div key={index} className="bg-zinc-50 dark:bg-zinc-800 rounded-lg p-4">
+                  <div className="w-full h-24 mb-3 rounded-md bg-zinc-200 dark:bg-zinc-700 animate-pulse"></div>
+                  <div className="h-3 w-16 bg-zinc-200 dark:bg-zinc-700 rounded mb-2 animate-pulse"></div>
+                  <div className="h-4 w-full bg-zinc-200 dark:bg-zinc-700 rounded mb-1 animate-pulse"></div>
+                  <div className="h-4 w-3/4 bg-zinc-200 dark:bg-zinc-700 rounded animate-pulse"></div>
+                </div>
+              ))
+            ) : cards.length > 0 ? (
+              cards.slice(0, 3).map((card, index) => (
+                <Link
+                  key={index}
+                  href={card.href}
+                  className="block bg-zinc-50 dark:bg-zinc-800 rounded-lg overflow-hidden hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors"
+                >
+                  {card.image && (
+                    <div className="w-full h-32 rounded-t-lg overflow-hidden">
+                      <img
+                        src={card.image}
+                        alt={card.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+                  <div className="p-3">
+                    {card.category && (
+                      <span className="text-[10px] text-primary dark:text-primary font-semibold uppercase tracking-wider">
+                        {card.category}
+                      </span>
+                    )}
+                    <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mt-2 line-clamp-2">
+                      {card.title}
+                    </h3>
                   </div>
-                )}
-                {card.category && (
-                  <span className="text-[10px] text-primary dark:text-primary font-semibold uppercase tracking-wider">
-                    {card.category}
-                  </span>
-                )}
-                <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mt-2 line-clamp-2">
-                  {card.title}
-                </h3>
-                <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-1 line-clamp-2">
-                  {card.description}
-                </p>
-              </Link>
-            ))}
+                </Link>
+              ))
+            ) : (
+              // Empty state
+              <div className="col-span-3 flex items-center justify-center py-12">
+                <p className="text-sm text-zinc-500 dark:text-zinc-400">No news available</p>
+              </div>
+            )}
           </div>
 
           {/* Right column - 2 featured sections with cards */}

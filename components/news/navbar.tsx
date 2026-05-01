@@ -4,10 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Tourney } from "next/font/google";
 import { Button } from "../ui/button";
+import { Badge } from "../ui/badge";
 import { ExternalLinkIcon, ChevronDown } from "lucide-react";
 import { ThemeToggle } from "../themeToggle";
 import SearchDialog from "./search-dialog";
 import DropdownContent from "./DropdownContent";
+import { useState, useEffect } from "react";
 
 
 const tourney = Tourney({
@@ -17,6 +19,48 @@ const tourney = Tourney({
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [newsData, setNewsData] = useState<any[]>([]);
+  const [loadingNews, setLoadingNews] = useState(true);
+  const [loadingResearch, setLoadingResearch] = useState(false);
+  const [loadingAnalysis, setLoadingAnalysis] = useState(false);
+  const [loadingEvents, setLoadingEvents] = useState(false);
+  const [loadingLearn, setLoadingLearn] = useState(false);
+
+  // Handle hover to trigger loading for specific sections
+  const handleNewsHover = () => {
+    if (!loadingNews && newsData.length === 0) {
+      setLoadingNews(true);
+      setTimeout(() => setLoadingNews(false), 500);
+    }
+  };
+
+  const handleResearchHover = () => {
+    if (!loadingResearch) {
+      setLoadingResearch(true);
+      setTimeout(() => setLoadingResearch(false), 500);
+    }
+  };
+
+  const handleAnalysisHover = () => {
+    if (!loadingAnalysis) {
+      setLoadingAnalysis(true);
+      setTimeout(() => setLoadingAnalysis(false), 500);
+    }
+  };
+
+  const handleEventsHover = () => {
+    if (!loadingEvents) {
+      setLoadingEvents(true);
+      setTimeout(() => setLoadingEvents(false), 500);
+    }
+  };
+
+  const handleLearnHover = () => {
+    if (!loadingLearn) {
+      setLoadingLearn(true);
+      setTimeout(() => setLoadingLearn(false), 500);
+    }
+  };
 
   // Helper function to check if a path is active
   const isActive = (path: string) => {
@@ -24,46 +68,41 @@ export default function Navbar() {
     return pathname.startsWith(path);
   };
 
-  // Sample data for dropdowns - in production, this would come from an API
-  const newsCards = [
-    { title: "Bitcoin Surges Past $70,000", description: "BTC reaches new all-time high amid institutional demand", href: "/news/bitcoin-surges", category: "Markets", image: "" },
-    { title: "Ethereum 2.0 Update Complete", description: "Major network upgrade improves scalability and security", href: "/news/ethereum-update", category: "Tech", image: "" },
-    { title: "Regulatory Framework Proposed", description: "New crypto regulations could reshape the industry", href: "/news/regulations", category: "Policy", image: "" },
-    { title: "DeFi TVL Hits $100 Billion", description: "Total value locked in decentralized finance reaches milestone", href: "/news/defi-tvl", category: "Finance", image: "" },
-    { title: "NFT Market Recovery", description: "Digital collectibles see renewed interest from collectors", href: "/news/nft-recovery", category: "Tech", image: "" },
-  ];
+  // Fetch news data
+  useEffect(() => {
+    async function fetchNews() {
+      try {
+        const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+        const res = await fetch(`${baseUrl}/api/news`, { cache: 'no-store' });
+        if (res.ok) {
+          const data = await res.json();
+          setNewsData(data);
+        }
+      } catch (error) {
+        console.error("Failed to fetch news:", error);
+      } finally {
+        setLoadingNews(false);
+      }
+    }
+    fetchNews();
+  }, []);
 
-  const researchCards = [
-    { title: "Crypto Market Analysis Q4", description: "Comprehensive analysis of cryptocurrency market trends", href: "/research/crypto-analysis", category: "Crypto" },
-    { title: "DeFi Protocol Security", description: "Deep dive into decentralized finance security measures", href: "/research/defi-security", category: "DeFi" },
-    { title: "NFT Utility Evolution", description: "Exploring new use cases for non-fungible tokens", href: "/research/nft-utility", category: "NFT" },
-    { title: "Web3 Infrastructure", description: "Building the decentralized web infrastructure", href: "/research/web3-infra", category: "Web3" },
-    { title: "Blockchain Scalability", description: "Solutions for scaling blockchain networks", href: "/research/scalability", category: "Web3" },
-  ];
+  // Filter news by categories
+  const newsCards = newsData
+    .filter(post => ['Markets', 'Tech', 'Policy'].includes(post.categoryName))
+    .slice(0, 5)
+    .map(post => ({
+      title: post.title,
+      description: post.smallDescription,
+      href: `/news/${post.slug}`,
+      category: post.categoryName,
+      image: post.titleImage
+    }));
 
-  const analysisCards = [
-    { title: "Market Trend Analysis", description: "Current market movements and technical indicators", href: "/analysis/market-trend", category: "Market" },
-    { title: "Technical Indicators Guide", description: "Essential technical analysis tools for traders", href: "/analysis/technical-guide", category: "Technical" },
-    { title: "On-Chain Data Insights", description: "Analyzing blockchain transaction patterns", href: "/analysis/onchain-insights", category: "On-Chain" },
-    { title: "Sentiment Analysis Report", description: "Market sentiment indicators and social metrics", href: "/analysis/sentiment-report", category: "Sentiment" },
-    { title: "Trading Volume Analysis", description: "Volume trends and liquidity analysis", href: "/analysis/volume", category: "Market" },
-  ];
-
-  const eventsCards = [
-    { title: "Blockchain Summit 2026", description: "Annual conference bringing together industry leaders", href: "/events/summit-2026", category: "Conferences" },
-    { title: "DeFi Workshop Series", description: "Learn about decentralized finance from experts", href: "/events/defi-workshop", category: "Webinars" },
-    { title: "Crypto Trading Bootcamp", description: "Intensive training for cryptocurrency traders", href: "/events/trading-bootcamp", category: "Upcoming" },
-    { title: "Web3 Developer Meetup", description: "Networking event for blockchain developers", href: "/events/web3-meetup", category: "Upcoming" },
-    { title: "NFT Art Exhibition", description: "Showcase of digital art from top creators", href: "/events/nft-exhibition", category: "Past Events" },
-  ];
-
-  const learnCards = [
-    { title: "Crypto for Beginners", description: "Introduction to cryptocurrency basics", href: "/learn/crypto-basics", category: "Beginners" },
-    { title: "Trading Strategies Guide", description: "Essential trading strategies for newcomers", href: "/learn/trading-guide", category: "Guides" },
-    { title: "Wallet Security Tutorial", description: "How to secure your digital assets", href: "/learn/wallet-security", category: "Tutorials" },
-    { title: "Blockchain Glossary", description: "Key terms and definitions in blockchain", href: "/learn/glossary", category: "Glossary" },
-    { title: "Smart Contract Basics", description: "Understanding smart contract fundamentals", href: "/learn/smart-contracts", category: "Tutorials" },
-  ];
+  const researchCards: any[] = [];
+  const analysisCards: any[] = [];
+  const eventsCards: any[] = [];
+  const learnCards: any[] = [];
 
   return (
     <header className="w-full">
@@ -100,159 +139,140 @@ export default function Navbar() {
             </span>
           </Link>
           <div className="flex gap-5 items-center text-sm font-semibold tracking-tight ">
-            <div className="relative group">
-              <Link href="/news" className={`flex items-center gap-1 px-3 py-2 rounded-sm border-b-2 transition-colors ${
+            <div className="relative group" onMouseEnter={handleNewsHover}>
+              <Link href="/news" className={`flex items-center gap-1 px-3 py-2 rounded-sm transition-colors ${
                 isActive("/news") 
-                  ? "border-primary text-primary dark:text-primary bg-zinc-100 dark:bg-zinc-800" 
-                  : "border-transparent hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
+                  ? "text-primary dark:text-primary bg-zinc-100 dark:bg-zinc-800" 
+                  : "hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
               }`}>
                 News
-                <ChevronDown className="h-3 w-3 opacity-60 transition-transform group-hover:rotate-180" />
               </Link>
               <DropdownContent 
                 cards={newsCards}
+                loading={loadingNews}
                 sectionLinks={[
                   { label: "Markets", href: "/news/markets" },
                   { label: "Finance", href: "/news/finance" },
                   { label: "Tech", href: "/news/tech" },
                   { label: "Policy", href: "/news/policy" },
                 ]}
-                featuredSections={[
-                  { 
-                    title: "Trending", 
-                    href: "/news/trending",
-                    card: { title: "Bitcoin Reaches $70K", description: "BTC hits new milestone", href: "/news/btc-70k", category: "Markets" }
-                  },
-                  { 
-                    title: "Editor's Pick", 
-                    href: "/news/editors-pick",
-                    card: { title: "DeFi Evolution", description: "The future of decentralized finance", href: "/news/defi-evolution", category: "Finance" }
-                  },
-                ]}
+                featuredSections={[]}
               />
             </div>
-            <div className="relative group">
-              <Link href="/research" className={`flex items-center gap-1 px-3 py-2 rounded-sm border-b-2 transition-colors ${
+            <div className="relative group" onMouseEnter={handleResearchHover}>
+              <Link href="/research" className={`flex items-center gap-1 px-3 py-2 rounded-sm transition-colors ${
                 isActive("/research") 
-                  ? "border-primary text-primary dark:text-primary bg-zinc-100 dark:bg-zinc-800" 
-                  : "border-transparent hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
+                  ? "text-primary dark:text-primary bg-zinc-100 dark:bg-zinc-800" 
+                  : "hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
               }`}>
-                Research
-                <ChevronDown className="h-3 w-3 opacity-60 transition-transform group-hover:rotate-180" />
+                <span className="inline-flex items-center gap-1.5">
+                  Research
+                  <Badge
+                    variant="outline"
+                    className="text-[10px] px-1.5 py-0 h-4 relative bottom-2 right-1 rounded-full bg-blue-500/30 text-blue-500 dark:bg-blue-500/30 dark:text-blue-500 border-none"
+                  >
+                    soon
+                  </Badge>
+                </span>
               </Link>
               <DropdownContent 
                 cards={researchCards}
+                loading={loadingResearch}
+                comingSoon={true}
                 sectionLinks={[
                   { label: "Crypto", href: "/research/crypto" },
                   { label: "DeFi", href: "/research/deFi" },
                   { label: "NFT", href: "/research/nft" },
                   { label: "Web3", href: "/research/web3" },
                 ]}
-                featuredSections={[
-                  { 
-                    title: "Latest Research", 
-                    href: "/research/latest",
-                    card: { title: "Q4 Market Analysis", description: "Comprehensive crypto market trends", href: "/research/q4-analysis", category: "Crypto" }
-                  },
-                  { 
-                    title: "Popular", 
-                    href: "/research/popular",
-                    card: { title: "DeFi Security Guide", description: "Best practices for DeFi safety", href: "/research/defi-security", category: "DeFi" }
-                  },
-                ]}
+                featuredSections={[]}
               />
             </div>
-            <div className="relative group">
-              <Link href="/analysis" className={`flex items-center gap-1 px-3 py-2 rounded-sm border-b-2 transition-colors ${
+            <div className="relative group" onMouseEnter={handleAnalysisHover}>
+              <Link href="/analysis" className={`flex items-center gap-1 px-3 py-2 rounded-sm transition-colors ${
                 isActive("/analysis") 
-                  ? "border-primary text-primary dark:text-primary bg-zinc-100 dark:bg-zinc-800" 
-                  : "border-transparent hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
+                  ? "text-primary dark:text-primary bg-zinc-100 dark:bg-zinc-800" 
+                  : "hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
               }`}>
-                Analysis
-                <ChevronDown className="h-3 w-3 opacity-60 transition-transform group-hover:rotate-180" />
+                <span className="inline-flex items-center gap-1.5">
+                  Analysis
+                  <Badge
+                    variant="outline"
+                    className="text-[10px] px-1.5 py-0 h-4 relative bottom-2 right-1 rounded-full bg-blue-500/30 text-blue-500 dark:bg-blue-500/30 dark:text-blue-500 border-none"
+                  >
+                    soon
+                  </Badge>
+                </span>
               </Link>
               <DropdownContent 
                 cards={analysisCards}
+                loading={loadingAnalysis}
+                comingSoon={true}
                 sectionLinks={[
                   { label: "Market", href: "/analysis/market" },
                   { label: "Technical", href: "/analysis/technical" },
                   { label: "On-Chain", href: "/analysis/on-chain" },
                   { label: "Sentiment", href: "/analysis/sentiment" },
                 ]}
-                featuredSections={[
-                  { 
-                    title: "Daily Analysis", 
-                    href: "/analysis/daily",
-                    card: { title: "Market Trend Today", description: "Current market movements", href: "/analysis/daily-trend", category: "Market" }
-                  },
-                  { 
-                    title: "Weekly Report", 
-                    href: "/analysis/weekly",
-                    card: { title: "On-Chain Insights", description: "Blockchain transaction patterns", href: "/analysis/weekly-onchain", category: "On-Chain" }
-                  },
-                ]}
+                featuredSections={[]}
               />
             </div>
-            <div className="relative group">
-              <Link href="/events" className={`flex items-center gap-1 px-3 py-2 rounded-sm border-b-2 transition-colors ${
+            <div className="relative group" onMouseEnter={handleEventsHover}>
+              <Link href="/events" className={`flex items-center gap-1 px-3 py-2 rounded-sm transition-colors ${
                 isActive("/events") 
-                  ? "border-primary text-primary dark:text-primary bg-zinc-100 dark:bg-zinc-800" 
-                  : "border-transparent hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
+                  ? "text-primary dark:text-primary bg-zinc-100 dark:bg-zinc-800" 
+                  : "hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
               }`}>
-                Events
-                <ChevronDown className="h-3 w-3 opacity-60 transition-transform group-hover:rotate-180" />
+                <span className="inline-flex items-center gap-1.5">
+                  Events
+                  <Badge
+                    variant="outline"
+                    className="text-[10px] px-1.5 py-0 h-4 relative bottom-2 right-1 rounded-full bg-blue-500/30 text-blue-500 dark:bg-blue-500/30 dark:text-blue-500 border-none"
+                  >
+                    soon
+                  </Badge>
+                </span>
               </Link>
               <DropdownContent 
                 cards={eventsCards}
+                loading={loadingEvents}
+                comingSoon={true}
                 sectionLinks={[
                   { label: "Upcoming", href: "/events/upcoming" },
                   { label: "Past Events", href: "/events/past" },
                   { label: "Webinars", href: "/events/webinars" },
                   { label: "Conferences", href: "/events/conferences" },
                 ]}
-                featuredSections={[
-                  { 
-                    title: "Featured Event", 
-                    href: "/events/featured",
-                    card: { title: "Blockchain Summit 2026", description: "Annual industry conference", href: "/events/summit-2026", category: "Conferences" }
-                  },
-                  { 
-                    title: "This Week", 
-                    href: "/events/this-week",
-                    card: { title: "DeFi Workshop", description: "Learn DeFi from experts", href: "/events/defi-workshop", category: "Webinars" }
-                  },
-                ]}
+                featuredSections={[]}
               />
             </div>
-            <div className="relative group">
-              <Link href="/learn" className={`flex items-center gap-1 px-3 py-2 rounded-sm border-b-2 transition-colors ${
+            <div className="relative group" onMouseEnter={handleLearnHover}>
+              <Link href="/learn" className={`flex items-center gap-1 px-3 py-2 rounded-sm transition-colors ${
                 isActive("/learn") 
-                  ? "border-primary text-primary dark:text-primary bg-zinc-100 dark:bg-zinc-800" 
-                  : "border-transparent hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
+                  ? "text-primary dark:text-primary bg-zinc-100 dark:bg-zinc-800" 
+                  : "hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
               }`}>
-                Learn
-                <ChevronDown className="h-3 w-3 opacity-60 transition-transform group-hover:rotate-180" />
+                <span className="inline-flex items-center gap-1.5">
+                  Learn
+                  <Badge
+                    variant="outline"
+                    className="text-[10px] px-1.5 py-0 h-4 relative bottom-2 right-1 rounded-full bg-blue-500/30 text-blue-500 dark:bg-blue-500/30 dark:text-blue-500 border-none"
+                  >
+                    soon
+                  </Badge>
+                </span>
               </Link>
               <DropdownContent 
                 cards={learnCards}
+                loading={loadingLearn}
+                comingSoon={true}
                 sectionLinks={[
                   { label: "Beginners", href: "/learn/beginners" },
                   { label: "Guides", href: "/learn/guides" },
                   { label: "Tutorials", href: "/learn/tutorials" },
                   { label: "Glossary", href: "/learn/glossary" },
                 ]}
-                featuredSections={[
-                  { 
-                    title: "Start Here", 
-                    href: "/learn/start",
-                    card: { title: "Crypto Basics", description: "Introduction to cryptocurrency", href: "/learn/crypto-basics", category: "Beginners" }
-                  },
-                  { 
-                    title: "Recommended", 
-                    href: "/learn/recommended",
-                    card: { title: "Wallet Security", description: "How to secure your assets", href: "/learn/wallet-security", category: "Tutorials" }
-                  },
-                ]}
+                featuredSections={[]}
               />
             </div>
           </div>
