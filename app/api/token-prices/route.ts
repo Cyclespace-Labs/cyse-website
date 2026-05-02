@@ -1,30 +1,15 @@
 import { NextResponse } from "next/server";
-
-// Pyth Network Hermes feed IDs for the 5 tokens
-const PYTH_FEED_IDS = {
-  BTC: "e62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43",
-  ETH: "ff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace",
-  BNB: "2f95862b045670cd22bee3114c39763a4a08beeb663b145d283c31d7d1101c4f",
-  TRX: "67aed5a24fdad045475e7195c98a98aea119c763f272d4523f5bac93a4f33c2b",
-  XRP: "ec5d399846a9209f3fe5881d70aae9268c94339ff9817e8d18ff19fa05eea1c8",
-};
-
-const HERMES_URL = "https://hermes.pyth.network/v2/updates/price/latest";
+import axios from "axios";
+import { PYTH_FEED_IDS, HERMES_URL } from "@/lib/token-constants";
 
 export const revalidate = 10; // Revalidate every 10 seconds
 
 export async function GET() {
   try {
     const feedIds = Object.values(PYTH_FEED_IDS);
-    const response = await fetch(`${HERMES_URL}?ids[]=${feedIds.join("&ids[]=")}`, {
-      cache: "no-store",
-    });
+    const response = await axios.get(`${HERMES_URL}?ids[]=${feedIds.join("&ids[]=")}`);
 
-    if (!response.ok) {
-      throw new Error(`Hermes API error: ${response.status}`);
-    }
-
-    const data = await response.json();
+    const data = response.data;
     
     // Parse the prices
     const prices = feedIds.map((feedId) => {

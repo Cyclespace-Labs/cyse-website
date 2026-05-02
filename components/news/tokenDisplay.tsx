@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
+import { HermesClient } from "@pythnetwork/hermes-client";
+import { PYTH_FEED_IDS, HERMES_SSE_URL } from "@/lib/token-constants";
 
 interface TokenPrice {
   symbol: string;
@@ -33,6 +35,13 @@ export default function TokenDisplay() {
   const [prices, setPrices] = useState<TokenPrice[]>([]);
   const [baselinePrices, setBaselinePrices] = useState<Record<string, number>>({});
   const [loading, setLoading] = useState(true);
+  const [connectionStatus, setConnectionStatus] = useState<'disconnected' | 'connecting' | 'connected' | 'error' | 'fallback'>('disconnected');
+  const [useSSE, setUseSSE] = useState(true);
+  const hermesClientRef = useRef<HermesClient | null>(null);
+  const eventSourceRef = useRef<EventSource | null>(null);
+  const reconnectAttemptsRef = useRef(0);
+  const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const pollingIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     async function fetchPrices() {
@@ -40,7 +49,6 @@ export default function TokenDisplay() {
         const response = await fetch("/api/token-prices");
         const data = await response.json();
         if (data.prices) {
-          // Set baseline prices on first load
           setBaselinePrices((prev) => {
             const newBaseline: Record<string, number> = { ...prev };
             data.prices.forEach((price: TokenPrice) => {
@@ -59,14 +67,154 @@ export default function TokenDisplay() {
       }
     }
 
-    fetchPrices();
-    const interval = setInterval(fetchPrices, 1000); // Refresh every 1 second
+    async function connectSSE() {
+      setConnectionStatus('connecting');
+      const feedIds = Object.values(PYTH_FEED_IDS);
 
-    return () => clearInterval(interval);
-  }, []);
+      const client = new HermesClient(HERMES_SSE_URL);
+      hermesClientRef.current = client;
+
+      try {
+        const eventSource = await client.getPriceUpdatesStream(feedIds);
+        eventSourceRef.current = eventSource;
+
+        eventSource.onmessage = (event: MessageEvent) => {
+          try {
+            const data = JSON.parse(event.data);
+            const parsedPrices = data.parsed;
+            if (!parsedPrices) return;
+
+            const newPrices = parsedPrices.map((parsed: any) => {
+              const feedId = parsed.id.startsWith("0x") ? parsed.id.slice(2) : parsed.id;
+              const token = Object.keys(PYTH_FEED_IDS).find(
+                (key) => PYTH_FEED_IDS[key as keyof typeof PYTH_FEED_IDS] === feedId
+              );
+
+              if (!token) return null;
+
+              const price = Number(parsed.price.price) * Math.pow(10, parsed.price.expo);
+              const confidence = Number(parsed.price.conf) * Math.pow(10, parsed.price.expo);
+
+              return {
+                symbol: token,
+                price,
+                change: 0,
+                confidence,
+                publishTime: parsed.price.publish_time,
+              };
+            }).filter(Boolean);
+
+            if (newPrices.length > 0) {
+              setBaselinePrices((prev) => {
+                const newBaseline: Record<string, number> = { ...prev };
+                newPrices.forEach((price: TokenPrice) => {
+                  if (!newBaseline[price.symbol]) {
+                    newBaseline[price.symbol] = price.price;
+                  }
+                });
+                return newBaseline;
+              });
+              setPrices(newPrices);
+              setConnectionStatus('connected');
+              reconnectAttemptsRef.current = 0;
+              setLoading(false);
+            }
+          } catch (error) {
+            console.error("Error parsing SSE message:", error);
+          }
+        };
+
+        eventSource.onerror = (error: Event) => {
+          console.error("SSE connection error:", error);
+          setConnectionStatus('error');
+          eventSource.close();
+          reconnectWithBackoff();
+        };
+      } catch (error) {
+        console.error("Failed to create SSE connection:", error);
+        setConnectionStatus('error');
+        reconnectWithBackoff();
+      }
+    }
+
+    function reconnectWithBackoff() {
+      const maxRetries = 5;
+      const initialDelay = 1000;
+      const maxDelay = 30000;
+
+      if (reconnectAttemptsRef.current >= maxRetries) {
+        console.log("Max reconnection attempts reached, switching to polling fallback");
+        setConnectionStatus('fallback');
+        setUseSSE(false);
+        startPolling();
+        return;
+      }
+
+      const delay = Math.min(initialDelay * Math.pow(2, reconnectAttemptsRef.current), maxDelay);
+      reconnectAttemptsRef.current++;
+
+      console.log(`Reconnecting in ${delay}ms (attempt ${reconnectAttemptsRef.current}/${maxRetries})`);
+
+      reconnectTimeoutRef.current = setTimeout(() => {
+        connectSSE();
+      }, delay);
+    }
+
+    function startPolling() {
+      setConnectionStatus('fallback');
+      fetchPrices();
+      pollingIntervalRef.current = setInterval(fetchPrices, 1000);
+    }
+
+    function cleanup() {
+      if (eventSourceRef.current) {
+        eventSourceRef.current.close();
+        eventSourceRef.current = null;
+      }
+      if (reconnectTimeoutRef.current) {
+        clearTimeout(reconnectTimeoutRef.current);
+        reconnectTimeoutRef.current = null;
+      }
+      if (pollingIntervalRef.current) {
+        clearInterval(pollingIntervalRef.current);
+        pollingIntervalRef.current = null;
+      }
+    }
+
+    if (useSSE) {
+      connectSSE();
+    } else {
+      startPolling();
+    }
+
+    return cleanup;
+  }, [useSSE]);
 
   return (
-    <div className="w-full grid grid-cols-5 items-center justify-between gap-6 px-2 py-2 pb-3 border-b border-zinc-200 dark:border-zinc-800">
+    <div className="w-full flex flex-col gap-2 px-2 py-2 pb-3 border-b border-zinc-200 dark:border-zinc-800">
+      <div className="w-full flex items-center justify-between mb-1">
+        <div className="flex items-center gap-2">
+          <div
+            className={`w-2 h-2 rounded-full ${
+              connectionStatus === 'connected'
+                ? 'bg-green-500 animate-pulse'
+                : connectionStatus === 'connecting'
+                ? 'bg-yellow-500 animate-pulse'
+                : connectionStatus === 'fallback'
+                ? 'bg-orange-500'
+                : 'bg-red-500'
+            }`}
+          />
+          <span className="text-[10px] text-zinc-500 dark:text-zinc-400">
+            {connectionStatus === 'connected' && 'Live'}
+            {connectionStatus === 'connecting' && 'Connecting...'}
+            {connectionStatus === 'fallback' && 'Polling'}
+            {connectionStatus === 'error' && 'Error'}
+            {connectionStatus === 'disconnected' && 'Disconnected'}
+          </span>
+        </div>
+      </div>
+      <div className="w-full grid grid-cols-5 items-center justify-between gap-6">
       {TOKEN_CONFIGS.map((token) => {
         const tokenPrice = prices.find((p: TokenPrice) => p.symbol === token.symbol);
         const baselinePrice = baselinePrices[token.symbol];
@@ -120,6 +268,7 @@ export default function TokenDisplay() {
           </div>
         );
       })}
+    </div>
     </div>
   );
 }

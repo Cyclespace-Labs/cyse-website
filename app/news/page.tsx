@@ -40,6 +40,10 @@ export default async function News() {
       <div className="w-full sticky top-0 z-50">
         <Navbar />
       </div>
+
+      <div>
+        <TokenTicker />
+      </div>
       
       <div className="flex flex-col lg:flex-row justify-center mt-1 lg:mt-1 pb-1 gap-1 w-full px-2 sm:px-4 lg:px-3 flex-1">
 

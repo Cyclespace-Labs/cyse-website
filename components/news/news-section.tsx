@@ -115,7 +115,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
       <div className="w-full pb-4">
           <div className="flex flex-col justify-between w-full items-start px-5 pt-2 gap-4">
             
-            <div className="w-full flex justify-center items-center ">
+            <div className="w-full  hidden justify-center items-center ">
               <TokenDisplay />
             </div>
 
