@@ -71,7 +71,7 @@ export default function NewsFilter({
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Filter className="w-4 h-4 text-zinc-600 dark:text-zinc-400" />
-            <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Filter</p>
+            <p className="text-sm font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">Filter:</p>
           </div>
           {selectedCategory && (
             <Button 
