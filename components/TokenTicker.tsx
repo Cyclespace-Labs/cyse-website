@@ -4,7 +4,6 @@ import React, { useEffect, useRef, memo, useState } from 'react';
 import { LogoLoop, LogoItem } from './LogoLoop';
 import { TrendingUp, TrendingDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { HermesClient } from '@pythnetwork/hermes-client';
 import { PYTH_FEED_IDS, HERMES_SSE_URL } from '@/lib/token-constants';
 
 interface TokenData {
@@ -40,51 +39,44 @@ const TOKEN_CONFIGS = [
 // Global price store for all TokenCard instances (module-level variable, not a hook)
 const priceStore: Record<string, { price: number; change24h: number }> = {};
 
-function formatPrice(price: number): string {
-  if (price < 0.01) return price.toFixed(6);
-  if (price < 1) return price.toFixed(4);
-  if (price < 1000) return price.toFixed(2);
-  return price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+// Token-specific decimal places for accurate price formatting
+const TOKEN_DECIMALS: Record<string, number> = {
+  BTC: 2,
+  ETH: 2,
+  USDT: 2,
+  USDC: 2,
+  BNB: 2,
+  XRP: 4,
+  ADA: 4,
+  SOL: 2,
+  DOT: 4,
+  MATIC: 4,
+  SHIB: 8,
+  TRX: 4,
+  AVAX: 2,
+  UNI: 2,
+};
+
+function formatPrice(price: number, symbol: string): string {
+  const decimals = TOKEN_DECIMALS[symbol] || 2;
+  if (price >= 1000) {
+    return price.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+  }
+  return price.toFixed(decimals);
 }
 
-// DOM-based token card - zero React re-renders during animation
+// React state-based token card for reliable price updates
 const TokenCard = memo(function TokenCard({ token }: { token: TokenData }) {
-  const priceRef = useRef<HTMLSpanElement>(null);
-  const changeRef = useRef<HTMLSpanElement>(null);
-  const iconRef = useRef<SVGSVGElement>(null);
-  const currentPrice = useRef(token.price);
-  const currentChange = useRef(token.change24h);
+  const [price, setPrice] = useState(token.price);
+  const [change24h, setChange24h] = useState(token.change24h);
 
   useEffect(() => {
     const updateFromStore = () => {
       const storedData = priceStore[token.symbol];
       if (!storedData) return;
 
-      const newPrice = storedData.price;
-      const newChange24h = storedData.change24h;
-      const isUp = newPrice > currentPrice.current;
-
-      currentPrice.current = newPrice;
-      currentChange.current = newChange24h;
-
-      // Direct DOM manipulation - no React re-render
-      if (priceRef.current) {
-        priceRef.current.textContent = `$${formatPrice(newPrice)}`;
-        priceRef.current.style.color = isUp ? '#22c55e' : '#ef4444';
-      }
-
-      if (changeRef.current) {
-        const isPositive = newChange24h >= 0;
-        changeRef.current.textContent = `${isPositive ? '+' : ''}${newChange24h.toFixed(2)}%`;
-        changeRef.current.className = cn(
-          "tabular-nums",
-          isPositive ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"
-        );
-      }
-
-      if (iconRef.current) {
-        iconRef.current.style.transform = newChange24h >= 0 ? 'rotate(0deg)' : 'rotate(180deg)';
-      }
+      setPrice(storedData.price);
+      setChange24h(storedData.change24h);
     };
 
     // Update immediately from store
@@ -96,7 +88,7 @@ const TokenCard = memo(function TokenCard({ token }: { token: TokenData }) {
     return () => clearInterval(interval);
   }, [token.symbol]);
 
-  const isPositive = token.change24h >= 0;
+  const isPositive = change24h >= 0;
 
   return (
     <div 
@@ -117,23 +109,22 @@ const TokenCard = memo(function TokenCard({ token }: { token: TokenData }) {
             {token.symbol}
           </span>
           <span 
-            ref={priceRef}
             className="text-xs font-semibold tabular-nums transition-colors duration-200"
             style={{ color: isPositive ? '#16a34a' : '#dc2626' }}
           >
-            ${formatPrice(token.price)}
+            ${formatPrice(price, token.symbol)}
           </span>
         </div>
         <div className={cn(
           "flex items-center gap-0.5 text-[10px] font-medium"
         )}>
           {isPositive ? (
-            <TrendingUp ref={iconRef} className="w-3 h-3 transition-transform duration-200" />
+            <TrendingUp className="w-3 h-3 transition-transform duration-200" />
           ) : (
-            <TrendingDown ref={iconRef} className="w-3 h-3 transition-transform duration-200" style={{ transform: 'rotate(180deg)' }} />
+            <TrendingDown className="w-3 h-3 transition-transform duration-200" style={{ transform: 'rotate(180deg)' }} />
           )}
-          <span ref={changeRef} className={cn("tabular-nums", isPositive ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400")}>
-            {isPositive ? '+' : ''}{token.change24h.toFixed(2)}%
+          <span className={cn("tabular-nums", isPositive ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400")}>
+            {isPositive ? '+' : ''}{change24h.toFixed(2)}%
           </span>
         </div>
       </div>
@@ -142,14 +133,6 @@ const TokenCard = memo(function TokenCard({ token }: { token: TokenData }) {
 });
 
 export function TokenTicker({ className, speed = 40 }: TokenTickerProps) {
-  // Initialize prices from store or defaults
-  const defaultPrices: Record<string, number> = {
-    BTC: 67234.56, ETH: 3456.78, USDT: 1.00, BNB: 567.89,
-    XRP: 0.6234, ADA: 0.4567, SOL: 145.67, DOT: 7.89,
-    USDC: 1.00, MATIC: 0.89, SHIB: 0.00002345,
-    TRX: 0.1234, AVAX: 34.56, UNI: 8.90,
-  };
-
   // SSE refs - must be at component level, not inside useEffect
   const eventSourceRef = useRef<EventSource | null>(null);
   const reconnectAttemptsRef = useRef(0);
@@ -163,8 +146,8 @@ export function TokenTicker({ className, speed = 40 }: TokenTickerProps) {
       symbol: t.symbol,
       name: t.name,
       logo: t.logo,
-      price: defaultPrices[t.symbol] || 0,
-      change24h: (Math.random() - 0.5) * 10,
+      price: 0, // Will be populated by SSE
+      change24h: 0, // Will be populated by SSE
     }))
   ).current;
 
@@ -182,8 +165,11 @@ export function TokenTicker({ className, speed = 40 }: TokenTickerProps) {
       const feedIds = Object.values(PYTH_FEED_IDS);
 
       try {
-        const client = new HermesClient(HERMES_SSE_URL);
-        const eventSource = await client.getPriceUpdatesStream(feedIds);
+        // Use direct EventSource with Pyth SSE endpoint as per documentation
+        const idsParam = feedIds.map(id => `ids[]=0x${id}`).join('&');
+        const sseUrl = `${HERMES_SSE_URL}/v2/updates/price/stream?${idsParam}`;
+
+        const eventSource = new EventSource(sseUrl);
         eventSourceRef.current = eventSource;
 
         eventSource.onmessage = (event: MessageEvent) => {
