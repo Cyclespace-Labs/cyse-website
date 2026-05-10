@@ -13,6 +13,7 @@ import Navbar from "@/components/news/navbar";
 import LatestNews from "@/components/news/latest-news";
 import BitcoinAdBanner from "@/components/news/bitcoin-ad-banner";
 import ExploreSection from "@/components/news/explore-section";
+import Footer from "@/components/layout/Footer";
 
 export const revalidate = 30; // revalidate at most 30 seconds
 
@@ -95,6 +96,11 @@ export default async function News() {
         <div>
           <ExploreSection />
         </div>
+      </div>
+
+      {/* Footer */}
+      <div>
+        <Footer/>
       </div>
     </div>
   );

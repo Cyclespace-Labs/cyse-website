@@ -56,10 +56,10 @@ export default function Newsletters() {
       {/* Header */}
       <header className='flex flex-row gap-1 items-center justify-between px-3 py-3 border-b border-zinc-200 dark:border-zinc-800'>
         <h1 className='font-semibold text-sm flex flex-row gap-2 items-center'> 
-          <Mail className="w-4 h-4 text-zinc-500" />
-          <span>Newsletters</span>
+          <Mail className="w-4 h-4 text-zinc-500 hidden" />
+          <span className='tracking-tight'>Newsletters</span>
         </h1>
-        <Link href="/newsletters" className='text-xs text-zinc-500 hover:text-primary dark:hover:text-secondary transition-colors flex items-center gap-1'>
+        <Link href="/newsletters" className='text-xs font-medium tracking-tight text-zinc-500 hover:text-primary dark:hover:text-secondary transition-colors flex items-center gap-1'>
           See all <ArrowRight className="w-3 h-3" />
         </Link>
       </header>
