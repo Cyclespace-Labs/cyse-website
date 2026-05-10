@@ -34,7 +34,7 @@ export default async function News() {
   console.log(data);
 
   return (
-      <div className="w-full min-h-screen dark:bg-black bg-zinc-100 flex gap-1 flex-col">
+      <div className="w-full min-h-screen dark:bg-black bg-slate-100 flex gap-1 flex-col">
 
       {/* nav */}
       <div className="w-full sticky top-0 z-50">
@@ -45,20 +45,20 @@ export default async function News() {
         <TokenTicker />
       </div>
       
-      <div className="flex flex-col lg:flex-row justify-center mt-1 lg:mt-1 pb-1 gap-1 w-full px-2 sm:px-4 lg:px-3 flex-1">
+      <div className="flex flex-col lg:flex-row justify-center mt-1 lg:mt-0 pb-1 gap-1 w-full px-2 sm:px-4 lg:px-3 flex-1">
 
         {/*Left-Section - Stacked Widgets */}
         <div className="w-full lg:w-72 xl:w-80 flex flex-col gap-2 min-h-[300px] lg:min-h-0 order-2 lg:order-1">
           {/* Price Widget */}
-          <div className="hidden border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
+          <div className="hidden border border-slate-200 dark:border-slate-800 rounded-lg overflow-hidden">
             <PriceWidget/>
           </div>
           {/* Latest News List */}
-          <div className="border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
+          <div className="border border-slate-200 dark:border-slate-800 rounded-lg overflow-hidden">
             <LatestNews/>
           </div>
           {/* Press Releases */}
-          <div className="border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
+          <div className="border border-slate-200 dark:border-slate-800 rounded-lg overflow-hidden">
             <PressReleases/>
           </div>
         </div>

@@ -111,7 +111,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
   const skipLatestArticle = !selectedCategory && !searchQuery;
 
   return (
-    <div className="bg-white w-full dark:bg-zinc-950 h-full rounded-lg border border-zinc-200 dark:border-zinc-800 p-2">
+    <div className="bg-white w-full dark:bg-slate-950 h-full rounded-lg border border-slate-200 dark:border-slate-800 p-2">
       <div className="w-full pb-4">
           <div className="flex flex-col justify-between w-full items-start px-5 pt-2 gap-4">
             
@@ -125,7 +125,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
                   <p className="text-primary dark:text-primary">Latest</p>Headlines
                 </span>
               </h1>
-              <Link href="/news" className='text-sm items-center font-semibold tracking-tight flex gap-2 text-zinc-900 hover:text-primary dark:hover:text-secondary transition-colors'>
+              <Link href="/news" className='text-sm items-center font-semibold tracking-tight flex gap-2 text-slate-900 hover:text-primary dark:hover:text-secondary transition-colors'>
                 View all <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
@@ -208,7 +208,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 justify-center py-2 px-3 sm:px-5 w-full">
           {currentArticles.map((post, idx) => (
-            <Card key={idx} className="w-full p-3 m-0 justify-start items-start flex flex-col shadow border-none shadow-zinc-200 dark:shadow-zinc-900 h-full gap-2 bg-white dark:bg-zinc-900 ">
+            <Card key={idx} className="w-full p-3 m-0 justify-start items-start flex flex-col shadow border-none shadow-slate-200 dark:shadow-slate-900 h-full gap-2 bg-white dark:bg-slate-900 ">
               <div className="w-full h-full relative">
                 <Image
                   src={urlFor(post.titleImage).url()}
@@ -249,11 +249,11 @@ export default function NewsSection({ data }: NewsSectionProps) {
                           />
                         </div>
                       )}
-                    <p className="text-xs font-medium text-zinc-900 dark:text-zinc-100">
+                    <p className="text-xs font-medium text-slate-900 dark:text-slate-100">
                       {post.author?.name || 'Anonymous'}
                     </p>
                   </div>
-                  <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
                     {formatDate(post.publishedAt, {
                       year: 'numeric',
                       month: 'short',

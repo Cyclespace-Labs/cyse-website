@@ -70,14 +70,14 @@ export default function NewsFilter({
         {/* Filter label and clear button row */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Filter className="w-4 h-4 text-zinc-600 dark:text-zinc-400" />
-            <p className="text-sm font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">Filter:</p>
+            <Filter className="w-4 h-4 text-slate-600 dark:text-slate-400 hidden" />
+            <p className="text-sm font-semibold tracking-tight text-slate-900 dark:text-slate-100 hidden">Filter:</p>
           </div>
           {selectedCategory && (
             <Button 
               variant="ghost"
               size="sm"
-              className="h-7 px-3 text-xs font-medium text-zinc-600 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-700 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all"
+              className="h-7 px-3 text-xs font-medium text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
               onClick={() => onFilterChange(null)}
             >
               Clear
@@ -92,7 +92,7 @@ export default function NewsFilter({
             <Button
               onClick={() => scroll('left')}
               size="icon"
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full shadow-lg bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-700 text-zinc-900 dark:text-zinc-100 transition-all"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full shadow-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-900 dark:text-slate-100 transition-all"
               aria-label="Scroll left"
             >
               <ChevronLeft className="h-4 w-4" />
@@ -114,7 +114,7 @@ export default function NewsFilter({
                   'whitespace-nowrap rounded-full text-sm font-medium h-9 px-4 transition-all',
                   !selectedCategory 
                     ? 'bg-primary dark:bg-primary text-white shadow-md shadow-primary/20' 
-                    : 'bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600'
+                    : 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 dark:hover:border-slate-600'
                 )}
                 onClick={() => onFilterChange(null)}
               >
@@ -131,7 +131,7 @@ export default function NewsFilter({
                     'whitespace-nowrap rounded-full text-sm font-medium h-9 px-4 transition-all',
                     selectedCategory === category 
                       ? 'bg-primary dark:bg-primary text-white shadow-md shadow-primary/20' 
-                      : 'bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600'
+                      : 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 dark:hover:border-slate-600'
                   )}
                   onClick={() => onFilterChange(category)}
                 >
@@ -146,7 +146,7 @@ export default function NewsFilter({
             <Button
               onClick={() => scroll('right')}
               size="icon"
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full shadow-lg bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-700 text-zinc-900 dark:text-zinc-100 transition-all"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full shadow-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-900 dark:text-slate-100 transition-all"
               aria-label="Scroll right"
             >
               <ChevronRight className="h-4 w-4" />
@@ -158,8 +158,8 @@ export default function NewsFilter({
       {/* Desktop Layout - Horizontal */}
       <div className="hidden lg:flex overflow-clip items-center gap-4 py-2">
         <div className="flex items-center gap-2">
-          <Filter className="w-4 h-4 text-zinc-600 dark:text-zinc-400" />
-          <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 whitespace-nowrap">Filter</p>
+          <Filter className="w-4 h-4 text-slate-600 dark:text-slate-400 hidden" />
+          <p className="text-sm font-semibold text-slate-900 dark:text-slate-100 whitespace-nowrap hidden">Filter</p>
         </div>
         
         <div className="flex-1 relative">
@@ -169,7 +169,7 @@ export default function NewsFilter({
             <Button
               onClick={() => scroll('left')}
                 size="icon"
-                className="absolute -left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full shadow-lg bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-700 text-zinc-900 dark:text-zinc-100 transition-all"
+                className="absolute -left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full shadow-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-900 dark:text-slate-100 transition-all"
                 aria-label="Scroll left"
               >
               <ChevronLeft className="h-4 w-4" />
@@ -192,7 +192,7 @@ export default function NewsFilter({
                   'whitespace-nowrap rounded-full text-sm font-medium h-9 px-5 transition-all',
                   !selectedCategory 
                     ? 'bg-primary dark:bg-primary text-white shadow-md shadow-primary/20' 
-                    : 'bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600'
+                    : 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 dark:hover:border-slate-600'
                 )}
                 onClick={() => onFilterChange(null)}
               >
@@ -210,7 +210,7 @@ export default function NewsFilter({
                       'whitespace-nowrap rounded-full text-sm font-medium h-9 px-4 transition-all',
                       selectedCategory === category 
                         ? 'bg-primary dark:bg-primary text-white shadow-md shadow-primary/20' 
-                        : 'bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600'
+                        : 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 dark:hover:border-slate-600'
                     )}
                     onClick={() => onFilterChange(category)}
                   >
@@ -232,7 +232,7 @@ export default function NewsFilter({
             <Button
               onClick={() => scroll('right')}
               size="icon"
-              className="absolute -right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full shadow-lg bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-700 text-zinc-900 dark:text-zinc-100 transition-all"
+              className="absolute -right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full shadow-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-900 dark:text-slate-100 transition-all"
               aria-label="Scroll right"
             >
               <ChevronRight className="h-4 w-4" />
@@ -247,7 +247,7 @@ export default function NewsFilter({
             <Button 
               variant="outline"
               size="sm"
-              className="h-9 px-4 rounded-full border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 whitespace-nowrap transition-all"
+              className="h-9 px-4 rounded-full border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 whitespace-nowrap transition-all"
               onClick={() => onFilterChange(null)}
             >
               Clear

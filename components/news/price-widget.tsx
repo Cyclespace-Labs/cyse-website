@@ -31,16 +31,16 @@ export default function PriceWidget() {
   return (
     <div className='flex flex-col h-full w-full bg-white dark:bg-zinc-950'>
       {/* Header */}
-      <header className='flex flex-row gap-2 items-center justify-between px-4 py-4 border-b border-zinc-200 dark:border-zinc-800'>
-        <h1 className='font-bold text-base flex flex-row gap-2 items-center text-zinc-900 dark:text-zinc-100'> 
+      <header className='flex flex-row gap-2 items-center justify-between px-4 py-4 border-b border-slate-200 dark:border-slate-800'>
+        <h1 className='font-bold text-base flex flex-row gap-2 items-center text-slate-900 dark:text-slate-100'> 
           <TrendingUp className="w-5 h-5 text-primary" />
           <span>Top Movers</span>
         </h1>
-        <span className='text-[11px] font-medium text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800 px-2.5 py-1 rounded-full'>24h</span>
+        <span className='text-[11px] font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-full'>24h</span>
       </header>
 
       {/* Price List */}
-      <div className="divide-y divide-zinc-100 dark:divide-zinc-800">
+      <div className="divide-y divide-slate-100 dark:divide-slate-800">
         {topMovers.map((item) => {
           const isPositive = item.change >= 0;
           const Icon = isPositive ? TrendingUp : TrendingDown;
@@ -48,10 +48,10 @@ export default function PriceWidget() {
           return (
             <div
               key={item.symbol}
-              className='flex items-center justify-between px-4 py-3.5 hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors duration-200 cursor-pointer group'
+              className='flex items-center justify-between px-4 py-3.5 hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-colors duration-200 cursor-pointer group'
             >
               <div className='flex items-center gap-3 flex-1'>
-                <div className="w-8 h-8 rounded-full bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center flex-shrink-0 group-hover:bg-zinc-200 dark:group-hover:bg-zinc-700 transition-colors">
+                <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:bg-slate-200 dark:group-hover:bg-slate-700 transition-colors">
                   <Image
                     src={item.logo}
                     alt={item.name}
@@ -61,17 +61,17 @@ export default function PriceWidget() {
                   />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
+                  <p className="text-sm font-bold text-slate-900 dark:text-slate-100">
                     {item.symbol}
                   </p>
-                  <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
                     {item.name}
                   </p>
                 </div>
               </div>
               
-              <div className='text-right flex-shrink-0 ml-4'>
-                <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 tabular-nums">
+              <div className='text-right shrink-0 ml-4'>
+                <p className="text-sm font-semibold text-slate-900 dark:text-slate-100 tabular-nums">
                   ${formatPrice(item.price)}
                 </p>
                 <p className={cn(

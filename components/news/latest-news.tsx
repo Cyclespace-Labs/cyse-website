@@ -56,15 +56,15 @@ export default async function LatestNews() {
   console.log(data);
 
   return (
-    <div className='flex flex-col w-full bg-white dark:bg-zinc-950 font-sans h-[612px]'>
-        <header className='flex flex-row gap-1 items-center justify-between px-3 py-3 border-b border-zinc-200 dark:border-zinc-800'>
+    <div className='flex flex-col w-full bg-white dark:bg-slate-950 font-sans h-[612px]'>
+        <header className='flex flex-row gap-1 items-center justify-between px-3 py-3 border-b border-slate-200 dark:border-slate-800'>
           <h1 className='font-semibold text-sm flex flex-row gap-1 items-center'>
-            <div className='p-2  rounded-md '>
+            <div className='p-2  rounded-md hidden '>
               <Clock strokeWidth={2.5} className="w-4 h-4 text-primary" />
             </div> 
             <span className='font-semibold tracking-tight'>Latest Crypto News</span>
           </h1>
-          <Link href="/news" className='text-xs font-medium text-zinc-500 hover:text-primary dark:hover:text-secondary transition-colors tracking-tight flex gap-1'>
+          <Link href="/news" className='text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-secondary transition-colors tracking-tight flex gap-1'>
             View all <ArrowRight className='h-4 w-4' />
           </Link>
         </header>

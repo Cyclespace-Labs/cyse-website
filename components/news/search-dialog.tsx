@@ -64,11 +64,11 @@ export default function SearchDialog() {
       {/* Search Bar Button Trigger */}
       <button
         onClick={() => setIsOpen(true)}
-        className="group flex items-center gap-2 px-4 py-2 h-8 rounded-full bg-slate-100 dark:bg-zinc-900 text-sm text-gray-500 hover:bg-slate-200 dark:hover:bg-zinc-700 transition-colors w-full max-w-xs"
+        className="group flex items-center gap-2 px-4 py-2 h-8 rounded-full bg-slate-100 dark:bg-slate-900 text-sm text-gray-500 hover:bg-slate-200 dark:hover:bg-zinc-700 transition-colors w-full max-w-xs"
       >
         <Search className="h-4 w-4 shrink-0 font-medium" />
         <span className="flex-1 text-left truncate text-medium">Search</span>
-        <span className="bg-slate-200 dark:bg-zinc-800 group-hover:bg-slate-300 dark:group-hover:bg-zinc-600 text-slate-400 items-center justify-center px-3 py-2.5 flex h-full rounded-md text-[9px] font-medium">/</span>
+        <span className="bg-slate-200 dark:bg-slate-800 group-hover:bg-slate-300 dark:group-hover:bg-zinc-600 text-slate-400 items-center justify-center px-3 py-2.5 flex h-full rounded-md text-[9px] font-medium">/</span>
       </button>
 
       <AnimatePresence>

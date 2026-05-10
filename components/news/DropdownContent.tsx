@@ -19,17 +19,17 @@ interface DropdownContentProps {
 export default function DropdownContent({ cards, loading = false, comingSoon = false, sectionLinks, featuredSections }: DropdownContentProps) {
   return (
     <div className="fixed left-0 top-[56px] opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 -translate-y-2 transition-all duration-300 ease-out z-50 w-screen">
-      <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-lg overflow-hidden">
+      <div className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 shadow-lg overflow-hidden">
         <div className="max-w-7xl mx-auto grid grid-cols-12 gap-6 p-6">
           {/* Left column - Section links */}
-          <div className="col-span-3 border-r border-zinc-200 dark:border-zinc-800 pr-6">
-            <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-4">Categories</h3>
+          <div className="col-span-3 border-r border-slate-200 dark:border-slate-800 pr-6">
+            <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100 mb-4">Categories</h3>
             <div className="flex flex-col gap-2">
-              {sectionLinks?.map((link, index) => (
+              {sectionLinks?.map((link, index) => ( 
                 <Link
                   key={index}
                   href={link.href}
-                  className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-primary transition-colors"
+                  className="text-sm text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -43,18 +43,18 @@ export default function DropdownContent({ cards, loading = false, comingSoon = f
               // Coming soon state
               <div className="col-span-3 flex items-center justify-center py-12">
                 <div className="text-center">
-                  <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-2">Coming Soon</p>
-                  <p className="text-xs text-zinc-500 dark:text-zinc-400">This section is under development</p>
+                  <p className="text-sm font-semibold text-slate-900 dark:text-slate-100 mb-2">Coming Soon</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">This section is under development</p>
                 </div>
               </div>
             ) : loading ? (
               // Skeleton loading state
               Array.from({ length: 3 }).map((_, index) => (
-                <div key={index} className="bg-zinc-50 dark:bg-zinc-800 rounded-lg p-4">
-                  <div className="w-full h-24 mb-3 rounded-md bg-zinc-200 dark:bg-zinc-700 animate-pulse"></div>
-                  <div className="h-3 w-16 bg-zinc-200 dark:bg-zinc-700 rounded mb-2 animate-pulse"></div>
-                  <div className="h-4 w-full bg-zinc-200 dark:bg-zinc-700 rounded mb-1 animate-pulse"></div>
-                  <div className="h-4 w-3/4 bg-zinc-200 dark:bg-zinc-700 rounded animate-pulse"></div>
+                <div key={index} className="bg-zinc-50 dark:bg-slate-800 rounded-lg p-4">
+                  <div className="w-full h-24 mb-3 rounded-md bg-slate-200 dark:bg-slate-700 animate-pulse"></div>
+                  <div className="h-3 w-16 bg-slate-200 dark:bg-slate-700 rounded mb-2 animate-pulse"></div>
+                  <div className="h-4 w-full bg-slate-200 dark:bg-slate-700 rounded mb-1 animate-pulse"></div>
+                  <div className="h-4 w-3/4 bg-slate-200 dark:bg-slate-700 rounded animate-pulse"></div>
                 </div>
               ))
             ) : cards.length > 0 ? (
@@ -62,7 +62,7 @@ export default function DropdownContent({ cards, loading = false, comingSoon = f
                 <Link
                   key={index}
                   href={card.href}
-                  className="block bg-zinc-50 dark:bg-zinc-800 rounded-lg overflow-hidden hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors"
+                  className="block bg-slate-50 dark:bg-slate-800 rounded-lg overflow-hidden hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
                 >
                   {card.image && (
                     <div className="w-full h-32 rounded-t-lg overflow-hidden">

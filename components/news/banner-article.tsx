@@ -12,7 +12,7 @@ import { getArticleUrl } from "@/lib/article-url";
 
 export default function BannerArticle({ post }: { post: simpleNewsCard }) {
   return (
-    <div className="w-full p-4 bg-primary/10 border-none dark:bg-secondary/20 shadow-xs shadow-primary/20 dark:shadow-secondary/20 rounded-lg mb-4 hover:scale-101 transition-transform">
+    <div className="w-full p-4 bg-primary/10 border-none dark:bg-slate-800 shadow-xs shadow-primary/20 dark:shadow-secondary/20 rounded-lg mb-4 hover:scale-101 transition-transform">
       <div className="flex flex-col md:flex-row gap-6">
         <div className="md:w-1/2 relative">
           <div className='absolute top-3 left-3 z-10'>

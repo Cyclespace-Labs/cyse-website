@@ -106,8 +106,8 @@ export default function Navbar() {
 
   return (
     <header className="w-full">
-      <main className="w-full bg-white dark:bg-zinc-950 items-center flex flex-row justify-between p-3 px-6
-            border border-zinc-200 dark:border-zinc-800">
+      <main className="w-full bg-white dark:bg-slate-950 items-center flex flex-row justify-between p-3 px-6
+            border border-slate-200 dark:border-slate-800">
         <div className="flex flex-row gap-16">
           {/* Logo */}
           <Link href="/" className="flex items-center justify-start space-x-1 md:space-x-2">
@@ -142,8 +142,8 @@ export default function Navbar() {
             <div className="relative group" onMouseEnter={handleNewsHover}>
               <Link href="/news" className={`flex items-center gap-1 px-3 py-2 rounded-sm transition-colors ${
                 isActive("/news") 
-                  ? "text-primary dark:text-primary bg-zinc-100 dark:bg-zinc-800" 
-                  : "hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
+                  ? "text-primary dark:text-primary bg-slate-100 dark:bg-slate-900" 
+                  : "hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-900 dark:text-slate-100"
               }`}>
                 News
               </Link>
@@ -162,8 +162,8 @@ export default function Navbar() {
             <div className="relative group" onMouseEnter={handleResearchHover}>
               <Link href="/research" className={`flex items-center gap-1 px-3 py-2 rounded-sm transition-colors ${
                 isActive("/research") 
-                  ? "text-primary dark:text-primary bg-zinc-100 dark:bg-zinc-800" 
-                  : "hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
+                  ? "text-primary dark:text-primary bg-slate-100 dark:bg-slate-800" 
+                  : "hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-900 dark:text-slate-100"
               }`}>
                 <span className="inline-flex items-center gap-1.5">
                   Research
@@ -191,8 +191,8 @@ export default function Navbar() {
             <div className="relative group" onMouseEnter={handleAnalysisHover}>
               <Link href="/analysis" className={`flex items-center gap-1 px-3 py-2 rounded-sm transition-colors ${
                 isActive("/analysis") 
-                  ? "text-primary dark:text-primary bg-zinc-100 dark:bg-zinc-800" 
-                  : "hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
+                  ? "text-primary dark:text-primary bg-slate-100 dark:bg-slate-800" 
+                  : "hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-900 dark:text-slate-100"
               }`}>
                 <span className="inline-flex items-center gap-1.5">
                   Analysis
@@ -220,8 +220,8 @@ export default function Navbar() {
             <div className="relative group" onMouseEnter={handleEventsHover}>
               <Link href="/events" className={`flex items-center gap-1 px-3 py-2 rounded-sm transition-colors ${
                 isActive("/events") 
-                  ? "text-primary dark:text-primary bg-zinc-100 dark:bg-zinc-800" 
-                  : "hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
+                  ? "text-primary dark:text-primary bg-slate-100 dark:bg-slate-800" 
+                  : "hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-900 dark:text-slate-100"
               }`}>
                 <span className="inline-flex items-center gap-1.5">
                   Events
@@ -249,8 +249,8 @@ export default function Navbar() {
             <div className="relative group" onMouseEnter={handleLearnHover}>
               <Link href="/learn" className={`flex items-center gap-1 px-3 py-2 rounded-sm transition-colors ${
                 isActive("/learn") 
-                  ? "text-primary dark:text-primary bg-zinc-100 dark:bg-zinc-800" 
-                  : "hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
+                  ? "text-primary dark:text-primary bg-slate-100 dark:bg-slate-800" 
+                  : "hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-900 dark:text-slate-100"
               }`}>
                 <span className="inline-flex items-center gap-1.5">
                   Learn
@@ -283,14 +283,14 @@ export default function Navbar() {
           <div className="hidden md:flex w-48 lg:w-56">
             <SearchDialog />
           </div>
+          <div className="hidden w-fit h-fit md:hidden lg:flex">
+            <ThemeToggle/>
+          </div>
           <Button className="hidden md:hidden lg:flex text-xs rounded-lg bg-primary text-white hover:bg-black hover:text-white
                     dark:hover:bg-slate-800 dark:hover:text-white transition-colors duration-200">
             Launch app
             <ExternalLinkIcon className="h-3 w-3 text-white" />
           </Button>
-          <div className="hidden w-fit h-fit md:hidden lg:flex">
-            <ThemeToggle/>
-          </div>
         </div>
       </main>
     </header>

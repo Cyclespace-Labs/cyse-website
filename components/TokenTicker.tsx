@@ -92,7 +92,7 @@ const TokenCard = memo(function TokenCard({ token }: { token: TokenData }) {
 
   return (
     <div 
-      className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white dark:bg-zinc-950 border over border-zinc-200 dark:border-zinc-800 min-w-fit shadow-sm"
+      className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 min-w-fit shadow-sm"
       style={{ transform: 'translateZ(0)', willChange: 'transform' }}
     >
       <img
@@ -105,7 +105,7 @@ const TokenCard = memo(function TokenCard({ token }: { token: TokenData }) {
       />
       <div className="flex flex-col min-w-0">
         <div className="flex items-center gap-1.5">
-          <span className="font-bold text-xs text-zinc-900 dark:text-zinc-100 uppercase">
+          <span className="font-bold text-xs text-slate-900 dark:text-slate-100 uppercase">
             {token.symbol}
           </span>
           <span 
@@ -269,7 +269,7 @@ export function TokenTicker({ className, speed = 40 }: TokenTickerProps) {
   return (
     <div 
       className={cn(
-        "w-full overflow-hidden  ",
+        "w-full overflow-hidde py-1  ",
         className
       )}
       style={{ contain: 'layout style paint' }}
