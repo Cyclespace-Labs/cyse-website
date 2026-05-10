@@ -12,6 +12,7 @@ import { simpleNewsCard } from "@/lib/interface";
 import Navbar from "@/components/news/navbar";
 import LatestNews from "@/components/news/latest-news";
 import BitcoinAdBanner from "@/components/news/bitcoin-ad-banner";
+import ExploreSection from "@/components/news/explore-section";
 
 export const revalidate = 30; // revalidate at most 30 seconds
 
@@ -82,16 +83,18 @@ export default async function News() {
           <div className="border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
             <Newsletters/>
           </div>
-          {/* Original Research Display - Collapsed */}
-          <div className='hidden lg:block border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden'>
-            <ResearchDisplay/>
-          </div>
           {/* Mobile: Show RelatedNews */}
           <div className="lg:hidden border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
             <RelatedNews/>
           </div>
         </div>
 
+      </div>
+
+      <div className="py-2"> 
+        <div>
+          <ExploreSection />
+        </div>
       </div>
     </div>
   );

@@ -6,13 +6,14 @@ export const revalidate = 30; // revalidate at most 30 seconds
 export async function GET() {
   try {
     const query = `
-      *[_type == 'research'] | order(_createdAt desc) [0...6] {
+      *[_type == 'research'] | order(publishedAt desc) [0...6] {
         title,
-        smallDescription,
         "currentSlug": slug.current,
         titleImage,
-        "categoryName": category->name,
-        category
+        reportType,
+        publishedAt,
+        "authorName": author->name,
+        "authorType": author->_type
       }
     `;
 
