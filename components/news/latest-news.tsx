@@ -101,7 +101,7 @@ export default async function LatestNews() {
                     </div>
                     
                     {/* Title */}
-                    <h3 className="text-xs font-medium text-zinc-900 dark:text-zinc-100 leading-snug group-hover:text-primary dark:group-hover:text-secondary transition-colors line-clamp-2">
+                    <h3 className="text-xs font-medium text-zinc-900 dark:text-zinc-100 leading-snug group-hover:text-primary dark:group-hover:text-primary transition-colors line-clamp-2">
                       {post.title}
                     </h3>
                     

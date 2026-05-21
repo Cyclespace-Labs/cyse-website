@@ -15,7 +15,7 @@ export default function ExploreSection() {
     <div>
       <div className="grid grid-cols-4 gap-2 px-1">
         
-        <Card className="md:gap-6 gap-4 bg-linear-to-b from-primary via-primary to-slate-50">
+        <Card className="md:gap-6 gap-4 bg-linear-to-b from-primary via-primary to-slate-50 dark:from-primary dark:via-primary dark:to-slate-900">
             <CardHeader className="w-full justify-center flex mt-4 md:mt-6">
                 <CardTitle className="w-fit">          
                     <Link href="/" className="flex items-center w-fit justify-start space-x-1 md:space-x-2">

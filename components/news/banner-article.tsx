@@ -32,7 +32,7 @@ export default function BannerArticle({ post }: { post: simpleNewsCard }) {
           <Badge className="w-fit mb-2 bg-primary dark:bg-secondary text-white dark:text-white ">
             Featured Story
           </Badge>
-          <Link href={getArticleUrl(post)} className="hover:text-primary dark:hover:text-secondary hover:underline transition-colors">
+          <Link href={getArticleUrl(post)} className="hover:text-primary dark:hover:text-primary hover:underline transition-colors">
             <h2 className="text-2xl font-bold mb-2">{post.title}</h2>
           </Link>
           <p className="text-gray-600 dark:text-zinc-300 mb-4">{post.smallDescription}</p>

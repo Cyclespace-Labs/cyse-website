@@ -62,7 +62,7 @@ export default function ResearchHub() {
   }, []);
 
   return (
-    <div className='flex flex-col h-full w-full bg-white dark:bg-zinc-950'>
+    <div className='flex flex-col h-full w-full bg-white dark:bg-slate-950'>
       {/* Yellow Banner Header */}
       <div className='bg-yellow-400 dark:bg-yellow-500 px-3 py-1'>
         <p className='text-[10px] font-semibold text-black uppercase tracking-wide'>
@@ -84,16 +84,16 @@ export default function ResearchHub() {
       {/* Content */}
       <div className="flex flex-col flex-1">
         {loading ? (
-          <div className="flex items-center justify-center py-8">
+          <div className="flex items-center justify-center py-8 max-h-100 h-100">
             <Loader2 className="w-5 h-5 text-zinc-400 animate-spin" />
           </div>
         ) : error ? (
-          <div className="flex flex-col items-center justify-center py-8 px-4 text-center">
+          <div className="flex flex-col items-center justify-center py-8 px-4 text-center max-h-100 h-100">
             <AlertCircle className="w-5 h-5 text-red-500 mb-2" />
             <p className="text-xs text-zinc-500 dark:text-zinc-400">Failed to load research</p>
           </div>
         ) : researchItems.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-8 px-4 text-center">
+          <div className="flex flex-col items-center justify-center py-8 px-4 text-center max-h-100 h-100">
             <FileText className="w-5 h-5 text-zinc-400 mb-2" />
             <p className="text-xs text-zinc-500 dark:text-zinc-400">No research available</p>
           </div>
