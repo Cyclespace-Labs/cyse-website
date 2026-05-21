@@ -1,15 +1,13 @@
-// scripts/ai/articleGenerator.ts
+// scripts/ai/articleGenerator.js
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import type { ScrapedArticle } from '@/scripts/scrapers/news-scraper';
+import axios from 'axios';
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-export async function generateFreshArticle(
-  sourceArticles: ScrapedArticle[]
-): Promise<{ title: string; excerpt: string; body: string }> {
-  const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-
-  const prompt = `
+export async function generateFreshArticle(sourceArticles) {
+  const res = await axios.post('http://localhost:11434/api/generate', { 
+    model: process.env.OLLAMA_MODEL || 'llama3',
+    prompt: `
     You are an expert news writer. Below are excerpts from several news articles.
     Write a **brand new, original news article** of 300–500 words.
     Do NOT copy sentences directly. Synthesize the key themes, add new insights,
@@ -24,10 +22,12 @@ export async function generateFreshArticle(
       "excerpt": "one-sentence summary of the article (max 160 chars)",
       "body": "full article text in plain text (will be converted to Sanity block content later)"
     }
-  `;
+  `,
+    stream: false,
+    format: 'json',
+  });
 
-  const result = await model.generateContent(prompt);
-  const responseText = result.response.text();
+  const responseText = res.data.response;
   // Clean possible markdown code fences
   const jsonMatch = responseText.match(/\{[\s\S]*\}/);
   if (!jsonMatch) throw new Error('AI response not JSON');

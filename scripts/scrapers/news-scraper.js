@@ -1,21 +1,15 @@
-// scripts/scrapers/newsScraper.ts
+// scripts/scrapers/newsScraper.js
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
-export type ScrapedArticle = {
-  title: string;
-  content: string;   // cleaned text
-  url: string;
-};
-
-export async function scrapeNewsSources(): Promise<ScrapedArticle[]> {
-  const results: ScrapedArticle[] = [];
+export async function scrapeNewsSources() {
+  const results = [];
 
   // Example 1: Hacker News front page
   const hnUrl = 'https://news.ycombinator.com/';
   const { data } = await axios.get(hnUrl);
   const $ = cheerio.load(data);
-
+      
   $('.athing').each((_, element) => {
     const titleElem = $(element).find('.titleline > a');
     const title = titleElem.text().trim();

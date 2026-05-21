@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
+    "target": "ES2020",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
+    "module": "commonJS",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
@@ -22,6 +22,9 @@
       "@/*": ["./*"]
     }
   },
+  "ts-node": {
+    "transpileOnly": true
+  },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
@@ -29,6 +32,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "scripts/runPipeline.js", "scripts/uploader/sanity-uploader.js", "scripts/scrapers/news-scraper.js", "scripts/ai/article-generator.js"  ],
   "exclude": ["node_modules"]
 }

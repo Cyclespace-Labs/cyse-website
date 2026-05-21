@@ -2,12 +2,14 @@
   "name": "cyse-website",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "tsx server/index.ts & next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "seed:cms": "node scripts/seed-cms.mjs"
+    "seed:cms": "node scripts/seed-cms.mjs",
+    "pipeline": "node scripts/runPipeline.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
