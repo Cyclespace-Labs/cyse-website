@@ -71,16 +71,16 @@ export default function PressReleases() {
       {/* Content */}
       <div className="flex flex-col flex-1">
         {loading ? (
-          <div className="flex items-center justify-center py-8">
+          <div className="flex items-center justify-center py-8 max-h-100 h-80">
             <Loader2 className="w-5 h-5 text-slate-400 animate-spin" />
           </div>
         ) : error ? (
-          <div className="flex flex-col items-center justify-center py-8 px-4 text-center">
+          <div className="flex flex-col items-center justify-center py-8 px-4 text-center max-h-100 h-80">
             <AlertCircle className="w-5 h-5 text-red-500 mb-2" />
             <p className="text-xs text-slate-500 dark:text-slate-400">Failed to load press releases</p>
           </div>
         ) : pressReleases.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-8 px-4 text-center">
+          <div className="flex flex-col items-center justify-center py-8 px-4 text-center max-h-100 h-80">
             <Megaphone className="w-5 h-5 text-slate-400 mb-2" />
             <p className="text-xs text-slate-500 dark:text-slate-400">No press releases available</p>
           </div>

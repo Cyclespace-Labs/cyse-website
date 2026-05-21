@@ -33,9 +33,9 @@ export default function BannerArticle({ post }: { post: simpleNewsCard }) {
             Featured Story
           </Badge>
           <Link href={getArticleUrl(post)} className="hover:text-primary dark:hover:text-primary hover:underline transition-colors">
-            <h2 className="text-2xl font-bold mb-2">{post.title}</h2>
+            <h2 className="lg:text-[23px] text-[20px] font-bold mb-2">{post.title}</h2>
           </Link>
-          <p className="text-gray-600 dark:text-zinc-300 mb-4">{post.smallDescription}</p>
+          <p className="text-md text-gray-600 dark:text-zinc-300 mb-4">{post.smallDescription}</p>
           <div className='gap-2 flex flex-col'>
 
             <div className='flex flex-row justify-between w-full h-fit items-center'>
@@ -89,7 +89,7 @@ export default function BannerArticle({ post }: { post: simpleNewsCard }) {
                         )}
                         >
                             <Globe width={10} height={10} strokeWidth={3} className="w-10 h-10"/>
-                            {impact.name}
+                            <span className="ml-1 text-xs">{impact.name}</span>
                         </Badge>
                     ))}
                     </div>
@@ -115,7 +115,7 @@ export default function BannerArticle({ post }: { post: simpleNewsCard }) {
                         )}
                         >
                             <Tag width={10} height={10} strokeWidth={3} className="w-10 h-10"/>
-                            {tag.name}
+                            <span className="ml-1 text-xs">{tag.name}</span>
                         </Badge>
                     ))}
                     </div>

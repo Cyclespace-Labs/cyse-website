@@ -219,7 +219,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
                 />
                 <div className="absolute top-3 left-3 z-10">
                   <Badge className="w-fit bg-primary dark:bg-secondary text-white dark:text-white border-px border-none shadow-md">
-                    {post.categoryName}
+                    <span className="ml-1 text-xs">{post.categoryName}</span>
                   </Badge>
                 </div>
               </div>
@@ -280,7 +280,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
                             )}
                           >
                             <Globe width={8} height={8} strokeWidth={3} className="w-8 h-8"/>
-                            {impact.name}
+                            <span className="ml-1 text-xs">{impact.name}</span>
                           </Badge>
                         ))}
                       </div>
@@ -305,7 +305,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
                         )}
                       >
                         <Tag width={10} height={10} strokeWidth={3} className="w-10 h-10"/>
-                        {tag.name}
+                        <span className="ml-1 text-xs">{tag.name}</span>
                       </Badge>
                     ))}
                     
