@@ -218,26 +218,8 @@ export const news = defineType({
     defineField({
       name: 'seo',
       title: 'SEO',
-      type: 'seoFields', // This must match the 'name' property in your seo.ts file
+      type: 'seo', // This must match the 'name' property in your seo.ts file
       group: 'seo', // Optional: You can group it into a tab (explained below)
-    }),
-    defineField({
-      name: 'openGraph',
-      title: 'Open Graph',
-      type: 'openGraph',
-      group: 'seo',
-    }),
-    defineField({
-      name: 'twitterCard',
-      title: 'X (Formerly Twitter) Card',
-      type: 'twitter',
-      group: 'seo',
-    }),
-    defineField({
-      name: 'metaAttributes',
-      title: 'Custom Meta Tags',
-      type: 'metaTag',
-      group: 'seo',
     }),
   ],
 })
