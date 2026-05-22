@@ -51,6 +51,31 @@ async function getImpactBySlug(slug) {
   return impact?._id;
 }
 
+// Helper function to parse bold text in a string
+function parseBoldText(text) {
+  const parts = [];
+  let remaining = text;
+  let boldRegex = /\*\*(.*?)\*\*/g;
+  let lastIndex = 0;
+  let match;
+  
+  while ((match = boldRegex.exec(remaining)) !== null) {
+    // Add text before bold
+    if (match.index > lastIndex) {
+      parts.push({ text: remaining.slice(lastIndex, match.index), marks: [] });
+    }
+    // Add bold text
+    parts.push({ text: match[1], marks: ['strong'] });
+    lastIndex = match.index + match[0].length;
+  }
+  // Add remaining text
+  if (lastIndex < remaining.length) {
+    parts.push({ text: remaining.slice(lastIndex), marks: [] });
+  }
+  
+  return parts.map(p => ({ _type: 'span', text: p.text, marks: p.marks }));
+}
+
 function plainTextToPortableText(text) {
   if (!text) return [];
   
@@ -137,6 +162,60 @@ function plainTextToPortableText(text) {
       continue;
     }
     
+    // Handle pull quotes (double blockquote > >)
+    if (trimmed.startsWith('> >')) {
+      if (currentBlock) {
+        currentBlock._key = `block-${blockIndex++}`;
+        blocks.push(currentBlock);
+        currentBlock = null;
+      }
+      const quoteText = trimmed.slice(3).trim();
+      const children = parseBoldText(quoteText);
+      blocks.push({
+        _key: `block-${blockIndex++}`,
+        _type: 'block',
+        style: 'pullQuote',
+        children,
+      });
+      continue;
+    }
+    
+    // Handle callout boxes (> !)
+    if (trimmed.startsWith('> !')) {
+      if (currentBlock) {
+        currentBlock._key = `block-${blockIndex++}`;
+        blocks.push(currentBlock);
+        currentBlock = null;
+      }
+      const calloutText = trimmed.slice(3).trim();
+      const children = parseBoldText(calloutText);
+      blocks.push({
+        _key: `block-${blockIndex++}`,
+        _type: 'block',
+        style: 'callout',
+        children,
+      });
+      continue;
+    }
+    
+    // Handle stat cards (> * **Metric:** value)
+    if (trimmed.startsWith('> * **') && trimmed.includes('**:')) {
+      if (currentBlock) {
+        currentBlock._key = `block-${blockIndex++}`;
+        blocks.push(currentBlock);
+        currentBlock = null;
+      }
+      const statText = trimmed.slice(3).trim();
+      const children = parseBoldText(statText);
+      blocks.push({
+        _key: `block-${blockIndex++}`,
+        _type: 'block',
+        style: 'statCard',
+        children,
+      });
+      continue;
+    }
+    
     // Handle blockquotes
     if (trimmed.startsWith('> ')) {
       if (currentBlock) {
@@ -144,11 +223,13 @@ function plainTextToPortableText(text) {
         blocks.push(currentBlock);
         currentBlock = null;
       }
+      const quoteText = trimmed.slice(2);
+      const children = parseBoldText(quoteText);
       blocks.push({
         _key: `block-${blockIndex++}`,
         _type: 'block',
         style: 'blockquote',
-        children: [{ _type: 'span', text: trimmed.slice(2), marks: [] }],
+        children,
       });
       continue;
     }
@@ -161,13 +242,14 @@ function plainTextToPortableText(text) {
         blocks.push(currentBlock);
         currentBlock = null;
       }
+      const children = parseBoldText(numberedMatch[2]);
       blocks.push({
         _key: `block-${blockIndex++}`,
         _type: 'block',
         style: 'normal',
         listItem: 'number',
         level: 1,
-        children: [{ _type: 'span', text: numberedMatch[2], marks: [] }],
+        children,
       });
       continue;
     }
@@ -179,13 +261,14 @@ function plainTextToPortableText(text) {
         blocks.push(currentBlock);
         currentBlock = null;
       }
+      const children = parseBoldText(trimmed.slice(2));
       blocks.push({
         _key: `block-${blockIndex++}`,
         _type: 'block',
         style: 'normal',
         listItem: 'bullet',
         level: 1,
-        children: [{ _type: 'span', text: trimmed.slice(2), marks: [] }],
+        children,
       });
       continue;
     }
@@ -197,56 +280,47 @@ function plainTextToPortableText(text) {
         blocks.push(currentBlock);
         currentBlock = null;
       }
+      const children = parseBoldText(trimmed.slice(2));
       blocks.push({
         _key: `block-${blockIndex++}`,
         _type: 'block',
         style: 'normal',
         listItem: 'bullet',
         level: 1,
-        children: [{ _type: 'span', text: trimmed.slice(2), marks: [] }],
+        children,
       });
       continue;
     }
     
-    // Handle bold text with **
-    // First, check if the entire line is wrapped in ** ** and strip it
+    // Handle drop cap pattern [[Letter]]
     let processedLine = line;
-    // Check if line starts with ** and ends with ** but doesn't have ** in the middle
-    const innerContent = trimmed.slice(2, -2);
-    if (trimmed.startsWith('**') && trimmed.endsWith('**') && !innerContent.includes('**')) {
-      // Entire line is bold - strip the marks
-      processedLine = line.replace(/^\*\*/, '').replace(/\*\*$/, '');
-    }
-    
-    const parts = [];
-    let remaining = processedLine;
-    let boldRegex = /\*\*(.*?)\*\*/g;
-    let lastIndex = 0;
-    let match;
-    
-    while ((match = boldRegex.exec(remaining)) !== null) {
-      // Add text before bold
-      if (match.index > lastIndex) {
-        parts.push({ text: remaining.slice(lastIndex, match.index), marks: [] });
+    const dropCapMatch = trimmed.match(/^\[\[([A-Z])\]\](.*)$/);
+    if (dropCapMatch) {
+      // Preserve the drop cap pattern for the frontend to render
+      // Don't modify the line, keep it as-is
+      processedLine = line;
+    } else {
+      // Handle bold text with **
+      // First, check if the entire line is wrapped in ** ** and strip it
+      // Check if line starts with ** and ends with ** but doesn't have ** in the middle
+      const innerContent = trimmed.slice(2, -2);
+      if (trimmed.startsWith('**') && trimmed.endsWith('**') && !innerContent.includes('**')) {
+        // Entire line is bold - strip the marks
+        processedLine = line.replace(/^\*\*/, '').replace(/\*\*$/, '');
       }
-      // Add bold text
-      parts.push({ text: match[1], marks: ['strong'] });
-      lastIndex = match.index + match[0].length;
-    }
-    // Add remaining text
-    if (lastIndex < remaining.length) {
-      parts.push({ text: remaining.slice(lastIndex), marks: [] });
     }
     
-    if (currentBlock && parts.length > 0) {
+    const children = parseBoldText(processedLine);
+    
+    if (currentBlock && children.length > 0) {
       // Append to current block
-      currentBlock.children.push(...parts.map(p => ({ _type: 'span', text: p.text, marks: p.marks })));
-    } else if (parts.length > 0) {
+      currentBlock.children.push(...children);
+    } else if (children.length > 0) {
       // Start new block
       currentBlock = {
         _type: 'block',
         style: 'normal',
-        children: parts.map(p => ({ _type: 'span', text: p.text, marks: p.marks })),
+        children,
       };
     }
   }

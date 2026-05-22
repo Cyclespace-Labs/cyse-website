@@ -5,11 +5,29 @@ import { PortableTextComponents } from '@portabletext/react';
 export const portableTextComponents: PortableTextComponents = {
   block: {
     // Paragraphs
-    normal: ({ children }) => (
-      <p className="mb-6 text-base sm:text-lg leading-relaxed text-zinc-700 dark:text-zinc-300 font-normal">
-        {children}
-      </p>
-    ),
+    normal: ({ children }) => {
+      const text = typeof children === 'string' ? children : children?.toString() || '';
+      // Check for drop cap pattern [[Letter]]
+      const dropCapMatch = text.match(/^\[\[([A-Z])\]\](.*)$/);
+      
+      if (dropCapMatch) {
+        const [, letter, rest] = dropCapMatch;
+        return (
+          <p className="mb-6 text-base sm:text-lg leading-relaxed text-zinc-700 dark:text-zinc-300 font-normal">
+            <span className="float-left text-5xl sm:text-6xl font-bold text-primary dark:text-secondary leading-none mr-3 mt-1">
+              {letter}
+            </span>
+            {rest}
+          </p>
+        );
+      }
+      
+      return (
+        <p className="mb-6 text-base sm:text-lg leading-relaxed text-zinc-700 dark:text-zinc-300 font-normal">
+          {children}
+        </p>
+      );
+    },
     // Headings
     h1: ({ children }) => (
       <h1 className="text-3xl sm:text-4xl font-bold mb-6 mt-12 text-zinc-900 dark:text-zinc-50 tracking-tight">
@@ -36,6 +54,33 @@ export const portableTextComponents: PortableTextComponents = {
       <blockquote className="border-l-4 border-primary dark:border-secondary pl-6 py-2 my-8 italic text-zinc-600 dark:text-zinc-400 bg-zinc-50 dark:bg-zinc-900/50 rounded-r-lg">
         {children}
       </blockquote>
+    ),
+    // Pull Quote (standout quote)
+    pullQuote: ({ children }) => (
+      <blockquote className="text-center my-12 py-8 px-6 bg-gradient-to-r from-zinc-50 to-zinc-100 dark:from-zinc-900/50 dark:to-zinc-800/50 border-y-2 border-primary/20 dark:border-secondary/20">
+        <p className="text-xl sm:text-2xl font-medium text-zinc-800 dark:text-zinc-200 leading-relaxed italic">
+          "{children}"
+        </p>
+      </blockquote>
+    ),
+    // Callout Box
+    callout: ({ children }) => (
+      <div className="my-8 p-6 bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 dark:border-amber-400 rounded-r-lg">
+        <div className="flex items-start">
+          <span className="text-2xl mr-3">💡</span>
+          <p className="text-base sm:text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed">
+            {children}
+          </p>
+        </div>
+      </div>
+    ),
+    // Stat Card
+    statCard: ({ children }) => (
+      <div className="my-6 p-6 bg-primary/5 dark:bg-secondary/10 border border-primary/20 dark:border-secondary/20 rounded-lg">
+        <p className="text-lg sm:text-xl font-semibold text-zinc-800 dark:text-zinc-200">
+          {children}
+        </p>
+      </div>
     ),
   },
   list: {
