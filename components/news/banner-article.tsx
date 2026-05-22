@@ -20,13 +20,19 @@ export default function BannerArticle({ post }: { post: simpleNewsCard }) {
               {post.categoryName}
             </Badge>
           </div>
-          <Image
-            src={urlFor(post.titleImage).url()}
-            alt={post.title}
-            width={800}
-            height={400}
-            className="rounded-lg w-full h-64 object-cover shadow-lg"
-          />
+          {post.titleImage ? (
+            <Image
+              src={urlFor(post.titleImage).url()}
+              alt={post.title}
+              width={800}
+              height={400}
+              className="rounded-lg w-full h-64 object-cover shadow-lg"
+            />
+          ) : (
+            <div className="rounded-lg w-full h-64 bg-slate-200 dark:bg-slate-700 flex items-center justify-center">
+              <span className="text-slate-400 dark:text-slate-500">No image available</span>
+            </div>
+          )}
         </div>
         <div className="md:w-1/2 flex flex-col justify-center">
           <Badge className="w-fit mb-2 bg-primary dark:bg-secondary text-white dark:text-white ">

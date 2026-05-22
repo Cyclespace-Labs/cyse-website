@@ -210,13 +210,19 @@ export default function NewsSection({ data }: NewsSectionProps) {
           {currentArticles.map((post, idx) => (
             <Card key={idx} className="w-full p-3 m-0 justify-start items-start flex flex-col shadow border-none shadow-slate-200 dark:shadow-slate-900 h-full gap-2 bg-white dark:bg-slate-900 ">
               <div className="w-full h-full relative">
-                <Image
-                  src={urlFor(post.titleImage).url()}
-                  alt={post.title}
-                  width={400}
-                  height={200}
-                  className="rounded-lg h-[200px] w-full object-cover"
-                />
+                {post.titleImage ? (
+                  <Image
+                    src={urlFor(post.titleImage).url()}
+                    alt={post.title}
+                    width={400}
+                    height={200}
+                    className="rounded-lg h-[200px] w-full object-cover"
+                  />
+                ) : (
+                  <div className="rounded-lg h-[200px] w-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center">
+                    <span className="text-slate-400 dark:text-slate-500">No image available</span>
+                  </div>
+                )}
                 <div className="absolute top-3 left-3 z-10">
                   <Badge className="w-fit bg-primary dark:bg-secondary text-white dark:text-white border-px border-none shadow-md">
                     <span className="ml-1 text-xs">{post.categoryName}</span>

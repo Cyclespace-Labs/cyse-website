@@ -32,18 +32,53 @@ export async function runPipeline() {
     const fresh = await generateFreshArticle(scraped);
     const aiTime = ((Date.now() - aiStartTime) / 1000).toFixed(2);
     console.log(`✅ Article generated in ${aiTime}s`);
+    console.log('');
+    console.log('📝 Article Content:');
     console.log(`   Title: "${fresh.title}"`);
-    console.log(`   Excerpt: "${fresh.excerpt}"`);
-    console.log(`   Body length: ${fresh.body.length} characters`);
+    console.log(`   Small Description: "${fresh.smallDescription}"`);
+    console.log(`   Key Points: ${fresh.keyPoints?.length || 0} items`);
+    fresh.keyPoints?.forEach((kp, i) => console.log(`      ${i + 1}. ${kp}`));
+    console.log(`   Content: ${fresh.content?.length || 0} characters`);
+    console.log(`   Research: ${fresh.research?.length || 0} characters`);
+    console.log(`   Conclusion: ${fresh.conclusion?.length || 0} characters`);
+    console.log('');
+    console.log('🏷️  Tags & Category:');
+    console.log(`   Category: "${fresh.category}"`);
+    console.log(`   Tags: ${fresh.tags?.length || 0} items`);
+    fresh.tags?.forEach((tag, i) => console.log(`      ${i + 1}. ${tag.name} (${tag.color})`));
+    console.log('');
+    console.log('🔍 SEO Keywords:');
+    console.log(`   Keywords: ${fresh.seoKeywords?.length || 0} items`);
+    fresh.seoKeywords?.forEach((kw, i) => console.log(`      ${i + 1}. ${kw}`));
     console.log('');
 
-    console.log('� Step 3/3: Uploading to Sanity...');
+    console.log('📍 Step 3/3: Uploading to Sanity...');
     const uploadStartTime = Date.now();
     const sourceUrls = scraped.map(s => s.url);
+    console.log('📦 Upload Payload:');
+    console.log(`   Author: Fetched from Sanity CMS`);
+    console.log(`   Category: "${fresh.category}"`);
+    console.log(`   Tags: ${fresh.tags?.length || 0} references`);
+    console.log(`   Impact: medium (default)`);
+    console.log(`   SEO Metadata: auto-generated`);
+    console.log(`      - Meta Title: "${fresh.title?.substring(0, 60)}"`);
+    console.log(`      - Meta Description: "${fresh.smallDescription?.substring(0, 160)}"`);
+    console.log(`      - Keywords: ${fresh.seoKeywords?.length || 0} items`);
+    console.log(`      - Canonical URL: auto-generated from slug`);
+    console.log(`      - Open Graph: title, description, url, site_name configured`);
+    console.log(`      - Twitter: card, site, creator, title, description configured`);
+    console.log(`      - Robots: index, follow (allow search engines)`);
+    console.log('');
     const result = await uploadArticleToSanity({
       title: fresh.title,
-      excerpt: fresh.excerpt,
-      body: fresh.body,
+      smallDescription: fresh.smallDescription,
+      keyPoints: fresh.keyPoints,
+      content: fresh.content,
+      research: fresh.research,
+      conclusion: fresh.conclusion,
+      tags: fresh.tags,
+      category: fresh.category,
+      seoKeywords: fresh.seoKeywords,
       sourceUrls,
     });
     const uploadTime = ((Date.now() - uploadStartTime) / 1000).toFixed(2);
