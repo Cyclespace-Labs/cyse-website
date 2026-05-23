@@ -11,6 +11,44 @@ function getSanityClient() {
   });
 }
 
+/**
+ * Upload a base64 encoded image to Sanity assets
+ * @param {string} base64Image - Base64 encoded image data
+ * @param {string} altText - Alternative text for the image
+ * @returns {Promise<object>} - Sanity image asset reference
+ */
+export async function uploadImageToSanity(base64Image, altText = 'Generated article image') {
+  const client = getSanityClient();
+  
+  try {
+    console.log('📤 Uploading image to Sanity...');
+    
+    // Convert base64 to buffer
+    const base64Data = base64Image.replace(/^data:image\/\w+;base64,/, '');
+    const buffer = Buffer.from(base64Data, 'base64');
+    
+    // Upload to Sanity assets
+    const asset = await client.assets.upload('image', buffer, {
+      filename: `generated-${Date.now()}.png`,
+    });
+    
+    console.log('✅ Image uploaded to Sanity:', asset._id);
+    
+    // Return image reference
+    return {
+      _type: 'image',
+      asset: {
+        _type: 'reference',
+        _ref: asset._id
+      },
+      alt: altText
+    };
+  } catch (error) {
+    console.error('❌ Error uploading image to Sanity:', error.message);
+    throw error;
+  }
+}
+
 async function getFirstAuthor() {
   const client = getSanityClient();
   const authors = await client.fetch(`
@@ -407,7 +445,7 @@ function generateSlug(title) {
     .replace(/-+/g, '-');
 }
 
-export async function uploadArticleToSanity(article) {
+export async function uploadArticleToSanity(article, titleImage = null) {
   const sanityClient = getSanityClient();
   
   // Fetch first available author from Sanity
@@ -469,6 +507,8 @@ export async function uploadArticleToSanity(article) {
       _type: 'reference',
       _ref: authorId
     },
+    // Set titleImage if provided
+    ...(titleImage && { titleImage }),
     // Set category from Sanity query
     category: {
       _type: 'reference',

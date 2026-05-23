@@ -145,7 +145,7 @@ export default function ArticlePage({ article }: ArticlePageProps) {
                       <KeyPoints
                         points={data.keyPoints}
                         title="Key Takeaways"
-                        className="max-w-6xl mx-auto text-sm text-black dark:text-white"
+                        className="max-w-6xl mx-auto text-xs text-black dark:text-white"
                       />
                     </div>
                   )}
@@ -179,11 +179,10 @@ export default function ArticlePage({ article }: ArticlePageProps) {
                     <article className="mt-8 mb-8 px-4 sm:px-8 max-w-6xl mx-auto">
                       <div className="mb-4 pb-4 border-b border-zinc-200 dark:border-zinc-800">
                         <h2 className="text-lg sm:text-xl font-bold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
-                          <span className="text-primary dark:text-secondary">📊</span>
                           Deep Dive Analysis
                         </h2>
                       </div>
-                      <div className="prose-content text-sm">
+                      <div className="prose-content text-xs">
                         <PortableText
                           value={data.research}
                           components={portableTextComponents}
@@ -209,7 +208,6 @@ export default function ArticlePage({ article }: ArticlePageProps) {
                     <article className="mt-8 mb-12 px-4 sm:px-8 max-w-6xl mx-auto">
                       <div className="mb-4 pb-4 border-b border-zinc-200 dark:border-zinc-800">
                         <h2 className="text-lg sm:text-xl font-bold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
-                          <span className="text-primary dark:text-secondary">📊</span>
                           Conclusion
                         </h2>
                       </div>

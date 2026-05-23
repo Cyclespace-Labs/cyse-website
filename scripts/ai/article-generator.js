@@ -115,6 +115,7 @@ ${sourceArticles.map((a, i) => `[${i+1}] ${a.title}\n${a.content.substring(0, 50
   "content": "main article body with lede (bold location) and body sections with ### headings - NO disclaimer, NO headline, NO key points section",
   "research": "supporting data and analysis with ### headings (250-260 words)",
   "conclusion": "final thoughts with ### heading (80-100 words)",
+  "imagePrompt": "detailed image generation prompt for hero image - describe the main subject, scene, mood, lighting, composition, and style suitable for professional news photography (50-100 words)",
   "seoKeywords": ["keyword1", "keyword2", "keyword3", "keyword4", "keyword5", "keyword6", "keyword7", "keyword8"]
 }
   `,
@@ -146,14 +147,23 @@ ${sourceArticles.map((a, i) => `[${i+1}] ${a.title}\n${a.content.substring(0, 50
     .replace(/,\s*}/g, '}'); // Remove trailing commas in objects
   
   // Fix unescaped quotes in JSON string values
-  // Replace unescaped quotes inside string values with escaped quotes
-  // This is a complex issue - we need to be careful not to break valid JSON
   // The AI sometimes generates: "text "quoted" text" instead of "text \"quoted\" text"
+  // This is a more robust approach to fix unescaped quotes
   sanitizedJson = sanitizedJson.replace(/"([^"]*)"([^"]*)"([^"]*)"/g, (match, p1, p2, p3) => {
     // Check if this looks like an unescaped quote pattern
     // If p2 doesn't contain structural JSON characters, it's likely text
     if (!p2.includes(',') && !p2.includes(':') && !p2.includes('{') && !p2.includes('}') && !p2.includes('[') && !p2.includes(']')) {
       return `"${p1}\\"${p2}\\"${p3}"`;
+    }
+    return match;
+  });
+  
+  // Additional fix: handle quotes after colons (common in description fields)
+  // Pattern: "description":"text with "quotes" here"
+  sanitizedJson = sanitizedJson.replace(/:\s*"([^"]*)"([^"]*)"([^"]*)"/g, (match, p1, p2, p3) => {
+    // If the middle part doesn't have JSON structural chars, escape the quotes
+    if (!p2.includes(',') && !p2.includes(':') && !p2.includes('{') && !p2.includes('}') && !p2.includes('[') && !p2.includes(']')) {
+      return `: "${p1}\\"${p2}\\"${p3}"`;
     }
     return match;
   });
