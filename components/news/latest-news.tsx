@@ -70,48 +70,47 @@ export default async function LatestNews() {
         </header>
         <ScrollArea.Root className="w-full rounded-none" type="auto">
           <ScrollArea.Viewport className="w-full max-h-[564px]">
-          <div className='flex flex-col'>
-          {data.slice(0, 20).map((post, idx) => {
+          <div className='flex flex-col px-4 py-2'>
+          {data.slice(0, 20).map((post, idx, arr) => {
             const sentiment = getSentimentProps(post.impacts);
             const Icon = sentiment.icon;
+            const isLast = idx === arr.length - 1;
             
             return (
-              <Link 
-                key={idx} 
-                href={getArticleUrl(post)}
-                className='group px-3 py-3 border-b border-zinc-100 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors'
-              >
-                <div className='flex items-start gap-2 px-2'>
-                  {/* Sentiment indicator */}
-                  <div className={cn(
-                    "flex-shrink-0 w-6 h-6 rounded flex items-center justify-center hidden",
-                    sentiment.bgClass
-                  )}>
-                    <Icon className={cn("w-3.5 h-3.5", sentiment.colorClass)} />
-                  </div>
-                  
-                  <div className='flex-1 min-w-0'>
-                    {/* Meta row */}
-                    <div className='flex items-center gap-2 text-[10px] text-zinc-500 dark:text-zinc-400 mb-1'>
-                      <span>{getRelativeTime(post.publishedAt)}</span>
-                      <span>•</span>
-                      <Badge variant="outline" className='text-[10px] px-1 py-0 h-4 font-normal'>
-                        {post.categoryName}
-                      </Badge>
-                    </div>
-                    
-                    {/* Title */}
-                    <h3 className="text-xs font-medium text-zinc-900 dark:text-zinc-100 leading-snug group-hover:text-primary group-hover:underline dark:group-hover:text-primary transition-colors line-clamp-2">
-                      {post.title}
-                    </h3>
-                    
-                    {/* Description - same length as title */}
-                    <p className="mt-1 text-[10px] text-zinc-500 dark:text-zinc-400 line-clamp-2">
-                      {post.smallDescription}
-                    </p>
-                  </div>
+              <div key={idx} className='flex gap-3'>
+                {/* Timeline spine */}
+                <div className='flex flex-col items-center'>
+                  <div className='mt-1.5 w-2.5 h-2.5 rounded-full bg-primary shrink-0' />
+                  {!isLast && <div className='w-px flex-1 bg-slate-200 dark:bg-slate-700 mt-1' />}
                 </div>
-              </Link>
+
+                {/* Content */}
+                <Link
+                  href={getArticleUrl(post)}
+                  className='group flex-1 min-w-0 pb-4'
+                >
+                  {/* Meta row */}
+                  <div className='flex items-center gap-1.5 flex-wrap text-[10px] text-zinc-500 dark:text-zinc-400 mb-1'>
+                    <span>{getRelativeTime(post.publishedAt)}</span>
+                    <span>•</span>
+                    <Badge variant="outline" className='text-[10px] px-1 py-0 h-4 font-normal'>
+                      {post.categoryName}
+                    </Badge>
+                    <div className={cn(
+                      "flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[10px] font-medium",
+                      sentiment.bgClass, sentiment.colorClass
+                    )}>
+                      <Icon className='w-2.5 h-2.5' />
+                      {sentiment.label}
+                    </div>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-xs font-medium text-zinc-900 dark:text-zinc-100 leading-snug group-hover:text-primary group-hover:underline transition-colors line-clamp-2">
+                    {post.title}
+                  </h3>
+                </Link>
+              </div>
             );
           })}
           </div>
