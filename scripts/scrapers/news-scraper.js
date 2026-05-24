@@ -1,30 +1,39 @@
 // scripts/scrapers/newsScraper.js
 import axios from 'axios';
 import * as cheerio from 'cheerio';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
+const { websites } = require('../../websites.json');
 
 export async function scrapeNewsSources() {
   const results = [];
 
-  // Example 1: Hacker News front page
-  const hnUrl = 'https://news.ycombinator.com/';
-  const { data } = await axios.get(hnUrl);
-  const $ = cheerio.load(data);
-      
-  $('.athing').each((_, element) => {
-    const titleElem = $(element).find('.titleline > a');
-    const title = titleElem.text().trim();
-    const url = titleElem.attr('href') || '';
-    // Hacker News doesn't provide full content – we'd follow the link in a real case
-    // For demo, we use a placeholder.
-    results.push({
-      title,
-      content: `Full content from ${url} would be fetched here.`,
-      url,
-    });
-  });
+  for (const siteUrl of websites) {
+    try {
+      const { data } = await axios.get(siteUrl, {
+        headers: { 'User-Agent': 'Mozilla/5.0 (compatible; NewsBot/1.0)' },
+        timeout: 10000,
+      });
+      const $ = cheerio.load(data);
 
-  // Add more sources (BBC, CNN, etc.) with their own selectors
-  // For each, fetch full article content by following internal links.
+      $('a').each((_, element) => {
+        const title = $(element).text().trim();
+        const href = $(element).attr('href') || '';
+        if (!title || title.length < 20) return;
 
-  return results.slice(0, 5); // limit to 5 for demo
+        const url = href.startsWith('http') ? href : new URL(href, siteUrl).href;
+        results.push({
+          title,
+          content: `Full content from ${url} would be fetched here.`,
+          url,
+          source: siteUrl,
+        });
+      });
+    } catch (err) {
+      console.warn(`⚠️  Failed to scrape ${siteUrl}:`, err.message);
+    }
+  }
+
+  return results.slice(0, 5);
 }

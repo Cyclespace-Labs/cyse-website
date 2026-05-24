@@ -45,7 +45,7 @@ export function KeyPoints({ points, className, title = 'Key Points' }: KeyPoints
                 {item.point}
               </p>
               {item.description && (
-                <p className="mt-2 text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
                   {item.description}
                 </p>
               )}

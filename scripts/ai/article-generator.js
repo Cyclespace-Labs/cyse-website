@@ -1,7 +1,10 @@
 // scripts/ai/articleGenerator.js
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import axios from 'axios';
+import { createRequire } from 'module';
 import { TAGS, CATEGORIES } from '../news-constants.js';
+
+const require = createRequire(import.meta.url);
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
@@ -28,97 +31,28 @@ function extractTagsAndCategory(text) {
   };
 }
 
-export async function generateFreshArticle(sourceArticles) {
+export function listPromptTypes() {
+  const types = ['news', 'research', 'newsletter'];
+  return types.map(type => {
+    const config = require(`../prompts/${type}-prompt.json`);
+    return { type, label: config.label, description: config.description };
+  });
+}
+
+export async function generateFreshArticle(sourceArticles, promptType = 'news') {
+  const promptConfig = require(`../prompts/${promptType}-prompt.json`);
+  
+  const sourceArticlesText = sourceArticles
+    .map((a, i) => `[${i+1}] ${a.title}\n${a.content.substring(0, 500)}...`)
+    .join('\n\n');
+  
+  const prompt = promptConfig.prompt.replace('{{SOURCE_ARTICLES}}', sourceArticlesText);
+  
+  console.log(`   Using prompt: "${promptConfig.label}" (${promptType}-prompt.json)`);
+  
   const res = await axios.post('http://localhost:11434/api/generate', { 
     model: process.env.OLLAMA_MODEL || 'llama3',
-    prompt: `
-# Role: Professional News Journalist & Editor
-
-You are a specialized journalist and professional editor. Write comprehensive, credible, and engaging cryptocurrency news articles based on the source articles provided.
-
-## IMPORTANT: Generate SEPARATE fields matching the CMS schema
-
-Each JSON field should contain ONLY its designated content:
-
-1. **title field:** Just the headline text (10-15 words), no emoji, no markdown
-2. **smallDescription field:** One-sentence summary answering the 5 Ws (15-20 words)
-3. **keyPoints field:** Array of 5 objects, each with "point" (bold term) and "description" fields
-4. **content field:** Main article body ONLY - lede with bold location, then body sections with ### headings (150-160 words). NO disclaimer, NO headline, NO key points section
-5. **research field:** Supporting data and analysis with ### headings (180-200 words)
-6. **conclusion field:** Final thoughts with ### heading (60-80 words)
-
-## Content Field Structure (for the "content" field only)
-- Start with: **LOCATION —** lede paragraph answering 5 Ws (Who, What, When, Where, Why)
-- CRITICAL: Leave a BLANK LINE after the lede paragraph
-- Then: Body sections with ### **Section Name** headings
-- CRITICAL: Leave a BLANK LINE before and after each ### heading
-- CRITICAL: Leave a BLANK LINE between all paragraphs
-- For subsections: MUST use ### **Subsection Name:** format (example: ### The Workforce Paradox)
-- CRITICAL: NEVER use just bold text like **The Workforce Paradox** for subsections - ALWAYS use ### heading
-- For bullet points: MUST use * **Bold term:** description format (example: * **Productivity Metrics:** description)
-- CRITICAL: NEVER use just **Bold:** for bullet points - ALWAYS start with asterisk
-- Use 1. **Bold term:** description for numbered lists
-- Use > **"Quote"** for blockquotes
-- For standout quotes: Use > > "Quote text" (double blockquote) for pull quotes
-- For important insights: Use > ! Callout text (blockquote with !) for callout boxes
-- For first paragraph of each section: Use [[L]]etter format for drop cap (example: [[T]]he President...)
-- Keep paragraphs short (2-3 sentences)
-- Bold ONLY key terms, company names, bill names, metrics - NEVER bold entire paragraphs
-
-## Research Field Structure (for the "research" field only)
-- Start with: ### **Section Name** heading
-- CRITICAL: Leave a BLANK LINE after the heading
-- Then: Normal paragraphs (NOT bold)
-- CRITICAL: Leave a BLANK LINE between all paragraphs
-- For subsections: MUST use ### **Subsection Name:** format (example: ### Industry Analysis)
-- CRITICAL: NEVER use just bold text like **Industry Analysis** for subsections - ALWAYS use ### heading
-- For bullet points: MUST use * **Bold term:** description format (example: * **Productivity Metrics:** description)
-- CRITICAL: NEVER use just **Bold:** for bullet points - ALWAYS start with asterisk
-- For numbered lists: Use 1. **Bold term:** description format
-- Use > **"Quote"** for blockquotes
-- For statistics/metrics: Use > * **Metric:** value format for stat cards
-- For first paragraph of each section: Use [[L]]etter format for drop cap (example: [[T]]he correlation...)
-- CRITICAL: NEVER bold entire paragraphs - only bold specific terms within
-
-## Conclusion Field Structure (for the "conclusion" field only)
-- Start with: ### **Section Name** heading
-- CRITICAL: Leave a BLANK LINE after the heading
-- Then: Normal paragraphs (NOT bold)
-- CRITICAL: Leave a BLANK LINE between all paragraphs
-- For bullet points: MUST use * **Bold term:** description format (example: * **Key Point:** description)
-- CRITICAL: NEVER use just **Bold:** for bullet points - ALWAYS start with asterisk
-- For first paragraph: Use [[L]]etter format for drop cap (example: [[T]]he evidence...)
-- CRITICAL: NEVER bold entire paragraphs - only bold specific terms within
-
-## Editorial Guidelines
-- Professional, objective tone like top-tier financial journalism
-- No hype or superlatives ("amazing," "revolutionary")
-- Explain technical jargon briefly
-- Balanced perspectives on controversial topics
-- Use em dashes (—) for breaks in sentences
-- Use proper date formatting (January 21, 2026)
-
-## Source Articles
-${sourceArticles.map((a, i) => `[${i+1}] ${a.title}\n${a.content.substring(0, 500)}...`).join('\n\n')}
-
-## Required JSON Output
-{
-  "title": "just the headline text, no emoji, no markdown (10-15 words)",
-  "smallDescription": "one-sentence summary answering the 5 Ws (15-20 words)",
-  "keyPoints": [
-    {"point": "Bold term", "description": "description text"},
-    {"point": "Bold term", "description": "description text"},
-    {"point": "Bold term", "description": "description text"},
-    {"point": "Bold term", "description": "description text"},
-    {"point": "Bold term", "description": "description text"}
-  ],
-  "content": "main article body with lede (bold location) and body sections with ### headings - NO disclaimer, NO headline, NO key points section",
-  "research": "supporting data and analysis with ### headings (250-260 words)",
-  "conclusion": "final thoughts with ### heading (80-100 words)",
-  "imagePrompt": "detailed image generation prompt for hero image - describe the main subject, scene, mood, lighting, composition, and style suitable for professional news photography (50-100 words)",
-  "seoKeywords": ["keyword1", "keyword2", "keyword3", "keyword4", "keyword5", "keyword6", "keyword7", "keyword8"]
-}
-  `,
+    prompt,
     stream: false,
     format: 'json',
   });

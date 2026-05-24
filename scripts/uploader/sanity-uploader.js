@@ -445,6 +445,79 @@ function generateSlug(title) {
     .replace(/-+/g, '-');
 }
 
+export async function uploadResearchToSanity(article, titleImage = null) {
+  const sanityClient = getSanityClient();
+
+  const authorId = await getFirstAuthor();
+  if (!authorId) throw new Error('No authors found in Sanity CMS.');
+
+  const tagIds = [];
+  for (const tag of article.tags || []) {
+    const tagId = await getTagBySlug(tag.slug);
+    if (tagId) tagIds.push({ _key: `tag-${Math.random().toString(36).substr(2, 9)}`, _type: 'reference', _ref: tagId });
+  }
+
+  const categoryId = await getCategoryBySlug('research');
+  const slug = generateSlug(article.title);
+  const publishedAt = new Date().toISOString();
+
+  const keyFindings = (article.keyFindings || []).map(kf => ({
+    _key: `finding-${Math.random().toString(36).substr(2, 9)}`,
+    finding: typeof kf === 'string' ? kf : kf.finding,
+  }));
+
+  const doc = {
+    _type: 'research',
+    title: article.title,
+    slug: { _type: 'slug', current: slug },
+    smallDescription: article.smallDescription,
+    keyFindings,
+    content: plainTextToPortableText(article.content),
+    conclusion: plainTextToPortableText(article.conclusion),
+    reportType: article.reportType || 'market-analysis',
+    publishedAt,
+    author: { _type: 'reference', _ref: authorId },
+    ...(titleImage && { titleImage }),
+    ...(categoryId && { category: { _type: 'reference', _ref: categoryId } }),
+    tags: tagIds,
+  };
+
+  const result = await sanityClient.create(doc);
+  console.log(`✅ Research report published: ${result._id} – ${result.title}`);
+  return result;
+}
+
+export async function uploadNewsletterToSanity(article) {
+  const sanityClient = getSanityClient();
+
+  const authorId = await getFirstAuthor();
+  if (!authorId) throw new Error('No authors found in Sanity CMS.');
+
+  const tagIds = [];
+  for (const tag of article.tags || []) {
+    const tagId = await getTagBySlug(tag.slug);
+    if (tagId) tagIds.push({ _key: `tag-${Math.random().toString(36).substr(2, 9)}`, _type: 'reference', _ref: tagId });
+  }
+
+  const slug = generateSlug(article.title);
+
+  const doc = {
+    _type: 'newsletter',
+    title: article.title,
+    slug: { _type: 'slug', current: slug },
+    description: article.description,
+    content: plainTextToPortableText(article.content),
+    frequency: article.frequency || 'weekly',
+    publishedAt: new Date().toISOString(),
+    author: { _type: 'reference', _ref: authorId },
+    tags: tagIds,
+  };
+
+  const result = await sanityClient.create(doc);
+  console.log(`✅ Newsletter published: ${result._id} – ${result.title}`);
+  return result;
+}
+
 export async function uploadArticleToSanity(article, titleImage = null) {
   const sanityClient = getSanityClient();
   
