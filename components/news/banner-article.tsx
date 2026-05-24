@@ -95,8 +95,7 @@ export default function BannerArticle({ post }: { post: simpleNewsCard }) {
                           tag.color === 'purple' && "bg-purple-100 text-purple-950 border-purple-200 dark:bg-purple-950 dark:text-purple-100 dark:border-purple-950"
                       )}
                       >
-                        <Tag width={6} height={6} strokeWidth={3} className="w-6 h-6"/>
-                        <span className="ml-1 text-[10px]">{tag.name}</span>
+                        <span className="text-[10px]">{tag.name}</span>
                       </Badge>
                     ))}
                   </div>

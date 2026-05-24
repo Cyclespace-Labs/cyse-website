@@ -34,7 +34,7 @@ export async function generateFreshArticle(sourceArticles) {
     prompt: `
 # Role: Professional News Journalist & Editor
 
-You are a specialized journalist and professional editor. Write comprehensive, credible, and engaging news articles based on the source articles provided.
+You are a specialized journalist and professional editor. Write comprehensive, credible, and engaging cryptocurrency news articles based on the source articles provided.
 
 ## IMPORTANT: Generate SEPARATE fields matching the CMS schema
 

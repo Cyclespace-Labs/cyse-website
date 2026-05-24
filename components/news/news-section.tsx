@@ -237,7 +237,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
                   {post.smallDescription}
                 </p>
 
-                <div className="flex flex-col w-full gap-1 mt-2 h-fit">
+                <div className="flex flex-col w-full gap-2 mt-2 h-fit">
                   {isRecent(post.publishedAt) && (
                     <span className="ml-1 animate-pulse">🆕</span>
                   )}
@@ -299,10 +299,10 @@ export default function NewsSection({ data }: NewsSectionProps) {
                 </div>
 
 
-                <div className="justify-between mt-4">
+                <div className="justify-between mt-3">
                 {/* Tags display */}
                 {post.tags && post.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-1 mt-2">
+                  <div className="flex flex-wrap gap-1">
                     {post.tags.map((tag, tagIdx) => (
                       <Badge 
                         key={tagIdx}
@@ -315,8 +315,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
                           tag.color === 'purple' && "bg-purple-100 text-purple-950 border-purple-200 dark:bg-purple-950 dark:text-purple-100 dark:border-purple-950",
                         )}
                       >
-                        <Tag width={10} height={10} strokeWidth={3} className="w-10 h-10"/>
-                        <span className="ml-1 text-[10px]">{tag.name}</span>
+                        <span className="text-[10px]">{tag.name}</span>
                       </Badge>
                     ))}
                     
