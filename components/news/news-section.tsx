@@ -229,7 +229,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
                   </Badge>
                 </div>
               </div>
-              <CardContent className="mt-2 mb-2 justify-between w-full">
+              <CardContent className="mt-2 mb-2 justify-between w-full px-3">
                 <Link href={getArticleUrl(post)} className="hover:text-primary dark:hover:text-primary hover:underline ">
                   <h3 className="text-sm tracking-tight font-semibold line-clamp-2">{post.title}</h3>
                 </Link>
@@ -237,64 +237,69 @@ export default function NewsSection({ data }: NewsSectionProps) {
                   {post.smallDescription}
                 </p>
 
-              <div className="justify-between flex flex-row items-center mt-2 w-full">
-                <div className="flex items-center justify-between gap-4">
+                <div className="flex flex-col w-full gap-1 mt-2 h-fit">
                   {isRecent(post.publishedAt) && (
                     <span className="ml-1 animate-pulse">🆕</span>
                   )}
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-row justify-between w-full items-center">
+
                     <div className="flex items-center gap-2">
                       {post.author?.avatar && (
-                        <div className="w-6 h-6 rounded-full overflow-hidden">
+                        <div className="w-5 h-5 rounded-full overflow-hidden">
                           <Image
                             src={urlFor(post.author.avatar).url()}
-                            width={24}
-                            height={24}
+                            width={500}
+                            height={500}
+                            quality={100}
                             alt={post.author.name || 'Author'}
                             className="w-full h-full object-cover"
                           />
                         </div>
                       )}
-                    <p className="text-xs font-medium text-slate-900 dark:text-slate-100">
-                      {post.author?.name || 'Anonymous'}
-                    </p>
+                      <p className="text-xs font-semibold text-slate-900 dark:text-slate-100">
+                        {post.author?.name || 'Anonymous'}
+                      </p>
+                    </div>
+
+                    {/* impact display */}
+                    <div className="flex flex-row items-center gap-1 ">
+                      <h3 className="text-xs">Impact:</h3>
+                      {post.impacts && post.impacts.length > 0 && (
+                        <div className="">
+                          {post.impacts.map((impact, impactIdx) => (
+                            <Badge 
+                              key={impactIdx}
+                              className={cn(
+                                "gap-0 flex ",
+                                impact.color === 'blue' && "bg-blue-100 text-blue-950 border-blue-300 dark:bg-blue-950 dark:text-blue-100 dark:border-blue-950",
+                                impact.color === 'green' && "bg-green-100 text-green-950 border-green-300 dark:bg-green-950 dark:text-green-100 dark:border-green-950",
+                                impact.color === 'red' && "bg-red-100 text-red-950 border-red-300 dark:bg-red-950 dark:text-red-100 dark:border-red-950",
+                                impact.color === 'yellow' && "bg-yellow-100 text-yellow-950 border-yellow-300 dark:bg-yellow-950 dark:text-yellow-100 dark:border-yellow-950",
+                                impact.color === 'purple' && "bg-purple-100 text-purple-950 border-purple-300 dark:bg-purple-950 dark:text-purple-100 dark:border-purple-950",
+                              )}
+                            >
+                              <Globe width={6} height={6} strokeWidth={2} className="w-6 h-6"/>
+                              <span className="ml-1 text-[10px]">{impact.name}</span>
+                            </Badge>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
                   </div>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">
+
+                  <p className="text-xs text-slate-500  dark:text-slate-400">
                     {formatDate(post.publishedAt, {
                       year: 'numeric',
                       month: 'short',
                       day: 'numeric',
                     })}
                   </p>
-                </div>
-              </div>
-                  {/* impact display */}
-                  <div className="flex flex-row items-center gap-1">
-                    <h3 className="text-xs font-medium">Impact:</h3>
-                    {post.impacts && post.impacts.length > 0 && (
-                      <div className="flex flex-wrap gap-1">
-                        {post.impacts.map((impact, impactIdx) => (
-                          <Badge 
-                            key={impactIdx}
-                            className={cn(
-                              "text-xs",
-                              impact.color === 'blue' && "bg-blue-100 text-blue-950 border-blue-300 dark:bg-blue-950 dark:text-blue-100 dark:border-blue-950",
-                              impact.color === 'green' && "bg-green-100 text-green-950 border-green-300 dark:bg-green-950 dark:text-green-100 dark:border-green-950",
-                              impact.color === 'red' && "bg-red-100 text-red-950 border-red-300 dark:bg-red-950 dark:text-red-100 dark:border-red-950",
-                              impact.color === 'yellow' && "bg-yellow-100 text-yellow-950 border-yellow-300 dark:bg-yellow-950 dark:text-yellow-100 dark:border-yellow-950",
-                              impact.color === 'purple' && "bg-purple-100 text-purple-950 border-purple-300 dark:bg-purple-950 dark:text-purple-100 dark:border-purple-950",
-                            )}
-                          >
-                            <Globe width={8} height={8} strokeWidth={3} className="w-8 h-8"/>
-                            <span className="ml-1 text-xs">{impact.name}</span>
-                          </Badge>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+
                 </div>
 
-                <div className="justify-between mt-7">
+
+                <div className="justify-between mt-4">
                 {/* Tags display */}
                 {post.tags && post.tags.length > 0 && (
                   <div className="flex flex-wrap gap-1 mt-2">
@@ -302,7 +307,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
                       <Badge 
                         key={tagIdx}
                         className={cn(
-                          "text-xs",
+                          "flex gap-0",
                           tag.color === 'blue' && "bg-blue-100 text-blue-950 border-blue-200 dark:bg-blue-950 dark:text-blue-100 dark:border-blue-950",
                           tag.color === 'green' && "bg-green-100 text-green-950 border-green-200 dark:bg-green-950 dark:text-green-100 dark:border-green-950",
                           tag.color === 'red' && "bg-red-100 text-red-950 border-red-200 dark:bg-red-950 dark:text-red-100 dark:border-red-950",
@@ -311,7 +316,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
                         )}
                       >
                         <Tag width={10} height={10} strokeWidth={3} className="w-10 h-10"/>
-                        <span className="ml-1 text-xs">{tag.name}</span>
+                        <span className="ml-1 text-[10px]">{tag.name}</span>
                       </Badge>
                     ))}
                     

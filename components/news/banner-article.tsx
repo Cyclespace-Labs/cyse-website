@@ -66,7 +66,7 @@ export default function BannerArticle({ post }: { post: simpleNewsCard }) {
                 {isRecent(post.publishedAt) && (
                   <span className="ml-1 animate-pulse">🆕</span>
                 )}
-                <span className="text-sm text-zinc-500 dark:text-zinc-400">
+                <span className="text-xs text-zinc-500 dark:text-zinc-400">
                     {formatDate(post.publishedAt, {
                     year: 'numeric',
                     month: 'short',
@@ -76,17 +76,43 @@ export default function BannerArticle({ post }: { post: simpleNewsCard }) {
                     })}
                 </span>
               </div>
+            </div>
 
-              <div className='flex flex-row gap-1 items-center'>
+            <div className='justify-between w-full items-center flex '>
+              {/* Tags display */}
+              <div>
+                {post.tags && post.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {post.tags.map((tag, idx) => (
+                      <Badge 
+                      key={idx}
+                      className={cn(
+                          "gap-0 flex",
+                          tag.color === 'blue' && "bg-blue-100 text-blue-950 border-blue-200 dark:bg-blue-950 dark:text-blue-100 dark:border-blue-950",
+                          tag.color === 'green' && "bg-green-100 text-green-950 border-green-200 dark:bg-green-950 dark:text-green-100 dark:border-green-950",
+                          tag.color === 'red' && "bg-red-100 text-red-950 border-red-200 dark:bg-red-950 dark:text-red-100 dark:border-red-950",
+                          tag.color === 'yellow' && "bg-yellow-50 text-yellow-950 border-yellow-200 dark:bg-yellow-950 dark:text-yellow-100 dark:border-yellow-950",
+                          tag.color === 'purple' && "bg-purple-100 text-purple-950 border-purple-200 dark:bg-purple-950 dark:text-purple-100 dark:border-purple-950"
+                      )}
+                      >
+                        <Tag width={6} height={6} strokeWidth={3} className="w-6 h-6"/>
+                        <span className="ml-1 text-[10px]">{tag.name}</span>
+                      </Badge>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div className='flex flex-row gap-1 items-center '>
                 {/* Impact display */}
-                <h3 className='font-medium text-sm'>Impact:</h3>
+                <h3 className='font-medium text-xs'>Impact:</h3>
                 {post.impacts && post.impacts.length > 0 && (
-                    <div className="flex gap-2 ">
+                    <div className="flex gap-2">
                     {post.impacts.map((impact, idx) => (
                         <Badge 
                         key={idx}
                         className={cn(
-                            "text-sm",
+                            "gap-0 flex",
                             impact.color === 'blue' && "bg-blue-100 text-blue-950 border-blue-300 dark:bg-blue-950 dark:text-blue-100 dark:border-blue-950",
                             impact.color === 'green' && "bg-green-100 text-green-950 border-green-300 dark:bg-green-950 dark:text-green-100 dark:border-green-950",
                             impact.color === 'red' && "bg-red-100 text-red-950 border-red-300 dark:bg-red-950 dark:text-red-100 dark:border-red-950",
@@ -94,40 +120,16 @@ export default function BannerArticle({ post }: { post: simpleNewsCard }) {
                             impact.color === 'purple' && "bg-purple-100 text-purple-950 border-purple-300 dark:bg-purple-950 dark:text-purple-100 dark:border-purple-950"
                         )}
                         >
-                            <Globe width={10} height={10} strokeWidth={3} className="w-10 h-10"/>
-                            <span className="ml-1 text-xs">{impact.name}</span>
+                            <Globe width={6} height={6} strokeWidth={2} className="w-6 h-6"/>
+                            <span className="ml-1 text-[10px]">{impact.name}</span>
                         </Badge>
                     ))}
                     </div>
                 )}
               </div>
-
             </div>
 
-            <div className='justify-between w-full items-center '>
-                {/* Tags display */}
-                {post.tags && post.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2">
-                    {post.tags.map((tag, idx) => (
-                        <Badge 
-                        key={idx}
-                        className={cn(
-                            "text-sm",
-                            tag.color === 'blue' && "bg-blue-100 text-blue-950 border-blue-200 dark:bg-blue-950 dark:text-blue-100 dark:border-blue-950",
-                            tag.color === 'green' && "bg-green-100 text-green-950 border-green-200 dark:bg-green-950 dark:text-green-100 dark:border-green-950",
-                            tag.color === 'red' && "bg-red-100 text-red-950 border-red-200 dark:bg-red-950 dark:text-red-100 dark:border-red-950",
-                            tag.color === 'yellow' && "bg-yellow-50 text-yellow-950 border-yellow-200 dark:bg-yellow-950 dark:text-yellow-100 dark:border-yellow-950",
-                            tag.color === 'purple' && "bg-purple-100 text-purple-950 border-purple-200 dark:bg-purple-950 dark:text-purple-100 dark:border-purple-950"
-                        )}
-                        >
-                            <Tag width={10} height={10} strokeWidth={3} className="w-10 h-10"/>
-                            <span className="ml-1 text-xs">{tag.name}</span>
-                        </Badge>
-                    ))}
-                    </div>
-                )}
 
-            </div>
           </div>
         </div>
       </div>
