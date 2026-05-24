@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { urlFor } from '@/sanity/lib/client';
 
 interface ResearchItem {
   _id: string;
@@ -107,10 +108,11 @@ export default function ResearchHub() {
               >
                 {/* Thumbnail */}
                 <div className="relative flex-shrink-0 w-14 h-14 rounded-lg overflow-hidden">
-                  {item.titleImage ? (
+                  {item.titleImage?.asset ? (
                     <Image
-                      src={item.titleImage}
+                      src={urlFor(item.titleImage).url()}
                       alt={item.title}
+                      quality={100}
                       fill
                       className="object-cover"
                       sizes="56px"

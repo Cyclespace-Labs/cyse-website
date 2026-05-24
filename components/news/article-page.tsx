@@ -58,7 +58,7 @@ export default function ArticlePage({ article }: ArticlePageProps) {
         <Navbar />
       </div>
 
-      <div className="bg-white dark:bg-black min-h-screen">
+      <div className="bg-slate-100 dark:bg-black min-h-screen">
         <div className="w-full flex justify-center items-center py-2 px-2 sm:px-4 lg:px-6">
           <TokenTicker speed={40} />
         </div>
@@ -76,10 +76,10 @@ export default function ArticlePage({ article }: ArticlePageProps) {
           <div className="w-full lg:flex-1 flex-col lg:px-2 flex-1 order-1 lg:order-2">
             <div className="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
               <div className="w-full h-full overflow-y-auto">
-                <div className="w-full px-4 sm:px-8 mt-4">
+                <div className="w-full px-4 sm:px-10 mt-6">
                   <BackButton />
                 </div>
-                <div className="w-full flex flex-col lg:px-10 md:px-10 sm:px-6 pb-8">
+                <div className="w-full flex flex-col sm:px-18 px-6 pb-8">
                   <div className="w-full">
                     <div className="mt-6 px-4 sm:px-8 flex justify-between items-center">
                       <h1 className="flex gap-1 font-semibold text-lg">
@@ -90,7 +90,7 @@ export default function ArticlePage({ article }: ArticlePageProps) {
                         {data.categoryName}
                       </Badge>
                     </div>
-                    <h1 className="mt-4 px-4 sm:px-8 text-xl sm:text-2xl font-semibold">
+                    <h1 className="mt-4 px-4 sm:px-8 text-xl sm:text-3xl font-semibold">
                       {article.title}
                     </h1>
 

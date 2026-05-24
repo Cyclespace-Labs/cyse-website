@@ -1,10 +1,12 @@
 {
+    "directArticle": [
+
+    ],
+
     "websites": [
-        "https://www.theblock.co/",
         "https://www.coindesk.com/",
         "https://crypto.news/",
         "https://www.cnbc.com/cryptoworld/",
-        "https://www.bloomberg.com/crypto",
-        "https://cryptoslate.com/"
+        "https://cryptonews.net/"
     ]
 }
