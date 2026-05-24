@@ -239,7 +239,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
 
                 <div className="flex flex-col w-full gap-2 mt-2 h-fit">
                   {isRecent(post.publishedAt) && (
-                    <span className="ml-1 animate-pulse">🆕</span>
+                    <span className="ml-1 animate-pulse hidden">🆕</span>
                   )}
                   <div className="flex flex-row justify-between w-full items-center">
 

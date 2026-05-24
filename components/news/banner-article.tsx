@@ -64,7 +64,7 @@ export default function BannerArticle({ post }: { post: simpleNewsCard }) {
 
               <div className="flex items-center justify-between gap-4">
                 {isRecent(post.publishedAt) && (
-                  <span className="ml-1 animate-pulse">🆕</span>
+                  <span className="ml-1 animate-pulse hidden">🆕</span>
                 )}
                 <span className="text-xs text-zinc-500 dark:text-zinc-400">
                     {formatDate(post.publishedAt, {
