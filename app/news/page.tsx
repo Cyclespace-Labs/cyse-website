@@ -11,9 +11,9 @@ import TokenTicker from "@/components/TokenTicker";
 import { simpleNewsCard } from "@/lib/interface";
 import Navbar from "@/components/news/navbar";
 import LatestNews from "@/components/news/latest-news";
-import BitcoinAdBanner from "@/components/news/bitcoin-ad-banner";
 import ExploreSection from "@/components/news/explore-section";
 import Footer from "@/components/layout/Footer";
+import CategoriesSection from "@/components/news/categories-section";
 
 export const revalidate = 30; // revalidate at most 30 seconds
 
@@ -43,11 +43,11 @@ export default async function News() {
         <Navbar />
       </div>
 
-      <div>
+      <div className="px-6 overflow-hidden">
         <TokenTicker />
       </div>
       
-      <div className="flex flex-col lg:flex-row justify-center mt-1 lg:mt-0 pb-1 gap-1 w-full px-2 sm:px-4 lg:px-3 flex-1">
+      <div className="flex flex-col lg:flex-row justify-center mt-1 lg:mt-0 pb-1 gap-1 w-full px-4 sm:px-6 flex-1">
 
         {/*Left-Section - Stacked Widgets */}
         <div className="w-full lg:w-72 xl:w-80 flex flex-col gap-2 min-h-[300px] lg:min-h-0 order-2 lg:order-1">
@@ -92,9 +92,13 @@ export default async function News() {
 
       </div>
 
-      <div className="py-2"> 
+      <div className="py-2 px-6"> 
+        <div className="hidden">
+          <ExploreSection/>
+        </div>
+
         <div>
-          <ExploreSection />
+          <CategoriesSection data={data} />
         </div>
       </div>
 

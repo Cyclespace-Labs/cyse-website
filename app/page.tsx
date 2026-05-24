@@ -37,7 +37,7 @@ export default function Home() {
             height={230}
             width={230}
             quality={100}
-            className="object-cover rounded-full w-10 h-10 md:w-40 md:h-40 lg:w-60 lg:h-60 
+            className="object-cover hidden rounded-full w-10 h-10 md:w-40 md:h-40 lg:w-60 lg:h-60 
             z-10 rounded-full  hover:scale-110 transition-transform duration-300"
             priority
             referrerPolicy="no-referrer"
@@ -58,7 +58,7 @@ export default function Home() {
             height={230}
             width={230}
             quality={100}
-            className="object-cover rounded-full w-10 h-10 md:w-40 md:h-40 lg:w-60 lg:h-60 
+            className="object-cover hidden rounded-full w-10 h-10 md:w-40 md:h-40 lg:w-60 lg:h-60 
             z-10 rounded-full  hover:scale-110 transition-transform duration-300"
             priority
             referrerPolicy="no-referrer"
@@ -79,7 +79,7 @@ export default function Home() {
             height={230}
             width={230}
             quality={100}
-            className="object-cover rounded-full w-10 h-10 md:w-40 md:h-40 lg:w-60 lg:h-60 
+            className="object-cover hidden rounded-full w-10 h-10 md:w-40 md:h-40 lg:w-60 lg:h-60 
             z-10 rounded-full  hover:scale-110 transition-transform duration-300"
             priority
             referrerPolicy="no-referrer"
@@ -100,7 +100,7 @@ export default function Home() {
             height={230}
             width={230}
             quality={100}
-            className="object-cover filter hue-rotate-20 saturate-200 rounded-full w-10 h-10 md:w-40 md:h-40 lg:w-60 lg:h-60 
+            className="object-cover hidden filter hue-rotate-20 saturate-200 rounded-full w-10 h-10 md:w-40 md:h-40 lg:w-60 lg:h-60 
             z-10 rounded-full  hover:scale-110 transition-transform duration-300"
             priority
             referrerPolicy="no-referrer"

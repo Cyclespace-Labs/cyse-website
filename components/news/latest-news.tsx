@@ -57,7 +57,7 @@ export default async function LatestNews() {
 
   return (
     <div className='flex flex-col w-full bg-white dark:bg-slate-950 font-sans h-[612px]'>
-        <header className='flex flex-row gap-1 items-center justify-between px-3 py-3 border-b border-slate-200 dark:border-slate-800'>
+        <header className='flex flex-row gap-1 items-center justify-between px-5 py-3 border-b border-slate-200 dark:border-slate-800'>
           <h1 className='font-semibold text-sm flex flex-row gap-1 items-center'>
             <div className='p-2  rounded-md hidden '>
               <Clock strokeWidth={2.5} className="w-4 h-4 text-primary" />
@@ -81,10 +81,10 @@ export default async function LatestNews() {
                 href={getArticleUrl(post)}
                 className='group px-3 py-3 border-b border-zinc-100 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors'
               >
-                <div className='flex items-start gap-2'>
+                <div className='flex items-start gap-2 px-2'>
                   {/* Sentiment indicator */}
                   <div className={cn(
-                    "flex-shrink-0 w-6 h-6 rounded flex items-center justify-center",
+                    "flex-shrink-0 w-6 h-6 rounded flex items-center justify-center hidden",
                     sentiment.bgClass
                   )}>
                     <Icon className={cn("w-3.5 h-3.5", sentiment.colorClass)} />
@@ -95,13 +95,13 @@ export default async function LatestNews() {
                     <div className='flex items-center gap-2 text-[10px] text-zinc-500 dark:text-zinc-400 mb-1'>
                       <span>{getRelativeTime(post.publishedAt)}</span>
                       <span>•</span>
-                      <Badge variant="secondary" className='text-[10px] px-1 py-0 h-4 font-normal'>
+                      <Badge variant="outline" className='text-[10px] px-1 py-0 h-4 font-normal'>
                         {post.categoryName}
                       </Badge>
                     </div>
                     
                     {/* Title */}
-                    <h3 className="text-xs font-medium text-zinc-900 dark:text-zinc-100 leading-snug group-hover:text-primary dark:group-hover:text-primary transition-colors line-clamp-2">
+                    <h3 className="text-xs font-medium text-zinc-900 dark:text-zinc-100 leading-snug group-hover:text-primary group-hover:underline dark:group-hover:text-primary transition-colors line-clamp-2">
                       {post.title}
                     </h3>
                     
