@@ -79,8 +79,8 @@ export default function SEOHead({
       {seo.canonicalUrl && <link rel="canonical" href={seo.canonicalUrl} />}
 
       {/* Custom Meta Attributes */}
-      {seo.metaAttributes?.map((attr) => (
-        <meta key={attr.key} name={attr.key} content={attr.value} />
+      {seo.metaAttributes?.map((attr, index) => (
+        <meta key={`${attr.key}-${index}`} name={attr.key} content={attr.value} />
       ))}
     </>
   );

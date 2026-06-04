@@ -135,17 +135,17 @@ export async function generateStaticParams() {
   const articles = await client.fetch(`
     *[_type == "news"] {
       "slug": slug.current,
-      "categoryName": category->name,
+      "categorySlug": category->slug.current,
       publishedAt
     }
   `);
 
-  return articles.map((article: { slug: string; categoryName: string; publishedAt: string }) => {
+  return articles.map((article: { slug: string; categorySlug: string; publishedAt: string }) => {
     const date = new Date(article.publishedAt);
     const year = String(date.getUTCFullYear());
     const month = String(date.getUTCMonth() + 1).padStart(2, "0");
     const day = String(date.getUTCDate()).padStart(2, "0");
-    const category = String(article.categoryName || "news").toLowerCase().replace(/\s+/g, "-");
+    const category = article.categorySlug || "news";
     return {
       category,
       year,

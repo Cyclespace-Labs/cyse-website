@@ -56,7 +56,7 @@ export default async function LatestNews() {
   console.log(data);
 
   return (
-    <div className='flex flex-col w-full bg-white dark:bg-slate-950 font-sans h-[612px]'>
+    <div className='flex flex-col w-full bg-white dark:bg-slate-950 font-sans h-[500px]'>
         <header className='flex flex-row gap-1 items-center justify-between px-5 py-3 border-b border-slate-200 dark:border-slate-800'>
           <h1 className='font-semibold text-sm flex flex-row gap-1 items-center'>
             <div className='p-2  rounded-md hidden '>
@@ -69,7 +69,7 @@ export default async function LatestNews() {
           </Link>
         </header>
         <ScrollArea.Root className="w-full rounded-none" type="auto">
-          <ScrollArea.Viewport className="w-full max-h-[564px]">
+          <ScrollArea.Viewport className="w-full max-h-[500px]">
           <div className='flex flex-col px-4 py-2'>
           {data.slice(0, 20).map((post, idx, arr) => {
             const sentiment = getSentimentProps(post.impacts);

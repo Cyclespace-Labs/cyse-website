@@ -9,25 +9,24 @@ const __dirname = path.dirname(__filename);
 const COMFYUI_URL = process.env.COMFYUI_URL || 'http://127.0.0.1:8188';
 
 /**
- * Loads the Ernie Image Turbo workflow template and injects the prompt.
+ * Loads the Z-Image Turbo workflow template and injects the prompt.
  * The workflow JSON is stored as a constant (you can also read from file).
  */
 const getWorkflowTemplate = () => {
-  const workflowPath = path.join(__dirname, 'ernie-image-turbo-workflow.json');
+  const workflowPath = path.join(__dirname, 'image_z_image_turbo.json');
   const workflowData = fs.readFileSync(workflowPath, 'utf-8');
   return JSON.parse(workflowData);
 };
 
 /**
  * Updates the prompt text in the workflow.
- * Finds the first CLIPTextEncode node (node 1) and updates its prompt.
+ * Node 57:27 is the positive CLIPTextEncode in Z-Image Turbo.
  */
 function setPrompt(workflow, promptText) {
-  // Node 108 is the positive CLIPTextEncode in your specific workflow
-  if (workflow["108"]) {
-    workflow["108"].inputs.text = promptText;
+  if (workflow["57:27"]) {
+    workflow["57:27"].inputs.text = promptText;
   } else {
-    throw new Error('CLIPTextEncode node (108) not found in workflow');
+    throw new Error('CLIPTextEncode node (57:27) not found in workflow');
   }
   return workflow;
 }
@@ -43,16 +42,16 @@ async function generateWithComfyUI(prompt, options = {}) {
   let workflow = getWorkflowTemplate();
   workflow = setPrompt(workflow, prompt);
 
-// 2. Override dimensions in EmptyFlux2LatentImage (Node 104)
-  if (workflow["104"]) {
-    workflow["104"].inputs.width = width;
-    workflow["104"].inputs.height = height;
+// 2. Override dimensions in EmptySD3LatentImage (Node 57:13)
+  if (workflow["57:13"]) {
+    workflow["57:13"].inputs.width = width;
+    workflow["57:13"].inputs.height = height;
   }
 
-// 3. Override seed and steps in KSampler (Node 107)
-  if (workflow["107"]) {
-    workflow["107"].inputs.seed = seed;
-    workflow["107"].inputs.steps = steps;
+// 3. Override seed and steps in KSampler (Node 57:3)
+  if (workflow["57:3"]) {
+    workflow["57:3"].inputs.seed = seed;
+    workflow["57:3"].inputs.steps = steps;
   }
 
 // 4. Submit
@@ -108,7 +107,7 @@ async function generateWithComfyUI(prompt, options = {}) {
  * returns base64 string (data:image/png;base64,...)
  */
 export async function generateImage(prompt, options = {}) {
-  console.log('🎨 Generating image with local ComfyUI (Ernie Image Turbo)...');
+  console.log('🎨 Generating image with local ComfyUI (Z-Image Turbo)...');
   const imageBuffer = await generateWithComfyUI(prompt, options);
   const base64 = imageBuffer.toString('base64');
   console.log('✅ Image generated via ComfyUI');

@@ -1,16 +1,18 @@
-'use client';
-
-import { ArrowRight, Megaphone, ExternalLink, Loader2, AlertCircle } from 'lucide-react';
+import { ArrowRight, Megaphone } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { formatDate } from '@/lib/date-utils';
+import { getArticleUrl } from '@/lib/article-url';
+import * as ScrollArea from '@radix-ui/react-scroll-area';
 
 interface PressRelease {
   _id: string;
   title: string;
-  company: string;
-  publishedAt: string;
   currentSlug: string;
+  publishedAt: string;
+  categoryName: string;
+  company: string;
+  tags?: { name: string; color: string }[];
 }
 
 function getRelativeTime(date: string): string {
@@ -19,96 +21,94 @@ function getRelativeTime(date: string): string {
   const diff = now.getTime() - published.getTime();
   const minutes = Math.floor(diff / 60000);
   const hours = Math.floor(diff / 3600000);
-  
+
   if (minutes < 1) return 'Just now';
   if (minutes < 60) return `${minutes}m ago`;
   if (hours < 24) return `${hours}h ago`;
-  return published.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  return formatDate(date, { month: 'short', day: 'numeric' });
 }
 
-export default function PressReleases() {
-  const [pressReleases, setPressReleases] = useState<PressRelease[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+async function getData(): Promise<PressRelease[]> {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  const res = await fetch(`${baseUrl}/api/news/press-releases`, {
+    next: { revalidate: 30 },
+  });
 
-  useEffect(() => {
-    async function fetchPressReleases() {
-      try {
-        const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-        const res = await fetch(`${baseUrl}/api/news/press-releases`, {
-          next: { revalidate: 30 }
-        });
+  if (!res.ok) return [];
+  return res.json();
+}
 
-        if (!res.ok) {
-          throw new Error('Failed to fetch press releases');
-        }
-
-        const data = await res.json();
-        setPressReleases(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred');
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchPressReleases();
-  }, []);
+export default async function PressReleases() {
+  const data = await getData();
 
   return (
-    <div className='flex flex-col h-full w-full bg-white dark:bg-slate-950'>
-      {/* Header */}
-      <header className='flex flex-row gap-1 items-center justify-between px-3 py-3 border-b border-slate-200 dark:border-slate-800'>
-        <h1 className='font-semibold text-sm flex flex-row gap-2 items-center'> 
-          <Megaphone className="w-4 h-4 text-primary hidden" />
-          <span>Press Releases</span>
+    <div className='flex flex-col w-full bg-white dark:bg-slate-950 font-sans h-[300px]'>
+      <header className='flex flex-row gap-1 items-center justify-between px-5 py-3 border-b border-slate-200 dark:border-slate-800'>
+        <h1 className='font-semibold text-sm flex flex-row gap-1 items-center'>
+          <span className='font-semibold tracking-tight'>Press Releases</span>
         </h1>
-        <Link href="/news?category=press-releases" className='text-xs text-slate-500 hover:text-primary dark:hover:text-secondary transition-colors flex items-center gap-1'>
-          See all <ArrowRight className="w-3 h-3" />
+        <Link href="/news/press-release" className='text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-secondary transition-colors tracking-tight flex gap-1'>
+          View all <ArrowRight className='h-4 w-4' />
         </Link>
       </header>
 
-      {/* Content */}
-      <div className="flex flex-col flex-1">
-        {loading ? (
-          <div className="flex items-center justify-center py-8 max-h-100 h-80">
-            <Loader2 className="w-5 h-5 text-slate-400 animate-spin" />
-          </div>
-        ) : error ? (
-          <div className="flex flex-col items-center justify-center py-8 px-4 text-center max-h-100 h-80">
-            <AlertCircle className="w-5 h-5 text-red-500 mb-2" />
-            <p className="text-xs text-slate-500 dark:text-slate-400">Failed to load press releases</p>
-          </div>
-        ) : pressReleases.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-8 px-4 text-center max-h-100 h-80">
-            <Megaphone className="w-5 h-5 text-slate-400 mb-2" />
-            <p className="text-xs text-slate-500 dark:text-slate-400">No press releases available</p>
-          </div>
-        ) : (
-          <div className="flex flex-col">
-            {pressReleases.map((item) => (
-              <Link
-                key={item._id}
-                href={`/news/${item.currentSlug}`}
-                className='group flex items-start gap-2 px-3 py-3 border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-colors'
-              >
-                <div className='flex-1 min-w-0'>
-                  <div className='flex items-center gap-2 mb-1'>
-                    <span className='text-[10px] text-slate-400 dark:text-slate-500'>{getRelativeTime(item.publishedAt)}</span>
+      <ScrollArea.Root className="w-full rounded-none" type="auto">
+        <ScrollArea.Viewport className="w-full max-h-[352px]">
+          <div className='flex flex-col px-4 py-2'>
+            {data.length === 0 ? (
+              <div className="flex flex-col items-center justify-center py-8 px-4 text-center">
+                <Megaphone className="w-5 h-5 text-slate-400 mb-2" />
+                <p className="text-xs text-slate-500 dark:text-slate-400">No press releases available</p>
+              </div>
+            ) : (
+              data.slice(0, 20).map((post, idx, arr) => {
+                const isLast = idx === arr.length - 1;
+
+                return (
+                  <div key={post._id} className='flex gap-3'>
+                    {/* Timeline spine */}
+                    <div className='flex flex-col items-center'>
+                      <div className='mt-1.5 w-2.5 h-2.5 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0' />
+                      {!isLast && <div className='w-px flex-1 bg-slate-200 dark:bg-slate-700 mt-1' />}
+                    </div>
+
+                    {/* Content */}
+                    <Link
+                      href={getArticleUrl(post)}
+                      className='group flex-1 min-w-0 pb-4'
+                    >
+                      {/* Meta row */}
+                      <div className='flex items-center gap-1.5 flex-wrap text-[10px] text-zinc-500 dark:text-zinc-400 mb-1'>
+                        <span>{getRelativeTime(post.publishedAt)}</span>
+                        {post.company && (
+                          <>
+                            <span>•</span>
+                            <Badge variant="outline" className='text-[10px] px-1 py-0 h-4 font-normal'>
+                              {post.company}
+                            </Badge>
+                          </>
+                        )}
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-xs font-medium text-zinc-900 dark:text-zinc-100 leading-snug group-hover:text-primary group-hover:underline transition-colors line-clamp-2">
+                        {post.title}
+                      </h3>
+                    </Link>
                   </div>
-                  <h4 className="text-xs font-medium text-slate-900 dark:text-slate-100 line-clamp-2 group-hover:text-primary dark:group-hover:text-secondary transition-colors">
-                    {item.title}
-                  </h4>
-                  <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1">
-                    {item.company}
-                    <ExternalLink className="w-2.5 h-2.5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </p>
-                </div>
-              </Link>
-            ))}
+                );
+              })
+            )}
           </div>
-        )}
-      </div>
+        </ScrollArea.Viewport>
+        <ScrollArea.Scrollbar
+          className="w-2 p-0.5 bg-zinc-100 dark:bg-zinc-900 transition-colors duration-150 ease-out hover:bg-zinc-200 dark:hover:bg-zinc-800"
+          orientation="vertical"
+        >
+          <ScrollArea.Thumb className="flex-1 bg-zinc-400 dark:bg-zinc-600 rounded-full relative" />
+        </ScrollArea.Scrollbar>
+        <ScrollArea.Corner />
+      </ScrollArea.Root>
     </div>
   );
 }

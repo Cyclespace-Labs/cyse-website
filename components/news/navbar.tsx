@@ -10,6 +10,7 @@ import { ThemeToggle } from "../themeToggle";
 import SearchDialog from "./search-dialog";
 import DropdownContent from "./DropdownContent";
 import { useState, useEffect } from "react";
+import { urlFor } from "@/sanity/lib/client";
 
 
 const tourney = Tourney({
@@ -21,7 +22,8 @@ export default function Navbar() {
   const pathname = usePathname();
   const [newsData, setNewsData] = useState<any[]>([]);
   const [loadingNews, setLoadingNews] = useState(true);
-  const [loadingResearch, setLoadingResearch] = useState(false);
+  const [researchData, setResearchData] = useState<any[]>([]);
+  const [loadingResearch, setLoadingResearch] = useState(true);
   const [loadingAnalysis, setLoadingAnalysis] = useState(false);
   const [loadingEvents, setLoadingEvents] = useState(false);
   const [loadingLearn, setLoadingLearn] = useState(false);
@@ -34,12 +36,7 @@ export default function Navbar() {
     }
   };
 
-  const handleResearchHover = () => {
-    if (!loadingResearch) {
-      setLoadingResearch(true);
-      setTimeout(() => setLoadingResearch(false), 500);
-    }
-  };
+  const handleResearchHover = () => {};
 
   const handleAnalysisHover = () => {
     if (!loadingAnalysis) {
@@ -87,6 +84,25 @@ export default function Navbar() {
     fetchNews();
   }, []);
 
+  // Fetch research data
+  useEffect(() => {
+    async function fetchResearch() {
+      try {
+        const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+        const res = await fetch(`${baseUrl}/api/research`, { cache: 'no-store' });
+        if (res.ok) {
+          const data = await res.json();
+          setResearchData(data);
+        }
+      } catch (error) {
+        console.error("Failed to fetch research:", error);
+      } finally {
+        setLoadingResearch(false);
+      }
+    }
+    fetchResearch();
+  }, []);
+
   // Filter news by categories
   const newsCards = newsData
     .filter(post => ['Markets', 'Tech', 'Policy'].includes(post.categoryName))
@@ -96,10 +112,24 @@ export default function Navbar() {
       description: post.smallDescription,
       href: `/news/${post.slug}`,
       category: post.categoryName,
-      image: post.titleImage
+      image: post.titleImage?.asset ? urlFor(post.titleImage).width(400).url() : undefined
     }));
 
-  const researchCards: any[] = [];
+  const reportTypeLabels: Record<string, string> = {
+    quarterly: 'Quarterly Review', annual: 'Annual Report', market: 'Market Report',
+    adoption: 'Adoption Index', exchange: 'Exchange Report', stablecoin: 'Stablecoin Report',
+    tokenization: 'Tokenization Report', network: 'Network Report', regulatory: 'Regulatory Report',
+    ecosystem: 'Ecosystem Report', whitepaper: 'Whitepaper', 'case-study': 'Case Study',
+    'deep-dive': 'Deep Dive',
+  };
+
+  const researchCards = researchData.slice(0, 3).map(item => ({
+    title: item.title,
+    description: item.authorName || '',
+    href: `/research/${item.currentSlug}`,
+    category: item.reportType ? (reportTypeLabels[item.reportType] || item.reportType) : undefined,
+    image: item.titleImage?.asset ? urlFor(item.titleImage).width(400).url() : undefined
+  }));
   const analysisCards: any[] = [];
   const eventsCards: any[] = [];
   const learnCards: any[] = [];
@@ -178,12 +208,11 @@ export default function Navbar() {
               <DropdownContent 
                 cards={researchCards}
                 loading={loadingResearch}
-                comingSoon={true}
                 sectionLinks={[
-                  { label: "Crypto", href: "/research/crypto" },
-                  { label: "DeFi", href: "/research/deFi" },
-                  { label: "NFT", href: "/research/nft" },
-                  { label: "Web3", href: "/research/web3" },
+                  { label: "Case Study", href: "/research/case-study" },
+                  { label: "Deep Dive", href: "/research/deep-dive" },
+                  { label: "Ecosystem Report", href: "/research/ecosystem" },
+                  { label: "Market Analysis", href: "/research/market" },
                 ]}
                 featuredSections={[]}
               />

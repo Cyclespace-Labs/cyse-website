@@ -43,64 +43,67 @@ export default function Hero() {
 
       <div className="absolute inset-0 z-0">
         {videoFailed ? (
-          <Image
-            src="/new_hero.png"
-            alt="Background"
-            fill
-            sizes="100vw"
-            quality={100}
-            className="object-cover object-center z-10"
-            priority
-            referrerPolicy="no-referrer"
-          />
+          <div>
+            <Image
+              src="/new_hero.png"
+              alt="Background"
+              fill
+              sizes="100vw"
+              quality={100}
+              className="object-cover dark:hidden object-center z-10"
+              priority
+              referrerPolicy="no-referrer"
+            />
+            <Image
+              src="/new_hero_dark.png"
+              alt="Cryptocurrency background"
+              fill
+              sizes="100vw"
+              quality={100}
+              className="object-cover object-center z-10 dark:flex hidden dark:md:flex"
+              priority
+              referrerPolicy="no-referrer"
+            />
+            
+          </div>
         ) : (
-          <video
-            ref={videoRef}
-            className="w-full h-full dark:hidden object-cover object-center z-10"
-            controls={false}
-            autoPlay
-            loop
-            muted
-            playsInline
-            disablePictureInPicture
-            disableRemotePlayback
-            preload="auto"
-            poster="/new_hero.png"
-          >
-            <source src="/render.mp4" type="video/mp4" />
-            <source className="dark:hidden" src="/video.webm" type="video/webm" />
-          </video>
-        )}
+          <div>
+            <video
+              ref={videoRef}
+              className="w-full h-full dark:hidden object-cover object-center z-10"
+              controls={false}
+              autoPlay
+              loop
+              muted
+              playsInline
+              disablePictureInPicture
+              disableRemotePlayback
+              preload="auto"
+              poster="/new_hero.png"
+            >
+              <source src="/render.mp4" type="video/mp4" />
+              <source src="/video.webm" type="video/webm" />
+            </video>
 
-        {videoFailed ? (
-          <Image
-            src="/new_hero_dark.png"
-            alt="Cryptocurrency background"
-            fill
-            sizes="100vw"
-            quality={100}
-            className="object-cover object-center z-10 dark:flex hidden dark:md:flex"
-            priority
-            referrerPolicy="no-referrer"
-          />
-        ) : 
-          <video
-            ref={videoRef}
-            className="w-full h-full object-cover object-center z-10"
-            controls={false}
-            autoPlay
-            loop
-            muted
-            playsInline
-            disablePictureInPicture
-            disableRemotePlayback
-            preload="auto"
-            poster="/new_hero.png"
-          >
-            <source src="/render_dark.mp4" type="video/mp4" />
-            <source src="/video_dark.webm" type="video/webm" />
-          </video>
-        }
+            <video
+              ref={videoRef}
+              className="w-full h-full object-cover dark:flex object-center z-10"
+              controls={false}
+              autoPlay
+              loop
+              muted
+              playsInline
+              disablePictureInPicture
+              disableRemotePlayback
+              preload="auto"
+              poster="/new_hero.png"
+            >
+              <source src="/render_dark.mp4" type="video/mp4" />
+              <source src="/video_dark.webm" type="video/webm" />
+            </video>
+
+          </div>
+        )}
 
 
         <Image

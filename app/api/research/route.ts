@@ -7,6 +7,7 @@ export async function GET() {
   try {
     const query = `
       *[_type == 'research'] | order(publishedAt desc) [0...6] {
+        _id,
         title,
         "currentSlug": slug.current,
         titleImage,

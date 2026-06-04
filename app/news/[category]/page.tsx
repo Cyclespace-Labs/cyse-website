@@ -14,19 +14,22 @@ import { Badge } from "@/components/ui/badge";
 import { getArticleUrl } from "@/lib/article-url";
 import { notFound } from "next/navigation";
 
-const VALID_CATEGORIES = ["markets", "finance", "tech", "policy"];
+const VALID_CATEGORIES = ["markets", "finance", "tech", "policy", "press-release", "web3", "opinion", "learn", "news-analysis", "layer-2", "indices", "daybook", "sponsored"];
 
 function normalizeCategory(category: string): string {
   return category.toLowerCase().trim();
 }
 
 function formatCategoryTitle(category: string): string {
-  return category.charAt(0).toUpperCase() + category.slice(1);
+  return category
+    .split('-')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
 }
 
 async function getCategoryNews(category: string): Promise<simpleNewsCard[]> {
   const query = `
-    *[_type == 'news' && defined(category) && lower(category->name) == $category] | order(publishedAt desc) {
+    *[_type == 'news' && defined(category) && category->slug.current == $category] | order(publishedAt desc) {
       title,
       smallDescription,
       "currentSlug": slug.current,
@@ -63,11 +66,6 @@ export default async function CategoryPage({
 }) {
   const { category } = await params;
   const normalized = normalizeCategory(category);
-
-  if (!VALID_CATEGORIES.includes(normalized)) {
-    notFound();
-  }
-
   const data = await getCategoryNews(normalized);
 
   const mockArticles: simpleNewsCard[] =
@@ -272,9 +270,7 @@ export default async function CategoryPage({
 }
 
 export async function generateStaticParams() {
-  return VALID_CATEGORIES.map((category) => ({
-    category,
-  }));
+  return VALID_CATEGORIES.map((category) => ({ category }));
 }
 
 export async function generateMetadata({

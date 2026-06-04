@@ -79,7 +79,31 @@ export async function generateFreshArticle(sourceArticles, promptType = 'news') 
   sanitizedJson = sanitizedJson
     .replace(/,\s*]/g, ']') // Remove trailing commas in arrays
     .replace(/,\s*}/g, '}'); // Remove trailing commas in objects
-  
+
+  // Fix missing array close bracket: AI sometimes omits ] when transitioning from an
+  // array of objects to the next root-level key.
+  // Pattern: ...},  "content": ...  →  ...}],  "content": ...
+  const rootLevelKeys = ['content', 'research', 'conclusion', 'imagePrompt', 'seoKeywords', 'description', 'frequency', 'reportType', 'title', 'smallDescription', 'keyFindings'];
+  const missingBracketPattern = new RegExp(`}(\\s*,\\s*"(?:${rootLevelKeys.join('|')})"\\s*:)`, 'g');
+  sanitizedJson = sanitizedJson.replace(missingBracketPattern, (match, rest, offset) => {
+    // Count unbalanced [ brackets up to this point (outside of strings)
+    const before = sanitizedJson.substring(0, offset + 1);
+    let depth = 0;
+    let inStr = false;
+    let esc = false;
+    for (const ch of before) {
+      if (esc) { esc = false; continue; }
+      if (ch === '\\' && inStr) { esc = true; continue; }
+      if (ch === '"') { inStr = !inStr; continue; }
+      if (inStr) continue;
+      if (ch === '[') depth++;
+      if (ch === ']') depth--;
+    }
+    // If there's an unclosed [ bracket, insert ] to close the array
+    if (depth > 0) return `}]${rest}`;
+    return match;
+  });
+
   // Fix unescaped quotes in JSON string values
   // The AI sometimes generates: "text "quoted" text" instead of "text \"quoted\" text"
   // This is a more robust approach to fix unescaped quotes

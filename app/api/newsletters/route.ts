@@ -7,6 +7,7 @@ export async function GET() {
   try {
     const query = `
       *[_type == 'newsletter'] | order(publishedAt desc) [0...6] {
+        _id,
         title,
         description,
         "currentSlug": slug.current,
