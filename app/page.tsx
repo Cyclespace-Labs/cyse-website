@@ -1,5 +1,6 @@
 import Chains from "@/components/landing/Chains";
 import CommunityPosts from "@/components/landing/CommunityPosts";
+import Coverage from "@/components/landing/Coverage";
 import Description from "@/components/landing/description";
 import Features from "@/components/landing/Features";
 import Hero from "@/components/landing/Hero";
@@ -92,10 +93,14 @@ export default function Home() {
       </div>
 
       <div className="">
-        <Performance />
+        <Coverage />
       </div>
 
       <div className="hidden">
+        <Performance />
+      </div>
+
+      <div className="">
         <Orbit />
       </div>
 
@@ -120,7 +125,7 @@ export default function Home() {
         <PredictionMarkets />
       </div>
 
-      <div>
+      <div className="hidden">
         <RoadmapTimeline />
       </div>
 

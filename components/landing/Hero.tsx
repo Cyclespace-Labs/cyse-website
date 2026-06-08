@@ -38,15 +38,15 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full -top-17 min-h-screen h-full overflow-hidden flex font-sans items-center">
+    <section className="relative w-full -top-17 h-full overflow-hidden flex font-sans items-center">
       {/* Background Image */}
 
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 ">
         {/* Gradient overlay to ensure text readability across all backgrounds */}
         <div className="absolute hidden inset-0 bg-linear-to-r from-white via-transparent to-transparent
-        dark:bg-linear-to-r dark:from-black dark:via-transparent dark:to-transparent z-10" />
+        dark:bg-linear-to-r dark:from-black dark:via-transparent dark:to-transparent z-10 " />
         <div className="absolute hidden inset-0 bg-linear-to-t from-white via-transparent to-transparent
-        dark:bg-linear-to-t dark:from-black dark:via-transparent dark:to-transparent z-10" />
+        dark:bg-linear-to-t dark:from-black dark:via-transparent dark:to-transparent z-10 " />
         
         {videoFailed ? (
           <div>
@@ -76,7 +76,7 @@ export default function Hero() {
           <div>
             <video
               ref={videoRef}
-              className="w-full h-full dark:hidden object-cover object-center z-10"
+              className="w-full h-full dark:hidden flex object-cover object-center z-10"
               controls={false}
               autoPlay
               loop
@@ -93,7 +93,7 @@ export default function Hero() {
 
             <video
               ref={videoRef}
-              className="w-full h-full object-cover dark:flex object-center z-10"
+              className="w-full h-full object-cover hidden dark:flex object-center z-10"
               controls={false}
               autoPlay
               loop
@@ -126,7 +126,7 @@ export default function Hero() {
 
       </div>
 
-      <div className="container mx-auto px-8 h-fit sm:px-10 md:px-12 relative z-10 pt-0 md:pt-30">
+      <div className="container mx-auto px-8  h-fit flex pb-80  sm:px-10 md:px-12 relative z-10 pt-0 md:pt-30 lg:pt-100">
         <div className="max-w-xl md:max-w-2xl lg:max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
