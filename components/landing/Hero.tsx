@@ -38,10 +38,16 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full -top-17 min-h-screen overflow-hidden flex font-sans items-center">
+    <section className="relative w-full -top-17 min-h-screen h-full overflow-hidden flex font-sans items-center">
       {/* Background Image */}
 
       <div className="absolute inset-0 z-0">
+        {/* Gradient overlay to ensure text readability across all backgrounds */}
+        <div className="absolute hidden inset-0 bg-linear-to-r from-white via-transparent to-transparent
+        dark:bg-linear-to-r dark:from-black dark:via-transparent dark:to-transparent z-10" />
+        <div className="absolute hidden inset-0 bg-linear-to-t from-white via-transparent to-transparent
+        dark:bg-linear-to-t dark:from-black dark:via-transparent dark:to-transparent z-10" />
+        
         {videoFailed ? (
           <div>
             <Image
@@ -116,12 +122,7 @@ export default function Hero() {
           priority
           referrerPolicy="no-referrer"
         />
-        
-        {/* Gradient overlay to ensure text readability across all backgrounds */}
-        <div className="absolute inset-0 bg-linear-to-r from-white via-transparent to-transparent
-        dark:bg-linear-to-r dark:from-black dark:via-transparent dark:to-transparent" />
-        <div className="absolute inset-0 bg-linear-to-t from-white via-transparent to-transparent
-        dark:bg-linear-to-t dark:from-black dark:via-transparent dark:to-transparent" />
+
 
       </div>
 

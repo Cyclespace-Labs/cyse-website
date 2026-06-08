@@ -30,7 +30,7 @@ export default function PulsingPath() {
 
     return (
     <div className="p-10 h-fit">
-        <div className="grid w-full  justify-center items-center gap-2 md:gap-6 lg:gap-6 space-y-0 h-fit">
+        <div className="grid w-full  justify-center items-center gap-2 md:gap-4 lg:gap-4 space-y-0 h-fit">
             {/* left design*/}
             <div className="flex justify-center items-center gap-0 space-y-0 h-fit">
 
@@ -81,7 +81,7 @@ export default function PulsingPath() {
                             initial={{ strokeDashoffset: 0 }}
                             animate={{ strokeDashoffset: totalLength }}
                             transition={{
-                                duration: 3,
+                                duration: 4,
                                 repeat: Infinity,
                                 ease: "linear",
                                 repeatType: "loop",
@@ -138,7 +138,7 @@ export default function PulsingPath() {
                             initial={{ strokeDashoffset: 0 }}
                             animate={{ strokeDashoffset: totalLength }}
                             transition={{
-                                duration: 3,
+                                duration: 4,
                                 repeat: Infinity,
                                 ease: "linear",
                                 repeatType: "loop",
@@ -227,6 +227,7 @@ export default function PulsingPath() {
                                 animate={{ strokeDashoffset: 0 }}
                                 transition={{
                                     duration: 3,
+                                    delay: 1,
                                     repeat: Infinity,
                                     ease: "linear",
                                     repeatType: "loop",
@@ -273,6 +274,7 @@ export default function PulsingPath() {
                                 animate={{ strokeDashoffset: 0 }}
                                 transition={{
                                     duration: 3,
+                                    delay: 1,
                                     repeat: Infinity,
                                     ease: "linear",
                                     repeatType: "loop",
@@ -335,7 +337,7 @@ export default function PulsingPath() {
                             initial={{ strokeDashoffset: 0 }}
                             animate={{ strokeDashoffset: totalLength }}
                             transition={{
-                                duration: 3,
+                                duration: 4,
                                 repeat: Infinity,
                                 ease: "linear",
                                 repeatType: "loop",
@@ -391,7 +393,7 @@ export default function PulsingPath() {
                             initial={{ strokeDashoffset: 0 }}
                             animate={{ strokeDashoffset: totalLength }}
                             transition={{
-                                duration: 3,
+                                duration: 4,
                                 repeat: Infinity,
                                 ease: "linear",
                                 repeatType: "loop",
@@ -449,7 +451,7 @@ export default function PulsingPath() {
                             animate={{ strokeDashoffset: 0 }}
                             transition={{
                                 duration: 3,
-                                delay: 0.2,
+                                delay: 1,
                                 repeat: Infinity,
                                 ease: "linear",
                                 repeatType: "loop",
@@ -493,7 +495,6 @@ export default function PulsingPath() {
                             animate={{ strokeDashoffset: 0 }}
                             transition={{
                                 duration: 3,
-                                delay: 0.4,
                                 repeat: Infinity,
                                 ease: "linear",
                                 repeatType: "loop",
@@ -537,7 +538,7 @@ export default function PulsingPath() {
                             animate={{ strokeDashoffset: 0 }}
                             transition={{
                                 duration: 3,
-                                delay: 0.6,
+                                delay: 2,
                                 repeat: Infinity,
                                 ease: "linear",
                                 repeatType: "loop",
