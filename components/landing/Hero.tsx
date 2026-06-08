@@ -133,7 +133,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-block py-1 px-3 rounded-full bg-primary/20 text-primary text-xs font-bold tracking-wider uppercase mb-4 sm:mb-6">
+            <span className=" hidden py-1 px-3 rounded-full bg-primary/20 text-primary text-xs font-bold tracking-wider uppercase mb-4 sm:mb-6">
               Next-Gen Asset Management
             </span>
 

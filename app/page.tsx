@@ -3,10 +3,13 @@ import CommunityPosts from "@/components/landing/CommunityPosts";
 import Description from "@/components/landing/description";
 import Features from "@/components/landing/Features";
 import Hero from "@/components/landing/Hero";
+import HeroOrbital from "@/components/landing/HeroOrbital";
 import LatestNews from "@/components/landing/LatestNews";
+import Orbit from "@/components/landing/Orbit";
 import Performance from "@/components/landing/Performance";
 import PredictionMarkets from "@/components/landing/PredictionMarkets";
 import Rewards from "@/components/landing/Rewards";
+import RoadmapTimeline from "@/components/landing/RoudmapTimeline";
 import Showcase from "@/components/landing/Showcase";
 import Stats from "@/components/landing/Stats";
 import Footer from "@/components/layout/Footer";
@@ -92,6 +95,14 @@ export default function Home() {
         <Performance />
       </div>
 
+      <div className="hidden">
+        <Orbit />
+      </div>
+
+      <div className="hidden">
+        <HeroOrbital />
+      </div>
+
       <div className=" ">
         <div className="absolute right-1/100  ">
           <Image
@@ -107,6 +118,10 @@ export default function Home() {
           />
         </div>
         <PredictionMarkets />
+      </div>
+
+      <div>
+        <RoadmapTimeline />
       </div>
 
       <div className="">

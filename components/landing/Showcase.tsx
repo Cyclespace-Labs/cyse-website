@@ -127,7 +127,7 @@ export default function Showcase() {
                     height={967}
                     width={1877}
                     quality={100}
-                    className="object-fit w-250 h-125 dark:hidden flex relative left-1/2 transform -translate-x-1/2 -translate-y-1 md:-translate-y-60  z-10 rounded-sm shadow-2xl hover:scale-110 transition-transform duration-300"
+                    className="object-fit w-280 h-140 dark:hidden flex relative left-1/2 transform -translate-x-1/2 -translate-y-1 md:-translate-y-60  z-10 rounded-sm shadow-2xl hover:scale-110 transition-transform duration-300"
                     priority
                     referrerPolicy="no-referrer"
                 />
@@ -138,7 +138,7 @@ export default function Showcase() {
                     height={967}
                     width={1877}
                     quality={100}
-                    className="object-fit w-250 h-125  dark:flex hidden relative left-1/2 transform -translate-x-1/2 -translate-y-1 md:-translate-y-60  z-10 rounded-sm shadow-2xl hover:scale-110 transition-transform duration-300"
+                    className="object-fit w-280 h-140  dark:flex hidden relative left-1/2 transform -translate-x-1/2 -translate-y-1 md:-translate-y-60  z-10 rounded-sm shadow-2xl hover:scale-110 transition-transform duration-300"
                     priority
                     referrerPolicy="no-referrer"
                 />
