@@ -99,11 +99,7 @@ export default function Home() {
       <div className="hidden">
         <Performance />
       </div>
-
-      <div className="">
-        <Orbit />
-      </div>
-
+      
       <div className="hidden">
         <HeroOrbital />
       </div>

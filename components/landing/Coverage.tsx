@@ -7,6 +7,7 @@ import { Button } from '../ui/button'
 import { Badge } from '../ui/badge'
 import LogoLoop from '../LogoLoop'
 import Silk from '../Silk'
+import Orbit from './Orbit'
 
 
 const firstLogoList = [
@@ -37,7 +38,19 @@ const thirdLogoList = [
     { src: "/tokens/Neo.svg", alt: "Neo", href: "#"},
     { src: "/tokens/Eos.svg", alt: "Eos", href: "#"},
     { src: "/tokens/BNB.svg", alt: "BNB", href: "#"},
-]
+];
+
+const orbitingTokens = [
+  // First 7 tokens – small orbits, fast
+  ...firstLogoList.map((token, i) => ({
+    src: token.src,
+    alt: token.alt,
+    orbitRadius: 90 + i * 50,
+    tokenSize: 64,
+    speed: 1.2 - i * 0.1,
+    startAngle: i * 0.8,
+  }))
+];
 
 export default function Coverage() {
   return (
@@ -104,52 +117,15 @@ export default function Coverage() {
                     <Card className='h-full w-full p-0 bg-zinc-200
                         leading-tight dark:bg-slate-900 dark:border-slate-800 border hover:scale-105 transition-transform duration-300'
                     >
-                        <CardHeader className='p-8 w-sm md:w-md'>
+                        <CardHeader className='px-8 pt-8 w-sm md:w-md'>
                             <h2 className='text-black dark:text-white text-xl font-bold'>Perpetuals. No Limits.</h2>
                             <h3 className='text-sm text-slate-600 dark:text-slate-200'>Trade BTC, ETH, SOL perpetuals with up to 50x leverage and zero funding fees.</h3>
                         </CardHeader>
 
-                        <CardContent className='h-full w-fit my-6 justify-center p-0 overflow-clip'>
-                            <div className='overflow-clip w-sm md:w-lg justify-center flex flex-col '>
+                        <CardContent className='h-full justify-center p-0 overflow-visible m-0'>
+                            <div className='overflow-visible justify-center flex flex-col relative  -translate-y-3 z-0'>
                                 {/* Basic horizontal loop */}
-                                <LogoLoop
-                                    logos={firstLogoList}
-                                    speed={20}
-                                    direction="left"
-                                    logoHeight={50}
-                                    gap={20}
-                                    hoverSpeed={0}
-                                    scaleOnHover
-                                    fadeOut
-                                    fadeOutColor="slate-500"
-                                    ariaLabel="Technology partners"
-                                />
-
-                                <LogoLoop
-                                    logos={secondLogoList}
-                                    speed={25}
-                                    direction="right"
-                                    logoHeight={50}
-                                    gap={20}
-                                    hoverSpeed={0}
-                                    scaleOnHover
-                                    fadeOut
-                                    fadeOutColor="slate-500"
-                                    ariaLabel="Technology partners"
-                                />
-
-                                <LogoLoop
-                                    logos={thirdLogoList}
-                                    speed={30}
-                                    direction="left"
-                                    logoHeight={50}
-                                    gap={20}
-                                    hoverSpeed={0}
-                                    scaleOnHover
-                                    fadeOut
-                                    fadeOutColor="slate-500"
-                                    ariaLabel="Technology partners"
-                                />
+                                <Orbit tokens={orbitingTokens} />
                             </div>
                             
                         </CardContent>
