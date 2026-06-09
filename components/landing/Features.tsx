@@ -7,6 +7,9 @@ import { Button } from '../ui/button'
 import { Badge } from '../ui/badge'
 import LogoLoop from '../LogoLoop'
 import Silk from '../Silk'
+import BorderGlow from '../BorderGlow'
+import StarBorder from '../StarBorder'
+import LetterGlitch from '../LetterGlitch'
 
 
 const firstLogoList = [
@@ -56,7 +59,8 @@ export default function Features() {
             <div className='flex flex-col md:flex-row w-full h-full justify-center gap-5 px-20 sm:px-10 md:px-0 '>
 
                 <div className='flex flex-col gap-5 w-full md:w-300 h-full justify-center'>
-                    <Card className="relative h-full w-full gap-1 overflow-hidden leading-tight hover:scale-105 transition-transform duration-300">
+                    <Card className="relative h-full w-full gap-1 overflow-hidden leading-tight hover:scale-105
+                         transition-transform duration-500">
                         {/* Background layer */}
                         <div className="absolute inset-0 z-0">
                             <Silk
@@ -66,6 +70,7 @@ export default function Features() {
                                 noiseIntensity={2}
                                 rotation={0}
                             />
+
                             <div className="absolute inset-0 bg-black/60" />
                             <div className="absolute inset-0 bg-linear-to-l from-[#0E76FD] via-[#0E76FD]/50 to-transparent" />
                             <div className="absolute inset-0 bg-linear-to-bl from-black via-[#0E76FD]/50 to-transparent" />
@@ -80,7 +85,7 @@ export default function Features() {
                                     height={230}
                                     width={230}
                                     quality={100}
-                                    className="relative left-35 -top-10 object-cover drop-shadow-2xl drop-shadow-black w-auto h-auto hover:scale-110 transition-transform duration-300"
+                                    className="relative left-35 -top-10 object-cover drop-shadow-2xl drop-shadow-black w-auto h-auto hover:scale-110 transition-transform duration-500"
                                     priority
                                     referrerPolicy="no-referrer"
                                 />
@@ -97,7 +102,7 @@ export default function Features() {
                         </div>
                     </Card>
 
-                    <Card className='h-full w-full bg-zinc-200 dark:bg-slate-900 dark:border-slate-800 border border-zinc-200 gap-5 hover:scale-105 transition-transform duration-300' >
+                    <Card className='h-full w-full  bg-zinc-200 dark:bg-slate-900 dark:border-slate-800 border border-zinc-200 gap-5 hover:scale-105 transition-transform duration-500' >
                         <CardHeader className='flex items-center gap-2'>
                             <div className='bg-primary p-2 rounded-lg w-fit h-fit'><CandlestickChartIcon className='text-white w-5 h-5' /></div>
                             <div className='gap-0 space-y-0 flex flex-col'>
@@ -109,10 +114,11 @@ export default function Features() {
                             Trade perpetual futures with deep liquidity. No funding fees. No expiration dates. Pure leverage.
                         </CardContent>
                     </Card>
+
                 </div>
 
                 <div className='flex flex-col gap-5 w-full h-full'>
-                    <Card className='h-full w-full bg-zinc-200 dark:bg-slate-900 dark:border-slate-800 border border-zinc-200 relative hover:scale-105 transition-transform duration-300'>
+                    <Card className='h-full w-full  bg-zinc-200 dark:bg-slate-900 dark:border-slate-800 border border-zinc-200 relative hover:scale-105 transition-transform duration-500'>
                         <CardHeader className='flex items-center gap-2 w-full'>
                             <div className='gap-0 space-y-0 flex flex-col w-xs md:w-sm'>
                                 <h2 className='text-sm md:text-xl font-bold bg-clip-text text-transparent
@@ -140,8 +146,8 @@ export default function Features() {
                         />
                     </Card>
                     
-                    <Card className='h-full w-full p-0 bg-zinc-200
-                        leading-tight dark:bg-slate-900 dark:border-slate-800 border hover:scale-105 transition-transform duration-300'
+                    <Card className='h-full w-full p-0 bg-zinc-200 
+                        leading-tight dark:bg-slate-900 dark:border-slate-800 border hover:scale-105 transition-transform duration-500'
                     >
                         <CardHeader className='p-8 w-sm md:w-md'>
                             <h2 className='text-black dark:text-white text-xl font-bold'>Perpetuals. No Limits.</h2>
@@ -196,7 +202,7 @@ export default function Features() {
                     </Card>
                 </div>
                 <div className='flex flex-col gap-5 w-full h-full'>
-                    <Card className='h-fit w-full bg-zinc-200 dark:bg-slate-900 gap-3 dark:border-slate-800 border border-zinc-200 hover:scale-105 transition-transform duration-300' >
+                    <Card className='h-fit w-full bg-zinc-200 dark:bg-slate-900 gap-3 dark:border-slate-800 border border-zinc-200 hover:scale-105 transition-transform duration-500' >
                         <CardHeader className='flex items-center gap-2 w-full'>
                             <div className='bg-primary p-2 rounded-lg w-fit h-fit'><CoinsIcon className='text-white w-5 h-5' /></div>
                             <div className='gap-0 space-y-0 flex flex-col w-full'>
@@ -208,7 +214,7 @@ export default function Features() {
                             <span>Deposit to the vault once, earn trading fees forever. Auto-compounding yields.</span>
                         </CardContent>
                     </Card>
-                    <Card className='h-full w-full bg-zinc-200 dark:bg-slate-900 dark:border-slate-800 border border-zinc-200 justify-center hover:scale-105 transition-transform duration-300'>
+                    <Card className='h-full w-full hover:shadow-xl hover:shadow-blue-500/20 bg-zinc-200 dark:bg-slate-900 dark:border-slate-800 border border-zinc-200 justify-center hover:scale-105 transition-transform duration-500'>
                         <CardHeader className='flex items-center gap-2 w-full'>
                             <h2 className='text-lg font-bold'>Leverage Without Limits.</h2>
                         </CardHeader>
@@ -224,7 +230,18 @@ export default function Features() {
                                 height={250}
                                 width={250}
                                 quality={100}
-                                className="object-cover relative w-auto h-auto"
+                                className="object-cover flex dark:hidden relative w-auto h-auto"
+                                priority
+                                referrerPolicy="no-referrer"
+                            />
+
+                            <Image
+                                src="/assets/candles_dark.svg"
+                                alt="cyclespace exchange vault"
+                                height={250}
+                                width={250}
+                                quality={100}
+                                className="object-cover hidden dark:flex relative w-auto h-auto mb-4"
                                 priority
                                 referrerPolicy="no-referrer"
                             />

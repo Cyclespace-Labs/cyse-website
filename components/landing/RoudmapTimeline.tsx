@@ -328,7 +328,7 @@ export default function RoadmapTimeline() {
     <section
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative w-full py-24 bg-gradient-to-b from-gray-50 via-white to-gray-100 dark:from-black dark:via-gray-950 dark:to-black overflow-hidden"
+      className="relative w-full py-60 bg-white dark:bg-black overflow-visible "
     >
       {/* Orbital ring background – theme‑aware */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">

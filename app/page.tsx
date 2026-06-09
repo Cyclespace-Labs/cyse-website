@@ -1,27 +1,51 @@
-import Chains from "@/components/landing/Chains";
-import CommunityPosts from "@/components/landing/CommunityPosts";
-import Coverage from "@/components/landing/Coverage";
-import Description from "@/components/landing/description";
-import Features from "@/components/landing/Features";
-import Hero from "@/components/landing/Hero";
-import HeroOrbital from "@/components/landing/HeroOrbital";
-import LatestNews from "@/components/landing/LatestNews";
-import Orbit from "@/components/landing/Orbit";
-import Performance from "@/components/landing/Performance";
-import PredictionMarkets from "@/components/landing/PredictionMarkets";
-import Rewards from "@/components/landing/Rewards";
-import RoadmapTimeline from "@/components/landing/RoudmapTimeline";
-import Showcase from "@/components/landing/Showcase";
-import Stats from "@/components/landing/Stats";
-import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
-import Image from "next/image";
+import dynamic from 'next/dynamic';
+import { Suspense, lazy } from 'react';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 
+// Components that are immediately visible – loaded normally
+import Hero from '@/components/landing/Hero';
+import Stats from '@/components/landing/Stats';
+import Showcase from '@/components/landing/Showcase';
+import Description from '@/components/landing/description';
+
+// Lazy load components that appear below the fold
+const Features = dynamic(() => import('@/components/landing/Features'), {
+  loading: () => <div className="h-40 w-full animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />,
+  ssr: true, // Keep SSR for SEO
+});
+
+const Chains = dynamic(() => import('@/components/landing/Chains'), {
+  loading: () => <div className="h-60 w-full animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />,
+  ssr: true,
+});
+
+const Rewards = dynamic(() => import('@/components/landing/Rewards'), {
+  loading: () => <div className="h-80 w-full animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />,
+  ssr: true,
+});
+
+const Coverage = dynamic(() => import('@/components/landing/Coverage'), {
+  loading: () => <div className="h-96 w-full animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />,
+  ssr: true,
+});
+
+const PredictionMarkets = dynamic(() => import('@/components/landing/PredictionMarkets'), {
+  loading: () => <div className="h-96 w-full animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />,
+  ssr: true,
+});
+
+const LatestNews = dynamic(() => import('@/components/landing/LatestNews'), {
+  loading: () => <div className="h-80 w-full animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />,
+  ssr: true,
+});
+
+// Remove unused imports: HeroOrbital, Orbit, RoadmapTimeline, Performance, CommunityPosts
+// If you need any of them, uncomment and lazy load similarly.
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-white dark:bg-black h-full">
-      
       <Header />
       <Hero />
 
@@ -34,109 +58,38 @@ export default function Home() {
       </div>
 
       <div>
-        <div className="absolute left-1/100">
-          <Image
-            src="/assets/glass1.png"
-            alt="cyclespace exchange vault"
-            height={230}
-            width={230}
-            quality={100}
-            className="object-cover hidden rounded-full w-10 h-10 md:w-40 md:h-40 lg:w-60 lg:h-60 
-            z-10 rounded-full  hover:scale-110 transition-transform duration-300"
-            priority
-            referrerPolicy="no-referrer"
-          />
-        </div>
         <Description text="Experience lightning-fast trades with zero custody risk and complete control over your assets." />
       </div>
 
-      <div className="">
+      <Suspense fallback={<div className="h-40 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
         <Features />
-      </div>
+      </Suspense>
 
-      <div className="">
-        <div className="absolute right-1/100  ">
-          <Image
-            src="/assets/glass5.png"
-            alt="cyclespace exchange vault"
-            height={230}
-            width={230}
-            quality={100}
-            className="object-cover hidden rounded-full w-10 h-10 md:w-40 md:h-40 lg:w-60 lg:h-60 
-            z-10 rounded-full  hover:scale-110 transition-transform duration-300"
-            priority
-            referrerPolicy="no-referrer"
-          />
-        </div>
+      <Suspense fallback={<div className="h-60 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
         <Chains />
-      </div>
-      
-      <div className="">
+      </Suspense>
+
+      <Suspense fallback={<div className="h-80 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
         <Rewards />
-      </div>
+      </Suspense>
 
       <div>
-        <div className="absolute left-1/100">
-          <Image
-            src="/assets/glass4.png"
-            alt="cyclespace exchange vault"
-            height={230}
-            width={230}
-            quality={100}
-            className="object-cover hidden rounded-full w-10 h-10 md:w-40 md:h-40 lg:w-60 lg:h-60 
-            z-10 rounded-full  hover:scale-110 transition-transform duration-300"
-            priority
-            referrerPolicy="no-referrer"
-          />
-        </div>
         <Description text="Join thousands of traders who trust our platform for secure, transparent, and efficient decentralized trading." />
       </div>
 
-      <div className="">
+      <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
         <Coverage />
-      </div>
+      </Suspense>
 
-      <div className="hidden">
-        <Performance />
-      </div>
-      
-      <div className="hidden">
-        <HeroOrbital />
-      </div>
-
-      <div className=" ">
-        <div className="absolute right-1/100  ">
-          <Image
-            src="/assets/glass6.png"
-            alt="cyclespace exchange vault"
-            height={230}
-            width={230}
-            quality={100}
-            className="object-cover hidden filter hue-rotate-20 saturate-200 rounded-full w-10 h-10 md:w-40 md:h-40 lg:w-60 lg:h-60 
-            z-10 rounded-full  hover:scale-110 transition-transform duration-300"
-            priority
-            referrerPolicy="no-referrer"
-          />
-        </div>
+      <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
         <PredictionMarkets />
-      </div>
+      </Suspense>
 
-      <div className="hidden">
-        <RoadmapTimeline />
-      </div>
+      <Suspense fallback={<div className="h-80 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
+        <LatestNews />
+      </Suspense>
 
-      <div className="">
-        <LatestNews/>
-      </div>
-
-      <div className="hidden bg-linear-to-b from-primary via-primary to-black">
-        <CommunityPosts/>
-      </div>
-
-      <div className="">
-        <Footer />
-      </div>
+      <Footer />
     </main>
   );
 }
-
