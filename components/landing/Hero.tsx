@@ -51,9 +51,9 @@ export default function Hero() {
       {/* Background layer */}
       <div className="absolute inset-0 z-0">
         {/* Gradient overlays for text readability */}
-        <div className="absolute inset-0 bg-linear-to-r from-white via-transparent to-transparent
+        <div className="absolute hidden inset-0 bg-linear-to-r from-white via-transparent to-transparent
           dark:bg-linear-to-r dark:from-black dark:via-transparent dark:to-transparent z-10" />
-        <div className="absolute inset-0 bg-linear-to-t from-white via-transparent to-transparent
+        <div className="absolute hidden inset-0 bg-linear-to-t from-white via-transparent to-transparent
           dark:bg-linear-to-t dark:from-black dark:via-transparent dark:to-transparent z-10" />
 
         {/* Desktop background (video or fallback) */}
@@ -124,9 +124,55 @@ export default function Hero() {
           alt="Cryptocurrency background"
           fill
           sizes="100vw"
-          className="object-cover object-center z-10 md:hidden"
+          className="object-cover object-center z-10 hidden md:hidden"
           priority
         />
+
+        <>
+          {/* mobile Light mode video */}
+          <div className="absolute hidden inset-0 bg-linear-to-r from-white via-white/20 to-transparent
+            dark:bg-linear-to-r dark:from-black dark:via-black/50 dark:to-transparent transition-all 
+            duration-500 z-20 overlay"
+          />
+          <div className="absolute hidden inset-0 bg-linear-to-t from-white via-transparent to-transparent
+            dark:bg-linear-to-t dark:from-black dark:via-transparent dark:to-transparent transition-all 
+            duration-500 z-20" 
+          />
+
+          <video
+            ref={lightVideoRef}
+            className=" flex w-full h-full overflow-visible -translate-x-50 relative dark:hidden object-cover object-center z-10"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            poster="/new_hero.png"
+            disablePictureInPicture
+            disableRemotePlayback
+          >
+            <source src="/render.mp4" type="video/mp4" />
+            <source src="/video.webm" type="video/webm" />
+          </video>
+
+          {/* Dark mode video */}
+          <video
+            ref={darkVideoRef}
+            className="w-full h-full overflow-visible -translate-x-50 relative object-cover hidden dark:flex object-center z-10"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            poster="/new_hero_dark.png"
+            disablePictureInPicture
+            disableRemotePlayback
+          >
+            <source src="/render_dark.mp4" type="video/mp4" />
+            <source src="/video_dark.webm" type="video/webm" />
+          </video>
+        </>
+
       </div>
 
       {/* Hero content */}
@@ -137,9 +183,6 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="hidden py-1 px-3 rounded-full bg-primary/20 text-primary text-xs font-bold tracking-wider uppercase mb-4 sm:mb-6">
-              Next-Gen Asset Management
-            </span>
 
             {/* Desktop animated text */}
             <div className="mb-4 sm:mb-6 hidden md:block text-black dark:text-white">
@@ -157,10 +200,8 @@ export default function Hero() {
             </div>
 
             {/* Mobile static heading */}
-            <h1 className="text-4xl flex md:hidden sm:text-5xl md:text-6xl lg:text-6xl font-bold
-              bg-linear-to-b from-black via-slate-800 to-slate-700
-              dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400
-              leading-tight mb-4 sm:mb-6 bg-clip-text text-transparent">
+            <h1 className="text-4xl flex mt-70 md:hidden sm:text-5xl md:text-6xl lg:text-6xl font-bold
+              text-black dark:text-white leading-tight mb-4 sm:mb-6 z-30">
               Unstoppable Markets.
               <br />
               Total Transparency.
@@ -171,11 +212,11 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-row justify-between md:px-0 md:justify-start md:flex-row gap-3 sm:gap-4">
-              <Button className="px-4 sm:px-4 py-3 sm:py-4 bg-primary text-white rounded-lg font-medium hover:bg-primary/80 transition-all flex items-center justify-center gap-2 shadow-lg shadow-slate-400 dark:shadow-slate-00 border-none group hover:scale-105">
+              <Button className="px-4 sm:px-4 py-3 sm:py-4 bg-primary text-white rounded-lg font-medium hover:bg-primary/80 dark:shadow-primary/50 transition-all flex items-center justify-center gap-2 shadow-lg shadow-slate-400 border-none group hover:scale-105">
                 Trade on Cyclespace
               </Button>
 
-              <Button className="px-4 sm:px-4 py-3 sm:py-4 bg-black dark:bg-slate-900 text-white border-none rounded-lg font-medium hover:bg-slate-800 dark:hover:bg-slate-700 transition-all flex items-center justify-center gap-2 shadow-lg shadow-slate-400 dark:shadow-slate-950 hover:scale-105">
+              <Button className="px-4 sm:px-4 py-3 sm:py-4 bg-black dark:bg-slate-900 text-white border-none rounded-lg font-medium hover:bg-slate-800 dark:hover:bg-slate-700 transition-all flex items-center justify-center gap-2 shadow-lg shadow-slate-400/50 dark:shadow-slate-950 hover:scale-105">
                 Build on CYSE
               </Button>
             </div>

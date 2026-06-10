@@ -16,22 +16,22 @@ export default function PulsingPath() {
 
   // Shared style for glow effect (CSS drop-shadow – compatible across all browsers)
   const glowStyle = {
-    filter: "drop-shadow(0 0 4px #0E76FD)",
+    filter: "drop-shadow(0 0 2px #0E76FD)",
   };
 
   return (
-    <div className="p-10 h-fit">
-      <div className="grid w-full justify-center items-center gap-2 md:gap-4 lg:gap-4 space-y-0 h-fit">
+    <div className="p-10 h-fit ">
+      <div className="grid w-full justify-center items-center gap-2 md:gap-4 lg:gap-4 space-y-0 h-fit ">
         {/* ---------- Left curved path (top) ---------- */}
         <div className="flex justify-center items-center gap-0 space-y-0 h-fit">
-          <div className="relative" style={glowStyle}>
+          <div className="relative">
             <div className="w-10 h-10 md:w-20 md:h-20 lg:w-20 lg:h-20 relative right-6 top-3 md:right-12 md:top-6 lg:right-12 lg:top-6 z-10 items-start justify-start rounded-full">
               <Image
                 src="/tokens/Bitcoin.svg"
                 alt="Bitcoin"
                 height={230}
                 width={230}
-                className="object-cover rounded-full relative hover:scale-110 transition-transform duration-300"
+                className="object-cover rounded-full relative hover:scale-110 transition-transform duration-300 z-10"
                 loading="lazy"
               />
             </div>
@@ -64,19 +64,21 @@ export default function PulsingPath() {
                   ease: "linear",
                   repeatType: "loop",
                 }}
+                className=""
+                style={glowStyle}
               />
             </svg>
           </div>
 
           {/* Mirrored version (right side) */}
-          <div className="relative" style={glowStyle}>
+          <div className="relative">
             <div className="w-10 h-10 md:w-20 md:h-20 lg:w-20 lg:h-20 relative top-3 left-25 md:top-6 md:left-55 lg:top-6 lg:left-55 items-end justify-end rounded-3xl">
               <Image
                 src="/tokens/USD Coin.svg"
                 alt="USD Coin"
                 height={230}
                 width={230}
-                className="object-cover rounded-full relative hover:scale-110 transition-transform duration-300"
+                className="object-cover rounded-full relative hover:scale-110 transition-transform duration-300 z-10"
                 loading="lazy"
               />
             </div>
@@ -110,6 +112,8 @@ export default function PulsingPath() {
                   ease: "linear",
                   repeatType: "loop",
                 }}
+                className=""
+                style={glowStyle}
               />
             </svg>
           </div>
@@ -179,6 +183,8 @@ export default function PulsingPath() {
                     ease: "linear",
                     repeatType: "loop",
                   }}
+                  className=""
+                  style={glowStyle}
                 />
               </svg>
             </div>
@@ -215,6 +221,8 @@ export default function PulsingPath() {
                     ease: "linear",
                     repeatType: "loop",
                   }}
+                  className=""
+                  style={glowStyle}
                 />
               </svg>
               <div className="relative right-3 md:right-2 z-10 items-start justify-start">
@@ -235,7 +243,7 @@ export default function PulsingPath() {
 
         {/* ---------- Right curved paths (bottom) ---------- */}
         <div className="flex justify-center items-center gap-0 md:gap-0 h-fit">
-          <div className="relative" style={glowStyle}>
+          <div className="relative">
             <svg
               className="w-32 h-fit md:w-64 md:h-fit lg:w-64 lg:h-fit"
               width="263"
@@ -266,6 +274,8 @@ export default function PulsingPath() {
                   ease: "linear",
                   repeatType: "loop",
                 }}
+                className=""
+                style={glowStyle}
               />
             </svg>
             <div className="w-10 h-10 md:w-20 md:h-20 lg:w-20 lg:h-20 bottom-5 z-10 relative right-6 md:right-14 items-end justify-end rounded-3xl">
@@ -280,7 +290,7 @@ export default function PulsingPath() {
             </div>
           </div>
 
-          <div className="relative" style={glowStyle}>
+          <div className="relative">
             <svg
               className="w-32 h-fit md:w-64 md:h-fit lg:w-64 lg:h-fit"
               width="263"
@@ -311,6 +321,8 @@ export default function PulsingPath() {
                   ease: "linear",
                   repeatType: "loop",
                 }}
+                className=""
+                style={glowStyle}
               />
             </svg>
             <div className="w-10 h-10 md:w-20 md:h-20 lg:w-20 lg:h-20 relative bottom-6 z-10 left-25 md:left-60 items-end justify-end rounded-3xl">
@@ -329,7 +341,7 @@ export default function PulsingPath() {
         {/* ---------- Vertical lines (center) ---------- */}
         <div className="absolute h-[300px] md:h-auto left-1/2 transform -translate-x-1/2 translate-y-1/2 justify-center space-x-1 md:space-x-3 items-center flex overflow-hidden">
           {[0, 1, 2].map((i) => (
-            <div key={i} className="w-full h-full" style={glowStyle}>
+            <div key={i} className="w-full h-full">
               <svg
                 className="h-80 md:h-160"
                 width="8"
@@ -355,11 +367,13 @@ export default function PulsingPath() {
                   animate={{ strokeDashoffset: 0 }}
                   transition={{
                     duration: 3,
-                    delay: i === 2 ? 2 : 1,
+                    delay: i === 1 ? 2 : i === 2 ? 1 : 0,
                     repeat: Infinity,
                     ease: "linear",
                     repeatType: "loop",
                   }}
+                  className=""
+                  style={glowStyle}
                 />
               </svg>
             </div>

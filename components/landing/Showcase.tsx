@@ -40,6 +40,7 @@ export default function Showcase() {
               alt="Sell interface"
               width={250}
               height={420}
+              quality={100}
               className="object-contain h-70 w-35 relative left-15 z-10 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 dark:hidden"
               loading="lazy"
             />
@@ -48,6 +49,7 @@ export default function Showcase() {
               alt="Sell interface dark"
               width={250}
               height={420}
+              quality={100}
               className="object-contain h-70 w-35 relative left-15 z-10 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
               loading="lazy"
             />
@@ -56,6 +58,7 @@ export default function Showcase() {
               alt="Buy interface"
               width={250}
               height={420}
+              quality={100}
               className="object-contain h-70 w-35 relative -top-20 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 dark:hidden"
               loading="lazy"
             />
@@ -64,6 +67,7 @@ export default function Showcase() {
               alt="Buy interface dark"
               width={250}
               height={420}
+              quality={100}
               className="object-contain h-70 w-35 relative -top-20 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
               loading="lazy"
             />
@@ -76,6 +80,7 @@ export default function Showcase() {
               alt="Swap interface"
               width={250}
               height={420}
+              quality={100}
               className="object-contain h-70 w-35 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 dark:hidden"
               loading="lazy"
             />
@@ -84,6 +89,7 @@ export default function Showcase() {
               alt="Swap interface dark"
               width={250}
               height={420}
+              quality={100}
               className="object-contain h-70 w-35 rounded-sm shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
               loading="lazy"
             />
@@ -92,6 +98,7 @@ export default function Showcase() {
               alt="Order interface"
               width={250}
               height={400}
+              quality={100}
               className="object-fit h-60 w-35 relative left-8 md:left-15 -top-10 z-10 rounded-sm shadow-2xl hover:scale-110 transition-transform duration-300 dark:hidden"
               loading="lazy"
             />
@@ -100,6 +107,7 @@ export default function Showcase() {
               alt="Order interface dark"
               width={250}
               height={400}
+              quality={100}
               className="object-fit h-60 w-35 relative left-8 md:left-15 -top-10 z-10 rounded-sm shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
               loading="lazy"
             />
@@ -113,6 +121,7 @@ export default function Showcase() {
             alt="Dashboard light"
             width={1877}
             height={967}
+            quality={100}
             className="object-fit w-full h-auto relative left-1/2 transform -translate-x-1/2 -translate-y-1 md:-translate-y-60 z-10 rounded-sm shadow-2xl hover:scale-110 transition-transform duration-300 dark:hidden"
             loading="lazy"
           />
@@ -121,6 +130,7 @@ export default function Showcase() {
             alt="Dashboard dark"
             width={1877}
             height={967}
+            quality={100}
             className="object-fit w-full h-auto relative left-1/2 transform -translate-x-1/2 -translate-y-1 md:-translate-y-60 z-10 rounded-sm shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
             loading="lazy"
           />

@@ -45,7 +45,7 @@ const AnimatedNavLink = ({
       whileHover="hover"
     >
       <Link href={href} className={`${className}`}>
-        <span className="inline-flex items-center hover:text-primary gap-1.5">
+        <span className="inline-flex items-center hover:text-primary dark:hover:text-primary gap-1.5">
           {children}
           {soon && (
             <Badge
@@ -58,7 +58,7 @@ const AnimatedNavLink = ({
         </span>
       </Link>
       <motion.span
-        className="absolute -bottom-1 left-0 h-[2px] bg-primary dark:bg-secondary rounded-full"
+        className="absolute -bottom-1 left-0 h-[2px] bg-primary dark:bg-primary rounded-full"
         variants={{
           hover: { width: "100%" },
           rest: { width: "0%" }
@@ -82,7 +82,7 @@ const DropdownItem = ({
   return (
     <Link
       href={href}
-      className="text-xs flex flex-row gap-2 items-center dark:text-zinc-200 text-zinc-700 hover:text-primary dark:hover:text-secondary transition-colors duration-200 group"
+      className="text-xs flex flex-row gap-2 items-center dark:text-zinc-200 text-zinc-700 hover:text-primary dark:hover:text-primary transition-colors duration-200 group"
     >
       <motion.div
         whileHover={{ scale: 1.05 }}
