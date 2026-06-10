@@ -44,7 +44,7 @@ const thirdLogoList = [
 
 export default function Features() {
   return (
-    <div className='w-full h-full mx-auto justify-center flex py-20 pb-30'>
+    <div className='w-full h-full mx-auto justify-center flex py-10 pb-10'>
         <main className='justify-center flex flex-col w-7xl h-full'>
             <div className='w-full h-full justify-center items-center flex pb-5'>
                 <h1 className='text-xl md:text-4xl font-bold text-center w-xs md:w-4xl

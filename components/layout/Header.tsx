@@ -185,7 +185,7 @@ export default function Header() {
 
             {/* Right side: CTA button + mobile menu button */}
             <div className="flex items-center justify-end gap-4 md:justify-end lg:justify-end">
-              <Button className="hidden md:hidden lg:flex text-xs rounded-lg bg-primary text-white hover:bg-black hover:text-white 
+              <Button className="hidden md:hidden lg:flex text-xs rounded-3xl bg-primary text-white hover:bg-black hover:text-white 
                 dark:hover:bg-slate-800 dark:hover:text-white transition-colors duration-200">
                 Launch app
                 <ExternalLinkIcon className="h-3 w-3 text-white" />

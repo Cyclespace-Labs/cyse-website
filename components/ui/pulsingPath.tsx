@@ -20,8 +20,8 @@ export default function PulsingPath() {
   };
 
   return (
-    <div className="p-10 h-fit ">
-      <div className="grid w-full justify-center items-center gap-2 md:gap-4 lg:gap-4 space-y-0 h-fit ">
+    <div className="p-10 h-fit">
+      <div className="grid w-full justify-center items-center gap-2 md:gap-4 lg:gap-4 space-y-0 h-fit z-40 drop-shadow-primary/20 drop-shadow-2xl">
         {/* ---------- Left curved path (top) ---------- */}
         <div className="flex justify-center items-center gap-0 space-y-0 h-fit">
           <div className="relative">
@@ -31,7 +31,7 @@ export default function PulsingPath() {
                 alt="Bitcoin"
                 height={230}
                 width={230}
-                className="object-cover rounded-full relative hover:scale-110 transition-transform duration-300 z-10"
+                className="object-cover rounded-full relative hover:scale-110 transition-transform duration-300 z-40"
                 loading="lazy"
               />
             </div>
@@ -71,7 +71,7 @@ export default function PulsingPath() {
           </div>
 
           {/* Mirrored version (right side) */}
-          <div className="relative">
+          <div className="relative ">
             <div className="w-10 h-10 md:w-20 md:h-20 lg:w-20 lg:h-20 relative top-3 left-25 md:top-6 md:left-55 lg:top-6 lg:left-55 items-end justify-end rounded-3xl">
               <Image
                 src="/tokens/USD Coin.svg"
@@ -122,13 +122,13 @@ export default function PulsingPath() {
         {/* ---------- Middle logo ---------- */}
         <div className="relative items-center justify-center bottom-12 md:bottom-15">
           <div className="absolute flex left-1/2 transform -translate-x-1/2 z-10 justify-center items-center rounded-2xl md:rounded-4xl lg:rounded-4xl w-23 h-23 md:w-30 md:h-30 lg:w-30 lg:h-30">
-            <div className="bg-blue-500 p-2.5 md:p-5 lg:p-5 rounded-xl md:rounded-3xl lg:rounded-3xl hover:scale-110 transition-transform duration-300">
+            <div className="bg-blue-500 p-2.5 md:p-5 lg:p-5 rounded-xl md:rounded-3xl lg:rounded-4xl hover:scale-110 transition-transform duration-300">
               <Image
                 src="/logo_white.svg"
                 alt="Logo"
                 height={500}
                 width={500}
-                className="object-cover w-8 h-8 md:w-15 md:h-15 lg:w-15 lg:h-15"
+                className="object-cover w-8 h-8 md:w-15 md:h-15 lg:w-15 lg:h-15 animate-pulse transition-all duration-500 overflow-visible"
                 loading="lazy"
               />
             </div>
@@ -141,7 +141,7 @@ export default function PulsingPath() {
             {/* Left horizontal line */}
             <div className="flex relative flex-row items-center space-x-0">
               <div className="relative left-2 z-10 items-start justify-start">
-                <div className="w-12 h-12 md:w-22 md:h-22 lg:w-22 lg:h-22 p-1 rounded-2xl justify-center items-center flex">
+                <div className="w-12 h-12 md:w-22 md:h-22 lg:w-22 lg:h-22 p-1 z-40 rounded-2xl justify-center items-center flex">
                   <Image
                     src="/tokens/Solana Sol.svg"
                     alt="Solana"

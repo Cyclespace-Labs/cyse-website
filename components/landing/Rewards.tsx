@@ -48,7 +48,7 @@ const cardsData: CardData[] = [
 
 export default function Rewards() {
   return (
-    <div className="mx-auto h-full w-full py-8 sm:py-10 md:py-12 lg:py-16">
+    <div className="mx-auto h-full w-full py-8 md:py-10 lg:py-10">
       <main className="px-4 sm:px-8 md:px-16 lg:px-[clamp(15rem,15vw,20rem)]">
         <div className="flex h-full w-full items-center justify-center">
           <h1

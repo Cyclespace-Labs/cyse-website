@@ -8,8 +8,9 @@ const PulsingPath = lazy(() => import("../ui/pulsingPath"));
 
 export default function Showcase() {
   return (
-    <div className="w-full h-full mx-auto py-10 font-sans">
-      <main className="h-full w-full justify-center items-center px-10 md:px-25 lg:px-40">
+    <div className="w-full h-full mx-auto pt-10 font-sans">
+      <main className="h-full w-full justify-center items-center px-20 md:px-25 lg:px-40">
+
         <div className="w-full h-full justify-center items-center flex pb-5">
           <h1
             className="text-xl md:text-4xl font-bold text-center w-xl
@@ -21,13 +22,15 @@ export default function Showcase() {
           </h1>
         </div>
 
-        <div>
+        <div className="flex justify-center">
           <Suspense
             fallback={
               <div className="h-40 w-full animate-pulse bg-gray-200 dark:bg-gray-800 rounded-xl" />
             }
           >
-            <PulsingPath />
+            <div className="z-30">
+              <PulsingPath />
+            </div>
           </Suspense>
         </div>
 
@@ -41,7 +44,7 @@ export default function Showcase() {
               width={250}
               height={420}
               quality={100}
-              className="object-contain h-70 w-35 relative left-15 z-10 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 dark:hidden"
+              className="object-fit h-80 w-40 relative left-15 z-10 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 dark:hidden"
               loading="lazy"
             />
             <Image
@@ -50,7 +53,7 @@ export default function Showcase() {
               width={250}
               height={420}
               quality={100}
-              className="object-contain h-70 w-35 relative left-15 z-10 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
+              className="object-fit h-80 w-40 h-70 w-35 relative left-15 z-10 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
               loading="lazy"
             />
             <Image
@@ -59,7 +62,7 @@ export default function Showcase() {
               width={250}
               height={420}
               quality={100}
-              className="object-contain h-70 w-35 relative -top-20 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 dark:hidden"
+              className="object-fit h-80 w-40 relative -top-20 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 dark:hidden"
               loading="lazy"
             />
             <Image
@@ -68,7 +71,7 @@ export default function Showcase() {
               width={250}
               height={420}
               quality={100}
-              className="object-contain h-70 w-35 relative -top-20 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
+              className="object-fit h-80 w-40 relative -top-20 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
               loading="lazy"
             />
           </div>
@@ -81,7 +84,7 @@ export default function Showcase() {
               width={250}
               height={420}
               quality={100}
-              className="object-contain h-70 w-35 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 dark:hidden"
+              className="object-fit h-80 w-40 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 dark:hidden"
               loading="lazy"
             />
             <Image
@@ -90,7 +93,7 @@ export default function Showcase() {
               width={250}
               height={420}
               quality={100}
-              className="object-contain h-70 w-35 rounded-sm shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
+              className="object-fit h-80 w-40 rounded-sm shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
               loading="lazy"
             />
             <Image
@@ -99,7 +102,7 @@ export default function Showcase() {
               width={250}
               height={400}
               quality={100}
-              className="object-fit h-60 w-35 relative left-8 md:left-15 -top-10 z-10 rounded-sm shadow-2xl hover:scale-110 transition-transform duration-300 dark:hidden"
+              className="object-fit h-67 w-42 relative left-8 md:left-15 -top-10 z-10 rounded-sm shadow-2xl hover:scale-110 transition-transform duration-300 dark:hidden"
               loading="lazy"
             />
             <Image
@@ -108,21 +111,21 @@ export default function Showcase() {
               width={250}
               height={400}
               quality={100}
-              className="object-fit h-60 w-35 relative left-8 md:left-15 -top-10 z-10 rounded-sm shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
+              className="object-fit h-67 w-42 relative left-8 md:left-15 -top-10 z-10 rounded-sm shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
               loading="lazy"
             />
           </div>
         </div>
 
         {/* Main dashboard image - visible on all screens */}
-        <div>
+        <div className="">
           <Image
             src="/cards/light_dash.png"
             alt="Dashboard light"
             width={1877}
             height={967}
             quality={100}
-            className="object-fit w-full h-auto relative left-1/2 transform -translate-x-1/2 -translate-y-1 md:-translate-y-60 z-10 rounded-sm shadow-2xl hover:scale-110 transition-transform duration-300 dark:hidden"
+            className="object-fit w-full h-auto relative left-1/2 transform -translate-x-1/2 -translate-y-1 md:-translate-y-60 z-40 rounded-sm shadow-2xl hover:scale-110 transition-transform duration-300 dark:hidden"
             loading="lazy"
           />
           <Image
@@ -131,7 +134,7 @@ export default function Showcase() {
             width={1877}
             height={967}
             quality={100}
-            className="object-fit w-full h-auto relative left-1/2 transform -translate-x-1/2 -translate-y-1 md:-translate-y-60 z-10 rounded-sm shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
+            className="object-fit w-full h-auto relative left-1/2 transform -translate-x-1/2 -translate-y-1 md:-translate-y-60 z-40 rounded-sm shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
             loading="lazy"
           />
         </div>

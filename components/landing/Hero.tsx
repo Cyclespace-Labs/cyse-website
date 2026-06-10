@@ -1,10 +1,27 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
-import { motion } from 'motion/react';
 import Image from 'next/image';
 import { Button } from '../ui/button';
 import ScrambledText from '../ui/scrambled-text';
+import * as motion from "motion/react-client"
+import type { Variants } from "motion/react"
+
+  const cardVariants: Variants = {
+    offscreen: {
+        y: 20,
+        opacity: 0,
+    },
+    onscreen: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            type: "spring",
+            bounce: 0.4,
+            duration: 0.8,
+        },
+    },
+  }
 
 export default function Hero() {
   const lightVideoRef = useRef<HTMLVideoElement>(null);
@@ -47,7 +64,7 @@ export default function Hero() {
   }, [isDesktop]);
 
   return (
-    <section className="relative w-full -top-17 h-full overflow-hidden flex font-sans items-center">
+    <section className="relative w-full h-fit -top-17 h-full overflow-hidden flex font-sans items-center">
       {/* Background layer */}
       <div className="absolute inset-0 z-0">
         {/* Gradient overlays for text readability */}
@@ -141,7 +158,7 @@ export default function Hero() {
 
           <video
             ref={lightVideoRef}
-            className=" flex w-full h-full overflow-visible -translate-x-50 relative dark:hidden object-cover object-center z-10"
+            className=" flex w-full h-full overflow-visible -translate-x-50 relative dark:hidden lg:hidden md:hidden object-cover object-center z-10"
             autoPlay
             loop
             muted
@@ -158,7 +175,7 @@ export default function Hero() {
           {/* Dark mode video */}
           <video
             ref={darkVideoRef}
-            className="w-full h-full overflow-visible -translate-x-50 relative object-cover hidden dark:flex object-center z-10"
+            className="w-full h-full overflow-visible -translate-x-50 relative lg:hidden md:hidden object-cover hidden dark:flex object-center z-10"
             autoPlay
             loop
             muted
@@ -176,12 +193,13 @@ export default function Hero() {
       </div>
 
       {/* Hero content */}
-      <div className="container mx-auto px-8 h-fit flex pb-80 sm:px-10 md:px-12 relative z-10 pt-0 md:pt-30 lg:pt-100">
+      <div className="container mx-auto px-8 flex pb-70 sm:px-10 md:px-12 relative z-10 pt-0 md:pt-30 lg:pt-100">
         <div className="max-w-xl md:max-w-2xl lg:max-w-3xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ amount: 0.8 }}
+            variants={cardVariants}
           >
 
             {/* Desktop animated text */}
@@ -212,11 +230,11 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-row justify-between md:px-0 md:justify-start md:flex-row gap-3 sm:gap-4">
-              <Button className="px-4 sm:px-4 py-3 sm:py-4 bg-primary text-white rounded-lg font-medium hover:bg-primary/80 dark:shadow-primary/50 transition-all flex items-center justify-center gap-2 shadow-lg shadow-slate-400 border-none group hover:scale-105">
+              <Button className="px-4 sm:px-5 py-3 sm:py-5 bg-primary text-white rounded-3xl font-medium hover:bg-primary/80 dark:shadow-primary/50 transition-all flex items-center justify-center gap-2 shadow-lg shadow-slate-400 border-none group hover:scale-105">
                 Trade on Cyclespace
               </Button>
 
-              <Button className="px-4 sm:px-4 py-3 sm:py-4 bg-black dark:bg-slate-900 text-white border-none rounded-lg font-medium hover:bg-slate-800 dark:hover:bg-slate-700 transition-all flex items-center justify-center gap-2 shadow-lg shadow-slate-400/50 dark:shadow-slate-950 hover:scale-105">
+              <Button className="px-4 sm:px-5 py-3 sm:py-5 bg-black dark:bg-slate-900 text-white border-none rounded-3xl font-medium hover:bg-slate-800 dark:hover:bg-slate-700 transition-all flex items-center justify-center gap-2 shadow-lg shadow-slate-400/50 dark:shadow-slate-950 hover:scale-105">
                 Build on CYSE
               </Button>
             </div>
