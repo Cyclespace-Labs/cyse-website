@@ -15,34 +15,38 @@ interface ChainButtonProps {
 }
 
 const ChainButton = ({ token }: ChainButtonProps) => (
-  <Button className='group rounded-lg md:rounded-xl text-sm sm:text-base md:text-lg text-black dark:text-white justify-start p-3 py-5 md:p-6 
-    bg-zinc-200 dark:bg-slate-900 hover:bg-primary dark:hover:bg-primary hover:text-white'>
-    <Image
-      src={token.icon}
-      alt={token.name}
-      quality={100}
-      width={25}
-      height={25}
-      className="object-cover rounded-full shadow-2xl"
-      priority
-      referrerPolicy="no-referrer"
-    />
-    <span className="inline-flex items-center gap-1.5">
-      {token.name}
-      {token.soon && (
-        <Badge
-          variant="outline"
-          className="text-[10px] px-1.5 py-0 h-4 rounded-full bg-primary/30 text-primary dark:bg-primary/30 dark:text-primary border-none
-            group-hover:bg-white/40 dark:group-hover:bg-white/40 group-hover:text-white dark:group-hover:text-white transition-colors duration-200"
-        >
-          soon
-        </Badge>
-      )}
-    </span>
-    <div className='w-full justify-end flex'>
-      <ChevronRight className='text-right text-zinc-400 group-hover:text-white' />
-    </div>
-  </Button>
+  <motion.div viewport={{ amount: 1 }} initial={{ opacity: 0, scaleX: 0.8, }}
+    whileInView={{ opacity: 1, scaleX: 1, transition: { type: "spring", bounce: 0.4, duration: 1, } }}
+  >
+    <Button className='group w-full rounded-4xl text-sm sm:text-base md:text-lg text-black dark:text-white justify-start p-3 py-5 md:p-7 
+      md:px-5 bg-zinc-200 dark:bg-slate-900 hover:bg-primary dark:hover:bg-primary hover:text-white'>
+      <Image
+        src={token.icon}
+        alt={token.name}
+        quality={100}
+        width={27}
+        height={27}
+        className="object-cover rounded-full shadow-2xl"
+        priority
+        referrerPolicy="no-referrer"
+      />
+      <span className="inline-flex items-center gap-1.5">
+        {token.name}
+        {token.soon && (
+          <Badge
+            variant="outline"
+            className="text-[10px] px-1.5 py-0 h-4 rounded-full bg-primary/30 text-primary dark:bg-primary/30 dark:text-primary border-none
+              group-hover:bg-white/40 dark:group-hover:bg-white/40 group-hover:text-white dark:group-hover:text-white transition-colors duration-200"
+          >
+            soon
+          </Badge>
+        )}
+      </span>
+      <div className='w-full justify-end flex'>
+        <ChevronRight className='text-right text-zinc-400 group-hover:text-white' />
+      </div>
+    </Button>
+  </motion.div>
 );
 
 const chainTokens: ChainToken[] = [
@@ -60,21 +64,8 @@ export default function Chains() {
         <main className='justify-center px-4 sm:px-8 md:px-20 lg:px-[clamp(10rem,15vw,17.5rem)]'>
             <div className='w-full h-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12'>
               <div className='gap-3 sm:gap-4 md:gap-5 flex flex-col'>
-                <motion.div
-                  initial={{ 
-                      opacity: 0, 
-                      x: -20 
-                  }}
-                  whileInView={{ 
-                      opacity: 1, 
-                      x: 0,
-                      transition: {
-                          type: "spring",
-                          bounce: 0.4,
-                          duration: 1,
-                      }
-                    }}
-                  viewport={{ amount: 0.8 }}
+                <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, x: -20 }} 
+                  whileInView={{ opacity: 1, x: 0, transition: { type: "spring", bounce: 0.4, duration: 1 } }}
                 >
                   <h1 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl text-left font-bold max-w-xl
                       bg-linear-to-b from-black via-slate-800 to-slate-700
@@ -85,21 +76,8 @@ export default function Chains() {
                   </h1>
                 </motion.div>
 
-                <motion.div
-                  initial={{ 
-                      opacity: 0, 
-                      x: -20 
-                  }}
-                  whileInView={{ 
-                      opacity: 1, 
-                      x: 0,
-                      transition: {
-                          type: "spring",
-                          bounce: 0.4,
-                          duration: 1,
-                      }
-                    }}
-                  viewport={{ amount: 0.8 }}
+                <motion.div viewport={{ amount: 0.8 }} initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0, transition: {type: "spring", bounce: 0.4, duration: 1,} }}
                 >
                   <h2 className='text-xs sm:text-sm md:text-base max-w-md'>Trade Directly from Your Wallet. Execute Trades. Retain Ownership.</h2>
                 </motion.div>
@@ -120,7 +98,7 @@ export default function Chains() {
                     }}
                   viewport={{ amount: 0.8 }}
                 >
-                  <Button className='w-fit bg-primary hover:bg-primary/70  text-white dark:text-white text-xs sm:text-sm
+                  <Button className='w-fit bg-primary hover:bg-primary/70 rounded-3xl px-3.5 text-white dark:text-white text-xs sm:text-sm
                    hover:scale-110 transition-transform duration-300'>
                     Explore Chains
                   </Button>

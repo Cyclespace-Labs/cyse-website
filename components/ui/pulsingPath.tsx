@@ -131,7 +131,7 @@ export default function PulsingPath() {
                 alt="Logo"
                 height={500}
                 width={500}
-                className="object-cover w-8 h-8 md:w-15 md:h-15 lg:w-15 lg:h-15 animate-pulse transition-all duration-500 overflow-visible"
+                className="object-cover w-8 h-8 md:w-15 md:h-15 lg:w-15 lg:h-15 transition-all duration-500 overflow-visible"
                 loading="lazy"
               />
             </div>

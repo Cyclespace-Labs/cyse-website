@@ -335,12 +335,10 @@ const PredictionMarkets = React.memo(() => {
   // Memoize header
   const header = useMemo(() => (
     <div className="mb-12 text-center">
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-linear-to-b from-black via-slate-800 to-slate-700 dark:from-white dark:via-slate-200 dark:to-slate-400">
-        Prediction Markets
-      </h2>
-      <p className="mt-3 text-sm sm:text-base text-zinc-600 dark:text-slate-400 max-w-2xl mx-auto">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-linear-to-b from-black via-slate-800 to-slate-700 
+      dark:from-white dark:via-slate-200 dark:to-slate-400 max-w-3xl mx-auto">
         Bet on the outcome of real-world events. Sports, crypto, politics, and more.
-      </p>
+      </h2>
     </div>
   ), []);
 
@@ -358,8 +356,11 @@ const PredictionMarkets = React.memo(() => {
           {/* Bottom fade gradient */}
           <div className="absolute bottom-0 left-0 right-0 h-24 bg-linear-to-t from-white via-white/80 to-transparent z-10 pointer-events-none
               dark:from-black dark:via-black/80 dark:to-transparent" />
+          {/* left fade gradient */}
+          <div className="absolute hidden inset-0 top-0 bottom-0 left-0  w-full h-24 bg-linear-to-l from-white via-white/80 to-transparent z-10 pointer-events-none
+              dark:from-black dark:via-black/80 dark:to-transparent" />
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 w-fit h-[500px] md:h-[600px] items-center overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 w-fit h-[500px] md:h-[600px] items-center overflow-hidden">
             {/* Column 1 - scrolls down */}
             <div className="h-full w-full ">
               <LogoLoop
@@ -407,7 +408,20 @@ const PredictionMarkets = React.memo(() => {
               <LogoLoop
                 logos={column4Items}
                 direction="up"
-                speed={45}
+                speed={30}
+                logoHeight={200}
+                gap={-120}
+                pauseOnHover={false}
+                className="h-full"
+                ariaLabel="Prediction markets column 4"
+              />
+            </div>
+            {/* Column 5 - scrolls up */}
+            <div className="h-full hidden md:block">
+              <LogoLoop
+                logos={column1Items}
+                direction="up"
+                speed={60}
                 logoHeight={200}
                 gap={-120}
                 pauseOnHover={false}

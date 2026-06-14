@@ -40,9 +40,6 @@ const LatestNews = dynamic(() => import('@/components/landing/LatestNews'), {
   ssr: true,
 });
 
-// Remove unused imports: HeroOrbital, Orbit, RoadmapTimeline, Performance, CommunityPosts
-// If you need any of them, uncomment and lazy load similarly.
-
 export default function Home() {
   return (
     <main className="min-h-screen bg-white dark:bg-black h-full">

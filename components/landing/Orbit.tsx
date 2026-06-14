@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, useMotionValue, useTransform, useAnimationFrame } from "framer-motion";
+import { useMotionValue, useTransform, useAnimationFrame } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
+import * as motion from "motion/react-client"
 
 // Token orbit data: each token gets a unique orbit radius, speed, and icon size
 interface OrbitingToken {
@@ -85,18 +86,20 @@ export default function Orbit({ tokens }: OrbitProps) {
         {/* Orbiting tokens as animated SVG images */}
         {tokenMotionValues.map(({ cx, cy, token }, idx) => (
           <g key={`token-${token.alt}`}>
-            <motion.image
-              href={token.src}
-              width={token.tokenSize}
-              height={token.tokenSize}
-              style={{ x: useTransform(cx, (val) => val - token.tokenSize / 2),
-                       y: useTransform(cy, (val) => val - token.tokenSize / 2) }}
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20, delay: idx * 0.1 }}
-              whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
-              className="drop-shadow-lg"
-            />
+              <motion.image
+                href={token.src}
+                width={token.tokenSize}
+                height={token.tokenSize}
+                viewport={{ amount: 0.9 }}
+                style={{ x: useTransform(cx, (val) => val - token.tokenSize / 2),
+                        y: useTransform(cy, (val) => val - token.tokenSize / 2) }}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20, delay: idx * 0.1 }}
+                whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
+                whileInView={{ opacity: 1, scale: 1, transition: { type:"spring", bounce: 0.4, duration: 1.5, delay: 0.5 } }}
+                className="drop-shadow-lg"
+              />
             {/* Optional glow ring – uncomment if desired */}
             {/* <motion.circle
               cx={cx}
@@ -113,7 +116,7 @@ export default function Orbit({ tokens }: OrbitProps) {
         ))}
 
         {/* Central decorative sun (optional, but keeps the "solar system" feel) */}
-        <g>
+        <g className="hidden"> 
           <circle cx={CENTER_X} cy={CENTER_Y} r={28} fill="#ffaa33" opacity="0.2" />
           <circle cx={CENTER_X} cy={CENTER_Y} r={22} fill="#ffcc44" opacity="0.5" />
           <circle cx={CENTER_X} cy={CENTER_Y} r={16} fill="#ffdd77" />
