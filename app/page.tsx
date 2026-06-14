@@ -35,6 +35,11 @@ const PredictionMarkets = dynamic(() => import('@/components/landing/PredictionM
   ssr: true,
 });
 
+const Timeline = dynamic(() => import('@/components/landing/Timeline'), {
+  loading: () => <div className="h-96 w-full animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />,
+  ssr: true,
+});
+
 const LatestNews = dynamic(() => import('@/components/landing/LatestNews'), {
   loading: () => <div className="h-80 w-full animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />,
   ssr: true,
@@ -80,6 +85,10 @@ export default function Home() {
 
       <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
         <PredictionMarkets />
+      </Suspense>
+
+      <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
+        <Timeline />
       </Suspense>
 
       <Suspense fallback={<div className="h-80 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>

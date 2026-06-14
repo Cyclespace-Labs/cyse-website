@@ -165,4 +165,11 @@ html.lenis body {
   pointer-events: none;
 }
 
-  
+/* app/globals.css */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
