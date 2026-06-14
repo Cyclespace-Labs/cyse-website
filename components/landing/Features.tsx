@@ -7,9 +7,7 @@ import { Button } from '../ui/button'
 import { Badge } from '../ui/badge'
 import LogoLoop from '../LogoLoop'
 import Silk from '../Silk'
-import BorderGlow from '../BorderGlow'
-import StarBorder from '../StarBorder'
-import LetterGlitch from '../LetterGlitch'
+import * as motion from "motion/react-client"
 
 
 const firstLogoList = [
@@ -59,197 +57,305 @@ export default function Features() {
             <div className='flex flex-col md:flex-row w-full h-full justify-center gap-5 px-20 sm:px-10 md:px-0 '>
 
                 <div className='flex flex-col gap-5 w-full md:w-300 h-full justify-center'>
-                    <Card className="relative h-full w-full gap-1 overflow-hidden leading-tight hover:scale-105
-                         transition-transform duration-500">
-                        {/* Background layer */}
-                        <div className="absolute inset-0 z-0">
-                            <Silk
-                                speed={15}
-                                scale={1}
-                                color="#0E76FD"
-                                noiseIntensity={2}
-                                rotation={0}
+                    {/* Vault Animated Card */}
+                    <motion.div
+                        initial={{ 
+                            opacity: 0, 
+                            x: -20 
+                        }}
+                        whileInView={{ 
+                            opacity: 1, 
+                            x: 0,
+                            transition: {
+                                type: "spring",
+                                bounce: 0.4,
+                                duration: 0.8,
+                            }
+                         }}
+                        viewport={{ amount: 0.5 }}
+                    >
+                        <Card className="relative h-full w-full gap-1 overflow-hidden leading-tight hover:scale-105
+                            transition-transform duration-500">
+                            {/* Background layer */}
+                            <div className="absolute inset-0 z-0">
+                                <Silk
+                                    speed={15}
+                                    scale={1}
+                                    color="#0E76FD"
+                                    noiseIntensity={2}
+                                    rotation={0}
+                                />
+
+                                <div className="absolute inset-0 bg-black/60" />
+                                <div className="absolute inset-0 bg-linear-to-l from-[#0E76FD] via-[#0E76FD]/50 to-transparent" />
+                                <div className="absolute inset-0 bg-linear-to-bl from-black via-[#0E76FD]/50 to-transparent" />
+                            </div>
+
+                            {/* Foreground content */}
+                            <div className="relative z-10 flex h-full flex-col">
+                                <CardHeader>
+                                    <Image
+                                        src="/assets/Vault.png"
+                                        alt="cyclespace exchange vault"
+                                        height={230}
+                                        width={230}
+                                        quality={100}
+                                        className="relative left-35 -top-10 object-cover drop-shadow-2xl drop-shadow-black w-auto h-auto hover:scale-110 transition-transform duration-500"
+                                        priority
+                                        referrerPolicy="no-referrer"
+                                    />
+                                </CardHeader>
+
+                                <CardFooter className="mt-5 flex w-full flex-col space-y-2 px-6 text-left">
+                                    <h2 className="text-sm md:text-lg text-left w-full font-bold text-white">
+                                        Stake. Earn. Grow Your Stack.
+                                    </h2>
+                                    <h3 className=" text-xs md:text-sm text-slate-200">
+                                        Deposit assets into the vault and earn yield from trading fees.
+                                    </h3>
+                                </CardFooter>
+                            </div>
+                        </Card>
+                    </motion.div>
+
+                    {/* Perps Animated Card */}
+                    <motion.div 
+                        initial={{ 
+                            opacity: 0, 
+                            x: -20
+                        }}
+                        whileInView={{ 
+                            opacity: 1, 
+                            x: 0,
+                            transition: {
+                                type: "spring",
+                                bounce: 0.4,
+                                duration: 0.8,
+                            }
+                         }}
+                        viewport={{ amount: 0.5 }}
+                    >
+                        <Card className='h-full w-full  bg-zinc-200 dark:bg-slate-900 dark:border-slate-800 border border-zinc-200 gap-5 hover:scale-105 transition-transform duration-500' >
+                            <CardHeader className='flex items-center gap-2'>
+                                <div className='bg-primary p-2 rounded-lg w-fit h-fit'><CandlestickChartIcon className='text-white w-5 h-5' /></div>
+                                <div className='gap-0 space-y-0 flex flex-col'>
+                                    <h2 className='text-lg font-bold w-fit h-fit'>Perps With No Expiry</h2>
+                                    <h3 className='text-xs w-fit h-fit'>Leverage up to 50x on BTC, ETH, SOL</h3>
+                                </div>
+                            </CardHeader>
+                            <CardContent className='text-xs'>
+                                Trade perpetual futures with deep liquidity. No funding fees. No expiration dates. Pure leverage.
+                            </CardContent>
+                        </Card>
+                    </motion.div>
+                </div>
+
+                <div className='flex flex-col gap-5 w-full h-full'>
+                    {/* Yield Animated Card */}
+                    <motion.div 
+                        initial={{ 
+                            opacity: 0, 
+                            y: -20
+                        }}
+                        whileInView={{ 
+                            opacity: 1, 
+                            y: 0,
+                            transition: {
+                                type: "spring",
+                                bounce: 0.4,
+                                duration: 0.8,
+                            }
+                         }}
+                        viewport={{ amount: 0.5 }}
+                    >
+                        <Card className='h-full w-full  bg-zinc-200 dark:bg-slate-900 dark:border-slate-800 border border-zinc-200 relative hover:scale-105 transition-transform duration-500'>
+                            <CardHeader className='flex items-center gap-2 w-full'>
+                                <div className='gap-0 space-y-0 flex flex-col w-xs md:w-sm'>
+                                    <h2 className='text-sm md:text-xl font-bold bg-clip-text text-transparent
+                                        bg-linear-to-b from-black via-zinc-800 to-zinc-500
+                                        dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400'>
+                                        Vault Yield. Real Returns.
+                                    </h2>
+                                </div>
+                            </CardHeader>
+                            <CardContent className='text-xs justify-between w-full flex gap-15 relative z-10'>
+                                <span>Stake your assets and earn a share of all trading fees. Passive income while you sleep.</span>
+                                <div>
+                                    <Button className='text-xs bg-primary hover:bg-black text-white'>Buy Now</Button>
+                                </div>
+                            </CardContent>
+                            <Image
+                                src="/assets/coins.png"
+                                alt="cyclespace exchange vault"
+                                height={1000}
+                                width={1000}
+                                quality={100}
+                                className="object-contain absolute right-0 bottom-0 w-auto h-auto max-h-[230px] max-w-[230px]"
+                                priority
+                                referrerPolicy="no-referrer"
                             />
+                        </Card>
+                    </motion.div>
+                    
+                    {/* Loop Animated Ticker Card */}
+                    <motion.div
+                        initial={{ 
+                            opacity: 0, 
+                            y: 20
+                        }}
+                        whileInView={{ 
+                            opacity: 1, 
+                            y: 0,
+                            transition: {
+                                type: "spring",
+                                bounce: 0.4,
+                                duration: 0.8,
+                            }
+                         }}
+                        viewport={{ amount: 0.5 }}
+                    >
+                        <Card className='h-full w-full p-0 bg-zinc-200 
+                            leading-tight dark:bg-slate-900 dark:border-slate-800 border hover:scale-105 transition-transform duration-500'
+                        >
+                            <CardHeader className='p-8 w-sm md:w-md'>
+                                <h2 className='text-black dark:text-white text-xl font-bold'>Perpetuals. No Limits.</h2>
+                                <h3 className='text-sm text-slate-600 dark:text-slate-200'>Trade BTC, ETH, SOL perpetuals with up to 50x leverage and zero funding fees.</h3>
+                            </CardHeader>
 
-                            <div className="absolute inset-0 bg-black/60" />
-                            <div className="absolute inset-0 bg-linear-to-l from-[#0E76FD] via-[#0E76FD]/50 to-transparent" />
-                            <div className="absolute inset-0 bg-linear-to-bl from-black via-[#0E76FD]/50 to-transparent" />
-                        </div>
+                            <CardContent className='h-full w-fit my-6 justify-center p-0 overflow-clip'>
+                                <div className='overflow-clip w-sm md:w-lg justify-center flex flex-col '>
+                                    {/* Basic horizontal loop */}
+                                    <LogoLoop
+                                        logos={firstLogoList}
+                                        speed={20}
+                                        direction="left"
+                                        logoHeight={50}
+                                        gap={20}
+                                        hoverSpeed={0}
+                                        scaleOnHover
+                                        fadeOut
+                                        fadeOutColor="slate-500"
+                                        ariaLabel="Technology partners"
+                                    />
 
-                        {/* Foreground content */}
-                        <div className="relative z-10 flex h-full flex-col">
-                            <CardHeader>
+                                    <LogoLoop
+                                        logos={secondLogoList}
+                                        speed={25}
+                                        direction="right"
+                                        logoHeight={50}
+                                        gap={20}
+                                        hoverSpeed={0}
+                                        scaleOnHover
+                                        fadeOut
+                                        fadeOutColor="slate-500"
+                                        ariaLabel="Technology partners"
+                                    />
+
+                                    <LogoLoop
+                                        logos={thirdLogoList}
+                                        speed={30}
+                                        direction="left"
+                                        logoHeight={50}
+                                        gap={20}
+                                        hoverSpeed={0}
+                                        scaleOnHover
+                                        fadeOut
+                                        fadeOutColor="slate-500"
+                                        ariaLabel="Technology partners"
+                                    />
+                                </div>
+                                
+                            </CardContent>
+                        </Card>
+                    </motion.div>
+                </div>
+
+                <div className='flex flex-col gap-5 w-full h-full'>
+                    {/* Earn Fees Animated Card */}
+                    <motion.div
+                        initial={{ 
+                            opacity: 0, 
+                            x: 20
+                        }}
+                        whileInView={{ 
+                            opacity: 1, 
+                            x: 0,
+                            transition: {
+                                type: "spring",
+                                bounce: 0.4,
+                                duration: 0.8,
+                            }
+                         }}
+                        viewport={{ amount: 0.5 }}
+                    >
+                        <Card className='h-fit w-full bg-zinc-200 dark:bg-slate-900 gap-3 dark:border-slate-800 border border-zinc-200 hover:scale-105 transition-transform duration-500' >
+                            <CardHeader className='flex items-center gap-2 w-full'>
+                                <div className='bg-primary p-2 rounded-lg w-fit h-fit'><CoinsIcon className='text-white w-5 h-5' /></div>
+                                <div className='gap-0 space-y-0 flex flex-col w-full'>
+                                    <h2 className='text-lg font-bold'>Earn From Fees</h2>
+                                    <h3 className='text-xs '>Vault stakers earn 70% of protocol revenue</h3>
+                                </div>
+                            </CardHeader>
+                            <CardContent className='text-xs justify-between w-full flex gap-15'>
+                                <span>Deposit to the vault once, earn trading fees forever. Auto-compounding yields.</span>
+                            </CardContent>
+                        </Card>
+                    </motion.div>
+
+                    {/* Leverage Animated Card */}
+                    <motion.div
+                        initial={{ 
+                            opacity: 0, 
+                            x: 20
+                        }}
+                        whileInView={{ 
+                            opacity: 1, 
+                            x: 0,
+                            transition: {
+                                type: "spring",
+                                bounce: 0.4,
+                                duration: 0.8,
+                            }
+                         }}
+                        viewport={{ amount: 0.5 }}
+                    >
+                        <Card className='h-full w-full bg-zinc-200 dark:bg-slate-900 dark:border-slate-800 border border-zinc-200 justify-center hover:scale-105 transition-transform duration-500'>
+                            <CardHeader className='flex items-center gap-2 w-full'>
+                                <h2 className='text-lg font-bold'>Leverage Without Limits.</h2>
+                            </CardHeader>
+                            <CardContent className='space-x-2 space-y-2  w-full'>
+                                <Badge className='bg-white dark:bg-slate-700 text-xs text-black dark:text-slate-200 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Up to 50x leverage</Badge>
+                                <Badge className='bg-white dark:bg-slate-700 text-xs text-black dark:text-slate-200 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Zero funding fees</Badge>
+                                <Badge className='bg-white dark:bg-slate-700 text-xs text-black dark:text-slate-200 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Earn from the vault</Badge>
+                            </CardContent>
+                            <CardFooter className='justify-center overflow-clip relative'>
                                 <Image
-                                    src="/assets/Vault.png"
+                                    src="/assets/candlesticks.svg"
                                     alt="cyclespace exchange vault"
-                                    height={230}
-                                    width={230}
+                                    height={250}
+                                    width={250}
                                     quality={100}
-                                    className="relative left-35 -top-10 object-cover drop-shadow-2xl drop-shadow-black w-auto h-auto hover:scale-110 transition-transform duration-500"
+                                    className="object-cover flex dark:hidden relative w-auto h-auto"
                                     priority
                                     referrerPolicy="no-referrer"
                                 />
-                            </CardHeader>
 
-                            <CardFooter className="mt-5 flex w-full flex-col space-y-2 px-6 text-left">
-                                <h2 className="text-sm md:text-lg text-left w-full font-bold text-white">
-                                    Stake. Earn. Grow Your Stack.
-                                </h2>
-                                <h3 className=" text-xs md:text-sm text-slate-200">
-                                    Deposit assets into the vault and earn yield from trading fees.
-                                </h3>
+                                <Image
+                                    src="/assets/candles_dark.svg"
+                                    alt="cyclespace exchange vault"
+                                    height={250}
+                                    width={250}
+                                    quality={100}
+                                    className="object-cover hidden dark:flex relative w-auto h-auto mb-4"
+                                    priority
+                                    referrerPolicy="no-referrer"
+                                />
+                                {/* Linear gradient overlay */}
+                                <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-zinc-200
+                                dark:bg-linear-to-b dark:from-transparent dark:via-transparent dark:to-slate-900" />
                             </CardFooter>
-                        </div>
-                    </Card>
-
-                    <Card className='h-full w-full  bg-zinc-200 dark:bg-slate-900 dark:border-slate-800 border border-zinc-200 gap-5 hover:scale-105 transition-transform duration-500' >
-                        <CardHeader className='flex items-center gap-2'>
-                            <div className='bg-primary p-2 rounded-lg w-fit h-fit'><CandlestickChartIcon className='text-white w-5 h-5' /></div>
-                            <div className='gap-0 space-y-0 flex flex-col'>
-                                <h2 className='text-lg font-bold w-fit h-fit'>Perps With No Expiry</h2>
-                                <h3 className='text-xs w-fit h-fit'>Leverage up to 50x on BTC, ETH, SOL</h3>
-                            </div>
-                        </CardHeader>
-                        <CardContent className='text-xs'>
-                            Trade perpetual futures with deep liquidity. No funding fees. No expiration dates. Pure leverage.
-                        </CardContent>
-                    </Card>
-
-                </div>
-
-                <div className='flex flex-col gap-5 w-full h-full'>
-                    <Card className='h-full w-full  bg-zinc-200 dark:bg-slate-900 dark:border-slate-800 border border-zinc-200 relative hover:scale-105 transition-transform duration-500'>
-                        <CardHeader className='flex items-center gap-2 w-full'>
-                            <div className='gap-0 space-y-0 flex flex-col w-xs md:w-sm'>
-                                <h2 className='text-sm md:text-xl font-bold bg-clip-text text-transparent
-                                    bg-linear-to-b from-black via-zinc-800 to-zinc-500
-                                    dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400'>
-                                    Vault Yield. Real Returns.
-                                </h2>
-                            </div>
-                        </CardHeader>
-                        <CardContent className='text-xs justify-between w-full flex gap-15 relative z-10'>
-                            <span>Stake your assets and earn a share of all trading fees. Passive income while you sleep.</span>
-                            <div>
-                                <Button className='text-xs bg-primary hover:bg-black text-white'>Buy Now</Button>
-                            </div>
-                        </CardContent>
-                        <Image
-                            src="/assets/coins.png"
-                            alt="cyclespace exchange vault"
-                            height={1000}
-                            width={1000}
-                            quality={100}
-                            className="object-contain absolute right-0 bottom-0 w-auto h-auto max-h-[230px] max-w-[230px]"
-                            priority
-                            referrerPolicy="no-referrer"
-                        />
-                    </Card>
-                    
-                    <Card className='h-full w-full p-0 bg-zinc-200 
-                        leading-tight dark:bg-slate-900 dark:border-slate-800 border hover:scale-105 transition-transform duration-500'
-                    >
-                        <CardHeader className='p-8 w-sm md:w-md'>
-                            <h2 className='text-black dark:text-white text-xl font-bold'>Perpetuals. No Limits.</h2>
-                            <h3 className='text-sm text-slate-600 dark:text-slate-200'>Trade BTC, ETH, SOL perpetuals with up to 50x leverage and zero funding fees.</h3>
-                        </CardHeader>
-
-                        <CardContent className='h-full w-fit my-6 justify-center p-0 overflow-clip'>
-                            <div className='overflow-clip w-sm md:w-lg justify-center flex flex-col '>
-                                {/* Basic horizontal loop */}
-                                <LogoLoop
-                                    logos={firstLogoList}
-                                    speed={20}
-                                    direction="left"
-                                    logoHeight={50}
-                                    gap={20}
-                                    hoverSpeed={0}
-                                    scaleOnHover
-                                    fadeOut
-                                    fadeOutColor="slate-500"
-                                    ariaLabel="Technology partners"
-                                />
-
-                                <LogoLoop
-                                    logos={secondLogoList}
-                                    speed={25}
-                                    direction="right"
-                                    logoHeight={50}
-                                    gap={20}
-                                    hoverSpeed={0}
-                                    scaleOnHover
-                                    fadeOut
-                                    fadeOutColor="slate-500"
-                                    ariaLabel="Technology partners"
-                                />
-
-                                <LogoLoop
-                                    logos={thirdLogoList}
-                                    speed={30}
-                                    direction="left"
-                                    logoHeight={50}
-                                    gap={20}
-                                    hoverSpeed={0}
-                                    scaleOnHover
-                                    fadeOut
-                                    fadeOutColor="slate-500"
-                                    ariaLabel="Technology partners"
-                                />
-                            </div>
-                            
-                        </CardContent>
-
-                    </Card>
-                </div>
-                <div className='flex flex-col gap-5 w-full h-full'>
-                    <Card className='h-fit w-full bg-zinc-200 dark:bg-slate-900 gap-3 dark:border-slate-800 border border-zinc-200 hover:scale-105 transition-transform duration-500' >
-                        <CardHeader className='flex items-center gap-2 w-full'>
-                            <div className='bg-primary p-2 rounded-lg w-fit h-fit'><CoinsIcon className='text-white w-5 h-5' /></div>
-                            <div className='gap-0 space-y-0 flex flex-col w-full'>
-                                <h2 className='text-lg font-bold'>Earn From Fees</h2>
-                                <h3 className='text-xs '>Vault stakers earn 70% of protocol revenue</h3>
-                            </div>
-                        </CardHeader>
-                        <CardContent className='text-xs justify-between w-full flex gap-15'>
-                            <span>Deposit to the vault once, earn trading fees forever. Auto-compounding yields.</span>
-                        </CardContent>
-                    </Card>
-                    <Card className='h-full w-full hover:shadow-xl hover:shadow-blue-500/20 bg-zinc-200 dark:bg-slate-900 dark:border-slate-800 border border-zinc-200 justify-center hover:scale-105 transition-transform duration-500'>
-                        <CardHeader className='flex items-center gap-2 w-full'>
-                            <h2 className='text-lg font-bold'>Leverage Without Limits.</h2>
-                        </CardHeader>
-                        <CardContent className='space-x-2 space-y-2  w-full'>
-                            <Badge className='bg-white dark:bg-slate-700 text-xs text-black dark:text-slate-200 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Up to 50x leverage</Badge>
-                            <Badge className='bg-white dark:bg-slate-700 text-xs text-black dark:text-slate-200 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Zero funding fees</Badge>
-                            <Badge className='bg-white dark:bg-slate-700 text-xs text-black dark:text-slate-200 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Earn from the vault</Badge>
-                        </CardContent>
-                        <CardFooter className='justify-center overflow-clip relative'>
-                            <Image
-                                src="/assets/candlesticks.svg"
-                                alt="cyclespace exchange vault"
-                                height={250}
-                                width={250}
-                                quality={100}
-                                className="object-cover flex dark:hidden relative w-auto h-auto"
-                                priority
-                                referrerPolicy="no-referrer"
-                            />
-
-                            <Image
-                                src="/assets/candles_dark.svg"
-                                alt="cyclespace exchange vault"
-                                height={250}
-                                width={250}
-                                quality={100}
-                                className="object-cover hidden dark:flex relative w-auto h-auto mb-4"
-                                priority
-                                referrerPolicy="no-referrer"
-                            />
-                            {/* Linear gradient overlay */}
-                            <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-zinc-200
-                            dark:bg-linear-to-b dark:from-transparent dark:via-transparent dark:to-slate-900" />
-                        </CardFooter>
-                    </Card>
+                        </Card>
+                    </motion.div>
                 </div>
             </div>
         </main>

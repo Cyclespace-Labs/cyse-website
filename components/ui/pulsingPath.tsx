@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import Image from "next/image";
 
 export default function PulsingPath() {
@@ -18,20 +18,23 @@ export default function PulsingPath() {
   const glowStyle = {
     filter: "drop-shadow(0 0 2px #0E76FD)",
   };
+  const color = [
+    "linear-gradient(180deg, rgb(230, 255, 0) 0%, rgb(3, 209, 0) 100%)",
+  ]
 
   return (
     <div className="p-10 h-fit">
-      <div className="grid w-full justify-center items-center gap-2 md:gap-4 lg:gap-4 space-y-0 h-fit z-40 drop-shadow-primary/20 drop-shadow-2xl">
+      <div className="grid w-full justify-center items-center gap-2 md:gap-4 lg:gap-4 space-y-0 h-fit z-10 drop-shadow-primary/20 drop-shadow-2xl">
         {/* ---------- Left curved path (top) ---------- */}
         <div className="flex justify-center items-center gap-0 space-y-0 h-fit">
           <div className="relative">
-            <div className="w-10 h-10 md:w-20 md:h-20 lg:w-20 lg:h-20 relative right-6 top-3 md:right-12 md:top-6 lg:right-12 lg:top-6 z-10 items-start justify-start rounded-full">
+            <div className="w-10 h-10 md:w-20 md:h-20 lg:w-20 lg:h-20 relative right-6 top-3 md:right-12 md:top-6 lg:right-12 lg:top-6 items-start justify-start rounded-full">
               <Image
                 src="/tokens/Bitcoin.svg"
                 alt="Bitcoin"
                 height={230}
                 width={230}
-                className="object-cover rounded-full relative hover:scale-110 transition-transform duration-300 z-40"
+                className="object-cover rounded-full relative hover:scale-110 transition-transform duration-300 z-10"
                 loading="lazy"
               />
             </div>
@@ -43,7 +46,7 @@ export default function PulsingPath() {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path
+              <motion.path
                 d="M4.00069 4.00073C5.60069 6.80073 43.7043 65.3007 57.7043 82.3007C57.7043 82.3007 70.2043 96.3007 83.2043 102.801C92.2043 107.301 109.704 107.301 109.704 107.301H258.704"
                 stroke="#D7DDE0"
                 strokeWidth="8"
@@ -339,7 +342,7 @@ export default function PulsingPath() {
         </div>
 
         {/* ---------- Vertical lines (center) ---------- */}
-        <div className="absolute h-[300px] md:h-auto left-1/2 transform -translate-x-1/2 translate-y-1/2 justify-center space-x-1 md:space-x-3 items-center flex overflow-hidden">
+        <div className="absolute h-[300px] z-0 md:h-auto left-1/2 transform -translate-x-1/2 translate-y-1/2 justify-center space-x-1 md:space-x-3 items-center flex overflow-hidden">
           {[0, 1, 2].map((i) => (
             <div key={i} className="w-full h-full">
               <svg

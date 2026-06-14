@@ -1,8 +1,8 @@
-import React from 'react'
 import { Button } from '../ui/button'
 import Image from 'next/image'
 import { ChevronRight } from 'lucide-react'
 import { Badge } from '../ui/badge'
+import * as motion from "motion/react-client"
 
 interface ChainToken {
   name: string;
@@ -60,6 +60,22 @@ export default function Chains() {
         <main className='justify-center px-4 sm:px-8 md:px-20 lg:px-[clamp(10rem,15vw,17.5rem)]'>
             <div className='w-full h-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12'>
               <div className='gap-3 sm:gap-4 md:gap-5 flex flex-col'>
+                <motion.div
+                  initial={{ 
+                      opacity: 0, 
+                      x: -20 
+                  }}
+                  whileInView={{ 
+                      opacity: 1, 
+                      x: 0,
+                      transition: {
+                          type: "spring",
+                          bounce: 0.4,
+                          duration: 1,
+                      }
+                    }}
+                  viewport={{ amount: 0.8 }}
+                >
                   <h1 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl text-left font-bold max-w-xl
                       bg-linear-to-b from-black via-slate-800 to-slate-700
                       dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400
@@ -67,11 +83,48 @@ export default function Chains() {
                   >
                       Access Multiple Chains. swap tokens with Ease.
                   </h1>
+                </motion.div>
+
+                <motion.div
+                  initial={{ 
+                      opacity: 0, 
+                      x: -20 
+                  }}
+                  whileInView={{ 
+                      opacity: 1, 
+                      x: 0,
+                      transition: {
+                          type: "spring",
+                          bounce: 0.4,
+                          duration: 1,
+                      }
+                    }}
+                  viewport={{ amount: 0.8 }}
+                >
                   <h2 className='text-xs sm:text-sm md:text-base max-w-md'>Trade Directly from Your Wallet. Execute Trades. Retain Ownership.</h2>
+                </motion.div>
+                
+                <motion.div
+                  initial={{ 
+                      opacity: 0, 
+                      x: -20 
+                  }}
+                  whileInView={{ 
+                      opacity: 1, 
+                      x: 0,
+                      transition: {
+                          type: "spring",
+                          bounce: 0.4,
+                          duration: 1,
+                      }
+                    }}
+                  viewport={{ amount: 0.8 }}
+                >
                   <Button className='w-fit bg-primary hover:bg-primary/70  text-white dark:text-white text-xs sm:text-sm
                    hover:scale-110 transition-transform duration-300'>
                     Explore Chains
                   </Button>
+                </motion.div>
               </div>
                 
               <div className='grid grid-cols-2 w-full h-full gap-2 sm:gap-3'>

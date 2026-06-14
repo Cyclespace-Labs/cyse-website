@@ -1,25 +1,59 @@
 "use client";
 
 import Image from "next/image";
-import React, { lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
+import * as motion from "motion/react-client"
+import type { Variants } from "motion/react"
+
+const cardVariants: Variants = {
+  offscreen: {
+      y: 20,
+      opacity: 0,
+  },
+  onscreen: {
+      y: 0,
+      opacity: 1,
+      transition: {
+          type: "spring",
+          bounce: 0.4,
+          duration: 0.8,
+      },
+  },
+}
 
 // Lazy load the heavy PulsingPath component (it contains many SVGs and animations)
 const PulsingPath = lazy(() => import("../ui/pulsingPath"));
 
 export default function Showcase() {
   return (
-    <div className="w-full h-full mx-auto pt-10 font-sans">
-      <main className="h-full w-full justify-center items-center px-20 md:px-25 lg:px-40">
+    <div className="w-full h-fit mx-auto pt-10 font-sans">
+      <main className="h-fit w-full justify-center items-center px-20 md:px-25 lg:px-40">
 
         <div className="w-full h-full justify-center items-center flex pb-5">
-          <h1
-            className="text-xl md:text-4xl font-bold text-center w-xl
-              bg-linear-to-b from-black via-slate-800 to-slate-700
-              dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400
-              leading-tight mb-6 bg-clip-text text-transparent"
+          <motion.div
+            initial={{ 
+                opacity: 0, 
+                y: 20
+            }}
+            whileInView={{ 
+                opacity: 1, 
+                y: 0,
+                transition: {
+                    type: "spring",
+                    bounce: 0.4,
+                    duration: 1,
+                }
+              }}
+            viewport={{ amount: 0.5 }}
           >
-            Decentralized. Borderless. Permissionless. Trade.
-          </h1>
+            <h1 className="text-xl md:text-4xl font-bold text-center w-xl
+                bg-linear-to-b from-black via-slate-800 to-slate-700
+                dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400
+                leading-tight mb-6 bg-clip-text text-transparent"
+            >
+              Decentralized. Borderless. Permissionless. Trade.
+            </h1>
+          </motion.div>
         </div>
 
         <div className="flex justify-center">
@@ -37,7 +71,12 @@ export default function Showcase() {
         {/* Desktop card stack - hidden on mobile/tablet, only visible on large screens */}
         <div className="justify-between hidden lg:flex relative items-center w-full flex-row pt-10 h-fit -top-130">
           {/* Left column */}
-          <div className="h-fit flex flex-col">
+          <motion.div 
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ amount: 0.5 }}
+            variants={cardVariants}
+            className="h-fit flex flex-col">
             <Image
               src="/cards/sell_light.png"
               alt="Sell interface"
@@ -74,10 +113,15 @@ export default function Showcase() {
               className="object-fit h-80 w-40 relative -top-20 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
               loading="lazy"
             />
-          </div>
+          </motion.div>
 
-          {/* Middle column */}
-          <div className="h-fit flex flex-col">
+          {/* Right column */}
+          <motion.div 
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ amount: 0.5 }}
+            variants={cardVariants}
+            className="h-fit flex flex-col">
             <Image
               src="/cards/swap_light.png"
               alt="Swap interface"
@@ -114,18 +158,20 @@ export default function Showcase() {
               className="object-fit h-67 w-42 relative left-8 md:left-15 -top-10 z-10 rounded-sm shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
               loading="lazy"
             />
-          </div>
+          </motion.div>
         </div>
 
         {/* Main dashboard image - visible on all screens */}
-        <div className="">
+        <motion.div 
+          className="-translate-y-30 relative z-40 flex justify-center w-full h-full"
+        >
           <Image
             src="/cards/light_dash.png"
             alt="Dashboard light"
             width={1877}
             height={967}
             quality={100}
-            className="object-fit w-full h-auto relative left-1/2 transform -translate-x-1/2 -translate-y-1 md:-translate-y-60 z-40 rounded-sm shadow-2xl hover:scale-110 transition-transform duration-300 dark:hidden"
+            className="object-fit w-full h-auto relative left-1/2 transform -translate-x-1/2 -translate-y-1 md:-translate-y-60 rounded-sm shadow-2xl hover:scale-110 transition-transform duration-300 dark:hidden"
             loading="lazy"
           />
           <Image
@@ -134,10 +180,10 @@ export default function Showcase() {
             width={1877}
             height={967}
             quality={100}
-            className="object-fit w-full h-auto relative left-1/2 transform -translate-x-1/2 -translate-y-1 md:-translate-y-60 z-40 rounded-sm shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
+            className="object-fit w-full h-auto relative left-1/2 transform -translate-x-1/2 -translate-y-1 md:-translate-y-60 rounded-sm shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
             loading="lazy"
           />
-        </div>
+        </motion.div>
       </main>
     </div>
   );

@@ -89,7 +89,7 @@ export default async function News() {
       </div>
 
       {/*Right-Section - Stacked Widgets */}
-      <div className="py-2 px-6"> 
+      <div className="py-2 px-6 hidden"> 
         <div className="hidden">
           <ExploreSection/>
         </div>
