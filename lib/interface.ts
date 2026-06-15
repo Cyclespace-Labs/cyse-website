@@ -37,6 +37,7 @@ export interface Impact {
 }
 
 export interface simpleNewsCard {
+  slug: string; 
   title: string;
   smallDescription: string;
   currentSlug: string;
@@ -53,6 +54,7 @@ export interface simpleNewsCard {
     description?: string;
   }>;
 }
+
 
 export interface fullNews {
   _id: string;
@@ -168,6 +170,8 @@ export interface Article {
   author?: Author | null;
   [key: string]: any;
 }
+
+
 
 // Add this interface for Sanity SEO field schema
 export interface SanitySeoFields {

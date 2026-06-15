@@ -370,37 +370,57 @@ const HorizontalTimeline: React.FC<TimelineProps> = ({
 const sampleMilestones: TimelineMilestone[] = [
   {
     id: "genesis",
-    date: "Q1 2024",
-    label: "Protocol",
-    title: "Genesis Block",
+    date: "Q1 2026",
+    label: "Application Launch",
+    title: "Spot Swap",
     description:
-      "Layer-1 blockchain initialized with institutional-grade validator set and zero-knowledge primitives.",
+      "API based Spot Trading feature and Web3 Wallet integration",
     status: "completed",
     icon: GenesisBlockIcon,
   },
   {
-    id: "contracts",
-    date: "Q2 2024",
-    label: "Execution",
-    title: "Smart Contracts",
+    id: "news",
+    date: "Q2 2026",
+    label: "Influence",
+    title: "News & Research",
     description:
-      "Turing-complete contract engine deployed with formal verification framework and gas abstraction.",
+      "AI automation engine for accurate industry News and Research across all markets.",
     status: "completed",
     icon: SmartContractIcon,
   },
   {
+    id: "predictions",
+    date: "Q3 2026",
+    label: "Protocol",
+    title: "Prediction Markets",
+    description:
+      "Layer-2 integration for Prediction markets powered by Polymarket",
+    status: "active",
+    icon: SmartContractIcon,
+  },
+  {
+    id: "contracts",
+    date: "Q4 2026",
+    label: "Execution",
+    title: "Smart Contracts",
+    description:
+      "Turing-complete contract engine deployed with formal verification framework and gas abstraction.",
+    status: "upcoming",
+    icon: SmartContractIcon,
+  },
+  {
     id: "defi",
-    date: "Q3 2024",
+    date: "Q1 2027",
     label: "Ecosystem",
     title: "DeFi Launch",
     description:
       "Cross-chain liquidity protocol with automated market making and institutional custody integration.",
-    status: "active",
+    status: "upcoming",
     icon: DefiProtocolIcon,
   },
   {
     id: "security",
-    date: "Q4 2024",
+    date: "Q2 2027",
     label: "Compliance",
     title: "Security Audit",
     description:
@@ -410,7 +430,7 @@ const sampleMilestones: TimelineMilestone[] = [
   },
   {
     id: "scaling",
-    date: "Q1 2025",
+    date: "Q2 2027",
     label: "Infrastructure",
     title: "Network Scaling",
     description:
@@ -420,7 +440,7 @@ const sampleMilestones: TimelineMilestone[] = [
   },
   {
     id: "global",
-    date: "Q2 2025",
+    date: "Q3 2027",
     label: "Adoption",
     title: "Global Markets",
     description:

@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import { motion, useMotionValue, useSpring, useInView } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
 import { client, urlFor } from "@/sanity/lib/client";
 import { formatDate } from "@/lib/date-utils";
 
@@ -14,6 +15,7 @@ interface NewsItem {
   titleImage?: { asset: { _ref: string } } | null;
   publishedAt: string;
   categoryName?: string;
+  categorySlug?: string;
   author?: {
     name: string;
     avatar?: { asset: { _ref: string } } | null;
@@ -33,6 +35,7 @@ async function fetchLatestNews(): Promise<NewsItem[]> {
       titleImage,
       publishedAt,
       "categoryName": category->name,
+      "categorySlug": category->slug.current,
       "author": author->{
         name,
         avatar,
@@ -60,43 +63,55 @@ function Avatar() {
   return <div className="h-10 w-10 shrink-0 rounded-xl bg-zinc-200 dark:bg-slate-700" />;
 }
 
+function buildArticleUrl(card: NewsItem): string {
+  const date = new Date(card.publishedAt);
+  const year = date.getUTCFullYear();
+  const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+  const day = String(date.getUTCDate()).padStart(2, "0");
+  const categorySlug = card.categorySlug || "news";
+  return `/news/${categorySlug}/${year}/${month}/${day}/${card.currentSlug}`;
+}
+
 function NewsCardItem({ card, index, inView }: { card: NewsItem; index: number; inView: boolean }) {
   const imageUrl = card.titleImage ? urlFor(card.titleImage).url() : null;
   const avatarUrl = card.author?.avatar ? urlFor(card.author.avatar).url() : null;
+  const articleUrl = buildArticleUrl(card);
 
   return (
     <motion.article
       initial={{ opacity: 0, y: 44, scale: 0.94 }}
       animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
       transition={{ duration: 0.55, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
-      className="flex w-[316px] shrink-0 flex-col gap-3 rounded-2xl border border-zinc-200 dark:border-slate-700 bg-zinc-100 dark:bg-slate-900 p-5 pb-4 cursor-pointer hover:border-zinc-300 dark:hover:border-slate-600 transition-colors"
+      className="flex w-[316px] shrink-0 flex-col gap-3 rounded-2xl border border-zinc-200 dark:border-slate-700 bg-zinc-100 dark:bg-slate-900 p-5 pb-4 transition-colors hover:border-zinc-300 dark:hover:border-slate-600"
     >
-      <div className="flex items-center gap-3">
-        {avatarUrl ? (
-          <img src={avatarUrl} alt={card.author?.name || ''} className="h-10 w-10 shrink-0 rounded-xl object-cover" />
-        ) : (
-          <Avatar />
+      <Link href={articleUrl} className="contents">
+        <div className="flex items-center gap-3">
+          {avatarUrl ? (
+            <img src={avatarUrl} alt={card.author?.name || ''} className="h-10 w-10 shrink-0 rounded-xl object-cover" />
+          ) : (
+            <Avatar />
+          )}
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-sm font-bold text-gray-900 dark:text-white">{card.author?.name || 'Anonymous'}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              {formatDate(card.publishedAt, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+            </p>
+          </div>
+          {card.categoryName && <TagPill label={card.categoryName} />}
+        </div>
+
+        <div className="h-px bg-gray-300 dark:bg-slate-700" />
+
+        <h3 className="text-sm hover:text-primary dark:hover:text-primary dark:hover:underline hover:underline font-semibold text-gray-900 dark:text-white line-clamp-2">{card.title}</h3>
+
+        <p className="flex-1 text-xs leading-relaxed text-gray-700 dark:text-gray-300 line-clamp-3">{card.smallDescription}</p>
+
+        {imageUrl && (
+          <div className="h-[145px] overflow-hidden rounded-lg bg-gray-300 dark:bg-slate-700">
+            <img src={imageUrl} alt={card.title} className="h-full w-full object-cover" loading="lazy" />
+          </div>
         )}
-        <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-bold text-gray-900 dark:text-white">{card.author?.name || 'Anonymous'}</p>
-          <p className="text-xs text-gray-500 dark:text-gray-400">
-            {formatDate(card.publishedAt, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
-          </p>
-        </div>
-        {card.categoryName && <TagPill label={card.categoryName} />}
-      </div>
-
-      <div className="h-px bg-gray-300 dark:bg-slate-700" />
-
-      <h3 className="text-sm font-semibold text-gray-900 dark:text-white line-clamp-2">{card.title}</h3>
-
-      <p className="flex-1 text-xs leading-relaxed text-gray-700 dark:text-gray-300 line-clamp-3">{card.smallDescription}</p>
-
-      {imageUrl && (
-        <div className="h-[145px] overflow-hidden rounded-lg bg-gray-300 dark:bg-slate-700">
-          <img src={imageUrl} alt={card.title} className="h-full w-full object-cover" loading="lazy" />
-        </div>
-      )}
+      </Link>
     </motion.article>
   );
 }
@@ -113,12 +128,12 @@ function ScrollBtn({
   return (
     <button
       onClick={onClick}
-      disabled={true}
+      disabled={disabled}
       className={`flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-gray-700 dark:text-gray-300 transition hover:bg-gray-100 dark:hover:bg-slate-700 ${
         disabled ? "cursor-not-allowed opacity-50" : ""
       }`}
     >
-      {dir === "left" ? <ChevronLeft className=""/> : <ChevronRight className="" />}
+      {dir === "left" ? <ChevronLeft className="" /> : <ChevronRight className="" />}
     </button>
   );
 }
@@ -252,7 +267,7 @@ export default function LatestNews() {
             whileDrag={{ cursor: "grabbing" }}
             onDragEnd={(_, info) => {
               const newX = Math.max(-maxDrag, Math.min(0, rawX.get() + info.offset.x));
-              const snapped = Math.round(-newX / STEP); 
+              const snapped = Math.round(-newX / STEP);
               scrollTo(Math.max(0, Math.min(snapped, news.length - 1)));
             }}
             className="flex w-max cursor-grab gap-[18px] px-6 md:px-12"
@@ -267,7 +282,6 @@ export default function LatestNews() {
         <div className="w-full h-full justify-center flex mt-6">
           <Dots total={news.length} active={activeIndex} onDot={scrollTo} />
         </div>
-
       </div>
     </section>
   );
