@@ -146,12 +146,8 @@ const TimelineItem: React.FC<{
       {/* ── Content ── */}
       <motion.div
         className="text-center px-2"
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-        transition={{
-          duration: 0.4,
-          delay: index * 0.12 + 0.3,
-        }}
+        viewport={{ amount: 0.2 }} initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0, transition: { type: "spring", bounce: 0.4, duration: 1 } }}
       >
         {/* Label */}
         <p
@@ -262,18 +258,9 @@ const HorizontalTimeline: React.FC<TimelineProps> = ({
             exit={{ opacity: 0, x: -8 }}
             transition={{ duration: 0.2 }}
             onClick={() => scrollBy("left")}
-            className="
-              absolute left-0 top-1/2 -translate-y-1/2 z-20
-              w-10 h-10 rounded-full
-              bg-white dark:bg-slate-950
-              border border-slate-200 dark:border-slate-700
-              shadow-lg
-              flex items-center justify-center
-              cursor-pointer
-              hover:bg-slate-50 dark:hover:bg-slate-700
-              transition-colors duration-200
-              -ml-5
-            "
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white dark:bg-slate-950 
+              border border-slate-200 dark:border-slate-700 shadow-lg flex items-center justify-center cursor-pointer 
+              hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors duration-200 -ml-5 "
             aria-label="Scroll timeline left"
           >
             <svg

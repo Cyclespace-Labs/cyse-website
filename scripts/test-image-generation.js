@@ -12,7 +12,7 @@ async function testImageGeneration() {
   
   if (!isConnected) {
     console.log('❌ ComfyUI is not accessible.');
-    console.log('🔗 ComfyUI URL:', process.env.COMFYUI_URL || 'http://127.0.0.1:8000');
+    console.log('🔗 ComfyUI URL:', process.env.COMFYUI_URL || 'http://127.0.0.1:8188');
     process.exit(1);
   }
   

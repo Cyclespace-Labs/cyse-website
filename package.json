@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
+    "@next/bundle-analyzer": "^16.2.9",
     "@pythnetwork/hermes-client": "^3.1.0",
     "@react-three/fiber": "^9.5.0",
     "@sanity/icons": "^3.7.4",

@@ -172,9 +172,6 @@ export default function ArticlePage({ article }: ArticlePageProps) {
                 {/* Research / Deep Dive */}
                 {article.research && (
                   <section className="mt-8 pt-6 border-t border-zinc-200 dark:border-zinc-800">
-                    <h2 className="text-lg font-bold text-zinc-900 dark:text-white tracking-tight mb-4">
-                      Deep Dive Analysis
-                    </h2>
                     <PortableText
                       value={article.research}
                       components={portableTextComponents}
@@ -201,9 +198,6 @@ export default function ArticlePage({ article }: ArticlePageProps) {
                 {/* Conclusion */}
                 {article.conclusion && (
                   <section className="mt-8 pt-6 border-t border-zinc-200 dark:border-zinc-800">
-                    <h2 className="text-lg font-bold text-zinc-900 dark:text-white tracking-tight mb-4">
-                      Conclusion
-                    </h2>
                     <PortableText
                       value={article.conclusion}
                       components={portableTextComponents}
