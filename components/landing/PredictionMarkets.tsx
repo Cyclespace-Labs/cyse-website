@@ -1,12 +1,15 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Card, CardContent } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { LogoLoop } from '../LogoLoop';
 import Image from 'next/image';
 import { Activity, Trophy, TrendingUp, Globe, Zap } from 'lucide-react';
+import * as motion from "motion/react-client"
+import { motionValue } from 'motion';
+
 
 interface PredictionOption {
   name: string;
@@ -233,14 +236,27 @@ const PredictionCardComponent = React.memo(({ card }: { card: PredictionCard }) 
     }
   };
 
+  const x = motionValue(0)
+
+  useEffect(() => {
+    // Won't trigger a re-render!
+    const timeout = setTimeout(() => x.set(100), 1000)
+
+    return () => clearTimeout(timeout)
+  }, [])
+  
+
   return (
+    <motion.div viewport={{ amount: 0.3 }} initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1, transition: { type:"spring", duration: 1 } }} exit={{ scale: 1 }}
+    >
     <Card className={`w-[300px] md:w-[260px] h-[200px] py-2 bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow`}>
       <CardContent className="p-4 h-full flex flex-col justify-between">
         {/* Title and Category */}
         <div>
           <div className="flex items-center gap-2 flex-wrap">
-            <span className={`inline-block text-[10px] font-semibold uppercase tracking-wide ${getCategoryColor()}`}>
-              {card.category}
+            <span className={`flex gap-1 items-center text-[13px] font-semibold uppercase tracking-wide mb-1 ${getCategoryColor()}`}>
+              {card.categoryIcon} {card.category}
             </span>
             {card.isLive && (
               <span className="flex items-center gap-0.5 text-[10px] text-red-500 font-medium">
@@ -253,7 +269,7 @@ const PredictionCardComponent = React.memo(({ card }: { card: PredictionCard }) 
             )}
           </div>
           <h3 className="text-sm font-bold text-zinc-900 dark:text-white leading-tight line-clamp-2 mb-2">
-            {card.title}
+            {card.title} 
           </h3>
         </div>
 
@@ -300,6 +316,7 @@ const PredictionCardComponent = React.memo(({ card }: { card: PredictionCard }) 
         </div>
       </CardContent>
     </Card>
+    </motion.div>
   );
 });
 
@@ -335,10 +352,14 @@ const PredictionMarkets = React.memo(() => {
   // Memoize header
   const header = useMemo(() => (
     <div className="mb-12 text-center">
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-linear-to-b from-black via-slate-800 to-slate-700 
-      dark:from-white dark:via-slate-200 dark:to-slate-400 max-w-3xl mx-auto">
-        Bet on the outcome of real-world events. Sports, crypto, politics, and more.
-      </h2>
+      <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0, transition: { type: "spring", bounce: 0.4, duration: 1 } }}
+      >
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-linear-to-b from-black via-slate-800 to-slate-700 
+        dark:from-white dark:via-slate-200 dark:to-slate-400 max-w-3xl mx-auto">
+          Bet on the outcome of real-world events. Sports, crypto, politics, and more.
+        </h2>
+      </motion.div>
     </div>
   ), []);
 
@@ -434,7 +455,7 @@ const PredictionMarkets = React.memo(() => {
 
         {/* CTA */}
         <div className="mt-10 text-center">
-          <Button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2.5 rounded-lg text-sm font-medium">
+          <Button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2.5 rounded-2xl text-sm font-medium">
             Explore All Markets
           </Button>
         </div>

@@ -6,10 +6,19 @@ import Footer from '@/components/layout/Footer';
 // Components that are immediately visible – loaded normally
 import Hero from '@/components/landing/Hero';
 import Stats from '@/components/landing/Stats';
-import Showcase from '@/components/landing/Showcase';
-import Description from '@/components/landing/description';
 
 // Lazy load components that appear below the fold
+
+const Showcase = dynamic(() => import('@/components/landing/Showcase'), {
+  loading: () => <div className="h-96 w-full animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />,
+  ssr:true,
+})
+
+const Description = dynamic(() => import('@/components/landing/description'), {
+  loading: () => <div className="h-40 w-full animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />,
+  ssr:true,
+});
+
 const Features = dynamic(() => import('@/components/landing/Features'), {
   loading: () => <div className="h-40 w-full animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />,
   ssr: true, // Keep SSR for SEO
@@ -50,18 +59,18 @@ export default function Home() {
     <main className="min-h-screen bg-white dark:bg-black h-full">
       <Header />
       <Hero />
-
+      
       <div className="justify-center flex">
         <Stats />
       </div>
 
-      <div>
+      <Suspense fallback={<div className="h-60 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
         <Showcase />
-      </div>
+      </Suspense>
 
-      <div>
+      <Suspense fallback={<div className="h-40 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
         <Description text="Experience lightning-fast trades with zero custody risk and complete control over your assets." />
-      </div>
+      </Suspense>
 
       <Suspense fallback={<div className="h-40 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
         <Features />
@@ -75,9 +84,9 @@ export default function Home() {
         <Rewards />
       </Suspense>
 
-      <div>
+      <Suspense fallback={<div className="h-40 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
         <Description text="Join thousands of traders who trust our platform for secure, transparent, and efficient decentralized trading." />
-      </div>
+      </Suspense>
 
       <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
         <Coverage />
