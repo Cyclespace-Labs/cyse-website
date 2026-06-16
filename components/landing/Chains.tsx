@@ -15,7 +15,7 @@ interface ChainButtonProps {
 }
 
 const ChainButton = ({ token }: ChainButtonProps) => (
-  <motion.div viewport={{ amount: 1 }} initial={{ opacity: 0, scaleX: 0.8, }}
+  <motion.div viewport={{ amount: 0.8 }} initial={{ opacity: 0, scaleX: 0.8, }}
     whileInView={{ opacity: 1, scaleX: 1, transition: { type: "spring", bounce: 0.4, duration: 1, } }}
   >
     <Button className='group w-full rounded-4xl text-sm sm:text-base md:text-lg text-black dark:text-white justify-start p-3 py-5 md:p-7 
@@ -83,20 +83,9 @@ export default function Chains() {
                 </motion.div>
                 
                 <motion.div
-                  initial={{ 
-                      opacity: 0, 
-                      x: -20 
-                  }}
-                  whileInView={{ 
-                      opacity: 1, 
-                      x: 0,
-                      transition: {
-                          type: "spring",
-                          bounce: 0.4,
-                          duration: 1,
-                      }
-                    }}
-                  viewport={{ amount: 0.8 }}
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1, transition: { type: "spring", bounce: 0.4, duration: 0.5, } }}
+                  viewport={{ amount: 0.5 }}
                 >
                   <Button className='w-fit bg-primary hover:bg-primary/70 rounded-3xl px-3.5 text-white dark:text-white text-xs sm:text-sm
                    hover:scale-110 transition-transform duration-300'>

@@ -8,6 +8,8 @@ import { Badge } from '../ui/badge'
 import LogoLoop from '../LogoLoop'
 import Silk from '../Silk'
 import * as motion from "motion/react-client"
+import { useEffect, useRef, useState } from 'react'
+import { useInView } from "framer-motion";
 
 
 const firstLogoList = [
@@ -41,17 +43,19 @@ const thirdLogoList = [
 ]
 
 export default function Features() {
+
   return (
     <div className='w-full h-full mx-auto justify-center flex py-10 pb-10'>
         <main className='justify-center flex flex-col w-7xl h-full'>
             <div className='w-full h-full justify-center items-center flex pb-5'>
-                <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0, transition: { type: "spring", bounce: 0.4, duration: 1 } }}
+                <motion.div viewport={{ amount: 0.2, once: true }} initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0, transition: { type: "spring", bounce: 0.4, duration: 0.5 } }}
+                    className='transform-gpu'
                 >
                     <h1 className='text-xl md:text-4xl font-bold text-center w-xs md:w-4xl
                         bg-linear-to-b from-black via-zinc-800 to-zinc-500
                         dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400
-                        leading-tight mb-6 bg-clip-text text-transparent'
+                        leading-tight mb-6 bg-clip-text text-transparent transform-gpu'
                     >
                         Power Your Trading Journey: Advanced Perpetuals, Smart Staking & Vault Rewards
                     </h1>

@@ -17,7 +17,10 @@ function LenisProvider({ children }: { children: React.ReactNode }) {
         lerp: 0.1,
         duration: 1.5,
         smoothWheel: true,
-        touchMultiplier: 2,
+        touchMultiplier: 0.8,
+        syncTouch: true,
+        syncTouchLerp: 0.2,
+        gestureOrientation: "vertical",
       }}
     >
       {children}

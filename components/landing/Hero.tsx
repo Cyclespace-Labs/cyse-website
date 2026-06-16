@@ -147,18 +147,18 @@ export default function Hero() {
 
         <>
           {/* mobile Light mode video */}
-          <div className="absolute hidden inset-0 bg-linear-to-r from-white via-white/20 to-transparent
+          <div className="absolute flex sm:hidden inset-0 bg-linear-to-r from-white via-white/50 to-transparent
             dark:bg-linear-to-r dark:from-black dark:via-black/50 dark:to-transparent transition-all 
             duration-500 z-20 overlay"
           />
-          <div className="absolute hidden inset-0 bg-linear-to-t from-white via-transparent to-transparent
+          <div className="absolute flex sm:hidden inset-0 bg-linear-to-t from-white via-white/20 to-transparent
             dark:bg-linear-to-t dark:from-black dark:via-transparent dark:to-transparent transition-all 
             duration-500 z-20" 
           />
 
           <video
             ref={lightVideoRef}
-            className=" flex w-full h-full overflow-visible -translate-x-50 relative dark:hidden lg:hidden md:hidden object-cover object-center z-10"
+            className=" w-full h-full overflow-visible -translate-x-30 relative dark:hidden lg:hidden md:hidden object-cover object-center z-10"
             autoPlay
             loop
             muted
@@ -175,7 +175,7 @@ export default function Hero() {
           {/* Dark mode video */}
           <video
             ref={darkVideoRef}
-            className="w-full h-full overflow-visible -translate-x-50 relative lg:hidden md:hidden object-cover hidden dark:flex object-center z-10"
+            className="w-full h-full overflow-visible -translate-x-30 relative lg:hidden md:hidden object-cover hidden dark:flex object-center z-10"
             autoPlay
             loop
             muted
@@ -193,13 +193,13 @@ export default function Hero() {
       </div>
 
       {/* Hero content */}
-      <div className="container mx-auto px-8 flex pb-70 sm:px-10 md:px-12 relative z-10 pt-0 md:pt-30 lg:pt-100">
+      <div className="container mx-auto px-8 flex pb-20 sm:pb-70 sm:px-10 md:px-12 relative z-10 pt-0 md:pt-10 lg:pt-100">
         <div className="max-w-xl md:max-w-2xl lg:max-w-3xl">
           <motion.div
-            initial="offscreen"
-            whileInView="onscreen"
-            viewport={{ amount: 0.8 }}
-            variants={cardVariants}
+            initial={{ opacity: 1, y: 20 }}
+            whileInView={{ opacity: 1, y: 0, transition: { type: "spring", bounce: 0.4, duration: 1, }}}
+            viewport={{ amount: 0.9 }}
+            className='h-fit'
           >
 
             {/* Desktop animated text */}
@@ -218,7 +218,7 @@ export default function Hero() {
             </div>
 
             {/* Mobile static heading */}
-            <h1 className="text-4xl flex mt-70 md:hidden sm:text-5xl md:text-6xl lg:text-6xl font-bold
+            <h1 className="text-4xl flex mt-70 md:hidden font-bold
               text-black dark:text-white leading-tight mb-4 sm:mb-6 z-30">
               Unstoppable Markets.
               <br />

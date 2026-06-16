@@ -9,9 +9,6 @@ import { div } from 'motion/react-client';
   // Memoized stats component to prevent re-renders
   const SuccessStats = memo(() => (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 1 }}
       className="mt-1 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-20 md:gap-40 justify-between w-full max-w-full lg:px-0 md:px-10 sm:px-10 px-10 mx-auto"
     >
       <div className="text-center">

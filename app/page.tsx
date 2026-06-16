@@ -56,11 +56,11 @@ const LatestNews = dynamic(() => import('@/components/landing/LatestNews'), {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white dark:bg-black h-full">
+    <main className="min-h-screen bg-white dark:bg-black h-full transform-gpu">
       <Header />
       <Hero />
       
-      <div className="justify-center flex">
+      <div className="justify-center hidden flex h-fit">
         <Stats />
       </div>
 
@@ -85,7 +85,9 @@ export default function Home() {
       </Suspense>
 
       <Suspense fallback={<div className="h-40 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
-        <Description text="Join thousands of traders who trust our platform for secure, transparent, and efficient decentralized trading." />
+        <div className='py-20'>
+          <Description text="Join thousands of traders who trust our platform for secure, transparent, and efficient decentralized trading." />
+        </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
