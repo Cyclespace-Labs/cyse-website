@@ -23,7 +23,7 @@ function LenisProvider({ children }: { children: React.ReactNode }) {
         gestureOrientation: "vertical",
       }}
     >
-      {children}
+      {children as any}
     </ReactLenis>
   );
 }

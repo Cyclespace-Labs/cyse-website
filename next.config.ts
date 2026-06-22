@@ -11,8 +11,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  
-  //remove before production
   allowedDevOrigins: ['192.168.18.53'],
   async headers() {
     return [

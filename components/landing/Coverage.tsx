@@ -239,10 +239,7 @@ export default function Coverage() {
                                     centerVignette={true}
                                     outerVignette={false}
                                     smooth
-                                    speed={10}
-                                    colors={["#2b4539","#61dca3","#61b3dc"]}
-                                    showCenterVignette
-                                    showOuterVignette={false}
+                                    glitchColors={["#2b4539", "#61dca3", "#61b3dc"]} characters={'0x0123456789X'}
                                 />
 
                                 <div className="absolute inset-0 bg-black/50" />

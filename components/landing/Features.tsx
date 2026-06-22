@@ -48,7 +48,7 @@ export default function Features() {
     <div className='w-full h-full mx-auto justify-center flex py-10 pb-10'>
         <main className='justify-center flex flex-col w-7xl h-full'>
             <div className='w-full h-full justify-center items-center flex pb-5'>
-                <motion.div viewport={{ amount: 0.2, once: true }} initial={{ opacity: 0, y: 20 }}
+                <motion.div viewport={{ amount: 0.1, once: true }} initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0, transition: { type: "spring", bounce: 0.4, duration: 0.5 } }}
                     className='transform-gpu'
                 >
@@ -66,7 +66,7 @@ export default function Features() {
 
                 <div className='flex flex-col gap-5 w-full md:w-300 h-full justify-center'>
                     {/* Vault Animated Card */}
-                    <motion.div viewport={{ amount: 0.4 }} initial={{ opacity: 0, x: -40 }}
+                    <motion.div viewport={{ amount: 0.1 }} initial={{ opacity: 0, x: -40 }}
                         whileInView={{ opacity: 1, x: 0, transition: { type: "spring", bounce: 0.4, duration: 1 } }}
                     >
                         <Card className="relative h-full w-full gap-1 overflow-hidden leading-tight hover:scale-105
@@ -81,7 +81,7 @@ export default function Features() {
                                     noiseIntensity={2}
                                     rotation={0}
                                 />
-                                <motion.div viewport={{ amount: 0.5 }} initial={{ opacity: 0 }}
+                                <motion.div viewport={{ amount: 0.1 }} initial={{ opacity: 0 }}
                                     whileInView={{ opacity: 1, transition: { duration: 2 } }}
                                     className='absolute inset-0'
                                 >
@@ -94,7 +94,7 @@ export default function Features() {
                             {/* Foreground content */}
                             <div className="relative z-10 flex h-full flex-col">
                                 <CardHeader>
-                                     <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, x: -40 }}
+                                     <motion.div viewport={{ amount: 0.1 }} initial={{ opacity: 0, x: -40 }}
                                         whileInView={{ opacity: 1, x: 0, transition: { type:"spring", bounce: 0.4, duration: 1 } }}
                                     >
                                         <Image
@@ -113,7 +113,7 @@ export default function Features() {
 
                                 <CardFooter className="mt-5 flex w-full flex-col space-y-2 px-6 text-left">
 
-                                    <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, x: -40 }}
+                                    <motion.div viewport={{ amount: 0.1 }} initial={{ opacity: 0, x: -40 }}
                                         whileInView={{ opacity: 1, x: 0, transition: { duration: 0.8 } }}
                                         className='text-left w-full'
                                     >
