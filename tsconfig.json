@@ -25,7 +25,10 @@
     "paths": {
       "@/*": [
         "./*"
-      ]
+      ],
+      "next-sanity/studio": [
+        "./node_modules/next-sanity/dist/studio/index.d.ts"
+      ],
     }
   },
   "ts-node": {
