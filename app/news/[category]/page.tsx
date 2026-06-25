@@ -286,3 +286,6 @@ export async function generateMetadata({
     description: `Latest ${title.toLowerCase()} news and analysis from Cyclespace.`,
   };
 }
+export const viewport = {
+  themeColor: '#000000',
+};

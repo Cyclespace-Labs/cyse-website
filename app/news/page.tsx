@@ -47,10 +47,10 @@ export default async function News() {
         <TokenTicker />
       </div>
       
-      <div className="flex flex-col lg:flex-row lg:items-start justify-center mt-1 lg:mt-0 pb-1 gap-1 w-full px-4 sm:px-6 flex-1">
+      <div className="flex flex-col lg:flex-row justify-center mt-1 lg:mt-0 pb-1 gap-1 w-full px-4 sm:px-6 flex-1">
 
         {/*Left-Section - Stacked Widgets */}
-        <div className="w-full lg:w-72 xl:w-80 flex flex-col gap-2 min-h-[300px] lg:min-h-0 order-2 lg:order-1 lg:sticky lg:top-16 lg:self-start">
+        <div className="w-full lg:w-72 xl:w-80 flex flex-col gap-2 ">
           {/* Price Widget */}
           <div className="hidden border border-slate-200 dark:border-slate-800 rounded-lg overflow-hidden">
             <PriceWidget/>
@@ -66,12 +66,12 @@ export default async function News() {
         </div>
 
         {/*middle-Section - Main News (Full Width) */}
-        <div className="w-full lg:flex-1 flex-col lg:px-2 flex-1 order-1 lg:order-2">
+        <div className="w-full lg:flex-1 flex-col lg:px-2 flex-1">
           <NewsSection data={data} />
         </div>
 
         {/*Right-Section - Stacked Widgets */}
-        <div className="w-full lg:w-72 xl:w-80 flex flex-col gap-2 min-h-[300px] lg:min-h-0 order-3 lg:order-3 lg:sticky lg:top-16 lg:self-start">
+        <div className="w-full lg:w-72 xl:w-80 flex flex-col gap-2">
           {/* Research Hub */}
           <div className="border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
             <ResearchHub/>

@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer';
 // Components that are immediately visible – loaded normally
 import Hero from '@/components/landing/Hero';
 import Stats from '@/components/landing/Stats';
+import PolymarketCalculator from '@/components/PolymarketCalculator';
 
 // Lazy load components that appear below the fold
 

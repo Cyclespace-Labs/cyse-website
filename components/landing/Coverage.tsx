@@ -88,7 +88,7 @@ export default function Coverage() {
                                     <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, x: -40 }}
                                         whileInView={{ opacity: 1, x: 0, transition: { duration: 0.8 } }}
                                     >
-                                        <h3 className='text-xs '>Predictors earn 70% of market fees</h3>
+                                        <h3 className='text-xs text-slate-700 dark:text-slate-300'>Predictors earn 70% of market fees</h3>
                                     </motion.div>
                                 </div>
                             </CardHeader>
@@ -96,7 +96,9 @@ export default function Coverage() {
                                 <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, x: -40 }}
                                     whileInView={{ opacity: 1, x: 0, transition: { duration: 0.8 } }}
                                 > 
-                                    <span>Participate in prediction markets, stake on outcomes, and earn rewards from market volume. Your edge, your profit.</span>
+                                    <span className='text-slate-700 dark:text-slate-300'>
+                                        Participate in prediction markets, stake on outcomes, and earn rewards from market volu e. Your edge, your profit.
+                                    </span>
                                 </motion.div>
                             </CardContent>
                         </Card>
@@ -114,9 +116,9 @@ export default function Coverage() {
                                 </motion.div>
                             </CardHeader>
                             <CardContent className='space-x-2 space-y-2 w-full'>
-                                <Badge className='bg-white dark:bg-slate-700 text-xs text-black dark:text-slate-200 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Up to 100x Payouts</Badge>
-                                <Badge className='bg-white dark:bg-slate-700 text-xs text-black dark:text-slate-200 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Zero Platform Fees</Badge>
-                                <Badge className='bg-white dark:bg-slate-700 text-xs text-black dark:text-slate-200 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Earn from Market Volume</Badge>
+                                <Badge className='bg-white dark:bg-slate-700 text-xs text-slate-700 dark:text-slate-300 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Up to 100x Payouts</Badge>
+                                <Badge className='bg-white dark:bg-slate-700 text-xs text-slate-700 dark:text-slate-300 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Zero Platform Fees</Badge>
+                                <Badge className='bg-white dark:bg-slate-700 text-xs text-slate-700 dark:text-slate-300 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Earn from Market Volume</Badge>
                             </CardContent>
                             <CardFooter className='justify-center overflow-clip relative'>
                                 <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, scale: 0.1 }}
@@ -169,7 +171,7 @@ export default function Coverage() {
                                 <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, y: -30 }}
                                     whileInView={{ opacity: 1, y: 0, transition: { duration: 0.8 } }}
                                 >
-                                    <h3 className='text-sm text-slate-600 dark:text-slate-200'>Predict outcomes on crypto prices, sports, elections, and more with up to 50x potential returns.</h3>
+                                    <h3 className='text-sm text-slate-700 dark:text-slate-300'>Predict outcomes on crypto prices, sports, elections, and more with up to 50x potential returns.</h3>
                                 </motion.div>
                             </CardHeader>
 
@@ -196,7 +198,7 @@ export default function Coverage() {
                                     >
                                         <h2 className='text-sm md:text-xl font-bold bg-clip-text text-transparent bg-linear-to-b from-black via-zinc-800 to-zinc-500
                                             dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400 z-30'>
-                                            Market Staking. Real Rewards.
+                                            Limit Orders. Real Rewards.
                                         </h2>
                                     </motion.div>
                                 </div>
@@ -206,7 +208,9 @@ export default function Coverage() {
                                 className='z-20'
                             >
                                 <CardContent className='text-xs justify-between w-full flex gap-15 relative'>
-                                    <span>Stake your assets into prediction market liquidity pools and earn a share of all market fees.</span>
+                                    <span className='text-slate-700 dark:text-slate-300'>
+                                        Place limit orders to provide liquidity and earn a share of all market fees.
+                                    </span>
                                     <div>
                                         <Button className='text-xs bg-primary hover:bg-black text-white '>Start Predicting</Button>
                                     </div>

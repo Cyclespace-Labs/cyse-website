@@ -111,7 +111,7 @@ export default function Features() {
                                     </motion.div>
                                 </CardHeader>
 
-                                <CardFooter className="mt-5 flex w-full flex-col space-y-2 px-6 text-left">
+                                <CardFooter className="mt-7 flex w-full flex-col space-y-2 px-6 text-left">
 
                                     <motion.div viewport={{ amount: 0.1 }} initial={{ opacity: 0, x: -40 }}
                                         whileInView={{ opacity: 1, x: 0, transition: { duration: 0.8 } }}
@@ -126,9 +126,9 @@ export default function Features() {
                                         whileInView={{ opacity: 1, x: 0, transition: { duration: 0.8 } }}
                                         className='text-left w-full'
                                     >
-                                        <h3 className=" text-xs md:text-sm text-slate-200">
+                                        <p className="font-medium text-xs md:text-xs text-slate-300 ">
                                             Deposit assets into the vault and earn yield from trading fees.
-                                        </h3>
+                                        </p>
                                     </motion.div>
                                         
                                 </CardFooter>
@@ -162,7 +162,9 @@ export default function Features() {
                                     <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, x: -40 }}
                                         whileInView={{ opacity: 1, x: 0, transition: { duration: 0.8 } }}
                                     >
-                                        <h3 className='text-xs w-fit h-fit'>Leverage up to 50x on BTC, ETH, SOL</h3>
+                                        <h3 className='text-xs w-fit h-fit text-slate-700 dark:text-slate-300'>
+                                            Leverage up to 50x on BTC, ETH, SOL
+                                        </h3>
                                     </motion.div>
                                 </div>
                                 
@@ -171,7 +173,9 @@ export default function Features() {
                                 <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, x: -40 }}
                                     whileInView={{ opacity: 1, x: 0, transition: { duration: 0.8 } }}
                                 > 
-                                    <p>Trade perpetual futures with deep liquidity. No funding fees. No expiration dates. Pure leverage.</p>
+                                    <p className='text-slate-700 dark:text-slate-300'>
+                                        Trade perpetual futures with deep liquidity. No funding fees. No expiration dates. Pure leverage.
+                                    </p>
                                 </motion.div>
                             </CardContent>
                         </Card>
@@ -205,7 +209,9 @@ export default function Features() {
                                 <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, y: -20 }}
                                     whileInView={{ opacity: 1, y: 0, transition: { duration: 2, type: "spring", bounce: 0.4 } }}
                                 > 
-                                    <span>Stake your assets and earn a share of all trading fees. Passive income while you sleep.</span>
+                                    <span className='text-slate-700 dark:text-slate-300'>
+                                        Stake your assets and earn a share of all trading fees. Passive income while you sleep.
+                                    </span>
                                 </motion.div>
                                 <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, y: -20 }}
                                     whileInView={{ opacity: 1, y: 0, transition: { duration: 2, type: "spring", bounce: 0.4 } }}
@@ -246,7 +252,9 @@ export default function Features() {
                                 <motion.div viewport={{ amount: 0.5 }} initial={{ opacity: 0, y: 40 }}
                                     whileInView={{ opacity: 1, y: 0, transition: { duration: 1.1 } }}
                                 >
-                                    <h3 className='text-sm text-slate-600 dark:text-slate-200'>Trade BTC, ETH, SOL perpetuals with up to 50x leverage and zero funding fees.</h3>
+                                    <h3 className='text-sm text-slate-700 dark:text-slate-300'>
+                                        Trade BTC, ETH, SOL perpetuals with up to 50x leverage and zero funding fees.
+                                    </h3>
                                 </motion.div>
 
                             </CardHeader>
@@ -311,7 +319,7 @@ export default function Features() {
                                     <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, x: 40 }}
                                         whileInView={{ opacity: 1, x: 0, transition: { duration: 0.8 } }}
                                     >
-                                        <h3 className='text-xs '>Vault stakers earn 70% of protocol revenue</h3>
+                                        <h3 className='text-xs text-slate-700 dark:text-slate-300'>Stakers earn 70% of protocol revenue</h3>
                                     </motion.div>
                                 </div>
                             </CardHeader>
@@ -319,7 +327,9 @@ export default function Features() {
                                 <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, x: 40 }}
                                     whileInView={{ opacity: 1, x: 0, transition: { duration: 0.8 } }}
                                 >
-                                    <span>Deposit to the vault once, earn trading fees forever. Auto-compounding yields.</span>
+                                    <span className='text-slate-700 dark:text-slate-300'>
+                                        Deposit to the vault once, earn trading fees forever. Auto-compounding yields.
+                                        </span>
                                 </motion.div>
                             </CardContent>
                         </Card>
@@ -342,9 +352,9 @@ export default function Features() {
                                     whileInView={{ opacity: 1, scale: 1, transition: { type:"spring", bounce: 0.4, duration: 1 } }}
                                     className='space-x-1 space-y-1 w-full'
                                 >
-                                    <Badge className='bg-white dark:bg-slate-700 text-xs text-black dark:text-slate-200 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Up to 50x leverage</Badge>
-                                    <Badge className='bg-white dark:bg-slate-700 text-xs text-black dark:text-slate-200 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Zero funding fees</Badge>
-                                    <Badge className='bg-white dark:bg-slate-700 text-xs text-black dark:text-slate-200 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Earn from the vault</Badge>
+                                    <Badge className='bg-white dark:bg-slate-700 text-xs text-slate-700 dark:text-slate-300 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Up to 50x leverage</Badge>
+                                    <Badge className='bg-white dark:bg-slate-700 text-xs text-slate-700 dark:text-slate-300 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Zero funding fees</Badge>
+                                    <Badge className='bg-white dark:bg-slate-700 text-xs ttext-slate-700 dark:text-slate-300 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Earn from the vault</Badge>
                                 </motion.div>
                             </CardContent>
                             <CardFooter className='justify-center overflow-clip relative'>

@@ -144,3 +144,7 @@ export async function generateStaticParams() {
     slug: article.slug,
   }));
 }
+
+export const viewport = {
+  themeColor: '#000000',
+};
