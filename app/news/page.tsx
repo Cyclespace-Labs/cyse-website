@@ -1,9 +1,4 @@
-import Header from "@/components/layout/Header";
 import NewsSection from "@/components/news/news-section";
-import RelatedNews from "@/components/news/latest-news";
-import ResearchDisplay from "@/components/news/research-display";
-import VideoDisplay from "@/components/news/video-display";
-import ResearchHub from "@/components/news/research-hub";
 import Newsletters from "@/components/news/newsletters";
 import PressReleases from "@/components/news/press-releases";
 import PriceWidget from "@/components/news/price-widget";
@@ -14,20 +9,28 @@ import LatestNews from "@/components/news/latest-news";
 import ExploreSection from "@/components/news/explore-section";
 import Footer from "@/components/layout/Footer";
 import CategoriesSection from "@/components/news/categories-section";
+import ResearchHub from "@/components/news/research-hub";
+import RelatedNews from '@/components/news/latest-news';
+
 
 export const revalidate = 30; // revalidate at most 30 seconds
 
 async function getData(): Promise<simpleNewsCard[]> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-  const res = await fetch(`${baseUrl}/api/news`, {
-    next: { revalidate: 30 }
-  });
+  try {
+    const res = await fetch(`${baseUrl}/api/news`, {
+      next: { revalidate: 30 }
+    });
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch news data');
+    if (!res.ok) {
+      throw new Error('Failed to fetch news data');
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error('News fetch failed:', error);
+    return []; // Return empty array on failure (e.g. during build)
   }
-
-  return res.json();
 }
 
 export default async function News() {

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
     "target": "ES2020",
     "lib": [
       "dom",
@@ -41,10 +42,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts",
-    "scripts/runPipeline.js",
-    "scripts/uploader/sanity-uploader.js",
-    "scripts/scrapers/news-scraper.js",
-    "scripts/ai/article-generator.js",
     "tailwind.config.js"
   ],
   "exclude": [

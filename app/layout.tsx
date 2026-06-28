@@ -12,6 +12,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport = {
+  themeColor: "#0e76fd",
+};
+
 export const metadata: Metadata = {
   title: "Cyclespace Exchange",
   description: "High-velocity decentralized finance with institutional-grade tooling.",
@@ -37,7 +41,6 @@ export const metadata: Metadata = {
       { url: "/apple-touch-icon-192x192.png", sizes: "192x192", type: "image/png" },
     ],
   },
-  themeColor: "#0e76fd",
 };
 
 

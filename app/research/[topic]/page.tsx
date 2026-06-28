@@ -179,7 +179,8 @@ export default async function ResearchTopicPage({
             href={research.pdfUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 mb-8 px-4 py-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-medium rounded-lg text-sm hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-colors"
+            className="inline-flex items-center gap-2 mb-8 px-4 py-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 
+            font-medium rounded-lg text-sm hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-colors"
           >
             <FileDown className="w-4 h-4" />
             Download PDF

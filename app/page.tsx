@@ -1,12 +1,13 @@
 import dynamic from 'next/dynamic';
-import { Suspense, lazy } from 'react';
+import { Suspense } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+
 
 // Components that are immediately visible – loaded normally
 import Hero from '@/components/landing/Hero';
 import Stats from '@/components/landing/Stats';
-import PolymarketCalculator from '@/components/PolymarketCalculator';
+
 
 // Lazy load components that appear below the fold
 
@@ -61,7 +62,7 @@ export default function Home() {
       <Header />
       <Hero />
       
-      <div className="justify-center hidden flex h-fit">
+      <div className="justify-center flex h-fit">
         <Stats />
       </div>
 
