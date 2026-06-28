@@ -10,9 +10,7 @@ import PriceWidget from "@/components/news/price-widget";
 import PressReleases from "@/components/news/press-releases";
 import Link from "next/link";
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
 import { getArticleUrl } from "@/lib/article-url";
-import { notFound } from "next/navigation";
 
 const VALID_CATEGORIES = ["markets", "finance", "tech", "policy", "press-release", "web3", "opinion", "learn", "news-analysis", "layer-2", "indices", "daybook", "sponsored"];
 
@@ -89,7 +87,7 @@ export default async function CategoryPage({
             `This is placeholder content for layout preview. Article descriptions will appear here once real content is published in the ${formatCategoryTitle(normalized)} category.`,
           currentSlug: `preview-article-${i + 1}`,
           titleImage: null,
-          publishedAt: new Date(Date.now() - i * 3600000 * 3).toISOString(),
+          publishedAt: new Date(1735689600000 - i * 3600000 * 3).toISOString(),
           categoryName: formatCategoryTitle(normalized),
           category: null,
           impacts: [],
@@ -112,7 +110,7 @@ export default async function CategoryPage({
 
       <div className="flex flex-col lg:flex-row justify-center mt-1 lg:mt-0 pb-1 gap-1 w-full px-2 sm:px-4 lg:px-3 flex-1">
         {/* Left sidebar */}
-        <div className="w-full lg:w-72 xl:w-80 flex flex-col gap-2 min-h-[300px] lg:min-h-0 order-2 lg:order-1">
+        <div className="w-full lg:w-72 xl:w-80 flex flex-col gap-2 min-h-75 lg:min-h-0 order-2 lg:order-1">
           <div className="hidden lg:block border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
             <PriceWidget />
           </div>
@@ -174,7 +172,7 @@ export default async function CategoryPage({
               {sidebar.map((post, idx) => (
                 <div key={post.currentSlug} className={`flex gap-3 ${idx < sidebar.length - 1 ? 'pb-3 border-b border-zinc-200 dark:border-zinc-800' : ''}`}>
                   <Link href={getArticleUrl(post)} className="shrink-0">
-                    <div className="relative w-24 h-16 sm:w-28 sm:h-[72px] overflow-hidden rounded-md bg-zinc-200 dark:bg-zinc-800">
+                    <div className="relative w-24 h-16 sm:w-28 sm:h-18 overflow-hidden rounded-md bg-zinc-200 dark:bg-zinc-800">
                       {post.titleImage ? (
                         <Image
                           src={urlFor(post.titleImage).url()}
@@ -253,7 +251,7 @@ export default async function CategoryPage({
         </div>
 
         {/* Right sidebar */}
-        <div className="w-full lg:w-72 xl:w-80 flex flex-col gap-2 min-h-[300px] lg:min-h-0 order-3 lg:order-3">
+        <div className="w-full lg:w-72 xl:w-80 flex flex-col gap-2 min-h-75 lg:min-h-0 order-3 lg:order-3">
           <div className="hidden lg:block border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
             <ResearchHub />
           </div>

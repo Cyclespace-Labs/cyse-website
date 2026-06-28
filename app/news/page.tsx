@@ -16,7 +16,12 @@ import RelatedNews from '@/components/news/latest-news';
 export const revalidate = 30; // revalidate at most 30 seconds
 
 async function getData(): Promise<simpleNewsCard[]> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || '';
+  if (!baseUrl || baseUrl === 'http://localhost:3000') {
+    console.warn('NEXT_PUBLIC_SITE_URL is not set or is localhost. Fetching news data will fail during build.');
+    return [];
+  }
+
   try {
     const res = await fetch(`${baseUrl}/api/news`, {
       next: { revalidate: 30 }

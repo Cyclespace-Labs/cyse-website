@@ -3,7 +3,7 @@
 
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import { useInView, AnimatePresence } from "framer-motion";
-import * as motion from "motion/react-client"
+import * as motion from "motion/react-client";
 import {
   GenesisBlockIcon,
   SmartContractIcon,
@@ -11,7 +11,6 @@ import {
   SecurityShieldIcon,
   NetworkScaleIcon,
   GlobalAdoptionIcon,
-  PredictionMarketsIcon,
 } from "./Icons";
 
 // ─────────────────────────────────────
@@ -52,7 +51,7 @@ const TimelineItem: React.FC<{
   return (
     <motion.div
       ref={ref}
-      className="relative flex flex-col items-center flex-shrink-0 w-[260px] group"
+      className="relative flex flex-col items-center shrink-0 w-65 group"
       initial={{ opacity: 0, y: 24 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
       transition={{
@@ -63,8 +62,10 @@ const TimelineItem: React.FC<{
     >
       {/* ── Date Marker (above track) ── */}
       <div className="mb-5 text-center">
-        <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0, transition: { type: "spring", bounce: 0.4, duration: 1 } }}
+        <motion.div
+          viewport={{ amount: 0.9 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0, transition: { type: "spring", bounce: 0.4, duration: 1 } }}
         >
           <span
             className="
@@ -91,7 +92,8 @@ const TimelineItem: React.FC<{
                   : "bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-600"
             }
           `}
-          viewport={{ amount: 0.9 }} initial={{ opacity: 0, y: 30 }}
+          viewport={{ amount: 0.9 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0, transition: { type: "spring", bounce: 0.4, duration: 1 } }}
         />
         {/* Active pulse ring */}
@@ -113,19 +115,19 @@ const TimelineItem: React.FC<{
       <motion.div
         className={`
           relative mb-4 p-4 rounded-xl
-          bg-zinc-200 dark:bg-slate-800
-          border border-slate-200 dark:border-slate-800
-          shadow-sm
-          group-hover:shadow-md
+          bg-zinc-200 dark:bg-slate-800 border border-slate-200 
+          dark:border-slate-800 shadow-sm group-hover:shadow-md
           transition-shadow duration-300
           ${milestone.status === "active" ? "ring-1 ring-slate-300 dark:ring-slate-600" : ""}
         `}
-          viewport={{ amount: 0.9 }} initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0, transition: { type: "spring", bounce: 0.4, duration: 1 } }}
+        viewport={{ amount: 0.9 }}
+        initial={{ opacity: 0, y: -30 }}
+        whileInView={{ opacity: 1, y: 0, transition: { type: "spring", bounce: 0.4, duration: 1 } }}
       >
         <motion.div
-            viewport={{ amount: 0.9 }} initial={{ opacity: 0, scale: 0.1 }}
-            whileInView={{ opacity: 1, scale: 1, transition: { type: "spring", bounce: 0.4, duration: 1, delay: 0.5 } }}
+          viewport={{ amount: 0.9 }}
+          initial={{ opacity: 0, scale: 0.1 }}
+          whileInView={{ opacity: 1, scale: 1, transition: { type: "spring", bounce: 0.4, duration: 1, delay: 0.5 } }}
         >
           <IconComponent
             className={`
@@ -146,7 +148,8 @@ const TimelineItem: React.FC<{
       {/* ── Content ── */}
       <motion.div
         className="text-center px-2"
-        viewport={{ amount: 0.2 }} initial={{ opacity: 0, y: 20 }}
+        viewport={{ amount: 0.2 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0, transition: { type: "spring", bounce: 0.4, duration: 1 } }}
       >
         {/* Label */}
@@ -176,7 +179,7 @@ const TimelineItem: React.FC<{
           className="
             font-sans text-xs leading-relaxed
             text-slate-600 dark:text-slate-400
-            max-w-[200px] mx-auto
+            max-w-50 mx-auto
           "
         >
           {milestone.description}
@@ -187,10 +190,10 @@ const TimelineItem: React.FC<{
       {!isLast && (
         <div
           className="
-            absolute top-[68px] left-[calc(50%+20px)]
+            absolute top-17 left-[calc(50%+20px)]
             w-[calc(100%-40px)] h-px
             bg-slate-200 dark:bg-slate-700
-            -z-0
+            z-0
           "
           aria-hidden="true"
         />
@@ -296,7 +299,7 @@ const HorizontalTimeline: React.FC<TimelineProps> = ({
           {/* The horizontal track */}
           <div
             className="
-              absolute top-[68px] left-12 right-12 h-px
+              absolute top-17 left-12 right-12 h-px
               bg-slate-200 dark:bg-slate-700
             "
             aria-hidden="true"
@@ -357,8 +360,6 @@ const HorizontalTimeline: React.FC<TimelineProps> = ({
           </motion.button>
         )}
       </AnimatePresence>
-
-
     </div>
   );
 };
@@ -459,24 +460,26 @@ export default function Timeline() {
       {/* ── Section Header ── */}
       <motion.div
         className="text-center mb-14 justify-center w-full flex"
-        viewport={{ amount: 0.9 }} initial={{ opacity: 0, y: 20 }}
+        viewport={{ amount: 0.9 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0, transition: { type: "spring", bounce: 0.4, duration: 1 } }}
       >
-        <h2 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold max-w-xl
+        <h2
+          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold max-w-xl
             bg-linear-to-b from-black via-slate-800 to-slate-700
             dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400
-            leading-tight bg-clip-text text-transparent w-full text-center'
+            leading-tight bg-clip-text text-transparent w-full text-center"
         >
           Building the future of institutional finance
         </h2>
       </motion.div>
 
-      {/* ── Timeline ── */ }
+      {/* ── Timeline ── */}
       <HorizontalTimeline milestones={sampleMilestones} className="w-full max-w-7xl" />
 
       {/* ── Legend ── */}
       <motion.div
-        className="mt-12 flex items-center gap-6 hidden text-xs font-sans text-slate-500 dark:text-slate-400"
+        className="mt-12 items-center gap-6 hidden text-xs font-sans text-slate-500 dark:text-slate-400"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.5 }}

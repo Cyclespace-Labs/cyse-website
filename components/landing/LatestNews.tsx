@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { client, urlFor } from "@/sanity/lib/client";
 import { formatDate } from "@/lib/date-utils";
+import Image from "next/image";
 
 interface NewsItem {
   _id: string;
@@ -82,12 +83,18 @@ function NewsCardItem({ card, index, inView }: { card: NewsItem; index: number; 
       initial={{ opacity: 0, y: 44, scale: 0.94 }}
       animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
       transition={{ duration: 0.55, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
-      className="flex w-[316px] shrink-0 flex-col gap-3 rounded-2xl border border-zinc-200 dark:border-slate-700 bg-zinc-100 dark:bg-slate-900 p-5 pb-4 transition-colors hover:border-zinc-300 dark:hover:border-slate-600"
+      className="flex w-79 shrink-0 flex-col gap-3 rounded-2xl border border-zinc-200 dark:border-slate-700 bg-zinc-100 dark:bg-slate-900 p-5 pb-4 transition-colors hover:border-zinc-300 dark:hover:border-slate-600"
     >
       <Link href={articleUrl} className="contents">
         <div className="flex items-center gap-3">
           {avatarUrl ? (
-            <img src={avatarUrl} alt={card.author?.name || ''} className="h-10 w-10 shrink-0 rounded-xl object-cover" />
+            <Image 
+              src={avatarUrl} 
+              alt={card.author?.name || ''} 
+              className="h-10 w-10 shrink-0 rounded-xl object-cover" 
+              width={40}
+              height={40}
+            />
           ) : (
             <Avatar />
           )}
@@ -107,8 +114,15 @@ function NewsCardItem({ card, index, inView }: { card: NewsItem; index: number; 
         <p className="flex-1 text-xs leading-relaxed text-gray-700 dark:text-gray-300 line-clamp-3">{card.smallDescription}</p>
 
         {imageUrl && (
-          <div className="h-[145px] overflow-hidden rounded-lg bg-gray-300 dark:bg-slate-700">
-            <img src={imageUrl} alt={card.title} className="h-full w-full object-cover" loading="lazy" />
+          <div className="h-36.25 overflow-hidden rounded-lg bg-gray-300 dark:bg-slate-700">
+            <Image 
+              src={imageUrl} 
+              alt={card.title} 
+              className="h-full w-full object-cover" 
+              width={400}
+              height={145}
+              loading="lazy"
+            />
           </div>
         )}
       </Link>
@@ -128,7 +142,7 @@ function ScrollBtn({
   return (
     <button
       onClick={onClick}
-      disabled={disabled}
+      disabled={false}
       className={`flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-gray-700 dark:text-gray-300 transition hover:bg-gray-100 dark:hover:bg-slate-700 ${
         disabled ? "cursor-not-allowed opacity-50" : ""
       }`}
@@ -242,7 +256,7 @@ export default function LatestNews() {
         {loading ? (
           <div className="flex w-max gap-[18px] px-6 md:px-12">
             {Array.from({ length: 3 }).map((_, i) => (
-              <div key={i} className="flex w-[316px] shrink-0 flex-col gap-3 rounded-2xl border border-zinc-200 dark:border-slate-700 bg-zinc-100 dark:bg-slate-900 p-5 pb-4 animate-pulse">
+              <div key={i} className="flex w-79 shrink-0 flex-col gap-3 rounded-2xl border border-zinc-200 dark:border-slate-700 bg-zinc-100 dark:bg-slate-900 p-5 pb-4 animate-pulse">
                 <div className="flex items-center gap-3">
                   <div className="h-10 w-10 shrink-0 rounded-xl bg-zinc-300 dark:bg-slate-700" />
                   <div className="flex-1 space-y-2">
@@ -253,7 +267,7 @@ export default function LatestNews() {
                 <div className="h-px bg-zinc-300 dark:bg-slate-700" />
                 <div className="h-4 w-full bg-zinc-300 dark:bg-slate-700 rounded" />
                 <div className="h-4 w-3/4 bg-zinc-300 dark:bg-slate-700 rounded" />
-                <div className="h-[145px] bg-zinc-300 dark:bg-slate-700 rounded-lg" />
+                <div className="h-36.25 bg-zinc-300 dark:bg-slate-700 rounded-lg" />
               </div>
             ))}
           </div>

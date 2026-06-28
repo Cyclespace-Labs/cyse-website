@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 "use client";
 
 import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
@@ -68,12 +69,14 @@ export default function Rewards() {
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 sm:gap-5 py-8 sm:py-12 md:py-16 lg:py-20">
           {cardsData.map((card) => (
-            <motion.div viewport={{ amount: 0.5 }} initial={{ opacity: 0, scaleX: 0.9, }}
-              whileInView={{ opacity: 1, scaleX: 1, transition: {type: "spring", bounce: 0.2, duration: 1,} }}
+            <motion.div
+              key={card.id}
+              viewport={{ amount: 0.5 }}
+              initial={{ opacity: 0, scaleX: 0.9 }}
+              whileInView={{ opacity: 1, scaleX: 1, transition: {type: "spring", bounce: 0.2, duration: 1} }}
               className="w-full flex relative"
             >
             <Card
-              key={card.id}
               className="relative h-full w-full gap-1 overflow-hidden leading-tight hover:scale-105 transition-transform duration-300"
             >
               {/* Header with icon */}
