@@ -61,7 +61,7 @@ export default function ArticlePage({ article }: ArticlePageProps) {
         </div>
           {/* Center article */}
           <div className="w-full lg:flex-1 order-1 lg:order-2 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-700 rounded-lg">
-            <div className="w-full  overflow-hidden max-w-5xl mx-auto w-full px-4 sm:px-6 py-4 ">
+            <div className="w-full  overflow-hidden max-w-5xl mx-auto w-full px-2 sm:px-6 py-4 ">
               <div className="w-full px-5 sm:px-10 pt-6 pb-1">
                 <Link
                   href="/news"

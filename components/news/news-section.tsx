@@ -143,70 +143,70 @@ export default function NewsSection({ data }: NewsSectionProps) {
       <div>
       {/* Banner for latest article - only show when no category and no search */}
       {showBanner && (
-        <div className="px-5">
+        <div className="px-1 lg:px-5">
           <BannerArticle post={latestArticle} />
         </div>
       )}
       
       {filteredData.length === 0 ? (
-  <div className="flex flex-col items-center justify-center py-20 px-5">
-    <div className="text-center max-w-md">
-      {/* Icon based on context */}
-      {searchQuery ? (
-        <Search className="w-16 h-16 mx-auto text-gray-400 mb-4" />
-      ) : selectedCategory ? (
-        <Filter className="w-16 h-16 mx-auto text-gray-400 mb-4" />
-      ) : (
-        <Newspaper className="w-16 h-16 mx-auto text-gray-400 mb-4" />
-      )}
-      
-      {/* Contextual title */}
-      <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
-        {searchQuery 
-          ? `No results for "${searchQuery}"`
-          : selectedCategory 
-          ? `No articles in ${selectedCategory}`
-          : "No news articles available"
-        }
-      </h3>
-      
-      {/* Contextual description */}
-      <p className="text-gray-600 dark:text-gray-400 mb-6">
-        {searchQuery 
-          ? "Try different keywords or browse categories"
-          : selectedCategory
-          ? "Try selecting a different category or check back later"
-          : "Check back soon for the latest crypto news"
-        }
-      </p>
-      
-      {/* Action buttons */}
-      <div className="flex gap-3 justify-center">
-        {searchQuery && (
-          <button
-            onClick={() => setSearchQuery('')}
-            className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90"
-          >
-            Clear Search
-          </button>
-        )}
-        {selectedCategory && (
-          <button
-            onClick={() => setSelectedCategory(null)}
-            className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90"
-          >
-            Clear Filter
-          </button>
-        )}
-      </div>
-    </div>
-  </div>
+        <div className="flex flex-col items-center justify-center py-20 px-5">
+          <div className="text-center max-w-md">
+            {/* Icon based on context */}
+            {searchQuery ? (
+              <Search className="w-16 h-16 mx-auto text-gray-400 mb-4" />
+            ) : selectedCategory ? (
+              <Filter className="w-16 h-16 mx-auto text-gray-400 mb-4" />
+            ) : (
+              <Newspaper className="w-16 h-16 mx-auto text-gray-400 mb-4" />
+            )}
+            
+            {/* Contextual title */}
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
+              {searchQuery 
+                ? `No results for "${searchQuery}"`
+                : selectedCategory 
+                ? `No articles in ${selectedCategory}`
+                : "No news articles available"
+              }
+            </h3>
+            
+            {/* Contextual description */}
+            <p className="text-gray-600 dark:text-gray-400 mb-6">
+              {searchQuery 
+                ? "Try different keywords or browse categories"
+                : selectedCategory
+                ? "Try selecting a different category or check back later"
+                : "Check back soon for the latest crypto news"
+              }
+            </p>
+            
+            {/* Action buttons */}
+            <div className="flex gap-3 justify-center">
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90"
+                >
+                  Clear Search
+                </button>
+              )}
+              {selectedCategory && (
+                <button
+                  onClick={() => setSelectedCategory(null)}
+                  className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90"
+                >
+                  Clear Filter
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
       ) : (
         <>
          
         {/* Article Cards */}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 justify-center py-2 px-3 sm:px-5 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 justify-center py-2 px-1 sm:px-5 w-full">
           {currentArticles.map((post, idx) => (
             <Card key={idx} className="w-full p-3 m-0 justify-start items-start flex flex-col shadow border-none shadow-slate-200 dark:shadow-slate-900 h-full gap-2 bg-white dark:bg-slate-900 ">
               <div className="w-full h-full relative">
@@ -216,10 +216,10 @@ export default function NewsSection({ data }: NewsSectionProps) {
                     alt={post.title}
                     width={400}
                     height={200}
-                    className="rounded-lg h-[200px] w-full object-cover"
+                    className="rounded-lg h-50 w-full object-cover"
                   />
                 ) : (
-                  <div className="rounded-lg h-[200px] w-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center">
+                  <div className="rounded-lg h-50 w-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center">
                     <span className="text-slate-400 dark:text-slate-500">No image available</span>
                   </div>
                 )}
