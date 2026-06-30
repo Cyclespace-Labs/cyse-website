@@ -203,8 +203,8 @@ export default function Navbar() {
 
   return (
     <header className="w-full">
-      <main className="w-full bg-white dark:bg-slate-950 items-center flex flex-row justify-between p-3 px-6 border border-slate-200 dark:border-slate-800">
-        <div className="flex flex-row gap-4 md:gap-16 items-center justify-between w-full">
+      <main className="w-full bg-white dark:bg-slate-950 items-center flex flex-row justify-between p-3 md:px-6 border border-slate-200 dark:border-slate-800">
+        <div className="flex flex-row gap-4 md:gap-16 items-center w-full md:w-fit">
           {/* Logo */}
           <Link href="/" className="flex items-center justify-start space-x-1 md:space-x-2 w-full">
             <div className="p-0 rounded-lg transition-all duration-100 font-sans">
@@ -233,23 +233,8 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Hamburger Menu Button (Mobile) */}
-          <div className="flex md:hidden items-center w-full">
-            <button
-              onClick={toggleMobileMenu}
-              className="md:hidden p-2 rounded-md hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? (
-                <X className="h-6 w-6 text-slate-900 dark:text-slate-100" />
-              ) : (
-                <Menu className="h-6 w-6 text-slate-900 dark:text-slate-100" />
-              )}
-            </button>
-          </div>
-
           {/* Desktop Navigation Links */}
-          <div className="hidden md:flex gap-5 items-center text-sm font-semibold justify-start tracking-tight">
+          <div className="hidden md:flex gap-5 items-center text-sm font-semibold tracking-tight">
             {navItems.map((item) => (
               <div
                 key={item.label}
@@ -304,6 +289,21 @@ export default function Navbar() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Hamburger Menu Button (Mobile) */}
+        <div className="flex md:hidden items-center justify-end w-full">
+          <button
+            onClick={toggleMobileMenu}
+            className="md:hidden p-2 rounded-md hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? (
+              <X className="h-6 w-6 text-slate-900 dark:text-slate-100" />
+            ) : (
+              <Menu className="h-6 w-6 text-slate-900 dark:text-slate-100" />
+            )}
+          </button>
         </div>
 
         {/* Desktop Right Actions */}

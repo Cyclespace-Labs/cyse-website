@@ -41,7 +41,7 @@ export default async function ResearchDisplay() {
                 alt="image"
                 width={100}
                 height={100}
-                className="rounded-lg hidden  h-[100px] w-[100px] object-cover"
+                className="rounded-lg hidden object-cover"
               />
               <div className='flex flex-row h-fit'>
                 <h3 className="text-sm w-full flex flex-row h-fit hover:underline text-start mt-0 mb-3 text-black hover:text-primary dark:hover:text-secondary dark:text-white font-semibold">

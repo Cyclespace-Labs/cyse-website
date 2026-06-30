@@ -91,7 +91,7 @@ function NewsCardItem({ card, index, inView }: { card: NewsItem; index: number; 
             <Image 
               src={avatarUrl} 
               alt={card.author?.name || ''} 
-              className="h-10 w-10 shrink-0 rounded-xl object-cover" 
+              className="rounded-xl object-cover" 
               width={40}
               height={40}
             />
@@ -118,7 +118,7 @@ function NewsCardItem({ card, index, inView }: { card: NewsItem; index: number; 
             <Image 
               src={imageUrl} 
               alt={card.title} 
-              className="h-full w-full object-cover" 
+              className="object-cover" 
               width={400}
               height={145}
               loading="lazy"

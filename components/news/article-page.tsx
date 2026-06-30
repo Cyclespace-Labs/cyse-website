@@ -97,8 +97,8 @@ export default function ArticlePage({ article }: ArticlePageProps) {
                         {article.author.avatar ? (
                           <Image
                             src={urlFor(article.author.avatar).width(24).height(24).url()}
-                            width={20}
-                            height={20}
+                            width={24}
+                            height={24}
                             alt={article.author.name || 'Author'}
                             className="rounded-full"
                           />
@@ -132,7 +132,6 @@ export default function ArticlePage({ article }: ArticlePageProps) {
                         alt={article.seo?.openGraph?.title || article.title}
                         quality={90}
                         priority
-                        className="w-full h-auto"
                       />
                     </div>
                   </figure>
@@ -163,7 +162,6 @@ export default function ArticlePage({ article }: ArticlePageProps) {
                         height={400}
                         quality={90}
                         alt="Article illustration"
-                        className="w-full h-auto"
                       />
                     </div>
                   </figure>
@@ -189,7 +187,6 @@ export default function ArticlePage({ article }: ArticlePageProps) {
                         height={400}
                         alt="Supporting illustration"
                         quality={90}
-                        className="w-full h-auto"
                       />
                     </div>
                   </figure>

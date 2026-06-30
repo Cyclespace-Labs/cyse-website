@@ -139,7 +139,7 @@ export default function SearchDialog() {
                               alt={post.title}
                               width={56}
                               height={56}
-                              className="w-full h-full object-cover"
+                              className="object-cover"
                             />
                           </div>
                         )}

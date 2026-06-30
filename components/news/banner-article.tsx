@@ -26,7 +26,7 @@ export default function BannerArticle({ post }: { post: simpleNewsCard }) {
               alt={post.title}
               width={800}
               height={400}
-              className="rounded-lg w-full h-64 object-cover shadow-lg"
+              className="rounded-lg object-cover shadow-lg"
             />
           ) : (
             <div className="rounded-lg w-full h-64 bg-slate-200 dark:bg-slate-700 flex items-center justify-center">
@@ -53,7 +53,7 @@ export default function BannerArticle({ post }: { post: simpleNewsCard }) {
                       width={24}
                       height={24}
                       alt={post.author.name || 'Author'}
-                      className="w-full h-full object-cover"
+                      className="object-cover"
                     />
                   </div>
                 )}

@@ -13,6 +13,21 @@ interface TokenPrice {
   publishTime: number;
 }
 
+// Types for Pyth SSE messages
+interface PythPriceData {
+  id: string;
+  price: {
+    price: string;      // raw price as string
+    conf: string;       // confidence as string
+    expo: number;       // exponent (negative)
+    publish_time: number;
+  };
+}
+
+interface PythMessage {
+  parsed?: PythPriceData[];
+}
+
 const TOKEN_CONFIGS = [
   { symbol: "BTC", name: "Bitcoin", logo: "/tokens/Bitcoin.svg" },
   { symbol: "ETH", name: "Ethereum", logo: "/tokens/Ethereum ETH.svg" },
@@ -80,34 +95,36 @@ export default function TokenDisplay() {
 
         eventSource.onmessage = (event: MessageEvent) => {
           try {
-            const data = JSON.parse(event.data);
+            const data = JSON.parse(event.data) as PythMessage;
             const parsedPrices = data.parsed;
             if (!parsedPrices) return;
 
-            const newPrices = parsedPrices.map((parsed: any) => {
-              const feedId = parsed.id.startsWith("0x") ? parsed.id.slice(2) : parsed.id;
-              const token = Object.keys(PYTH_FEED_IDS).find(
-                (key) => PYTH_FEED_IDS[key as keyof typeof PYTH_FEED_IDS] === feedId
-              );
+            const newPrices = parsedPrices
+              .map((parsed: PythPriceData): TokenPrice | null => {
+                const feedId = parsed.id.startsWith("0x") ? parsed.id.slice(2) : parsed.id;
+                const token = Object.keys(PYTH_FEED_IDS).find(
+                  (key) => PYTH_FEED_IDS[key as keyof typeof PYTH_FEED_IDS] === feedId
+                );
 
-              if (!token) return null;
+                if (!token) return null;
 
-              const price = Number(parsed.price.price) * Math.pow(10, parsed.price.expo);
-              const confidence = Number(parsed.price.conf) * Math.pow(10, parsed.price.expo);
+                const price = Number(parsed.price.price) * Math.pow(10, parsed.price.expo);
+                const confidence = Number(parsed.price.conf) * Math.pow(10, parsed.price.expo);
 
-              return {
-                symbol: token,
-                price,
-                change: 0,
-                confidence,
-                publishTime: parsed.price.publish_time,
-              };
-            }).filter(Boolean);
+                return {
+                  symbol: token,
+                  price,
+                  change: 0,
+                  confidence,
+                  publishTime: parsed.price.publish_time,
+                };
+              })
+              .filter((item): item is TokenPrice => item !== null);
 
             if (newPrices.length > 0) {
               setBaselinePrices((prev) => {
                 const newBaseline: Record<string, number> = { ...prev };
-                newPrices.forEach((price: TokenPrice) => {
+                newPrices.forEach((price) => {
                   if (!newBaseline[price.symbol]) {
                     newBaseline[price.symbol] = price.price;
                   }
@@ -125,13 +142,16 @@ export default function TokenDisplay() {
         };
 
         eventSource.onerror = (error: Event) => {
-          console.error("SSE connection error:", error);
+          // Avoid logging empty error object; show readyState for debugging
+          console.warn(
+            `SSE connection lost (readyState: ${eventSource.readyState}), attempting reconnect...`
+          );
           setConnectionStatus('error');
           eventSource.close();
           reconnectWithBackoff();
         };
       } catch (error) {
-        console.error("Failed to create SSE connection:", error);
+        console.warn("Failed to create SSE connection:", error);
         setConnectionStatus('error');
         reconnectWithBackoff();
       }
@@ -215,60 +235,60 @@ export default function TokenDisplay() {
         </div>
       </div>
       <div className="w-full grid grid-cols-5 items-center justify-between gap-6">
-      {TOKEN_CONFIGS.map((token) => {
-        const tokenPrice = prices.find((p: TokenPrice) => p.symbol === token.symbol);
-        const baselinePrice = baselinePrices[token.symbol];
-        
-        // Calculate percentage change from baseline price
-        let percentChange = 0;
-        if (baselinePrice && tokenPrice) {
-          percentChange = ((tokenPrice.price - baselinePrice) / baselinePrice) * 100;
-        }
-        const isPositive = percentChange >= 0;
+        {TOKEN_CONFIGS.map((token) => {
+          const tokenPrice = prices.find((p: TokenPrice) => p.symbol === token.symbol);
+          const baselinePrice = baselinePrices[token.symbol];
 
-        return (
-          <div key={token.symbol} className="flex items-center gap-2 min-w-[100px]">
-            <div className="w-6 h-6 relative shrink-0">
-              <Image
-                src={token.logo}
-                alt={token.name}
-                width={24}
-                height={24}
-                className="rounded-full"
-              />
-            </div>
-            <div className="flex flex-row gap-2 items-center">
-              <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 w-8 shrink-0">
-                {token.symbol}
-              </span>
-              {loading ? (
-                <span className="text-[10px] text-zinc-400">Loading...</span>
-              ) : tokenPrice ? (
-                <div className="flex items-center gap-1 min-w-[70px]">
-                  <span className="text-xs text-zinc-600 dark:text-zinc-400 font-sans font-semibold transition-all duration-300 ease-out">
-                    {formatPrice(tokenPrice.price)}
-                  </span>
-                  {Math.abs(percentChange) > 0.001 && (
-                    <span
-                      className={`text-xs font-mono transition-all duration-300 ease-out ${
-                        isPositive
-                          ? "text-green-600 dark:text-green-400"
-                          : "text-red-600 dark:text-red-400"
-                      }`}
-                    >
-                      {isPositive ? "+" : ""}
-                      {percentChange.toFixed(3)}%
+          // Calculate percentage change from baseline price
+          let percentChange = 0;
+          if (baselinePrice && tokenPrice) {
+            percentChange = ((tokenPrice.price - baselinePrice) / baselinePrice) * 100;
+          }
+          const isPositive = percentChange >= 0;
+
+          return (
+            <div key={token.symbol} className="flex items-center gap-2 min-w-[100px]">
+              <div className="w-6 h-6 relative shrink-0">
+                <Image
+                  src={token.logo}
+                  alt={token.name}
+                  width={24}
+                  height={24}
+                  className="rounded-full"
+                />
+              </div>
+              <div className="flex flex-row gap-2 items-center">
+                <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 w-8 shrink-0">
+                  {token.symbol}
+                </span>
+                {loading ? (
+                  <span className="text-[10px] text-zinc-400">Loading...</span>
+                ) : tokenPrice ? (
+                  <div className="flex items-center gap-1 min-w-[70px]">
+                    <span className="text-xs text-zinc-600 dark:text-zinc-400 font-sans font-semibold transition-all duration-300 ease-out">
+                      {formatPrice(tokenPrice.price)}
                     </span>
-                  )}
-                </div>
-              ) : (
-                <span className="text-[10px] text-zinc-400">--</span>
-              )}
+                    {Math.abs(percentChange) > 0.001 && (
+                      <span
+                        className={`text-xs font-mono transition-all duration-300 ease-out ${
+                          isPositive
+                            ? "text-green-600 dark:text-green-400"
+                            : "text-red-600 dark:text-red-400"
+                        }`}
+                      >
+                        {isPositive ? "+" : ""}
+                        {percentChange.toFixed(3)}%
+                      </span>
+                    )}
+                  </div>
+                ) : (
+                  <span className="text-[10px] text-zinc-400">--</span>
+                )}
+              </div>
             </div>
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

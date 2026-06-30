@@ -146,7 +146,6 @@ export const portableTextComponents: PortableTextComponents = {
               width={1000}
               height={600}
               quality={90}
-              className="w-full h-auto"
             />
           </div>
           {value.alt && (

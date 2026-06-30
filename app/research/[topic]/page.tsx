@@ -167,7 +167,6 @@ export default async function ResearchTopicPage({
                 height={520}
                 quality={90}
                 priority
-                className="w-full h-auto"
               />
             </div>
           </figure>

@@ -216,7 +216,7 @@ export default function NewsSection({ data }: NewsSectionProps) {
                     alt={post.title}
                     width={400}
                     height={200}
-                    className="rounded-lg h-50 w-full object-cover"
+                    className="rounded-lg object-cover"
                   />
                 ) : (
                   <div className="rounded-lg h-50 w-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center">
@@ -248,11 +248,11 @@ export default function NewsSection({ data }: NewsSectionProps) {
                         <div className="w-5 h-5 rounded-full overflow-hidden">
                           <Image
                             src={urlFor(post.author.avatar).url()}
-                            width={500}
-                            height={500}
+                            width={24}
+                            height={24}
                             quality={100}
                             alt={post.author.name || 'Author'}
-                            className="w-full h-full object-cover"
+                            className="object-cover"
                           />
                         </div>
                       )}

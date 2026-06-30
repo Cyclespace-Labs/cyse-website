@@ -140,7 +140,7 @@ export default function Hero() {
           src="/render-mobile.png"
           alt="Cryptocurrency background"
           fill
-          sizes="100vw"
+          sizes="(max-width: 767px) 100vw"
           className="object-cover object-center z-10 hidden md:hidden"
           priority
         />

@@ -225,10 +225,10 @@ export default function Features() {
                                 <Image
                                     src="/assets/coins.png"
                                     alt="cyclespace exchange vault"
-                                    height={1000}
-                                    width={1000}
+                                    height={230}
+                                    width={230}
                                     quality={100}
-                                    className="object-contain absolute right-0 bottom-0 w-auto h-auto max-h-[230px] max-w-[230px]"
+                                    className="object-contain absolute right-0 bottom-0"
                                     priority
                                     referrerPolicy="no-referrer"
                                 />
