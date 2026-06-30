@@ -34,14 +34,12 @@ export default function PulsingPath() {
                 alt="Bitcoin"
                 height={230}
                 width={230}
-                className="object-cover rounded-full relative hover:scale-110 transition-transform duration-300 z-10"
+                className="object-cover h-auto w-20 rounded-full relative hover:scale-110 transition-transform duration-300 z-10"
                 loading="lazy"
               />
             </div>
             <svg
-              className="w-32 h-fit md:w-64 md:h-fit lg:w-64 lg:h-fit"
-              width="263"
-              height="112"
+              className="w-32 h-auto md:w-36 md:h-auto lg:w-64 lg:h-auto"
               viewBox="0 0 263 112"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"

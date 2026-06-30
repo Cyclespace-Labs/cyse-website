@@ -329,7 +329,7 @@ export default function Features() {
                                 >
                                     <span className='text-slate-700 dark:text-slate-300'>
                                         Deposit to the vault once, earn trading fees forever. Auto-compounding yields.
-                                        </span>
+                                    </span>
                                 </motion.div>
                             </CardContent>
                         </Card>
@@ -354,7 +354,7 @@ export default function Features() {
                                 >
                                     <Badge className='bg-white dark:bg-slate-700 text-xs text-slate-700 dark:text-slate-300 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Up to 50x leverage</Badge>
                                     <Badge className='bg-white dark:bg-slate-700 text-xs text-slate-700 dark:text-slate-300 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Zero funding fees</Badge>
-                                    <Badge className='bg-white dark:bg-slate-700 text-xs ttext-slate-700 dark:text-slate-300 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Earn from the vault</Badge>
+                                    <Badge className='bg-white dark:bg-slate-700 text-xs text-slate-700 dark:text-slate-300 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Earn from the vault</Badge>
                                 </motion.div>
                             </CardContent>
                             <CardFooter className='justify-center overflow-clip relative'>

@@ -64,7 +64,7 @@ export default function Hero() {
   }, [isDesktop]);
 
   return (
-    <section className="relative w-full h-fit -top-17 h-full overflow-hidden flex font-sans items-center">
+    <section className="relative w-full h-fit md:h-screen -top-17 h-full overflow-hidden flex font-sans items-center">
       {/* Background layer */}
       <div className="absolute inset-0 z-0">
         {/* Gradient overlays for text readability */}
@@ -205,7 +205,7 @@ export default function Hero() {
             {/* Desktop animated text */}
             <div className="mb-4 sm:mb-6 hidden md:block text-black dark:text-white">
               <ScrambledText
-                className="scrambled-text-demo text-black dark:text-white w-full py-0 my-0 pl-0 ml-0 text-6xl sm:text-6xl md:text-6xl lg:text-6xl font-bold"
+                className="scrambled-text-demo text-black dark:text-white w-full py-0 my-0 pl-0 ml-0 text-5xl sm:text-4xl md:text-4xl lg:text-5xl font-bold"
                 radius={100}
                 duration={1.2}
                 speed={0.5}
@@ -225,7 +225,7 @@ export default function Hero() {
               Total Transparency.
             </h1>
 
-            <p className="text-base sm:text-lg md:text-lg lg:text-xl text-slate-700 dark:text-slate-300 mb-6 sm:mb-10 leading-relaxed max-w-lg">
+            <p className="text-base sm:text-lg md:text-lg lg:text-lg text-slate-700 dark:text-slate-300 mb-6 sm:mb-10 leading-relaxed max-w-lg">
               Trade Directly from Your Wallet. Execute Trades. Retain Ownership.
             </p>
 
