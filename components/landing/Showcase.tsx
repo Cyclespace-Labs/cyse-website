@@ -26,8 +26,8 @@ const PulsingPath = lazy(() => import("../ui/pulsingPath"));
 
 export default function Showcase() {
   return (
-    <div className="w-full h-fit mx-auto pt-1 sm:pt-10 font-sans">
-      <main className="h-fit w-full justify-center items-center px-10 md:px-25 lg:px-30 xl:px-40">
+    <div className="mx-auto pt-1 sm:pt-10 font-sans">
+      <main className="h-full w-full justify-center items-center px-10 md:px-25 lg:px-30 xl:px-40">
 
         <div className="w-full h-full justify-center items-center flex pb-5">
           <motion.div
@@ -36,7 +36,7 @@ export default function Showcase() {
             viewport={{ amount: 0.9 }}
             className="w-full justify-center flex"
           >
-            <h1 className="text-xl lg:text-3xl xl:text-4xl font-bold text-center h-fit w-full sm:w-xl
+            <h1 className="text-xl md:text-3xl lg:text-3xl xl:text-4xl font-bold text-center h-fit w-full sm:w-xl
                 bg-linear-to-b from-black via-slate-800 to-slate-700 dark:bg-linear-to-b 
                 dark:from-white dark:via-slate-200 dark:to-slate-400
                 leading-tight mb-6 bg-clip-text text-transparent"
@@ -65,7 +65,7 @@ export default function Showcase() {
             <motion.div
               initial="offscreen"
               whileInView="onscreen"
-              viewport={{ amount: 0.9 }}
+              viewport={{ amount: 0.1 }}
               variants={cardVariants}
               className="z-20"
             >
@@ -75,7 +75,7 @@ export default function Showcase() {
                 width={250}
                 height={420}
                 quality={100}
-                className="object-fit h-40 w-20 lg:h-40 lg:w-20 xl:h-80 xl:w-40 relative left-15 z-20 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 dark:hidden"
+                className="object-fit h-40 w-20 lg:h-40 lg:w-20 xl:h-80 xl:w-40 relative lg:left-0 xl:left-0 z-20 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 dark:hidden"
                 loading="lazy"
               />
               <Image
@@ -84,7 +84,7 @@ export default function Showcase() {
                 width={250}
                 height={420}
                 quality={100}
-                className="object-fit h-40 w-20 lg:h-40 lg:w-20 xl:h-80 xl:w-40 relative left-15 z-20 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
+                className="object-fit h-40 w-20 lg:h-40 lg:w-20 xl:h-80 xl:w-40 relative lg:left-0 xl:left-0 z-20 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
                 loading="lazy"
               />
             </motion.div>
@@ -92,7 +92,7 @@ export default function Showcase() {
             <motion.div
               initial="offscreen"
               whileInView="onscreen"
-              viewport={{ amount: 0.9 }}
+              viewport={{ amount: 0.1 }}
               variants={cardVariants}
               className="z-10"
             >
@@ -111,7 +111,7 @@ export default function Showcase() {
                 width={250}
                 height={420}
                 quality={100}
-                className="object-fit z-10 h-40 w-20 lg:h-40 lg:w-20 xl:h-80 xl:w-40 relative -top-20 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
+                className="object-fit z-10 h-40 w-20 lg:h-40 lg:w-20 xl:h-80 xl:w-40 relative -left-15 -top-20 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
                 loading="lazy"
               />
             </motion.div>            
@@ -122,7 +122,7 @@ export default function Showcase() {
             <motion.div
               initial="offscreen"
               whileInView="onscreen"
-              viewport={{ amount: 0.9 }}
+              viewport={{ amount: 0.1 }}
               variants={cardVariants}
             >
               <Image
@@ -148,7 +148,7 @@ export default function Showcase() {
             <motion.div
               initial="offscreen"
               whileInView="onscreen"
-              viewport={{ amount: 0.9 }}
+              viewport={{ amount: 0.1 }}
               variants={cardVariants}
             >
               <Image
@@ -175,7 +175,7 @@ export default function Showcase() {
 
         {/* Main dashboard image - visible on all screens */}
         <motion.div 
-          className=" lg:-translate-y-15 xl:-translate-y-30 relative z-40 flex justify-center w-full h-full"
+          className=" translate-y-2 md:translate-y-65 lg:-translate-y-15 xl:-translate-y-30 relative z-40 flex justify-center w-full h-full"
         >
           <Image
             src="/cards/light_dash.png"

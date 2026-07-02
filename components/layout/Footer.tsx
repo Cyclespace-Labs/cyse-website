@@ -48,7 +48,7 @@ export default function Footer() {
   const background = useMemo(
     () => (
       <div className="absolute inset-0 z-0">
-        <div className="h-full relative z-0">
+        <div className="h-[200vh] relative z-0">
           <GradientBlinds
             gradientColors={["#0E76FD", "#0E76FD"]}
             angle={0}
@@ -64,8 +64,8 @@ export default function Footer() {
             mixBlendMode="darken"
           />
         </div>
-        <div className="absolute inset-0 bg-linear-to-l from-black via-black/70 to-transparent" />
-        <div className="absolute inset-0 bg-linear-to-t from-[#0E76FD] via-[#0E76FD]/50 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-l from-black via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-[#0E76FD] via-[#0E76FD]/20 to-transparent" />
       </div>
     ),
     []

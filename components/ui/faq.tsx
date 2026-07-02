@@ -21,7 +21,7 @@ export default function FAQ({ items }: FaqProps) {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 w-full mx-auto px-6 md:px-8 lg:px-20 xl:px-50 py-8 sm:py-12 md:py-16 font-sans pt-20 sm:pt-32 md:pt-40 gap-6 lg:gap-0 z-10">
-      <h2 className="text-2xl md:text-3xl lg:text-3xl xl:text-4xl text-center lg:text-left font-bold mb-6 sm:mb-8 md:mb-10 bg-linear-to-b from-white via-slate-200 to-slate-400 dark:from-white dark:via-slate-200 dark:to-slate-400 bg-clip-text text-transparent">
+      <h2 className="text-2xl md:text-4xl lg:text-3xl xl:text-4xl text-center lg:text-left font-bold mb-6 sm:mb-8 md:mb-10 bg-linear-to-b from-white via-slate-200 to-slate-400 dark:from-white dark:via-slate-200 dark:to-slate-400 bg-clip-text text-transparent">
         Frequently asked questions
       </h2>
 
@@ -41,27 +41,27 @@ export default function FAQ({ items }: FaqProps) {
                     <div className="absolute inset-0 flex items-center justify-center">
                     {/* Horizontal line (always visible) */}
                     <motion.div
-                        className="absolute w-3 h-0.5 sm:w-4 sm:h-0.5 bg-blue-600 dark:bg-blue-400 rounded-full"
-                        initial={false}
-                        animate={{ scaleX: 1 }}
-                        transition={{ duration: 0.2 }}
+                      className="absolute w-3 h-0.5 sm:w-4 sm:h-0.5 bg-blue-600 dark:bg-blue-400 rounded-full"
+                      initial={false}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: 0.2 }}
                     />
                     {/* Vertical line (morphs) */}
                     <motion.div
-                        className="absolute w-0.5 h-3 sm:w-0.5 sm:h-4 bg-blue-600 dark:bg-blue-400 rounded-full"
-                        initial={false}
-                        animate={{
-                        scaleY: openIndex === idx ? 0 : 1,
-                        }}
-                        transition={{
-                        duration: 0.3,
-                        ease: [0.4, 0, 0.2, 1],
-                        }}
+                      className="absolute w-0.5 h-3 sm:w-0.5 sm:h-4 bg-blue-600 dark:bg-blue-400 rounded-full"
+                      initial={false}
+                      animate={{
+                      scaleY: openIndex === idx ? 0 : 1,
+                      }}
+                      transition={{
+                      duration: 0.3,
+                      ease: [0.4, 0, 0.2, 1],
+                      }}
                     />
                     </div>
                 </div>
-                <span className="text-base sm:text-lg md:text-xl font-medium text-slate-100 dark:text-slate-100">
-                    {item.question}
+                <span className="text-base md:text-lg lg:text-lg xl:text-xl font-medium text-slate-100 dark:text-slate-100 w-full ">
+                  {item.question}
                 </span>
             </button>
 

@@ -67,19 +67,19 @@ export default function Home() {
       </div>
 
       <Suspense fallback={<div className="h-60 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
-        <div className='hidden'>
+        <div className=''>
           <Showcase />
         </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-40 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
-        <div className='hidden'>
+        <div className=''>
           <Description text="Experience lightning-fast trades with zero custody risk and complete control over your assets." />
         </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-40 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
-        <div className='hidden'>
+        <div className=''>
           <Features />
         </div>
       </Suspense>

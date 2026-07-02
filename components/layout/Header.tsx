@@ -106,7 +106,7 @@ export default function Header() {
 
   return (
     <header className="sticky z-50 bg-transparent w-full inset-x-0 inset-y-3 dark:bg-transparent font-sans rounded-4xl">
-      <div className="w-full mx-auto px-3 sm:px-3 md:px-8 lg:px-13 xl:px-8 lg:max-w-fit lg:mx-auto">
+      <div className="w-full mx-auto px-3 md:px-8 lg:px-13 xl:px-8 lg:max-w-fit lg:mx-auto">
         <Menu setActive={setActive}>
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 items-center h-16 w-full gap-4">
             {/* Logo */}

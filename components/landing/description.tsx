@@ -8,13 +8,14 @@ interface DescriptionProps {
 
 export default function Description({ text }: DescriptionProps) {
   return (
-    <div className='font-sans mx-auto'>
-        <main className='w-full h-full px-8 md:px-10 lg:px-30 xl:px-110 py-10 md:pt-10 md:pb-40'>
-            <div className='text-xs text-center leading-tight md:text-md lg:text-md xl:text-xl font-bold justify-center flex'>
+    <div className='font-sans mx-auto px-auto'>
+        <main className='w-full h-full px-8 md:px-30 lg:px-30 xl:px-50 mx-auto md:pt-20 lg:pt-0 xl:pt-0 
+        md:pb-10 lg:pb-40 xl:pb-50'>
+            <div className='text-xs text-center justify-center flex'>
                 <ScrollFloat
                     animationDuration={1}
                     ease='back.inOut(2)'
-                    scrollStart='center bottom+=50%'
+                    scrollStart='center bottom+=80%'
                     scrollEnd='bottom bottom-=40%'
                     stagger={0.03}
                 >

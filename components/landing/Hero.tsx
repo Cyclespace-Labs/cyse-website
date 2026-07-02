@@ -249,8 +249,8 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce hidden md:block">
-        <div className="lg:w-4 lg:h-8 xl:w-6 xl:h-10 border-2 border-slate-300 dark:border-slate-600 rounded-full flex justify-center pt-2">
-          <div className="lg:w-0.5 lg:h-1.5 xl:w-1 xl:h-2 bg-slate-300 dark:bg-slate-600 rounded-full" />
+        <div className="w-4 h-8 md:w-4 md:h-8 lg:w-4 lg:h-8 xl:w-6 xl:h-10 border-2 border-slate-300 dark:border-slate-600 rounded-full flex justify-center pt-2">
+          <div className="w-4 h-8 md:w-1 md:h-1 lg:w-0.5 lg:h-1.5 xl:w-1 xl:h-2 bg-slate-300 dark:bg-slate-600 rounded-full" />
         </div>
       </div>
     </section>
