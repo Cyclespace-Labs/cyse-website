@@ -1,5 +1,7 @@
+// Footer.tsx
 "use client";
 
+import { useMemo } from "react";
 import FAQ from "../ui/faq";
 import Link from "next/link";
 import { Tourney } from "next/font/google";
@@ -42,42 +44,11 @@ const faqItems = [
 ];
 
 export default function Footer() {
-  return (
-    <div className="relative w-full overflow-hidden ">
-      {/* Background Silk – fills the entire footer */}
-      <div className="absolute hidden inset-0 z-0">
-        <Silk
-          speed={5}
-          scale={1}
-          color="#0E76FD"
-          noiseIntensity={1.5}
-          rotation={0}
-        />
-        <div className="absolute inset-0 bg-linear-to-r from-[#0E76FD] via-[#0E76FD]/50 to-transparent" />
-        <div className="absolute inset-0 bg-linear-to-t from-[#0E76FD] via-[#0E76FD]/50 to-transparent" />
-      </div>
-
+  // Memoize the background to prevent re-renders when FAQ state changes
+  const background = useMemo(
+    () => (
       <div className="absolute inset-0 z-0">
-
-        {/*         
-          <GradientBlinds
-            gradientColors={["#0E76FD", "#0E76FD"]}
-            angle={0}
-            noise={0.3}
-            blindCount={12}
-            blindMinWidth={50}
-            spotlightRadius={0.5}
-            spotlightSoftness={1}
-            spotlightOpacity={1}
-            mouseDampening={0.15}
-            distortAmount={10}
-            shineDirection="right"
-            mixBlendMode="darken"
-          /> 
-        */}
-
-
-        <div style={{ width: '100%', height: '1580px', position: 'relative' }}>
+        <div className="h-full relative z-0">
           <GradientBlinds
             gradientColors={["#0E76FD", "#0E76FD"]}
             angle={0}
@@ -93,63 +64,117 @@ export default function Footer() {
             mixBlendMode="darken"
           />
         </div>
-
         <div className="absolute inset-0 bg-linear-to-l from-black via-black/70 to-transparent" />
         <div className="absolute inset-0 bg-linear-to-t from-[#0E76FD] via-[#0E76FD]/50 to-transparent" />
       </div>
+    ),
+    []
+  );
+
+  return (
+    <div className="relative w-full h-full overflow-hidden">
+      {background}
 
       {/* Foreground content – all interactive and visible elements */}
-      <div className="relative z-10 flex flex-col items-center justify-center">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full w-full">
         <FAQ items={faqItems} />
 
-        <div className="mt-6 md:mt-10 flex w-full justify-center px-6 sm:px-8 md:px-16 lg:px-30">
-          <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 gap-x-4 gap-y-2 sm:gap-x-6 sm:gap-y-3 md:gap-4 w-full ">
-            <Link href="/spot" className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+        <div className="mt-6 md:mt-10 flex h-full w-full justify-center px-6 sm:px-8 md:px-16 lg:px-30">
+          <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 gap-x-4 gap-y-2 sm:gap-x-6 sm:gap-y-3 md:gap-4 w-full">
+            <Link
+              href="/spot"
+              className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center"
+            >
               Spot
             </Link>
-            <Link href="/futures" className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+            <Link
+              href="/futures"
+              className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center"
+            >
               Futures
             </Link>
-            <Link href="/predictions" className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+            <Link
+              href="/predictions"
+              className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center"
+            >
               Predictions
             </Link>
-            <Link href="/vault" className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+            <Link
+              href="/vault"
+              className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center"
+            >
               Vault
             </Link>
-            <Link href="/News" className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+            <Link
+              href="/News"
+              className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center"
+            >
               Markets
             </Link>
-            <Link href="/swap-exchange" className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+            <Link
+              href="/swap-exchange"
+              className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center"
+            >
               Swap
             </Link>
-            <Link href="/trading" className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+            <Link
+              href="/trading"
+              className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center"
+            >
               Stake
             </Link>
-            <Link href="/Dashboard" className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+            <Link
+              href="/Dashboard"
+              className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center"
+            >
               Docs
             </Link>
-            <Link href="/Edge" className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+            <Link
+              href="/Edge"
+              className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center"
+            >
               Whitepaper
             </Link>
-            <Link href="/about" className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+            <Link
+              href="/about"
+              className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center"
+            >
               About Us
             </Link>
-            <Link href="/contact" className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+            <Link
+              href="/contact"
+              className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center"
+            >
               Contact
             </Link>
-            <Link href="/careers" className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+            <Link
+              href="/careers"
+              className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center"
+            >
               Careers
             </Link>
-            <Link href="/blog" className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+            <Link
+              href="/blog"
+              className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center"
+            >
               Blog
             </Link>
-            <Link href="/terms" className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+            <Link
+              href="/terms"
+              className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center"
+            >
               Terms
             </Link>
-            <Link href="/privacy" className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+            <Link
+              href="/privacy"
+              className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center"
+            >
               Privacy
             </Link>
-            <Link href="/support" className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center">
+            <Link
+              href="/support"
+              className="text-white dark:text-white text-xs sm:text-sm md:text-base hover:text-blue-300 transition-colors text-center"
+            >
               Support
             </Link>
           </div>
@@ -157,7 +182,7 @@ export default function Footer() {
 
         <div className="flex w-full items-center justify-center px-4 py-8 sm:py-12 md:py-16">
           <h3
-            className={`${tourney.className} text-[60px] sm:text-[100px] md:text-[160px] lg:text-[220px] xl:text-[280px] font-bold text-white dark:text-white`}
+            className={`${tourney.className} text-5xl md:text-8xl lg:text-9xl xl:text-[200px] font-bold text-white dark:text-white`}
           >
             CYCLESPACE
           </h3>

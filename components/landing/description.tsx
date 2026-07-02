@@ -9,8 +9,8 @@ interface DescriptionProps {
 export default function Description({ text }: DescriptionProps) {
   return (
     <div className='font-sans mx-auto'>
-        <main className='w-full h-full px-8 md:px-60 lg:px-[clamp(15rem,25vw,30rem)] py-10 md:pt-10 md:pb-40'>
-            <div className='text-xs text-center leading-tight sm:text-xl font-bold justify-center flex'>
+        <main className='w-full h-full px-8 md:px-10 lg:px-30 xl:px-110 py-10 md:pt-10 md:pb-40'>
+            <div className='text-xs text-center leading-tight md:text-md lg:text-md xl:text-xl font-bold justify-center flex'>
                 <ScrollFloat
                     animationDuration={1}
                     ease='back.inOut(2)'

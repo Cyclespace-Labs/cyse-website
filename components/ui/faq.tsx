@@ -20,12 +20,12 @@ export default function FAQ({ items }: FaqProps) {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 w-full mx-auto px-6 sm:px-6 md:px-8 lg:px-50 py-8 sm:py-12 md:py-16 font-sans pt-20 sm:pt-32 md:pt-40 gap-6 lg:gap-0">
-      <h2 className="text-2xl sm:text-3xl md:text-4xl text-center lg:text-left font-bold mb-6 sm:mb-8 md:mb-10 bg-linear-to-b from-white via-slate-200 to-slate-400 dark:from-white dark:via-slate-200 dark:to-slate-400 bg-clip-text text-transparent">
+    <div className="grid grid-cols-1 lg:grid-cols-2 w-full mx-auto px-6 md:px-8 lg:px-20 xl:px-50 py-8 sm:py-12 md:py-16 font-sans pt-20 sm:pt-32 md:pt-40 gap-6 lg:gap-0 z-10">
+      <h2 className="text-2xl md:text-3xl lg:text-3xl xl:text-4xl text-center lg:text-left font-bold mb-6 sm:mb-8 md:mb-10 bg-linear-to-b from-white via-slate-200 to-slate-400 dark:from-white dark:via-slate-200 dark:to-slate-400 bg-clip-text text-transparent">
         Frequently asked questions
       </h2>
 
-      <div className="space-y-3 sm:space-y-4 px-0 sm:px-8 md:px-16 lg:px-10 xl:px-20">
+      <div className="space-y-3 sm:space-y-4 px-0 sm:px-8 md:px-16 lg:px-10 xl:px-10 w-full">
         {items.map((item, idx) => (
           <div
             key={idx}
@@ -33,7 +33,7 @@ export default function FAQ({ items }: FaqProps) {
           >
             <button
               onClick={() => toggleItem(idx)}
-              className="w-full flex gap-2 sm:gap-3 items-center p-3 sm:p-4 md:p-5 text-left hover:bg-blue-400/30 dark:hover:bg-slate-800 transition-colors group"
+              className="w-full flex gap-2 sm:gap-3 items-center p-3 sm:p-4 md:p-5 text-left hover:bg-blue-400/30 dark:hover:bg-slate-800 transition-colors group w-full"
             >                
                 {/* Morphing Icon with Circle Background */}
                 <div className="relative w-6 h-6 sm:w-8 sm:h-8 shrink-0">

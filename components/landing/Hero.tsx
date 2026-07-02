@@ -64,14 +64,19 @@ export default function Hero() {
   }, [isDesktop]);
 
   return (
-    <section className="relative w-full h-fit md:h-screen -top-17 h-full overflow-hidden flex font-sans items-center">
+    <section className="relative w-full h-screen md:h-screen lg:h-screen xl:h-screen -top-17 h-full overflow-hidden flex font-sans items-center">
       {/* Background layer */}
       <div className="absolute inset-0 z-0">
         {/* Gradient overlays for text readability */}
+
         <div className="absolute hidden inset-0 bg-linear-to-r from-white via-transparent to-transparent
-          dark:bg-linear-to-r dark:from-black dark:via-transparent dark:to-transparent z-10" />
+          dark:bg-linear-to-r dark:from-black dark:via-transparent dark:to-transparent z-10
+          " 
+        />
+
         <div className="absolute hidden inset-0 bg-linear-to-t from-white via-transparent to-transparent
-          dark:bg-linear-to-t dark:from-black dark:via-transparent dark:to-transparent z-10" />
+          dark:bg-linear-to-t dark:from-black dark:via-transparent dark:to-transparent z-10" 
+        />
 
         {/* Desktop background (video or fallback) */}
         {isDesktop && (
@@ -158,7 +163,7 @@ export default function Hero() {
 
           <video
             ref={lightVideoRef}
-            className=" w-full h-full overflow-visible -translate-x-30 relative dark:hidden lg:hidden md:hidden object-cover object-center z-10"
+            className=" w-full h-full overflow-visible -translate-x-35 md:-translate-x-50 lg:-translate-x-50 xl:-translate-x-70  relative dark:hidden lg:hidden md:hidden object-cover object-center z-10"
             autoPlay
             loop
             muted
@@ -175,7 +180,7 @@ export default function Hero() {
           {/* Dark mode video */}
           <video
             ref={darkVideoRef}
-            className="w-full h-full overflow-visible -translate-x-30 relative lg:hidden md:hidden object-cover hidden dark:flex object-center z-10"
+            className="w-full h-full overflow-visible -translate-x-35 md:-translate-x-50 lg:-translate-x-50 xl:-translate-x-70 relative lg:hidden md:hidden object-cover hidden dark:flex object-center z-10"
             autoPlay
             loop
             muted
@@ -193,19 +198,19 @@ export default function Hero() {
       </div>
 
       {/* Hero content */}
-      <div className="container mx-auto px-8 flex pb-20 sm:pb-70 sm:px-10 md:px-12 relative z-10 pt-0 md:pt-10 lg:pt-100">
+      <div className="container mx-auto px-8 flex pb-20 sm:pb-70 sm:px-10 md:px-12 relative z-10 pt-20 md:pt-100 lg:pt-100 xl:pt-100">
         <div className="max-w-xl md:max-w-2xl lg:max-w-3xl">
           <motion.div
             initial={{ opacity: 1, y: 20 }}
             whileInView={{ opacity: 1, y: 0, transition: { type: "spring", bounce: 0.4, duration: 1, }}}
             viewport={{ amount: 0.9 }}
-            className='h-fit'
+            className=''
           >
 
             {/* Desktop animated text */}
             <div className="mb-4 sm:mb-6 hidden md:block text-black dark:text-white">
               <ScrambledText
-                className="scrambled-text-demo text-black dark:text-white w-full py-0 my-0 pl-0 ml-0 text-5xl sm:text-4xl md:text-4xl lg:text-5xl font-bold"
+                className="scrambled-text-demo text-black dark:text-white w-full py-0 my-0 pl-0 ml-0 text-5xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-6xl font-bold"
                 radius={100}
                 duration={1.2}
                 speed={0.5}
@@ -218,23 +223,23 @@ export default function Hero() {
             </div>
 
             {/* Mobile static heading */}
-            <h1 className="text-4xl flex mt-70 md:hidden font-bold
+            <h1 className="text-3xl flex mt-70 md:hidden font-bold
               text-black dark:text-white leading-tight mb-4 sm:mb-6 z-30">
               Unstoppable Markets.
               <br />
               Total Transparency.
             </h1>
 
-            <p className="text-base sm:text-lg md:text-lg lg:text-lg text-slate-700 dark:text-slate-300 mb-6 sm:mb-10 leading-relaxed max-w-lg">
+            <p className="text-lg md:text-xl lg:text-md xl:text-lg text-slate-700 dark:text-slate-300 mb-6 lg:mb-5 xl:mb-10 leading-relaxed max-w-lg">
               Trade Directly from Your Wallet. Execute Trades. Retain Ownership.
             </p>
 
             <div className="flex flex-row justify-between md:px-0 md:justify-start md:flex-row gap-3 sm:gap-4">
-              <Button className="px-4 sm:px-5 py-3 sm:py-5 bg-primary text-white rounded-3xl font-medium hover:bg-primary/80 dark:shadow-primary/50 transition-all flex items-center justify-center gap-2 shadow-lg shadow-slate-400 border-none group hover:scale-105">
+              <Button className="text-xs md:text-sm lg:text-xs xl:text-sm px-4 sm:px-5 py-3 sm:py-5 bg-primary text-white rounded-3xl font-medium hover:bg-primary/80 dark:shadow-primary/50 transition-all flex items-center justify-center gap-2 shadow-lg shadow-slate-400 border-none group hover:scale-105">
                 Trade on Cyclespace
               </Button>
 
-              <Button className="px-4 sm:px-5 py-3 sm:py-5 bg-black dark:bg-slate-900 text-white border-none rounded-3xl font-medium hover:bg-slate-800 dark:hover:bg-slate-700 transition-all flex items-center justify-center gap-2 shadow-lg shadow-slate-400/50 dark:shadow-slate-950 hover:scale-105">
+              <Button className="lg:text-xs xl:text-sm px-4 sm:px-5 py-3 sm:py-5 bg-black dark:bg-slate-800 text-white border-none rounded-3xl font-medium hover:bg-slate-800 dark:hover:bg-slate-700 transition-all flex items-center justify-center gap-2 shadow-lg shadow-slate-400/50 dark:shadow-slate-950 hover:scale-105">
                 Build on CYSE
               </Button>
             </div>
@@ -244,8 +249,8 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce hidden md:block">
-        <div className="w-6 h-10 border-2 border-slate-300 dark:border-slate-600 rounded-full flex justify-center pt-2">
-          <div className="w-1 h-2 bg-slate-300 dark:bg-slate-600 rounded-full" />
+        <div className="lg:w-4 lg:h-8 xl:w-6 xl:h-10 border-2 border-slate-300 dark:border-slate-600 rounded-full flex justify-center pt-2">
+          <div className="lg:w-0.5 lg:h-1.5 xl:w-1 xl:h-2 bg-slate-300 dark:bg-slate-600 rounded-full" />
         </div>
       </div>
     </section>

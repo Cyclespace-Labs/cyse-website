@@ -62,50 +62,68 @@ export default function Home() {
       <Header />
       <Hero />
       
-      <div className="justify-center flex h-fit">
+      <div className="justify-center flex h-fit hidden">
         <Stats />
       </div>
 
       <Suspense fallback={<div className="h-60 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
-        <Showcase />
+        <div className='hidden'>
+          <Showcase />
+        </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-40 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
-        <Description text="Experience lightning-fast trades with zero custody risk and complete control over your assets." />
+        <div className='hidden'>
+          <Description text="Experience lightning-fast trades with zero custody risk and complete control over your assets." />
+        </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-40 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
-        <Features />
+        <div className='hidden'>
+          <Features />
+        </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-60 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
-        <Chains />
+        <div className='hidden'>
+          <Chains />
+        </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-80 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
-        <Rewards />
+        <div className='hidden'>
+          <Rewards />
+        </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-40 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
-        <div className='py-20'>
+        <div className='hidden'>
           <Description text="Join thousands of traders who trust our platform for secure, transparent, and efficient decentralized trading." />
         </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
-        <Coverage />
+        <div className='hidden'>
+          <Coverage />
+        </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
-        <PredictionMarkets />
+        <div className='hidden'>
+          <PredictionMarkets />
+        </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
-        <Timeline />
+        <div className='hidden'>
+          <Timeline />
+        </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-80 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
-        <LatestNews />
+        <div className='hidden'>
+          <LatestNews />
+        </div>
       </Suspense>
 
       <Footer />

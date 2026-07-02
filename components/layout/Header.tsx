@@ -40,7 +40,7 @@ const AnimatedNavLink = ({
 }) => {
   return (
     <motion.div
-      className="relative group text-sm tracking-tight font-semibold"
+      className="relative group text-xs md:text-xs lg:text-xs xl:text-sm tracking-tight font-semibold"
       initial={false}
       whileHover="hover"
     >
@@ -50,7 +50,7 @@ const AnimatedNavLink = ({
           {soon && (
             <Badge
               variant="outline"
-              className="text-[10px] px-1.5 py-0 h-4 relative bottom-2 right-1 rounded-full bg-blue-500/30 text-blue-500 dark:bg-blue-500/30 dark:text-blue-500 border-none"
+              className="text-[8px] lg:text-[8px] xl:text-[9px] px-1.5 py-0 h-4 relative bottom-2 right-1 rounded-full bg-blue-500/30 text-blue-500 dark:bg-blue-500/30 dark:text-blue-500 border-none"
             >
               soon
             </Badge>
@@ -106,7 +106,7 @@ export default function Header() {
 
   return (
     <header className="sticky z-50 bg-transparent w-full inset-x-0 inset-y-3 dark:bg-transparent font-sans rounded-4xl">
-      <div className="w-full mx-auto px-3 sm:px-3 md:px-3 lg:max-w-fit lg:mx-auto lg:px-8">
+      <div className="w-full mx-auto px-3 sm:px-3 md:px-8 lg:px-13 xl:px-8 lg:max-w-fit lg:mx-auto">
         <Menu setActive={setActive}>
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 items-center h-16 w-full gap-4">
             {/* Logo */}
@@ -117,7 +117,7 @@ export default function Header() {
                   height="30"
                   viewBox="0 0 256 256"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="dark:hidden h-5 w-5 md:h-7 md:w-7 fill-blue-500 stroke-blue-500"
+                  className="dark:hidden h-5 w-5 md:h-7 md:w-7 lg:h-6 lg:w-6 xl:h-7 xl:w-7 fill-blue-500 stroke-blue-500"
                 >
                   <path
                     d="M105 76H38.8466C38.8466 76 33.5426 87.8169 32.5112 92.1876C27.8222 112.059 26.8737 128.971 29.2698 149.33C31.4799 168.107 38.6993 183 38.6993 183H101.759C101.759 183 89.4948 164.979 86.2884 155.157C81.4264 140.265 81.6222 128.124 84.3731 111.613C87.4302 93.2635 105 76 105 76Z"
@@ -148,7 +148,7 @@ export default function Header() {
                 </svg>
               </div>
               <span
-                className={`${tourney.className} antialiased text-md sm:text-md md:text-2xl font-semibold bg-black dark:bg-white text-transparent bg-clip-text`}
+                className={`${tourney.className} antialiased text-md sm:text-md md:text-2xl lg:text-xl xl:text-2xl font-semibold bg-black dark:bg-white text-transparent bg-clip-text`}
               >
                 CYCLESPACE
               </span>
@@ -163,7 +163,7 @@ export default function Header() {
               <AnimatedNavLink href="/vault">Vault</AnimatedNavLink>
 
               <MenuItem setActive={setActive} active={active} item="More">
-                <div className="gap-4 flex flex-col p-2">
+                <div className="gap-4 flex flex-col p-2 text-xs">
                   <DropdownItem href="/news" icon={<LucideNewspaper className="h-4 w-4 text-primary dark:text-primary" />}>
                     News
                   </DropdownItem>
