@@ -50,7 +50,7 @@ const cardsData: CardData[] = [
 
 export default function Rewards() {
   return (
-    <div className="mx-auto h-full w-full py-8 md:py-10 lg:py-10">
+    <div className="mx-auto h-full w-full py-8 md:py-10 lg:py-10 lg:pb-30">
       <main className="px-4 sm:px-8 md:px-16 lg:px-[clamp(15rem,15vw,20rem)]">
         <div className="flex h-full w-full items-center justify-center">
           <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, y: 20 }}

@@ -105,10 +105,10 @@ export default function Header() {
   const [active, setActive] = useState<string | null>(null);
 
   return (
-    <header className="sticky z-50 bg-transparent w-full inset-x-0 inset-y-3 dark:bg-transparent font-sans rounded-4xl">
+    <header className="sticky z-50 bg-transparent w-full inset-x-0 md:inset-y-3 lg:inset-y-2 xl:inset-y-3 dark:bg-transparent font-sans rounded-4xl">
       <div className="w-full mx-auto px-3 md:px-8 lg:px-13 xl:px-8 lg:max-w-fit lg:mx-auto">
         <Menu setActive={setActive}>
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 items-center h-16 w-full gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 items-center h-14 md:h-14 lg:h-14 xl:h-16 w-full gap-4">
             {/* Logo */}
             <Link href="/" className="flex items-center justify-start space-x-1 md:space-x-2">
               <div className="p-0 rounded-lg transition-all duration-100 font-sans">

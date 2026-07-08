@@ -75,7 +75,7 @@ export default function Showcase() {
                 width={250}
                 height={420}
                 quality={100}
-                className="object-fit h-40 w-20 lg:h-40 lg:w-20 xl:h-80 xl:w-40 relative lg:left-0 xl:left-0 z-20 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 dark:hidden"
+                className="object-fit h-40 w-20 md:h-40 md:w-20 lg:h-40 lg:w-20 xl:h-80 xl:w-40 relative lg:left-0 xl:left-0 z-20 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 dark:hidden"
                 loading="lazy"
               />
               <Image
@@ -84,7 +84,7 @@ export default function Showcase() {
                 width={250}
                 height={420}
                 quality={100}
-                className="object-fit h-40 w-20 lg:h-40 lg:w-20 xl:h-80 xl:w-40 relative lg:left-0 xl:left-0 z-20 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
+                className="object-fit h-40 w-20 md:h-40 md:w-20 lg:h-40 lg:w-20 xl:h-80 xl:w-40 relative lg:left-0 xl:left-0 z-20 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 hidden dark:flex"
                 loading="lazy"
               />
             </motion.div>

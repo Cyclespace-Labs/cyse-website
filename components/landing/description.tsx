@@ -9,7 +9,7 @@ interface DescriptionProps {
 export default function Description({ text }: DescriptionProps) {
   return (
     <div className='font-sans mx-auto px-auto'>
-        <main className='w-full h-full px-8 md:px-30 lg:px-30 xl:px-50 mx-auto md:pt-20 lg:pt-0 xl:pt-0 
+        <main className='w-full h-full px-8 md:px-30 lg:px-30 xl:px-80 mx-auto md:pt-20 lg:pt-0 xl:pt-0 
         md:pb-10 lg:pb-40 xl:pb-50'>
             <div className='text-xs text-center justify-center flex'>
                 <ScrollFloat

@@ -85,43 +85,43 @@ export default function Home() {
       </Suspense>
 
       <Suspense fallback={<div className="h-60 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
-        <div className='hidden'>
+        <div className=''>
           <Chains />
         </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-80 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
-        <div className='hidden'>
+        <div className=''>
           <Rewards />
         </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-40 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
-        <div className='hidden'>
+        <div className=''>
           <Description text="Join thousands of traders who trust our platform for secure, transparent, and efficient decentralized trading." />
         </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
-        <div className='hidden'>
+        <div className=''>
           <Coverage />
         </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
-        <div className='hidden'>
+        <div className=''>
           <PredictionMarkets />
         </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
-        <div className='hidden'>
+        <div className=''>
           <Timeline />
         </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-80 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />}>
-        <div className='hidden'>
+        <div className=''>
           <LatestNews />
         </div>
       </Suspense>
