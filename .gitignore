@@ -44,5 +44,3 @@ next-env.d.ts
 /docs
 .claude
 
-/components/Strategy.tsx
-/app/calculator/page.tsx

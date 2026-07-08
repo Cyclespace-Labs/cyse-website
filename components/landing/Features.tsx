@@ -46,7 +46,7 @@ export default function Features() {
 
   return (
     <div className='w-full h-full mx-auto justify-center flex py-10 pb-10'>
-        <main className='justify-center flex flex-col md:w-5xl lg:w-[95%] xl:w-7xl sm:w-[75%] h-full'>
+        <main className='justify-center flex flex-col md:w-[95%] lg:w-[95%] xl:w-7xl sm:w-[75%] h-full'>
             <div className='w-full h-full justify-center items-center flex pb-5'>
                 <motion.div viewport={{ amount: 0.1, once: true }} initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0, transition: { type: "spring", bounce: 0.4, duration: 0.5 } }}
@@ -61,9 +61,9 @@ export default function Features() {
                 </motion.div>
             </div>
 
-            <div className='flex flex-col md:flex-row w-full h-full justify-center lg:gap-3 xl:gap-5 px-20 md:px-10 lg:px-0 xl:px-[2%] '>
+            <div className='flex flex-col md:flex-row w-full h-full justify-center md:gap-2 lg:gap-3 xl:gap-5 px-20 md:px-[3%] lg:px-0 xl:px-[2%] '>
 
-                <div className='flex flex-col lg:gap-3 xl:gap-5 w-full lg:w-220 xl:w-300 h-full justify-center'>
+                <div className='flex flex-col md:gap-2 lg:gap-3 xl:gap-5 w-full md:w-full lg:w-220 xl:w-300 h-full justify-center'>
                     {/* Vault Animated Card */}
                     <motion.div viewport={{ amount: 0.1 }} initial={{ opacity: 0, x: -40 }}
                         whileInView={{ opacity: 1, x: 0, transition: { type: "spring", bounce: 0.4, duration: 1 } }}
@@ -102,24 +102,24 @@ export default function Features() {
                                             quality={100}
                                             priority
                                             referrerPolicy="no-referrer"
-                                            className="relative lg:left-25 xl:left-35 -top-10 object-cover drop-shadow-2xl drop-shadow-black w-auto 
+                                            className="relative md:left-15 lg:left-25 xl:left-35 -top-10 object-cover drop-shadow-2xl drop-shadow-black w-auto 
                                                 h-auto hover:scale-110 transition-transform duration-500"
                                         />
                                     </motion.div>
                                 </CardHeader>
-                                <CardFooter className="lg:mt-5 xl:mt-3 flex w-full flex-col space-y-2 px-4 md:px-4 lg:px-5 xl:px-6 text-left">
+                                <CardFooter className="md:-mt-4 lg:mt-5 xl:mt-3 flex w-full flex-col space-y-2 px-4 md:px-3 lg:px-5 xl:px-6 text-left">
                                     <motion.div viewport={{ amount: 0.1 }} initial={{ opacity: 0, x: -40 }}
                                         whileInView={{ opacity: 1, x: 0, transition: { duration: 0.8 } }}
                                     >
-                                        <h2 className="text-lg md:text-m lg:text-sm xl:text-lg text-left w-full font-bold text-white">
+                                        <h2 className="text-lg md:text-sm lg:text-sm xl:text-lg text-left w-full font-bold text-white">
                                             Stake. Earn. Grow Your Stack.
                                         </h2>
                                     </motion.div>
 
-                                    <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, x: -40 }}
+                                    <motion.div viewport={{ amount: 0.1 }} initial={{ opacity: 0, x: -40 }}
                                         whileInView={{ opacity: 1, x: 0, transition: { duration: 0.8 } }}
                                     >
-                                        <p className="font-medium text-xs md:text-xs lg:text-xs text-slate-300 ">
+                                        <p className="font-medium text-xs md:text-[11px] lg:text-[7px] text-slate-300 ">
                                             Deposit assets into the vault and earn yield from trading fees.
                                         </p>
                                     </motion.div>
@@ -132,42 +132,42 @@ export default function Features() {
                     <motion.div viewport={{ amount: 0.6 }} initial={{ opacity: 0, x: -40 }}
                         whileInView={{ opacity: 1, x: 0, transition: { type: "spring", bounce: 0.4, duration: 1 } }}
                     >
-                        <Card className='h-full md:py-5 lg:py-5 xl:py-6 w-full bg-zinc-200 dark:bg-slate-900 dark:border-slate-800 border 
+                        <Card className='h-full md:py-4 lg:py-5 xl:py-6 w-full bg-zinc-200 dark:bg-slate-900 dark:border-slate-800 border 
                             border-zinc-200 gap-1 hover:scale-105 transition-transform duration-500' >
                                 
-                            <CardHeader className='flex items-center gap-2'>
+                            <CardHeader className='flex items-center gap-2 md:px-3'>
 
-                                <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, scale: 0.1 }}
+                                <motion.div viewport={{ amount: 0.1 }} initial={{ opacity: 0, scale: 0.1 }}
                                     whileInView={{ opacity: 1, scale: 1, transition: { type:"spring", bounce: 0.4, duration: 1, delay: 0.3 } }}
                                 >
-                                    <div className='bg-primary p-2 lg:rounded-sm xl:rounded-lg w-fit h-fit'>
-                                        <CandlestickChartIcon className='text-white w-5 h-5' />
+                                    <div className='bg-primary p-2 md:rounded-md lg:rounded-md xl:rounded-lg w-fit h-fit'>
+                                        <CandlestickChartIcon className='text-white w-5 h-5 md:w-4 md:h-4 lg:w-5 lg:h-5' />
                                     </div>
                                 </motion.div>
 
                                 <div className='gap-0 space-y-0 flex flex-col w-full'>
 
-                                    <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, x: -40 }}
+                                    <motion.div viewport={{ amount: 0.1 }} initial={{ opacity: 0, x: -40 }}
                                         whileInView={{ opacity: 1, x: 0, transition: { duration: 0.8 } }}
                                     >
-                                        <h2 className='lg:text-md xl:text-lg font-bold w-full h-fit'>Perps With No Expiry</h2>
+                                        <h2 className='md:text-[11px] lg:text-md xl:text-lg font-bold w-full h-fit'>Perps With No Expiry</h2>
                                     </motion.div>
 
-                                    <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, x: -40 }}
+                                    <motion.div viewport={{ amount: 0.1 }} initial={{ opacity: 0, x: -40 }}
                                         whileInView={{ opacity: 1, x: 0, transition: { duration: 0.8 } }}
                                     >
-                                        <h3 className='lg:text-[8px] xl:text-xs w-full h-fit text-slate-700 dark:text-slate-300'>
+                                        <h3 className='md:text-[10px] lg:text-[8px] xl:text-xs w-full h-fit text-slate-700 dark:text-slate-300'>
                                             Leverage up to 50x on BTC, ETH, SOL
                                         </h3>
                                     </motion.div>
                                 </div>
                                 
                             </CardHeader>
-                            <CardContent className='text-xs'>
-                                <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, x: -40 }}
+                            <CardContent className='w-full'>
+                                <motion.div viewport={{ amount: 0.1 }} initial={{ opacity: 0, x: -40 }}
                                     whileInView={{ opacity: 1, x: 0, transition: { duration: 0.8 } }}
                                 > 
-                                    <p className='lg:text-[10px] xl:text-xs text-slate-700 dark:text-slate-300'>
+                                    <p className='text-sm md:text-[10px] lg:text-[10px] xl:text-xs text-slate-700 dark:text-slate-300'>
                                         Trade perpetual futures with deep liquidity. No funding fees. No expiration dates. Pure leverage.
                                     </p>
                                 </motion.div>
@@ -176,7 +176,7 @@ export default function Features() {
                     </motion.div>
                 </div>
 
-                <div className='flex flex-col lg:gap-3 xl:gap-5 lg:w-105 xl:w-full w-full h-full'>
+                <div className='flex flex-col md:gap-2 lg:gap-3 xl:gap-5 md:w-80 lg:w-105 xl:w-full w-full h-full'>
                     {/* Yield Animated Card */}
                     <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, y: -40 }} 
                         whileInView={{ opacity: 1, y: 0, transition: { type: "spring", bounce: 0.4, duration: 1 } }}
@@ -244,7 +244,7 @@ export default function Features() {
                                 <motion.div viewport={{ amount: 0.5 }} initial={{ opacity: 0, y: 40 }}
                                     whileInView={{ opacity: 1, y: 0, transition: { duration: 1.1 } }}
                                 >
-                                    <h3 className='lg:text-[11px] xl:text-sm text-slate-700 dark:text-slate-300'>
+                                    <h3 className='md:w-[250px] md:text-xs lg:text-[11px] xl:text-sm text-slate-700 dark:text-slate-300'>
                                         Trade BTC, ETH, SOL perpetuals with up to 50x leverage and zero funding fees.
                                     </h3>
                                 </motion.div>
@@ -290,7 +290,7 @@ export default function Features() {
                     </motion.div>
                 </div>
 
-                <div className='flex flex-col lg:gap-3 xl:gap-5 w-full h-full'>
+                <div className='flex flex-col md:gap-2 lg:gap-3 xl:gap-5 w-full h-full'>
                     {/* Earn Fees Animated Card */}
                     <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, x: 40 }}
                         whileInView={{ opacity: 1, x: 0, transition: { type: "spring", bounce: 0.4, duration: 1, } }}
