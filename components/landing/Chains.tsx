@@ -18,8 +18,8 @@ const ChainButton = ({ token }: ChainButtonProps) => (
   <motion.div viewport={{ amount: 0.8 }} initial={{ opacity: 0, scaleX: 0.8, }}
     whileInView={{ opacity: 1, scaleX: 1, transition: { type: "spring", bounce: 0.4, duration: 1, } }}
   >
-    <Button className='group w-full rounded-4xl text-sm sm:text-base md:text-lg text-black dark:text-white justify-start p-3 py-5 md:p-7 
-      md:px-5 bg-zinc-200 dark:bg-slate-900 hover:bg-primary dark:hover:bg-primary hover:text-white'>
+    <Button className='group w-full rounded-4xl text-sm sm:text-base md:text-lg text-black dark:text-white justify-start p-3 py-5 
+    md:p-7 lg:p-6 xl:p-7 md:px-5 bg-zinc-200 dark:bg-slate-900 hover:bg-primary dark:hover:bg-primary hover:text-white'>
       <Image
         src={token.icon}
         alt={token.name}
@@ -30,12 +30,12 @@ const ChainButton = ({ token }: ChainButtonProps) => (
         priority
         referrerPolicy="no-referrer"
       />
-      <span className="inline-flex items-center gap-1.5">
+      <span className="inline-flex items-center gap-1.5 md:text-sm lg:text-sm xl:text-sm">
         {token.name}
         {token.soon && (
           <Badge
             variant="outline"
-            className="text-[10px] px-1.5 py-0 h-4 rounded-full bg-primary/30 text-primary dark:bg-primary/30 dark:text-primary border-none
+            className="md:text-[7px] lg:text-[7px] xl:text-[10px] px-1.5 py-0 h-4 rounded-full bg-primary/30 text-primary dark:bg-primary/30 dark:text-primary border-none
               group-hover:bg-white/40 dark:group-hover:bg-white/40 group-hover:text-white dark:group-hover:text-white transition-colors duration-200"
           >
             soon
@@ -61,7 +61,7 @@ const chainTokens: ChainToken[] = [
 export default function Chains() {
   return (
     <div className='mx-auto h-full w-full py-30 sm:py-30 md:py-30 lg:py-70 font-sans'>
-        <main className='justify-center px-4 sm:px-8 md:px-20 lg:px-[clamp(10rem,15vw,17.5rem)]'>
+        <main className='justify-center px-4 sm:px-8 md:px-20 lg:px-13 xl:px-[clamp(10rem,15vw,17.5rem)]'>
             <div className='w-full h-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12'>
               <div className='gap-3 sm:gap-4 md:gap-5 flex flex-col'>
                 <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, x: -20 }} 

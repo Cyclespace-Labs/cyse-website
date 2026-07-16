@@ -58,15 +58,16 @@ export default function Coverage() {
                 <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0, transition: { type: "spring", bounce: 0.4, duration: 1 } }}
                 >
-                    <h1 className='text-xl md:text-4xl font-bold text-center w-xs md:w-5xl bg-linear-to-b from-black via-zinc-800 to-zinc-500
+                    <h1 className='sm:max-w-4xl lg:max-w-3xl xl:max-w-4xl text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center w-xs md:w-5xl bg-linear-to-b from-black via-zinc-800 to-zinc-500
                         dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400 leading-tight mb-6 bg-clip-text text-transparent'>
                         Predict the Future: Decentralized Prediction Markets, Real-Time Odds & High-Stakes Rewards
                     </h1>
                 </motion.div>
             </div>
 
-            <div className='flex flex-col md:flex-row w-full h-full justify-center gap-5 px-20 sm:px-10 md:px-0 '>
+            <div className='flex flex-col md:flex-row w-full h-full justify-center gap-5 px-10 md:px-0 lg:px-10 xl:px-0 '>
 
+                {/* left section*/}
                 <div className='flex flex-col gap-5 w-full h-full'>
                     <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, x: -40 }}
                         whileInView={{ opacity: 1, x: 0, transition: { type: "spring", bounce: 0.4, duration: 1 } }}
@@ -76,19 +77,19 @@ export default function Coverage() {
                                 <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, scale: 0.1 }}
                                     whileInView={{ opacity: 1, scale: 1, transition: { type:"spring", bounce: 0.4, duration: 1, delay: 0.3 } }}
                                 >
-                                    <div className='bg-primary p-2 rounded-lg w-fit h-fit'><CoinsIcon className='text-white w-5 h-5' /></div>
+                                    <div className='bg-primary lg:p-1.5 xl:p-2 lg:rounded-md xl:rounded-lg w-fit h-fit'><CoinsIcon className='text-white lg:w-4 lg:h-4 xl:w-5 xl:h-5' /></div>
                                 </motion.div>
 
                                 <div className='gap-0 space-y-0 flex flex-col w-full'>
                                     <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, x: -40 }}
                                         whileInView={{ opacity: 1, x: 0, transition: { duration: 0.8 } }}
                                     >
-                                        <h2 className='text-lg font-bold'>Earn From Accurate Predictions</h2>
+                                        <h2 className='lg:text-[12px] xl:text-lg font-bold'>Earn From Accurate Predictions</h2>
                                     </motion.div>
                                     <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, x: -40 }}
                                         whileInView={{ opacity: 1, x: 0, transition: { duration: 0.8 } }}
                                     >
-                                        <h3 className='text-xs text-slate-700 dark:text-slate-300'>Predictors earn 70% of market fees</h3>
+                                        <h3 className='lg:text-[9px] xl:text-xs text-slate-700 dark:text-slate-300'>Predictors earn 70% of market fees</h3>
                                     </motion.div>
                                 </div>
                             </CardHeader>
@@ -96,8 +97,8 @@ export default function Coverage() {
                                 <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, x: -40 }}
                                     whileInView={{ opacity: 1, x: 0, transition: { duration: 0.8 } }}
                                 > 
-                                    <span className='text-slate-700 dark:text-slate-300'>
-                                        Participate in prediction markets, stake on outcomes, and earn rewards from market volu e. Your edge, your profit.
+                                    <span className='text-slate-700 dark:text-slate-300 lg:text-[11px] xl:text-xs'>
+                                        Participate in prediction markets, stake on outcomes, and earn rewards from market volume. Your edge, your profit.
                                     </span>
                                 </motion.div>
                             </CardContent>
@@ -112,39 +113,29 @@ export default function Coverage() {
                                 <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, x: -40 }}
                                     whileInView={{ opacity: 1, x: 0, transition: { duration: 0.8 } }}
                                 >
-                                    <h2 className='text-lg font-bold'>Unlimited Market Categories</h2>
+                                    <h2 className='lg:text-md xl:text-lg font-bold'>Unlimited Market Categories</h2>
                                 </motion.div>
                             </CardHeader>
-                            <CardContent className='space-x-2 space-y-2 w-full'>
-                                <Badge className='bg-white dark:bg-slate-700 text-xs text-slate-700 dark:text-slate-300 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Up to 100x Payouts</Badge>
-                                <Badge className='bg-white dark:bg-slate-700 text-xs text-slate-700 dark:text-slate-300 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Zero Platform Fees</Badge>
-                                <Badge className='bg-white dark:bg-slate-700 text-xs text-slate-700 dark:text-slate-300 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Earn from Market Volume</Badge>
+                            <CardContent className='space-x-2 space-y-2 lg:text-[11px] xl:text-xs w-full'>
+                                <Badge className='bg-white dark:bg-slate-700 text-slate-700 lg:text-[11px] xl:text-xs dark:text-slate-300 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Up to 100x Payouts</Badge>
+                                <Badge className='bg-white dark:bg-slate-700 text-slate-700 lg:text-[11px] xl:text-xs dark:text-slate-300 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Zero Platform Fees</Badge>
+                                <Badge className='bg-white dark:bg-slate-700 text-slate-700 lg:text-[11px] xl:text-xs dark:text-slate-300 gap-1'> <Check strokeWidth={3} className='text-blue-500'/> Earn from Market Volume</Badge>
                             </CardContent>
-                            <CardFooter className='justify-center overflow-clip relative'>
+                            <CardFooter className='justify-center overflow-clip relative gap-0 h-fit lg:-my-5 xl:my-0'>
                                 <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, scale: 0.1 }}
                                     whileInView={{ opacity: 1, scale: 1, transition: { type:"spring", bounce: 0.4, duration: 1, delay: 0.3 } }}
                                 >
-                                    <Image
-                                        src="/assets/candlesticks.svg"
-                                        alt="cyclespace prediction markets"
-                                        height={250}
-                                        width={250}
-                                        quality={100}
-                                        className="object-cover hidden relative w-auto h-auto"
-                                        priority
-                                        referrerPolicy="no-referrer"
-                                    />
-
                                     <Image
                                         src="/assets/glass_logo.png"
                                         alt="cyclespace prediction markets"
                                         height={1000}
                                         width={1000}
                                         quality={100}
-                                        className="object-cover relative w-40 h-40 my-10"
+                                        className="object-cover relative lg:w-30 lg:h-30 xl:w-40 xl:h-40 my-10"
                                         priority
                                         referrerPolicy="no-referrer"
                                     />
+
                                 </motion.div>
 
                                 {/* Linear gradient overlay */}
@@ -156,7 +147,8 @@ export default function Coverage() {
 
                 </div>
 
-                <div className='flex flex-col gap-5 w-full h-full'>
+                {/* middle section*/}
+                <div className='flex flex-col gap-5 sm:w-full lg:w-100 xl:w-full h-full'>
                     <motion.div viewport={{ amount: 0. }} initial={{ opacity: 0, y: -40 }}
                         whileInView={{ opacity: 1, y: 0, transition: { type: "spring", bounce: 0.4, duration: 1 } }}
                     >
@@ -166,12 +158,12 @@ export default function Coverage() {
                                 <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, y: -30 }}
                                     whileInView={{ opacity: 1, y: 0, transition: { duration: 0.8 } }}
                                 >
-                                    <h2 className='text-black dark:text-white text-xl font-bold'>Prediction Markets. Any Event.</h2>
+                                    <h2 className='text-black dark:text-white lg:text-lg xl:text-xl font-bold'>Prediction Markets. Any Event.</h2>
                                 </motion.div>
                                 <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, y: -30 }}
                                     whileInView={{ opacity: 1, y: 0, transition: { duration: 0.8 } }}
                                 >
-                                    <h3 className='text-sm text-slate-700 dark:text-slate-300'>Predict outcomes on crypto prices, sports, elections, and more with up to 50x potential returns.</h3>
+                                    <h3 className='lg:text-xs xl:text-sm text-slate-700 dark:text-slate-300 lg:w-80'>Predict outcomes on crypto prices, sports, elections, and more with up to 50x potential returns.</h3>
                                 </motion.div>
                             </CardHeader>
 
@@ -196,7 +188,7 @@ export default function Coverage() {
                                     <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, y: 30 }}
                                         whileInView={{ opacity: 1, y: 0, transition: { type:"spring", bounce: 0.4, duration: 1, delay: 0.3 } }}
                                     >
-                                        <h2 className='text-sm md:text-xl font-bold bg-clip-text text-transparent bg-linear-to-b from-black via-zinc-800 to-zinc-500
+                                        <h2 className='text-sm lg:text-lg drop-shadow-xl drop-shadow-black xl:text-xl font-bold bg-clip-text text-transparent bg-linear-to-b from-black via-zinc-800 to-zinc-500
                                             dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400 z-30'>
                                             Limit Orders. Real Rewards.
                                         </h2>
@@ -212,7 +204,7 @@ export default function Coverage() {
                                         Place limit orders to provide liquidity and earn a share of all market fees.
                                     </span>
                                     <div>
-                                        <Button className='text-xs bg-primary hover:bg-black text-white '>Start Predicting</Button>
+                                        <Button className='lg:text-[11px] xl:text-xs bg-primary hover:bg-black text-white '>Start Predicting</Button>
                                     </div>
                                 </CardContent>
                             </motion.div>
@@ -231,7 +223,8 @@ export default function Coverage() {
 
                 </div>
 
-                <div className='flex flex-col gap-5 w-full md:w-300 h-full justify-center'>
+                {/* right section*/}
+                <div className='flex flex-col gap-5 w-full md:w-300 lg:w-full xl:w-300 h-full justify-center'>
                     <motion.div viewport={{ amount: 0.4 }} initial={{ opacity: 0, x: 40 }}
                         whileInView={{ opacity: 1, x: 0, transition: { type: "spring", bounce: 0.4, duration: 1 } }}
                     >
@@ -258,23 +251,12 @@ export default function Coverage() {
                                         whileInView={{ opacity: 1, x: 0, transition: { duration: 0.8 } }}
                                     >
                                         <Image
-                                            src="/assets/Vault.png"
-                                            alt="cyclespace prediction markets"
-                                            height={230}
-                                            width={230}
-                                            quality={100}
-                                            className="relative hidden left-35 -top-10 object-cover drop-shadow-2xl drop-shadow-black w-auto h-auto hover:scale-110 transition-transform duration-300"
-                                            priority
-                                            referrerPolicy="no-referrer"
-                                        />
-
-                                        <Image
                                             src="/assets/token_blue1.png"
                                             alt="cyclespace prediction markets"
                                             height={1000}
                                             width={1000}
                                             quality={100}
-                                            className="relative left-45 top-0 object-contain drop-shadow-2xl drop-shadow-black w-50 h-50 mb-11 hover:scale-110 transition-transform duration-300"
+                                            className="relative lg:left-27 lg:top-0 xl:left-45 xl:top-0 object-contain drop-shadow-2xl drop-shadow-black lg:w-40 lg:h-40 xl:w-50 xl:h-50 mb-11 hover:scale-110 transition-transform duration-300"
                                             priority
                                             referrerPolicy="no-referrer"
                                         />
@@ -286,14 +268,14 @@ export default function Coverage() {
                                         whileInView={{ opacity: 1, x: 0, transition: { duration: 0.8 } }}
                                         className='w-full'
                                     >
-                                        <h2 className="text-sm md:text-lg text-left w-full font-bold text-white">
+                                        <h2 className="text-sm lg:text-md xl::text-lg text-left w-full font-bold text-white">
                                             Predict. Win. Grow Your Stack.
                                         </h2>
                                     </motion.div>
                                     <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, x: 40 }}
                                         whileInView={{ opacity: 1, x: 0, transition: { duration: 0.8 } }}
                                     >
-                                        <h3 className="text-xs md:text-sm text-slate-200">
+                                        <h3 className="lg:text-[11px] xl:text-xs md:text-sm text-slate-200">
                                             Lock in your predictions on future events and earn massive rewards from correct forecasts. No limits, just winning.
                                         </h3>
                                     </motion.div>
@@ -307,25 +289,25 @@ export default function Coverage() {
                     >
                         <Card className='h-full w-full bg-zinc-200 dark:bg-slate-900 dark:border-slate-800 border border-zinc-200 gap-5 hover:scale-105 transition-transform duration-300' >
                             <CardHeader className='flex items-center gap-2'>
-                                <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, scale: 0.1 }}
+                                <motion.div viewport={{ amount: 0.1 }} initial={{ opacity: 0, scale: 0.1 }}
                                     whileInView={{ opacity: 1, scale: 1, transition: { type:"spring", bounce: 0.4, duration: 1, delay: 0.3 } }}
                                 >
                                     <div className='bg-primary p-2 rounded-lg w-fit h-fit'><CandlestickChartIcon className='text-white w-5 h-5' /></div>
                                 </motion.div>
                                 <div className='gap-0 space-y-0 flex flex-col gap-0'>
-                                    <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, x: 40 }}
+                                    <motion.div viewport={{ amount: 0.1 }} initial={{ opacity: 0, x: 40 }}
                                         whileInView={{ opacity: 1, x: 0, transition: { duration: 0.8 } }}
                                     >
-                                        <h2 className='text-lg font-bold w-fit h-fit'>Any Event. Any Time.</h2>
+                                        <h2 className='lg:text-md xl:text-lg font-bold w-fit h-fit'>Any Event. Any Time.</h2>
                                     </motion.div>
-                                    <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, x: 40 }}
+                                    <motion.div viewport={{ amount: 0.1 }} initial={{ opacity: 0, x: 40 }}
                                         whileInView={{ opacity: 1, x: 0, transition: { duration: 0.8 } }}
                                     >
-                                        <h3 className='text-xs w-fit h-fit'>Predict on crypto, sports, politics, and more</h3>
+                                        <h3 className='lg:text-[9px] xl:text-xs w-fit h-fit'>Predict on crypto, sports, politics, and more</h3>
                                     </motion.div>
                                 </div>
                             </CardHeader>
-                            <CardContent className='text-xs'>
+                            <CardContent className='lg:text-[11px] xl:text-xs'>
                                 Get instant payouts on correct predictions. Deep liquidity, real-time odds, and no hidden fees.
                             </CardContent>
                         </Card>

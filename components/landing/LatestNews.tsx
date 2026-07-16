@@ -230,8 +230,8 @@ export default function LatestNews() {
 
   return (
     <section ref={sectionRef} className="w-full py-20">
-      <div className="mb-10 px-6 md:px-70 justify-center w-full">
-        <div className="flex flex-wrap items-end justify-between gap-4">
+      <div className="mb-10 px-6 lg:px-30 xl::px-70 justify-center w-full">
+        <div className="flex flex-wrap items-end justify-between gap-4 w-full">
           <h2 className="text-3xl font-bold text- dark:text-white md:text-4xl">Weekly headlines</h2>
 
           <div className="flex shrink-0 items-center gap-3">

@@ -1,15 +1,12 @@
 'use client';
 
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Card, CardContent } from '../ui/card';
-import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { LogoLoop } from '../LogoLoop';
-import Image from 'next/image';
-import { Activity, Trophy, TrendingUp, Globe, Zap } from 'lucide-react';
-import * as motion from "motion/react-client"
+import { Globe, Loader2 } from 'lucide-react';
+import * as motion from "motion/react-client";
 import { motionValue } from 'motion';
-
 
 interface PredictionOption {
   name: string;
@@ -19,8 +16,6 @@ interface PredictionOption {
 interface PredictionCard {
   id: string;
   category: string;
-  categoryIcon: React.ReactNode;
-  categoryColor?: string;
   title: string;
   options: PredictionOption[];
   volume?: string;
@@ -30,192 +25,6 @@ interface PredictionCard {
   image?: string;
   chartData?: number[];
 }
-
-const predictionData: PredictionCard[] = [
-  {
-    id: '1',
-    category: 'Sports',
-    categoryIcon: <Trophy className="w-3 h-3" />,
-    title: 'The Masters - Winner',
-    options: [
-      { name: 'Rory McIlroy', probability: 24 },
-      { name: 'Scottie Scheffler', probability: 20 },
-    ],
-    volume: '$102M Vol.',
-  },
-  {
-    id: '2',
-    category: 'Crypto',
-    categoryIcon: <TrendingUp className="w-3 h-3" />,
-    categoryColor: '#F7931A',
-    title: 'BTC 5 Minute Up or Down',
-    options: [
-      { name: 'Up', probability: 47 },
-    ],
-    isLive: true,
-    volume: '$2.1M Vol.',
-    image: '/tokens/Bitcoin.svg',
-    chartData: [40, 45, 42, 48, 47, 50, 47],
-  },
-  {
-    id: '3',
-    category: 'Politics',
-    categoryIcon: <Globe className="w-3 h-3" />,
-    title: 'Peru Presidential Election Winner',
-    options: [
-      { name: 'Keiko Fujimori', probability: 31 },
-      { name: 'Ricardo Belmont', probability: 21 },
-    ],
-    volume: '$11M Vol.',
-  },
-  {
-    id: '4',
-    category: 'Sports',
-    categoryIcon: <Trophy className="w-3 h-3" />,
-    title: 'Hanwha Life Esports vs BNK FEARX',
-    options: [
-      { name: 'Hanwha Life', probability: 66 },
-      { name: 'BNK FEARX', probability: 35 },
-    ],
-    isLive: true,
-    volume: '$2M Vol.',
-  },
-  {
-    id: '5',
-    category: 'Sports',
-    categoryIcon: <Trophy className="w-3 h-3" />,
-    title: 'LNG Esports vs EDward Gaming',
-    options: [
-      { name: 'LNG Esports', probability: 60 },
-      { name: 'EDward Gaming', probability: 41 },
-    ],
-    isLive: true,
-    volume: '$2M Vol.',
-  },
-  {
-    id: '6',
-    category: 'Sports',
-    categoryIcon: <Trophy className="w-3 h-3" />,
-    title: 'Joao Fonseca vs Alexander Zverev',
-    options: [
-      { name: 'Joao', probability: 31 },
-      { name: 'Alexander', probability: 70 },
-    ],
-    volume: '$1M Vol.',
-  },
-  {
-    id: '7',
-    category: 'Sports',
-    categoryIcon: <Trophy className="w-3 h-3" />,
-    title: 'Nigma Galaxy vs Team Liquid',
-    options: [
-      { name: 'Nigma', probability: 35 },
-      { name: 'Team Liquid', probability: 66 },
-    ],
-    volume: '$477K Vol.',
-  },
-  {
-    id: '8',
-    category: 'Sports',
-    categoryIcon: <Trophy className="w-3 h-3" />,
-    title: '3DMAX vs Astralis',
-    options: [
-      { name: '3DMAX', probability: 30 },
-      { name: 'Astralis', probability: 71 },
-    ],
-    volume: '$165K Vol.',
-  },
-  {
-    id: '9',
-    category: 'Politics',
-    categoryIcon: <Globe className="w-3 h-3" />,
-    title: 'Next Prime Minister of Hungary',
-    options: [
-      { name: 'Péter Magyar', probability: 71 },
-      { name: 'Viktor Orbán', probability: 30 },
-    ],
-    volume: '$58M Vol.',
-  },
-  {
-    id: '10',
-    category: 'Politics',
-    categoryIcon: <Globe className="w-3 h-3" />,
-    title: 'Hungary Parliamentary Election Winner',
-    options: [
-      { name: 'TISZA', probability: 77 },
-      { name: 'Fidesz-KDNP', probability: 24 },
-    ],
-    volume: '$59M Vol.',
-  },
-  {
-    id: '11',
-    category: 'Sports',
-    categoryIcon: <Trophy className="w-3 h-3" />,
-    title: '2026 FIFA World Cup Winner',
-    options: [
-      { name: 'Spain', probability: 15 },
-      { name: 'France', probability: 15 },
-    ],
-    volume: '$559M Vol.',
-  },
-  {
-    id: '12',
-    category: 'Politics',
-    categoryIcon: <Globe className="w-3 h-3" />,
-    title: 'Will US withdraw from NATO by...',
-    options: [
-      { name: 'Yes', probability: 13 },
-      { name: 'No', probability: 88 },
-    ],
-    endDate: 'December 31',
-    volume: '$3M Vol.',
-  },
-  {
-    id: '13',
-    category: 'Crypto',
-    categoryIcon: <Zap className="w-3 h-3" />,
-    title: 'Strait of Hormuz traffic returns...',
-    options: [
-      { name: 'Yes', probability: 21 },
-    ],
-    volume: '$6M Vol.',
-  },
-  {
-    id: '14',
-    category: 'Politics',
-    categoryIcon: <Globe className="w-3 h-3" />,
-    title: 'Iran x Israel/US conflict ends by...',
-    options: [
-      { name: 'Yes', probability: 94 },
-      { name: 'No', probability: 86 },
-    ],
-    endDate: 'December 31',
-    volume: '$32M Vol.',
-  },
-  {
-    id: '15',
-    category: 'Crypto',
-    categoryIcon: <Activity className="w-3 h-3" />,
-    title: 'WTI Crude Oil price in April 2026?',
-    options: [
-      { name: '$100', probability: 100 },
-      { name: '$95', probability: 90 },
-    ],
-    volume: '$21M Vol.',
-  },
-  {
-    id: '16',
-    category: 'Politics',
-    categoryIcon: <Globe className="w-3 h-3" />,
-    title: 'US x Iran permanent peace deal by...',
-    options: [
-      { name: 'May 31', probability: 35 },
-      { name: 'April 30', probability: 20 },
-    ],
-    isNew: true,
-    volume: '$455K Vol.',
-  },
-];
 
 const PredictionCardComponent = React.memo(({ card }: { card: PredictionCard }) => {
   const getCategoryColor = () => {
@@ -227,95 +36,89 @@ const PredictionCardComponent = React.memo(({ card }: { card: PredictionCard }) 
     }
   };
 
-  const getCategoryBg = () => {
-    switch (card.category) {
-      case 'Sports': return 'bg-emerald-50 dark:bg-emerald-950';
-      case 'Crypto': return 'bg-orange-50 dark:bg-orange-950';
-      case 'Politics': return 'bg-blue-50 dark:bg-blue-950';
-      default: return 'bg-zinc-50 dark:bg-slate-800';
-    }
-  };
-
-  const x = motionValue(0)
+  const x = motionValue(0);
 
   useEffect(() => {
-    // Won't trigger a re-render!
-    const timeout = setTimeout(() => x.set(100), 1000)
-
-    return () => clearTimeout(timeout)
-  }, [])
-  
+    const timeout = setTimeout(() => x.set(100), 1000);
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
-    <motion.div viewport={{ amount: 0.3 }} initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1, transition: { type:"spring", duration: 1 } }} exit={{ scale: 1 }}
+    <motion.div 
+      viewport={{ amount: 0.3 }} 
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1, transition: { type:"spring", duration: 1 } }} 
+      exit={{ scale: 1 }}
     >
-    <Card className={`w-[300px] md:w-[260px] h-[200px] py-2 bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow`}>
-      <CardContent className="p-4 h-full flex flex-col justify-between">
-        {/* Title and Category */}
-        <div>
-          <div className="flex items-center gap-2 flex-wrap">
-            <span className={`flex gap-1 items-center text-[13px] font-semibold uppercase tracking-wide mb-1 ${getCategoryColor()}`}>
-              {card.categoryIcon} {card.category}
-            </span>
-            {card.isLive && (
-              <span className="flex items-center gap-0.5 text-[10px] text-red-500 font-medium">
-                <span className="w-1 h-1 bg-red-500 rounded-full animate-pulse" />
-                LIVE
+      <Card className={`w-[300px] lg:w-[180px] lg:h-[180px] xl:w-[260px] h-[200px] xl:h-[200px] py-2 bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow`}>
+        <CardContent className="p-4 h-full flex flex-col justify-between">
+          {/* Title and Category */}
+          <div>
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className={`flex gap-1 items-center lg:text-[9px] xl:text-[13px] font-semibold uppercase tracking-wide mb-1 ${getCategoryColor()}`}>
+                {/* Replaced standard Lucide icon with API image, fallback to Globe */}
+                {card.image ? (
+                  <img src={card.image} alt={card.category} className=" sm:w-5 sm:h-5 lg:w-4 lg:h-4 xl:w-5 xl:h-5 rounded-full object-cover shadow-sm" />
+                ) : (
+                  <Globe className="w-3 h-3" />
+                )}
+                {card.category}
               </span>
-            )}
-            {card.isNew && (
-              <span className="text-[10px] font-semibold text-amber-600 dark:text-amber-400">NEW</span>
-            )}
+              {card.isLive && (
+                <span className="flex items-center gap-0.5 lg:text-[9px] xl:text-[10px] text-red-500 font-medium">
+                  <span className="w-1 h-1 bg-red-500 rounded-full animate-pulse" />
+                  LIVE
+                </span>
+              )}
+            </div>
+            <h3 className="lg:text-xs xl:text-sm font-bold text-zinc-900 dark:text-white leading-tight line-clamp-2 mb-2">
+              {card.title} 
+            </h3>
           </div>
-          <h3 className="text-sm font-bold text-zinc-900 dark:text-white leading-tight line-clamp-2 mb-2">
-            {card.title} 
-          </h3>
-        </div>
 
-        {/* Options */}
-        <div className="space-y-2.5">
-          {card.options.map((option, idx) => (
-            <div key={idx} className="flex items-center justify-between gap-3">
-              <div className="flex-1">
-                <div className="flex items-center gap-2">
-                  <span className="text-[12px] font-semibold text-zinc-900 dark:text-white">
-                    {option.name}
-                  </span>
-                  <span className="text-[12px] font-bold text-zinc-900 dark:text-white">
-                    {option.probability}%
-                  </span>
+          {/* Options */}
+          <div className="space-y-2.5">
+            {card.options.map((option, idx) => (
+              <div key={idx} className="flex items-center justify-between gap-3">
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <span className="lg:text-[9px] xl:text-[12px] font-semibold text-zinc-900 dark:text-white">
+                      {option.name}
+                    </span>
+                    <span className="lg:text-[10px] text-[12px] font-bold text-zinc-900 dark:text-white">
+                      {option.probability}%
+                    </span>
+                  </div>
+                </div>
+                <div className="flex gap-1 flex-shrink-0">
+                  <span className="lg:text-[9px] xl:text-[9px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30 px-2 py-1 rounded">Yes</span>
+                  <span className="lg:text-[9px] xl:text-[9px] font-semibold text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/30 px-2 py-1 rounded">No</span>
                 </div>
               </div>
-              <div className="flex gap-1 flex-shrink-0">
-                <span className="text-[9px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30 px-2 py-1 rounded">Yes</span>
-                <span className="text-[9px] font-semibold text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/30 px-2 py-1 rounded">No</span>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* Footer */}
-        <div className="mt-auto pt-2 border-t border-zinc-100 dark:border-slate-800 flex items-center justify-between text-[8px] text-zinc-500 dark:text-slate-400">
-          <div className="flex items-center gap-1.5">
-            {card.endDate && <span>{card.endDate}</span>}
-            {card.volume && <span>{card.volume}</span>}
+          {/* Footer */}
+          <div className="mt-auto pt-2 border-t border-zinc-100 dark:border-slate-800 flex items-center justify-between text-[8px] text-zinc-500 dark:text-slate-400">
+            <div className="flex items-center gap-1.5">
+              {card.endDate && <span>{card.endDate}</span>}
+              {card.volume && <span>{card.volume}</span>}
+            </div>
+            <div className="flex items-center gap-1">
+              <button className="p-0.5 hover:bg-zinc-100 dark:hover:bg-slate-800 rounded">
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                </svg>
+              </button>
+              <button className="p-0.5 hover:bg-zinc-100 dark:hover:bg-slate-800 rounded">
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                </svg>
+              </button>
+            </div>
           </div>
-          <div className="flex items-center gap-1">
-            <button className="p-0.5 hover:bg-zinc-100 dark:hover:bg-slate-800 rounded">
-              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-              </svg>
-            </button>
-            <button className="p-0.5 hover:bg-zinc-100 dark:hover:bg-slate-800 rounded">
-              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
     </motion.div>
   );
 });
@@ -323,39 +126,51 @@ const PredictionCardComponent = React.memo(({ card }: { card: PredictionCard }) 
 PredictionCardComponent.displayName = 'PredictionCardComponent';
 
 const PredictionMarkets = React.memo(() => {
-  // Memoize column splits to prevent re-creation
-  const { column1, column2, column3, column4 } = useMemo(() => ({
-    column1: predictionData.slice(0, 4),
-    column2: predictionData.slice(4, 8),
-    column3: predictionData.slice(8, 12),
-    column4: predictionData.slice(12, 16),
-  }), []);
+  const [predictionData, setPredictionData] = useState<PredictionCard[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  // Memoize column items for each LogoLoop - critical for performance
+  // Fetch real Polymarket API Data
+  useEffect(() => {
+    const fetchLocalData = async () => {
+      try {
+        const res = await fetch('/api/predictions');
+        if (!res.ok) throw new Error('Network response was not ok');
+        const data = await res.json();
+        setPredictionData(data);
+      } catch (error) {
+        console.error("Failed to fetch local prediction data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLocalData();
+  }, []);
+
+  // Memoize column items dynamically based on the fetched array
   const column1Items = useMemo(() => 
-    column1.map((card) => ({ node: <PredictionCardComponent card={card} />, ariaLabel: card.title })),
-    [column1]
+    predictionData.slice(0, 4).map((card) => ({ node: <PredictionCardComponent card={card} />, ariaLabel: card.title })),
+    [predictionData]
   );
   const column2Items = useMemo(() => 
-    column2.map((card) => ({ node: <PredictionCardComponent card={card} />, ariaLabel: card.title })),
-    [column2]
+    predictionData.slice(4, 8).map((card) => ({ node: <PredictionCardComponent card={card} />, ariaLabel: card.title })),
+    [predictionData]
   );
   const column3Items = useMemo(() => 
-    column3.map((card) => ({ node: <PredictionCardComponent card={card} />, ariaLabel: card.title })),
-    [column3]
+    predictionData.slice(8, 12).map((card) => ({ node: <PredictionCardComponent card={card} />, ariaLabel: card.title })),
+    [predictionData]
   );
   const column4Items = useMemo(() => 
-    column4.map((card) => ({ node: <PredictionCardComponent card={card} />, ariaLabel: card.title })),
-    [column4]
+    predictionData.slice(12, 16).map((card) => ({ node: <PredictionCardComponent card={card} />, ariaLabel: card.title })),
+    [predictionData]
   );
 
-  // Memoize header
   const header = useMemo(() => (
     <div className="mb-12 text-center">
       <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0, transition: { type: "spring", bounce: 0.4, duration: 1 } }}
       >
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-linear-to-b from-black via-slate-800 to-slate-700 
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl font-bold bg-clip-text text-transparent bg-linear-to-b from-black via-slate-800 to-slate-700 
         dark:from-white dark:via-slate-200 dark:to-slate-400 max-w-3xl mx-auto">
           Bet on the outcome of real-world events. Sports, crypto, politics, and more.
         </h2>
@@ -363,9 +178,17 @@ const PredictionMarkets = React.memo(() => {
     </div>
   ), []);
 
+  if (loading) {
+    return (
+      <div className="w-full py-24 flex justify-center items-center h-[500px]">
+        <Loader2 className="w-8 h-8 animate-spin text-zinc-500" />
+      </div>
+    );
+  }
+
   return (
     <div className="w-full py-16 md:py-24 font-sans justify-center">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8 ">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         {header}
 
@@ -377,13 +200,10 @@ const PredictionMarkets = React.memo(() => {
           {/* Bottom fade gradient */}
           <div className="absolute bottom-0 left-0 right-0 h-24 bg-linear-to-t from-white via-white/80 to-transparent z-10 pointer-events-none
               dark:from-black dark:via-black/80 dark:to-transparent" />
-          {/* left fade gradient */}
-          <div className="absolute hidden inset-0 top-0 bottom-0 left-0  w-full h-24 bg-linear-to-l from-white via-white/80 to-transparent z-10 pointer-events-none
-              dark:from-black dark:via-black/80 dark:to-transparent" />
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4 w-fit h-[500px] md:h-[600px] items-center overflow-hidden">
             {/* Column 1 - scrolls down */}
-            <div className="h-full w-full ">
+            <div className="h-full w-full">
               <LogoLoop
                 logos={column1Items}
                 direction="down"
@@ -437,7 +257,8 @@ const PredictionMarkets = React.memo(() => {
                 ariaLabel="Prediction markets column 4"
               />
             </div>
-            {/* Column 5 - scrolls up */}
+
+            {/* Column 5 - scrolls up (Reuse column 1 data to fill the grid as per mockup) */}
             <div className="h-full hidden md:block">
               <LogoLoop
                 logos={column1Items}
@@ -447,7 +268,7 @@ const PredictionMarkets = React.memo(() => {
                 gap={-120}
                 pauseOnHover={false}
                 className="h-full"
-                ariaLabel="Prediction markets column 4"
+                ariaLabel="Prediction markets column 5"
               />
             </div>
           </div>
@@ -455,7 +276,7 @@ const PredictionMarkets = React.memo(() => {
 
         {/* CTA */}
         <div className="mt-10 text-center">
-          <Button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2.5 rounded-2xl text-sm font-medium">
+          <Button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2.5 rounded-2xl lg:text-xs xl:text-sm font-medium">
             Explore All Markets
           </Button>
         </div>

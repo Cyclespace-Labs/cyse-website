@@ -51,13 +51,13 @@ const cardsData: CardData[] = [
 export default function Rewards() {
   return (
     <div className="mx-auto h-full w-full py-8 md:py-10 lg:py-10 lg:pb-30">
-      <main className="px-4 sm:px-8 md:px-16 lg:px-[clamp(15rem,15vw,20rem)]">
+      <main className="px-4 sm:px-8 md:px-16 lg:px-13 xl:px-[clamp(15rem,15vw,20rem)]">
         <div className="flex h-full w-full items-center justify-center">
           <motion.div viewport={{ amount: 0.9 }} initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0, transition: {type: "spring", bounce: 0.4, duration: 1,} }}
           >
             <h1
-              className="max-w-4xl text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight
+              className="sm:max-w-4xl lg:max-w-2xl xl:max-w-4xl text-center text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl font-bold leading-tight
                 bg-linear-to-b from-black via-slate-800 to-slate-700
                 dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400
                 bg-clip-text text-transparent"
@@ -183,10 +183,10 @@ export default function Rewards() {
                       />
                     </div>
                     <div className="flex flex-col gap-0 space-y-0">
-                      <h2 className="w-fit text-lg sm:text-xl font-semibold text-white">
+                      <h2 className="w-fit text-lg md:text-lg lg:text-lg xl:text-xl font-semibold text-white">
                         {card.footerTitle}
                       </h2>
-                      <h3 className="w-fit text-sm sm:text-md text-white">
+                      <h3 className="w-fit text-sm md:text-xs lg:text-xs xl:text-md text-white">
                         {card.footerSubtitle}
                       </h3>
                     </div>

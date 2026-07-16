@@ -102,7 +102,7 @@ export default function Showcase() {
                 width={250}
                 height={420}
                 quality={100}
-                className="object-fit z-10 h-40 w-20 lg:h-40 lg:w-20 xl:h-80 xl:w-40 relative -top-20 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 dark:hidden"
+                className="object-fit z-10 h-40 w-20 lg:h-40 lg:w-20 xl:h-80 xl:w-40 relative -left-15 -top-20 rounded-lg shadow-2xl hover:scale-110 transition-transform duration-300 dark:hidden"
                 loading="lazy"
               />
               <Image

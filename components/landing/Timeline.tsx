@@ -465,7 +465,7 @@ export default function Timeline() {
         whileInView={{ opacity: 1, y: 0, transition: { type: "spring", bounce: 0.4, duration: 1 } }}
       >
         <h2
-          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold max-w-xl
+          className="text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl font-bold max-w-xl
             bg-linear-to-b from-black via-slate-800 to-slate-700
             dark:bg-linear-to-b dark:from-white dark:via-slate-200 dark:to-slate-400
             leading-tight bg-clip-text text-transparent w-full text-center"

@@ -44,3 +44,5 @@ next-env.d.ts
 /docs
 .claude
 
+/components/Strategy1.tsx
+/components/Strategy2.tsx
