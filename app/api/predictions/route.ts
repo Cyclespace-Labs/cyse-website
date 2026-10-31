@@ -16,7 +16,7 @@ export async function GET() {
     );
 
     if (!res.ok) {
-      return NextResponse.json(
+      return NextResponse.json( 
         { error: `Polymarket API responded with status ${res.status}` },
         { status: res.status }
       );
