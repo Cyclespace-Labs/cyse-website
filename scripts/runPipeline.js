@@ -10,6 +10,7 @@ import { CATEGORIES, TAGS } from './news-constants.js';
 
 dotenv.config();
 
+// Constants for report types
 const REPORT_TYPES = [
   { label: 'Quarterly Review',    value: 'quarterly'      },
   { label: 'Annual Report',       value: 'annual'         },
@@ -29,6 +30,7 @@ const REPORT_TYPES = [
 
 const W = 51; // box width (inner)
 
+// Utility function to print a box around text
 function box(lines) {
   const bar = '─'.repeat(W);
   console.log(`┌${bar}┐`);
